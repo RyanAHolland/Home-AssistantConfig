@@ -280,20 +280,20 @@
    value_template: '{{ value_json.batt }}'
 ##FIND Location
  - platform: rest
-   resource: http://ml.internalpositioning.com/location?group=GREATGOAT&user=KINGDUTCH
-   value_template: '{{ value_json.users.KINGDUTCH[0].location }}'
+   resource: !secret find_url
+   value_template: !secret find_template
    method: GET
    name: Ryan FIND Sensor
    scan_interval: 1
 ####PACKAGE SENSORS
 #UPS Packages
  - platform: ups
-   username: ryanaholland
-   password: 8aEIINp8
+   username: !secret username
+   password: !secret ups_pass
 ##USPS Camera
  - platform: usps
    scan_interval: 5
 ##FedEx Packages
  - platform: fedex
-   username: ryanaholland
-   password: Kristi0319
+   username: !secret username
+   password: !secret fedex_pass
