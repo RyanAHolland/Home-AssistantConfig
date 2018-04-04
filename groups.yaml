@@ -71,6 +71,13 @@ kitchen:
       - light.island_lights
       - light.kitchen_lamp
       - light.kitchen_overhead
+
+overhead:
+    name: Overhead Lights
+    entities:
+      - light.kitchen_overhead
+      - light.living_room_overhead
+
 insideLights:
     name: Inside Lights
     entities:
@@ -78,10 +85,12 @@ insideLights:
       - group.kitchen
       - group.office
       - group.living_room
+      
 office:
     name: Office
     entities:
       - light.office_lamp
+
 living room:
     name: Living Room
     entities:
