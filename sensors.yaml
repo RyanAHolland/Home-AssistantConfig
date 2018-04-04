@@ -3,6 +3,7 @@
 # Weather Prediction
  - platform: darksky
    api_key: !secret dark_sky_api
+   update_interval: '00:10'
    monitored_conditions:
       - summary
       - precip_type
