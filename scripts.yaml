@@ -1,0 +1,489 @@
+  wakeup:
+    alias: Wake Up Office
+    sequence:
+      # This is Home Assistant Script Syntax
+      - event: LOGBOOK_ENTRY
+        event_data:
+          name: Ryan
+          message: is waking up
+          entity_id: device_tracker.ryan_note8
+      - service: light.turn_on
+        data:
+          entity_id: light.office_lamp
+          brightness: 60
+      - delay:
+          # supports seconds, milliseconds, minutes, hours
+          minutes: 1
+      - service: light.turn_off
+        entity_id: light.ryans_bloom
+
+  goingout:
+    alias: Going Out
+    sequence:
+      # This is Home Assistant Script Syntax
+      - service: notify.pushover
+        data:
+          message: "Testing the Going Out script from IFTTT."
+          title: "HASS"
+
+  goingtobed:
+    alias: Going To Bed
+    sequence:
+      - service: light.turn_on
+        entity_id: light.book_nook
+      - service: light.turn_off
+        entity_id: group.kitchen
+      - delay:
+          # supports seconds, milliseconds, minutes, hours
+          seconds: 60
+      - service: light.turn_off
+        entity_id: group.living_room
+      - service: light.turn_off
+        entity_id: light.dinning_room_lamps
+      - delay:
+          # supports seconds, milliseconds, minutes, hours
+          seconds: 30
+      - service: light.turn_off
+        entity_id: light.book_nook
+      - service: light.turn_off
+        entity_id: group.decorative
+
+  goodnight:
+    alias: Goodnight
+    sequence:
+      - service: light.turn_off
+        entity_id: light.ryans_lamp
+      - service: light.turn_off
+        entity_id: light.kristis_lamp
+      - service: switch.turn_off
+        entity_id: switch.bedroom_light
+      - delay:
+          # supports seconds, milliseconds, minutes, hours
+          seconds: 10
+      - service: light.turn_off
+        data:
+          entity_id: light.ryans_bloom
+          transition: 15
+      - service: light.turn_off
+        data:
+          entity_id: light.kristis_bloom
+          transition: 15
+      - service: light.turn_off
+        entity_id: group.decorative
+      - service: light.turn_off
+        entity_id: group.first_floor
+
+  goingupstairs:
+    alias: Going Upstairs
+    sequence:
+#      - service: light.turn_on
+#        entity_id: light.stair_lamp_12
+      - delay:
+          # supports seconds, milliseconds, minutes, hours
+          seconds: 5
+      - service: light.turn_on
+        entity_id: light.book_nook
+      - delay:
+          # supports seconds, milliseconds, minutes, hours
+          seconds: 5
+      - service: scene.turn_on
+        entity_id: scene.bedtime
+
+###GARAGE DOOR ALERT###
+  night_garage_door_alarm:
+    alias: "Night Garage door alarm"
+    sequence:
+      - delay:
+          minutes: 5
+      - service: notify.pushover
+        data:
+          message: "It looks like one of the garage doors have been left open. Please investigate."
+          title: "HASS"
+  day_garage_door_alarm:
+    alias: "Day Garage door alarm"
+    sequence:
+      - delay:
+          minutes: 30
+      - service: notify.pushover
+        data:
+          message: "It looks like one of the garage doors have been left open. Please investigate."
+          title: "HASS"
+  light_test:
+    alias: Light Testing
+    sequence:
+      - service: light.turn_on
+        entity_id: light.book_nook
+      - delay:
+          minutes: 3
+      - service: light.turn_off
+        entity_id: light.book_nook
+
+  christmason:
+    alias: Christmas Lights On
+    sequence:
+      - service: light.turn_on
+        entity_id: group.christmas
+
+  christmasoff:
+    alias: Christmas Lights Off
+    sequence:
+      - service: light.turn_on
+        entity_id: group.christmas
+
+  downstairs_night:
+    alias: Downstairs Motion Night
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.dining_room_lamps
+          brightness: 40
+      - service: light.turn_on
+        data:
+          entity_id: light.living_room_overhead
+          brightness: 5
+      - service: light.turn_on
+        data:
+          entity_id: light.kitchen_overhead
+          brightness: 5
+      - delay:
+          minutes: 3
+      - service: light.turn_off
+        entity_id: light.dining_room_lamps
+      - service: light.turn_off
+        entity_id: light.living_room_overhead
+      - service: light.turn_off
+        entity_id: light.kitchen_overhead
+
+  gh_bedroom_low:
+    alias: GH Bedroom Volume Low
+    sequence:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.bedroom_home
+          volume_level: ".36"
+
+  ghbedroomhigh:
+    alias: GH Bedroom Volume High
+    sequence:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.bedroom_home
+          volume_level: ".55"
+
+  ghkitchenlow:
+    alias: GH Kitchen Volume Low
+    sequence:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.kitchen_home
+          volume_level: ".36"
+
+  ghkitchenhigh:
+    alias: GH Kitchen Volume High
+    sequence:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.kitchen_home
+          volume_level: ".55"
+
+####Color Lights
+
+  colorstop:
+    alias: Color Stop
+    sequence:
+      - service: script.turn_off
+        entity_id: script.colormoodlights
+      - service: script.turn_off
+        entity_id: script.colormoodloop
+
+  halloweenlights:
+    alias: Halloween Lights
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.ryans_bloom
+          brightness: 255
+          transition: 15
+          color_name: orange
+      - service: light.turn_on
+        data:
+          entity_id: light.kristis_bloom
+          brightness: 255
+          transition: 15
+          color_name: green
+      - delay:
+          minutes: 1
+      - service: light.turn_on
+        data:
+          entity_id: light.ryans_bloom
+          brightness: 120
+          transition: 15
+          color_name: purple
+      - service: light.turn_on
+        data:
+          entity_id: light.kristis_bloom
+          brightness: 120
+          transition: 15
+          color_name: orange
+      - delay:
+          minutes: 1
+      - service: light.turn_on
+        data:
+          entity_id: light.ryans_bloom
+          brightness: 120
+          transition: 15
+          color_name: green
+      - service: light.turn_on
+        data:
+          entity_id: light.kristis_bloom
+          brightness: 120
+          transition: 15
+          color_name: purple
+      - delay:
+          minutes: 1
+      - service: script.turn_on
+        entity_id: script.halloweenloop
+
+  halloweenloop:
+    alias: Halloween Loop
+    sequence:
+      - service: script.turn_on
+        entity_id: script.halloweenlights
+  
+  colormoodlights:
+    alias: Color Mood Lights
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.ryans_bloom
+          brightness: 255
+          transition: 15
+          color_name: red
+      - service: light.turn_on
+        data:
+          entity_id: light.kristis_bloom
+          brightness: 255
+          transition: 15
+          color_name: purple
+      - delay:
+          minutes: 1
+      - service: light.turn_on
+        data:
+          entity_id: light.ryans_bloom
+          brightness: 120
+          transition: 15
+          color_name: purple
+      - service: light.turn_on
+        data:
+          entity_id: light.kristis_bloom
+          brightness: 120
+          transition: 15
+          color_name: red
+      - delay:
+          minutes: 1
+      - service: script.turn_on
+        entity_id: script.colormoodloop
+
+  colormoodloop:
+    alias: Color Mood Loop
+    sequence:
+      - service: script.turn_on
+        entity_id: script.colormoodlights
+
+  ryansunrise:
+    alias: Ryan Hue Sunrise
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.ryans_bloom
+          brightness: 5
+          color_name: midnightblue
+      - service: light.turn_on
+        data:
+          entity_id: light.ryans_bloom
+          brightness: 50
+          transition: 60
+          color_name: midnightblue
+      - delay:
+          minutes: 1
+      - service: light.turn_on
+        data:
+          entity_id: light.ryans_bloom
+          brightness: 100
+          transition: 60
+          color_name: darkorange
+      - delay:
+          minutes: 1
+      - service: light.turn_on
+        data:
+          entity_id: light.ryans_bloom
+          brightness: 150
+          transition: 60
+          color_name: yellow
+      - delay:
+          minutes: 1
+      - service: light.turn_on
+        data:
+          entity_id: light.ryans_bloom
+          brightness: 200
+          transition: 60
+          color_name: lightyellow
+
+  kristisunrise:
+    alias: Kristi Hue Sunrise
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.kristis_bloom
+          brightness: 5
+          color_name: midnightblue
+      - service: light.turn_on
+        data:
+          entity_id: light.kristis_bloom
+          brightness: 50
+          transition: 120
+          color_name: midnightblue
+      - delay:
+          minutes: 2
+      - service: light.turn_on
+        data:
+          entity_id: light.kristis_bloom
+          brightness: 100
+          transition: 120
+          color_name: darkorange
+      - delay:
+          minutes: 2
+      - service: light.turn_on
+        data:
+          entity_id: light.kristis_bloom
+          brightness: 150
+          transition: 120
+          color_name: yellow
+      - delay:
+          minutes: 2
+      - service: light.turn_on
+        data:
+          entity_id: light.kristis_bloom
+          brightness: 200
+          transition: 60
+          color_name: lightyellow
+
+##Notification for on UPS Battery
+  upsnotify:
+    alias: UPS on Battery Notify
+    sequence:
+      # This is Home Assistant Script Syntax
+      - service: notify.pushover
+        data:
+          message: "WARNING: Loss of power detected. Current UPS runtime is {{ states.sensor.ups_time_left.state }} and remaining power is {{ states.sensor.ups_battery.state }}%."
+          title: "HASS"
+      - delay:
+          minutes: 5
+      - service: script.turn_on
+        entity_id: script.upsnotifyloop
+
+  upsnotifyloop:
+    alias: UPS on Battery Loop
+    sequence:
+      - service: script.turn_on
+        entity_id: script.upsnotify
+
+##CONTROL INPUT SELECTOR
+
+  ryansleep:
+    alias: Ryan Phone Sleep
+    sequence:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.ryan_phone_status
+          option: Sleep
+
+  ryanbattery:
+    alias: Ryan Phone Battery
+    sequence:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.ryan_phone_status
+          option: On Battery
+
+  ryanlow:
+    alias: Ryan Phone Low
+    sequence:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.ryan_phone_status
+          option: Low Battery
+
+  ryancar:
+    alias: Ryan Phone In Car
+    sequence:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.ryan_phone_status
+          option: In Car
+
+  ryancharging:
+    alias: Ryan Phone Charging
+    sequence:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.ryan_phone_status
+          option: Charging
+
+  kristisleep:
+    alias: Kristi Phone Sleep
+    sequence:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.kristi_phone_status
+          option: Sleep
+
+  kristibattery:
+    alias: Kristi Phone Battery
+    sequence:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.kristi_phone_status
+          option: On Battery
+
+##SECURITY CHECK TEXT
+  textsecuritycheck:
+    alias: Text Security Check
+    sequence:
+      - service: notify.pushover
+        data_template:
+          message: "{%- for state in states.binary_sensor if state.attributes.device_class=='opening' if state.state=='on' -%}{%- if loop.first %}The {% elif loop.last %} and the {% else %}, the {% endif -%} {{ state.name | lower }} is open {%- else %} All Doors are Closed{%- endfor -%}. {%- for state in states.lock if state.state=='unlocked' -%} {%- if loop.first %}The {% elif loop.last %} and the {% else %}, the {% endif -%} {{ state.name | lower }} is {{state.state}} {%- else %} All Doors are Locked {%- endfor -%}. {%- for state in states.cover if state.state=='open' -%} {%- if loop.first %}The {% elif loop.last %} and the {% else %}, the {% endif -%} {{ state.name | lower }} is {{state.state}} {%- else %} All Garage Doors are Closed {%- endfor -%}. Have a nice day!"
+          title: "HA - Checking all security sensors"
+
+##SECURITY CHECK VOICE
+  voicesecuritycheck:
+    alias: Voice Security Check
+    sequence:
+      - service: tts.google_say
+        entity_id: media_player.kitchen_home
+        data_template:
+          volume_level: ".55"
+          message: "{%- for state in states.binary_sensor if state.attributes.device_class=='opening' if state.state=='on' -%}{%- if loop.first %}The {% elif loop.last %} and the {% else %}, the {% endif -%} {{ state.name | lower }} is open {%- else %} All Doors are Closed{%- endfor -%}. {%- for state in states.lock if state.state=='unlocked' -%} {%- if loop.first %}The {% elif loop.last %} and the {% else %}, the {% endif -%} {{ state.name | lower }} is {{state.state}} {%- else %} All Doors are Locked {%- endfor -%}. {%- for state in states.cover if state.state=='open' -%} {%- if loop.first %}The {% elif loop.last %} and the {% else %}, the {% endif -%} {{ state.name | lower }} is {{state.state}} {%- else %} All Garage Doors are Closed {%- endfor -%}. Have a nice day!"
+          title: "HA - Checking all security sensors"
+
+
+##Guest Mode going to Away
+  guestmodeaway:
+    alias: Guest Mode Away
+    sequence:
+      - service: tts.google_say
+        entity_id: media_player.kitchen_home
+        data_template:
+          volume_level: ".55"
+          message: "I have not detected movement in the house for 2 hours.  In 5 minutes I will put the house in away mode.  If you are still here please disable this script or make motion in front of one of the sensors. Thank you."
+      - service: notify.pushover
+        data:
+          message: "I will setting away mode in 5 minutes."
+          title: "HASS: Guest Mode"
+      - delay:
+                # supports seconds, milliseconds, minutes, hours
+          minutes: 5
+      - service: switch.turn_on
+        entity_id: switch.st_awayhome_switch
+      - service: switch.turn_off
+        entity_id: switch.guest_mode

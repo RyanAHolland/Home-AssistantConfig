@@ -1,0 +1,191 @@
+  - name: Livingroom normal
+    entities:
+        light.left_light_2:
+            state: on
+            transition: 5
+            brightness: 215
+        light.right_light_2:
+            state: on
+            transition: 5
+            brightness: 215
+        light.floor_lamp:
+            state: on
+            transition: 5
+            brightness: 215
+  - name: Livingroom Dim
+    entities:
+        light.left_light_2:
+            state: on
+            transition: 5
+            brightness: 15
+        light.right_light_2:
+            state: on
+            transition: 5
+            brightness: 15
+        light.floor_lamp:
+            state: on
+            transition: 5
+            brightness: 15
+  - name: Fireplace Lights On
+    entities:
+        light.left_light_2:
+            state: on
+            transition: 2
+            brightness: 153
+        light.right_light_2:
+            state: on
+            transition: 2
+            brightness: 153
+  - name: Fireplace Lights Off
+    entities:
+        light.left_light_2:
+            state: off
+            transition: 2
+        light.right_light_2:
+            state: off
+            transition: 2
+  - name: Fireplace Lights Dim
+    entities:
+        light.left_light_2:
+            state: on
+            transition: 2
+            brightness: 80
+        light.right_light_2:
+            state: on
+            transition: 2
+            brightness: 80
+  - name: Bedroom dim
+    entities:
+        light.ryan_lamp:
+            state: on
+            transition: 2
+            brightness: 100
+        light.kristi_lamp:
+            state: on
+            transition: 2
+            brightness: 100
+  - name: Bedtime
+    entities:
+        light.ryan_lamp:
+            state: on
+            brightness: 60
+        light.kristi_lamp:
+            state: on
+            brightness: 60
+        light.ryans_bloom:
+            state: on
+            transition: 2
+            brightness: 60
+            color_name: Medium Violet Red
+        light.kristis_bloom:
+            state: on
+            transition: 2
+            brightness: 60
+            color_name: Medium Violet Red
+        light.bedroom_fan:
+            state: on
+  - name: Bedroom normal
+    entities:
+        light.ryan_lamp:
+            state: on
+            transition: 2
+            brightness: 140
+        light.kristi_lamp:
+            state: on
+            transition: 2
+            brightness: 140
+  - name: Bedroom off
+    entities:
+        light.ryan_lamp:
+            state: off
+            transition: 2
+        light.kristi_lamp:
+            state: off
+            transition: 2
+  - name: Decorative On
+    entities:
+        light.dining_room_lamps:
+            state: on
+            brightness: 
+        light.kitchen_lamp:
+            state: on
+            brightness: 150
+        light.floor_lamp:
+            state: on
+        light.stair_lamp:
+            state: on
+            brightness: 150
+        light.left_light_2:
+            state: on
+            transition: 10
+            brightness: 150
+        light.right_light_2:
+            state: on
+            transition: 10
+            brightness: 150
+        switch.ap_switch:
+            state: on
+
+  - name: Decorative Dim
+    entities:
+        light.dining_room_lamps:
+            state: on
+            brightness: 102
+            transition: 10
+        light.kitchen_lamp:
+            state: on
+            brightness: 102
+            transition: 10
+        light.floor_lamp:
+            state: on
+            brightness: 102
+            transition: 10
+        light.stair_lamp:
+            state: on
+            brightness: 102
+            transition: 10
+        light.left_light_2:
+            state: on
+            transition: 10
+            brightness: 70
+        light.right_light_2:
+            state: on
+            transition: 10
+            brightness: 70
+        switch.ap_switch:
+            state: on
+
+  - name: Decorative Off
+    entities:
+        light.dining_room_lamps:
+            state: off
+            transition: 10
+        light.kitchen_lamp:
+            state: off
+            transition: 10
+        light.floor_lamp:
+            state: off
+            transition: 10
+        light.stair_lamp:
+            state: off
+            transition: 10
+        light.left_light_2:
+            state: off
+            transition: 10
+        light.right_light_2:
+            state: off
+            transition: 10
+        switch.ap_switch:
+            state: off
+  - name: Color On
+    entities:
+        light.ryans_bloom:
+            state: on
+            transition: 5
+            effect: colorloop
+            brightness: 180
+        light.kristis_bloom:
+            state: on
+            transition: 5
+            effect: colorloop
+            brightness: 180

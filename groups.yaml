@@ -1,0 +1,590 @@
+###GROUPS###
+ryan:
+   - device_tracker.ryan_note8
+   - device_tracker.galaxynote8
+   - sensor.ryan_smartthings
+
+kristi:
+   - device_tracker.kristi_s5
+   - device_tracker.kristis_phone
+   #- sensor.kristi_smartthings
+lindabill:
+   - device_tracker.mom
+   - device_tracker.moms_phone
+   - device_tracker.billsphone
+all mobile devices:
+   - group.ryan
+   - group.kristi
+   - group.lindabill
+phone state:
+   - input_select.ryan_phone_status
+   - sensor.ryan_phone_battery
+   - sensor.st_ryan
+   - input_select.kristi_phone_status
+   - sensor.kristi_phone_battery
+   - sensor.st_kristi
+travel time:
+   - sensor.ryan_to_home
+   - sensor.kristi_to_home
+   - sensor.ryan_to_work
+light scenes:
+    name: Light Scenes
+    entities:
+      - scene.bedroom_dim
+      - scene.bedroom_normal
+      - scene.bedtime
+      - scene.color_on
+      - scene.decorative_dim
+      - scene.decorative_off
+      - scene.decorative_on
+      - scene.livingroom_dim
+      - scene.livingroom_normal
+locks:
+    name: Locks
+    entities:
+    - lock.garage_lock
+    - lock.front_lock
+bedroom:
+    name: Bedroom
+    entities:
+      - light.bedroom_overhead
+      - light.bedroom_fan
+      - light.ryan_lamp
+      - light.kristi_lamp
+      - light.ryans_bloom
+      - light.kristis_bloom
+ 
+bedroomlamps:
+    name: Bedroom Lamps
+    entities:
+      - light.ryan_lamp
+      - light.kristi_lamp
+
+bathroom:
+    name: Master Bathroom
+    entities:
+      - light.bathroom_light
+
+kitchen:
+    name: Kitchen
+    entities:
+      - light.island_lights
+      - light.kitchen_lamp
+      - light.kitchen_overhead
+insideLights:
+    name: Inside Lights
+    entities:
+      - group.bedroom
+      - group.kitchen
+      - group.office
+      - group.living_room
+office:
+    name: Office
+    entities:
+      - light.office_lamp
+living room:
+    name: Living Room
+    entities:
+      - light.left_light_2
+      - light.right_light_2
+      - light.stair_lamp
+      - light.floor_lamp
+      - light.living_room_overhead
+
+fireplace lights:
+    name: Fireplace Lights
+    entities:
+      - light.left_light_2
+      - light.right_light_2
+      
+christmas lights:
+    name: Christmas Lights
+    entities:
+      - light.christmas_tree
+      - switch.mantle_lights
+      - switch.liams_tree
+      - switch.railing_lights
+
+dining_room:
+    name: Dining Room
+    entities:
+      - light.dining_room_lamps
+
+upstairs_hall:
+    name: Upstairs Hall
+    entities:
+      - light.book_nook
+
+play_room:
+    name: Play Room
+    entities:
+      - light.reading_lamp_2
+
+decorative:
+    name: Decorative Lights
+    entities:
+      - light.left_light_2
+      - light.right_light_2
+      - light.stair_lamp
+      - light.floor_lamp
+      - light.kitchen_lamp
+      - light.dining_room_lamps
+
+stInterface:
+    name: SmartThings Interface
+    entities:
+      - switch.st_vacationhome_switch
+      - switch.st_awayhome_switch
+      - switch.st_good_morningnight_switch
+      - sensor.kristi_smartthings
+
+#christmas:
+#    name: Christmas Lights
+#    entities:
+#
+#      - light.stair_lamp_12
+#      - light.kitchen_lamp_9
+#      - switch.ap_switch
+
+color:
+    name: Color
+    entities:
+      - light.ryans_bloom
+      - light.kristis_bloom
+
+BasementSensors:
+    name: Basement Sensors
+    entities:
+      - binary_sensor.basement_motion
+      - sensor.basement_motion_battery
+      - sensor.basement_motion_temperature
+      - binary_sensor.basement_north_window
+      - sensor.basement_north_window_battery
+      - sensor.basement_north_window_temperature
+      - binary_sensor.basement_south_window_1
+      - sensor.basement_south_window_1_battery
+      - sensor.basement_south_window_1_temperature
+      - binary_sensor.basement_south_window_2
+      - sensor.basement_south_window_2_battery
+      - sensor.basement_south_window_2_temperature
+
+1stSensors:
+    name: First Floor Security Sensors
+    entities:
+      - binary_sensor.downstairs_glass_break
+      - binary_sensor.back_door_sensor
+      - binary_sensor.front_door_sensor
+      - binary_sensor.garage_entry_sensor
+      - binary_sensor.front_window_1
+      - binary_sensor.front_window_2
+      - binary_sensor.window_over_sink
+      - binary_sensor.first_floor_entry_motion
+      - binary_sensor.kitchen_motion
+      - binary_sensor.entry_keypad_motion
+      - binary_sensor.motiontemp_1_9
+      - binary_sensor.motiontemp_9_9
+
+1stEnv:
+    name: First Floor Environment Sensors
+    entities:
+      - sensor.first_floor_entry_temperature
+      - sensor.first_floor_entry_light
+      - sensor.first_floor_entry_humidity
+      - sensor.window_over_sink_temperature
+      - sensor.front_window_1_temperature
+      - sensor.front_window_2_temperature
+      - sensor.kitchen_motion_temperature
+      - sensor.entry_keypad_temperature
+      - sensor.motiontemp_1_0
+      - sensor.motiontemp_9_0
+      - sensor.motiontemp_9_1
+
+1stBattery:
+    name: First Floor Battery Sensors
+    entities:
+      - sensor.first_floor_entry_battery
+      - sensor.window_over_sink_battery
+      - sensor.front_window_1_battery
+      - sensor.front_window_2_battery
+      - sensor.kitchen_motion_battery
+      - sensor.entry_keypad_battery
+
+
+2ndSensors:
+    name: Second Floor Sensors
+    entities:
+      - binary_sensor.liams_room_door
+      - binary_sensor.upstairs_motion
+      - sensor.upstairs_motion_temperature
+      - sensor.upstairs_motion_battery
+      - sensor.bedroom_temperature
+      - binary_sensor.bedroom_motion
+      - sensor.liam_room_temperature
+      - sensor.liam_room_humidity
+      - sensor.office_temperature
+      - sensor.humidor_humidity
+
+
+SecuritySensors:
+    name: Security Sensors
+    entities:
+      - binary_sensor.back_door_sensor
+      - binary_sensor.front_door_sensor
+      - binary_sensor.garage_entry_sensor
+      - binary_sensor.first_floor_entry_motion
+      - binary_sensor.kitchen_motion
+      - binary_sensor.upstairs_motion
+      - binary_sensor.Driveway_Camera_Motion
+      - group.garagedoor
+
+GarageDoor:
+    name: Security Sensors
+    entities:
+      - cover.large_door
+      - binary_sensor.large_garage_door_contact
+      - cover.small_door
+      - binary_sensor.small_garage_door_contact
+
+DoorbellSensors:
+    name: Doorbell Sensor
+    entities:
+      - binary_sensor.ring_front_door_ding
+      - binary_sensor.ring_front_door_motion
+      - sensor.ring_front_door_battery
+      - sensor.ring_front_door_last_activity
+      - sensor.ring_front_door_last_ding
+      - sensor.ring_front_door_last_motion
+      - sensor.ring_front_door_volume
+      - sensor.ring_downstairs_volume
+      - sensor.ring_upstairs_volume
+
+SideCameraSensors:
+    name: Side Camera Sensors
+    entities:
+      - binary_sensor.ring_side_motion
+      - sensor.ring_side_battery
+      - sensor.ring_side_last_activity
+      - sensor.ring_side_last_motion
+      - sensor.ring_side_volume
+
+FloodCameraSensors:
+    name: Flood Light Sensors
+    entities:
+      - binary_sensor.ring_backyard_motion
+      - sensor.ring_backyard_last_activity
+      - sensor.ring_backyard_last_motion
+      - sensor.ring_backyard_volume
+
+UPSSensors:
+    name: UPS Sensors
+    entities:
+      - sensor.ups_battery
+      - sensor.ups_input_voltage
+      - sensor.ups_load
+      - sensor.ups_nominal_input_voltage
+      - sensor.ups_nominal_output_power
+      - sensor.ups_output_voltage
+      - sensor.ups_status
+      - sensor.ups_time_left
+      - sensor.ups_time_on_battery
+      - sensor.ups_transfer_count
+
+MotionSensors:
+    name: Inside Motion Sensors
+    entities:
+      - binary_sensor.first_floor_entry_motion
+      - binary_sensor.kitchen_motion
+      - binary_sensor.upstairs_motion
+      - binary_sensor.tempmotion_sensor_3_9
+
+network:
+    name: Network Sensors
+    entities:
+      - sensor.speedtest_download
+      - sensor.speedtest_ping
+      - sensor.speedtest_upload
+
+mediaSensors:
+    name: Media Sensors
+    entities:
+      - sensor.plex
+      - sensor.pocketcasts_unlistened_episodes
+      - sensor.sabnzbd_status
+
+energy:
+    name: Energy Sensors
+    entities:
+      - sensor.main_mtu1_power
+      - sensor.main_mtu1_voltage
+      - sensor.server_watts
+      - sensor.sump_pump_energy
+
+climateSensors:
+    name: Climate Sensors
+    entities:
+      - sensor.downstairs_thermostat_thermostat_temperature
+      - sensor.downstairs_thermostat_thermostat_humidity
+      - sensor.downstairs_thermostat_thermostat_operation_mode
+      - sensor.downstairs_thermostat_thermostat_hvac_state
+      - sensor.downstairs_thermostat_thermostat_target
+      - binary_sensor.downstairs_thermostat_thermostat_fan
+      - binary_sensor.downstairs_thermostat_thermostat_has_leaf
+      - binary_sensor.downstairs_thermostat_thermostat_is_locked
+      - binary_sensor.downstairs_thermostat_thermostat_is_using_emergency_heat
+      - binary_sensor.downstairs_thermostat_thermostat_online
+      - sensor.motiontemp_1_0
+      - sensor.motiontemp_3_0
+      - sensor.temperatureandhumidity_5_0
+      - sensor.temperatureandhumidity_5_1
+      - sensor.temperatureandhumidity_6_0
+      - sensor.temperatureandhumidity_6_1
+      - sensor.first_floor_entry_temperature
+      - sensor.kitchen_motion_temperature
+      - sensor.entry_keypad_temperature
+
+frontHouse:
+    name: Front of House
+    entities:
+      - switch.south_yard_lights
+      - switch.front_lights
+      - binary_sensor.driveway_camera_motion
+      - binary_sensor.front_doorbell_motion
+
+rachioSwitches:
+    name: Rachio Control
+    entities:
+      - switch.front_yard
+      - switch.side_walk
+      - switch.back_yard
+      - switch.north_back_yard
+      - switch.north_side
+
+package:
+    name: Package Sensors
+    entities:
+      - sensor.ups
+      - sensor.usps_mail
+      - camera.usps_mail
+
+washer:
+    name: Washer sensors
+    entities:
+      - input_select.washing_machine_status
+      - binary_sensor.washer_door
+      - binary_sensor.washer_vibration
+      - sensor.washer_movement
+      - sensor.washer_sensor_battery
+
+dryer:
+    name: Dryer sensors
+    entities:
+      - input_select.dryer_status
+      - binary_sensor.dryer_door
+      - binary_sensor.dryer_vibration
+      - sensor.dryer_movement
+      - sensor.dryer_sensor_battery
+
+systemSwitches:
+    name: System Switches
+    entities:
+      - input_select.home_status
+      - switch.ap_switch
+      - switch.camera_power
+      - input_boolean.force_home
+      - input_boolean.door_notify_mode
+      - switch.driveway_motion_state
+      - switch.wake_spike
+      - sensor.current_version
+
+firstfloorlights:
+    name: First Floor Lights
+    entities:
+      - group.kitchen
+      - group.living_room
+      - group.dining_room
+
+secondfloorlights:
+    name: Second Floor Lights
+    entities:
+      - group.office
+      - group.bedroom
+      - group.bathroom
+
+cleaner:
+    name: Roomba Control
+    entities:
+      - sensor.walle_battery
+      - sensor.walle_capacity
+      - sensor.walle_state
+      - switch.walle_clean
+      - switch.walle_dock
+      - switch.walle_find
+weather:
+    name: Weather
+    entities:
+      - sensor.dark_sky_apparent_temperature
+      - sensor.dark_sky_cloud_coverage
+      - sensor.dark_sky_daily_high_temperature
+      - sensor.dark_sky_daily_low_temperature
+      - sensor.dark_sky_daily_max_precip_intensity
+      - sensor.dark_sky_daily_summary
+      - sensor.dark_sky_humidity
+      - sensor.dark_sky_precip
+      - sensor.dark_sky_precip_intensity
+      - sensor.dark_sky_precip_probability
+      - sensor.dark_sky_summary
+      - sensor.dark_sky_temperature
+      - sensor.dark_sky_wind_bearing
+      - sensor.dark_sky_wind_speed
+##VIEWS###
+media:
+    name: Media
+    icon: mdi:google-play
+    view: yes
+    entities:
+      - group.mediaSensors
+      - media_player.basement_tv
+      - media_player.bathroom_speaker
+      - media_player.bedroom_tv
+      - media_player.bedroom_home
+      - media_player.bedroom_suite
+      - media_player.home_group
+      - media_player.office_speakers
+      - media_player.office_home
+      - media_player.kitchen_home
+      - media_player.living_room_roku
+      - media_player.living_room_tv
+      - media_player.lg_webos_smart_tv
+      - media_player.play_room_tv
+      - media_player.soundbar
+      - media_player.sparebedroom
+
+people:
+    name: People
+    icon: mdi:account
+    view: yes
+    entities:
+      - group.ryan
+      - group.kristi
+      - group.lindabill
+      - group.phone_state
+      - group.travel_time
+scene tab:
+    name: Scenes
+    icon: mdi:animation
+    view: yes
+    entities:
+    - group.light_scenes
+    - group.all_automations
+    - group.all_scripts
+
+security:
+    name: Security
+    icon: mdi:security-home
+    view: yes
+    entities:
+    - group.all_mobile_devices
+    - input_select.home_status
+    - group.locks
+    - group.stInterface
+    - group.basementsensors
+    - group.1stSensors
+    - group.2ndSensors
+    - group.DoorbellSensors
+    - group.SideCameraSensors
+    - group.FloodCameraSensors
+
+appliance:
+    name: Appliance Sensors
+    icon: mdi:washing-machine
+    view: yes
+    entities:
+      - group.washer
+      - group.dryer
+      - group.cleaner
+
+system:
+    name: System
+    icon: mdi:settings
+    view: yes
+    entities:
+    - input_select.home_status
+    - group.stInterface
+    - group.phone_state
+    - group.systemSwitches
+    - group.inside_lights
+    - group.UPSSensors
+    - climate.downstairs_thermostat
+    - group.climateSensors
+    - group.energy
+    - group.network
+    - group.1stBattery
+    - group.package
+
+basement:
+    name: Basement
+    view: yes
+    icon: mdi:arrow-down-drop-circle
+    entities:
+      - group.basementsensors
+
+first_floor:
+    name: First Floor
+    view: yes
+    icon: mdi:numeric-1-box-outline
+    entities:
+      - group.kitchen
+      - group.living_room
+      - group.play_room
+      - group.dining_room
+      - group.christmas_lights
+      - group.1stSensors
+      - group.1stEnv
+      - group.locks
+
+second_floor:
+    name: Second Floor
+    view: yes
+    icon: mdi:numeric-2-box-outline
+    entities:
+      - group.secondfloorlights
+      - group.office
+      - group.bedroom
+      - group.bathroom
+      - group.2ndSensors
+      - group.upstairs_hall
+
+outside:
+    name: Outside
+    view: yes
+    icon: mdi:tree
+    entities:
+      - group.frontHouse
+      - group.garagedoor
+      - group.DoorbellSensors
+      - group.SideCameraSensors
+      - group.FloodCameraSensors
+      - group.rachioSwitches
+      - group.weather
+      - group.locks
+      - group.LockInfo
+      - group.DoorSensors
+
+cameras:
+    name: Cameras
+    view: yes
+    icon: mdi:camera
+    entities:
+    - camera.baby_camera
+    - camera.back_deck_camera
+    - camera.front_house_camera
+    - camera.front_door
+    - camera.play_room_camera
+    - camera.basement
+    
+HomeGroup:
+    name: Home Group
+    icon: mdi:music
+    view: yes
+    entities:
+      - media_player.home_group

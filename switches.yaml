@@ -1,0 +1,63 @@
+  - platform: thinkingcleaner
+  - platform: wake_on_lan
+    mac_address: "e0-69-95-8d-54-74"
+    name: Wake Spike
+#  - platform: insteon_local
+  - platform: rachio
+    access_token: 18177e56-a3b3-4194-b6ea-fed8237c9a8a
+  - platform: mqtt
+    name: "ST Vacation/Home Switch"
+    command_topic: "smartthings/zzVacationHomeSwitch/switch"
+    payload_on: "on"
+    payload_off: "off"
+    optimistic: false
+    qos: 0
+    retain: true
+  - platform: mqtt
+    name: "ST Good Morning/Night Switch"
+    command_topic: "smartthings/zzGoodMorningNight/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 0
+    retain: true
+  - platform: mqtt
+    name: "ST Away/Home Switch"
+    command_topic: "smartthings/zzHomeAwaySwitch/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 0
+    retain: true
+  - platform: mqtt
+    name: "Guest Mode"
+    command_topic: "smartthings/zzGuestMode/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 0
+    retain: true
+  - platform: mqtt
+    name: "Railing Lights"
+    command_topic: "smartthings/Railing Lights/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 0
+    retain: true
+
+  - platform: mqtt
+    name: "North Up Lights"
+    command_topic: "smartthings/North Up Lights/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 0
+    retain: true
+##Insteon Switches
+  - platform: mqtt
+    name: "Front Lights"
+    command_topic: "smartthings/Front Lights/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 0
+    retain: true
+#ZoneMinder
+#  - platform: zoneminder
+#    command_on: Modect
+#    command_off: Monitor

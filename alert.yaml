@@ -1,0 +1,59 @@
+  front_lock:
+    name: Front Lock is Unlocked
+    entity_id: binary_sensor.front_lock_open
+    state: 'on'
+    repeat: 30
+    can_acknowledge: True
+    skip_first: True
+    notifiers:
+      - PushOver
+
+  garage_lock:
+    name: Garage Lock is Unlocked
+    entity_id: binary_sensor.garage_lock_open
+    state: 'on'
+    repeat: 30
+    can_acknowledge: True
+    skip_first: True
+    notifiers:
+      - PushOver
+
+  lg_garage_day:
+    name: Large Garage Door has been left open.
+    entity_id: binary_sensor.lg_garage_day
+    state: 'on'
+    repeat: 30
+    can_acknowledge: False
+    skip_first: True
+    notifiers:
+      - PushOver
+
+  lg_garage_night:
+    name: Large Garage Door has been left open.
+    entity_id: binary_sensor.lg_garage_night
+    state: 'on'
+    repeat: 10
+    can_acknowledge: False
+    skip_first: True
+    notifiers:
+      - PushOver
+
+  sm_garage_day:
+    name: Small Garage Door has been left open.
+    entity_id: binary_sensor.sm_garage_day
+    state: 'on'
+    repeat: 30
+    can_acknowledge: False
+    skip_first: True
+    notifiers:
+      - PushOver
+
+  sm_garage_night:
+    name: Small Garage Door has been left open.
+    entity_id: binary_sensor.sm_garage_night
+    state: 'on'
+    repeat: 10
+    can_acknowledge: False
+    skip_first: True
+    notifiers:
+      - PushOver

@@ -1,0 +1,395 @@
+### CONFIGURATION ###
+
+
+
+## GENERAL ##
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 298
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  time_zone: America/Chicago
+  customize: !include customize.yaml
+
+
+
+# Show links to resources in log and frontend
+# introduction:
+
+http:
+  api_password: !secret api_password
+  ssl_certificate: /home/homeassistant/dehydrated/certs/hollandhaus.duckdns.org/fullchain.pem
+  ssl_key: /home/homeassistant/dehydrated/certs/hollandhaus.duckdns.org/privkey.pem
+  base_url: !secret base_url
+  trusted_networks:
+    - 192.168.1.0/24
+    - 127.0.0.1
+
+# Enables the frontend
+frontend:
+    themes:
+      standard:
+        primary-color: blue
+      alert_day:
+        primary-color: red
+      darkred:
+# Main colors that can be changed
+        dark-primary-color: "#c66900"
+        disabled-text-color: "#545454"
+        divider-color: "rgba(255, 255, 255, 0.12)"
+        light-primary-color: "#e06c6c"
+        paper-card-background-color: "#1d1d1d"
+        paper-grey-200: "#191919"
+        paper-item-icon-color: "#d3d3d3"
+        paper-listbox-background-color: "#202020"
+        primary-background-color: "#303030"
+        primary-color: "#d32f2f"
+        primary-text-color: "#cfcfcf"
+        secondary-background-color: "#131313"
+        sidebar-text_-_background: "#62717b"
+# Colors based on variables, see above
+        paper-card-header-color: "var(--paper-item-icon-color)"
+        paper-item-icon-active-color: "var(--primary-color)"
+        paper-item-icon_-_color: "var(--primary-text-color)"
+        paper-listbox-color: "var(--primary-text-color)"
+        paper-grey-50: "var(--primary-text-color)"
+        paper-slider-active-color: "var(--primary-color)"
+        paper-slider-knob-color: "var(--primary-color)"
+        paper-slider-knob-start-color: "var(--primary-color)"
+        paper-slider-pin-color: "var(--primary-color)"
+        paper-slider-secondary-color: "var(--light-primary-color)"
+        paper-toggle-button-checked-ink-color: "var(--dark-primary-color)"
+        paper-toggle-button-checked-button-color: "var(--primary-color)"
+        paper-toggle-button-checked-bar-color: "var(--light-primary-color)"
+        paper-toggle-button-unchecked-bar-color: "var(--primary-text-color)"
+        secondary-text-color: "var(--primary-color)"
+        table-row-background-color: "var(--paper-card-background-color)"
+        table-row-alternative-background-color: "var(--sidebar-text_-_background)"
+      midnight:
+# Main colors
+        primary-color: '#5294E2'                                                        # Header
+        accent-color: '#E45E65'                                                         # Accent color
+        dark-primary-color: 'var(--accent-color)'                                       # Hyperlinks
+        light-primary-color: 'var(--accent-color)'                                      # Horizontal line in about
+
+# Text colors
+        primary-text-color: '#FFFFFF'                                                   # Primary text colour, here is referencing dark-primary-color
+        text-primary-color: 'var(--primary-text-color)'                                 # Primary text colour
+        secondary-text-color: '#5294E2'                                                 # For secondary titles in more info boxes etc.
+        disabled-text-color: '#7F848E'                                                  # Disabled text colour
+        label-badge-border-color: 'green'                                               # Label badge border, just a reference value
+
+# Background colors
+        primary-background-color: '#383C45'                                             # Settings background
+        secondary-background-color: '#383C45'                                           # Main card UI background
+        divider-color: 'rgba(0, 0, 0, .12)'                                             # Divider
+
+        # Table rows
+        table-row-background-color: '#353840'                                           # Table row
+        table-row-alternative-background-color: '#3E424B'                               # Table row alternative
+
+# Nav Menu
+        paper-listbox-color: 'var(--primary-color)'                                     # Navigation menu selection hoover
+        paper-listbox-background-color: '#2E333A'                                       # Navigation menu background
+        paper-grey-50: 'var(--primary-text-color)'
+        paper-grey-200: '#414A59'                                                       # Navigation menu selection
+
+# Paper card
+        paper-card-header-color: 'var(--accent-color)'                                  # Card header text colour
+        paper-card-background-color: '#434954'                                          # Card background colour
+        paper-dialog-background-color: '#434954'                                        # Card dialog background colour
+        paper-item-icon-color: 'var(--primary-text-color)'                              # Icon color
+        paper-item-icon-active-color: '#F9C536'                                         # Icon color active
+        paper-item-icon_-_color: 'green'
+        paper-item-selected_-_background-color: '#434954'                               # Popup item select
+        paper-tabs-selection-bar-color: 'green'
+
+# Labels
+        label-badge-red: 'var(--accent-color)'                                          # References the brand colour label badge border
+        label-badge-text-color: 'var(--primary-text-color)'                             # Now same as label badge border but that's a matter of taste
+        label-badge-background-color: '#2E333A'                                         # Same, but can also be set to transparent here
+
+# Switches
+        paper-toggle-button-checked-button-color: 'var(--accent-color)'
+        paper-toggle-button-checked-bar-color: 'var(--accent-color)'
+        paper-toggle-button-checked-ink-color: 'var(--accent-color)'
+        paper-toggle-button-unchecked-button-color: 'var(--disabled-text-color)'
+        paper-toggle-button-unchecked-bar-color: 'var(--disabled-text-color)'
+        paper-toggle-button-unchecked-ink-color: 'var(--disabled-text-color)'
+
+# Sliders
+        paper-slider-knob-color: 'var(--accent-color)'
+        paper-slider-knob-start-color: 'var(--accent-color)'
+        paper-slider-pin-color: 'var(--accent-color)'
+        paper-slider-active-color: 'var(--accent-color)'
+        paper-slider-container-color: 'linear-gradient(var(--primary-background-color), var(--secondary-background-color)) no-repeat'
+        paper-slider-secondary-color: 'var(--secondary-background-color)'
+        paper-slider-disabled-active-color: 'var(--disabled-text-color)'
+        paper-slider-disabled-secondary-color: 'var(--disabled-text-color)'
+
+# Google colors
+        google-red-500: '#E45E65'
+        google-green-500: '#39E949'
+
+# Checks for available updates
+updater:
+
+# Discover some devices automatically
+discovery:
+
+# Add Config Panel
+config:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+##Enable Recorder for Persistant input_select
+recorder:
+
+# Track the sun
+sun:
+
+#Add WeMo
+wemo:
+
+#Add Input Select
+input_select:
+  home_status:
+    name: Status of House
+    options:
+    - Home
+    - Away
+    - Vacation
+    - Sleep
+    initial: Home
+    icon: mdi:House
+
+  washing_machine_status:
+    name: Washing Machine
+    options:
+    - Idle
+    - Running
+    - Clean
+    initial: Idle
+    icon: mdi:washing-machine
+
+  dryer_status:
+    name: Dryer
+    options:
+    - Idle
+    - Running
+    - Clean
+    initial: Idle
+    icon: mdi:washing-machine
+
+  ryan_phone_status:
+    name: Ryans Phone Status
+    options:
+    - On Battery
+    - Charging
+    - Low Battery
+    - In Car
+    - Sleep
+    initial: On Battery
+    icon: mdi:cellphone-android
+
+  kristi_phone_status:
+    name: Kristis Phone Status
+    options:
+    - On Battery
+    - Charging
+    - Low Battery
+    - In Car
+    - Sleep
+    initial: On Battery
+    icon: mdi:cellphone-android
+
+ifttt:
+  key: !secret ifttt_key
+
+#APCUPS
+apcupsd:
+
+#JOIN
+joaoapps_join:
+  - name: Join
+    device_id: group.join
+    api_key: !secret join_key
+
+mqtt:
+  broker: !secret mqtt_ip
+  port: 1883
+  client_id: haas
+  keepalive: 60
+  protocol: 3.1.1
+
+
+media_player:
+  - platform: plex
+  - platform: cast
+  - platform: roku
+  - platform: webostv
+    host: !secret play_tv_ip
+
+nest:
+  client_id: !secret nest_id
+  client_secret: !secret nest_secret
+
+google:
+  client_id: !secret google_id
+  client_secret: !secret google_secret
+
+ring:
+  username: !secret email
+  password: !secret ring_pass
+
+alarm_control_panel:
+  platform: mqtt
+  state_topic: "smartthings/alarm system status/alarmSystemStatus"
+  command_topic: "smartthings/alarm system status/alarmSystemStatus"
+  name: "SHM"
+  payload_disarm: "off"
+  payload_arm_home: "stay"
+  payload_arm_away: "away"
+
+tts:
+  - platform: google
+    language: 'en-us'
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 300
+
+google_assistant:
+  project_id: !secret ga_project
+  client_id: !secret ga_id
+  access_token: !secret ga_token
+
+
+climate:
+  platform: nest
+
+device_tracker:
+  - platform: unifi
+    username: !secret email
+    password: !secret unifi_pass
+    host: !secret hostname
+    port: 8443
+    verify_ssl: false
+    new_device_defaults:
+      track_new_devices: False
+      hide_if_away: False
+  - platform: owntracks
+  - platform: ping
+    hosts:
+      mom: !secret mom_ip
+
+#Cameras
+camera:
+  - platform: mjpeg
+    mjpeg_url: !secret baby_cam_url
+    name: Baby Camera
+  - platform: mjpeg
+    mjpeg_url: !secret deck_cam_url
+    name: Back Deck Camera
+  - platform: mjpeg
+    mjpeg_url: !secret play_cam_url
+    name: Play Room Camera
+  - platform: mjpeg
+    mjpeg_url: !secret front_cam_url
+    name: Front House Camera
+  - platform: mjpeg
+    mjpeg_url: !secret basement_cam_url
+    name: Basement
+  - platform: ring
+
+ffmpeg:
+
+input_boolean:
+  force_home:
+      name: Force At Home
+      initial: off
+      icon: mdi:home-map-marker
+  door_notify_mode:
+      name: Door Notify Mode
+      initial: off
+      icon: mdi:surround-sound
+
+##USPS Package Tracking
+usps:
+    username: !secret username
+    password: !secret usps_pass
+
+cover:
+  - platform: myq
+    username: !secret email
+    password: !secret myq_pass
+    type: liftmaster
+
+proximity:
+  home:
+    ignored_zones:
+      - Pivot
+      - Mason
+    devices:
+      - device_tracker.ryan_note8
+      - device_tracker.kristi_s5
+    tolerance: 50
+    unit_of_measurement: mi
+    
+hue: 
+  bridges:
+    - host: !secret hue_ip
+    - allow_unreachable: true
+
+####################################################
+#                                                  #
+#                     Includes                     #
+#                                                  #
+####################################################
+
+##Zones
+zone: !include zones.yaml
+
+##Notify
+notify: !include notify.yaml
+
+##Groups
+group: !include groups.yaml
+
+##Scenes
+scene: !include scenes.yaml
+
+##Sensors
+sensor: !include sensors.yaml
+
+##Automation
+automation: !include automation/automation.yaml
+
+##Switches
+switch: !include switches.yaml
+
+##Scripts
+script: !include scripts.yaml
+
+##Binary Sensor
+binary_sensor: !include binary.yaml
+
+##Alerts
+alert: !include alert.yaml
+
+##Locks
+lock: !include lock.yaml
+
+##Lights
+light: !include lights.yaml

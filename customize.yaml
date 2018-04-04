@@ -1,0 +1,228 @@
+climate.downstairsthermostat:
+  entity_picture: http://www.wink.com/img/product/nest-learning-thermostat/variants/854448003037/hero_01.png
+  friendly_name: Nest
+light.unnamed_device:
+  friendly_name: Bathroom Light
+switch.unnamed_device:
+  friendly_name: Front Lights
+group.firstfloorlights:
+  google_assistant: true
+  google_assistant_name: First Floor Lights
+  google_assistant_type: light
+group.secondfloorlights:
+  google_assistant: true
+  google_assistant_name: Second Floor Lights
+  google_assistant_type: light
+group.bedroomlamps:
+  google_assistant: true
+  google_assistant_name: Bedroom Lamps
+  google_assistant_type: light
+group.christmas_lights:
+  google_assistant: true
+  google_assistant_name: Christmas Lights
+  google_assistant_type: light
+group.ryan:
+  entity_picture: /local/ryan.jpg
+  friendly_name: Ryan Devices
+group.kristi:
+  entity_picture: /local/kristi.jpg
+  friendly_name: Kristi Devices
+group.lindabill:
+  entity_picture: /local/BillLinda.jpg
+  friendly_name: Linda/Bill Devices
+group.decorative:
+  google_assistant: true
+  google_assistant_name: Decorative Lights
+  google_assistant_type: light
+group.fireplace_lights:
+  google_assistant: true
+  google_assistant_name: Fireplace Lights
+  google_assistant_type: light
+group.color:
+  google_assistant: true
+  google_assistant_name: Color Lights
+  aliases:
+    - stupid lights
+  google_assistant_type: light
+device_tracker.ryan_note8:
+  icon: map-marker
+  friendly_name: Ryan Owntracks
+device_tracker.kristi_s5:
+  icon: map-marker
+  friendly_name: Kristi Owntracks
+input_select.home_status:
+  friendly_name: Home Status
+light.bedroom_fan:
+  icon: mdi:fan
+light.ryan_lamp:
+  icon: mdi:lamp
+light.dinning_room_lamps:
+  icon: mdi:lamp
+light.reading_lamp:
+  icon: mdi:lamp
+light.kristi_lamp:
+  icon: mdi:lamp
+light.kitchen_overhead:
+  icon: mdi:spotlight
+light.stair_lamp:
+  icon: mdi:lamp
+  friendly_name: Stair Lamp
+light.kitchen_lamp:
+  icon: mdi:lamp
+  friendly_name: Kitchen Lamp
+light.left_light:
+  icon: mdi:lamp
+  hidden: true
+light.left_light2:
+  icon: mdi:lamp
+light.right_light:
+  icon: mdi:lamp
+  hidden: true
+light.right_light2:
+  icon: mdi:lamp
+light.floor_lamp:
+  icon: mdi:lamp
+light.island_lights:
+  icon: mdi:lightbulb
+lights.living_room_overhead:
+  icon: mdi:spotlight
+switch.south_yard_lights:
+  icon: mdi:spotlight-beam
+switch.ap_switch:
+  icon: mdi:access-point-network
+  friendly_name: AP Switch
+light.hue_bloom_1:
+  friendly_name: Ryan's Bloom
+light.hue_bloom_2:
+  friendly_name: Kristi's Bloom
+sensor.server_watts:
+  icon: mdi:server
+sensor.someone_home:
+  icon: mdi:home
+switch.bedroom_light:
+  icon: mdi:lightbulb
+switch.camera_power:
+  icon: mdi:camera
+sensor.motiontemp_9_0:
+  friendly_name: Garage Temp
+sensor.motiontemp_9_1:
+  friendly_name: Freezer Temp
+binary_sensor.motiontemp_9_9:
+  friendly_name: Garage Motion
+sensor.temperatureandhumidity_5_0:
+  friendly_name: Liam Room Humidity
+sensor.temperatureandhumidity_5_1:
+  friendly_name: Liam Room Temperature
+sensor.temperatureandhumidity_6_0:
+  friendly_name: Humidor Humidity
+sensor.temperatureandhumidity_6_1:
+  friendly_name: Humidor Temperature
+switch.driveway_motion_state:
+  icon: mdi:move-resize-variant
+binary_sensor.motiontemp_1_9:
+  friendly_name: Play Room Motion
+sensor.motiontemp_1_0:
+  friendly_name: Play Room Temperature
+binary_sensor.tempmotion_sensor_3_1:
+  friendly_name: Bedroom Motion?
+binary_sensor.tempmotion_sensor_3_9:
+  friendly_name: Bedroom Motion
+sensor.tempmotion_sensor_3_0:
+  friendly_name: Bedroom Temp
+switch.play_room_tree:
+  icon: mdi:pine-tree
+switch.wake_spike:
+  icon: mdi:monitor
+sensor.ryan_phone_battery:
+  icon: mdi:battery-outline
+sensor.kristi_phone_battery:
+  icon: mdi:battery-outline
+binary_sensor.downstairs_thermostat_thermostat_fan:
+  friendly_name: Nest Fan
+binary_sensor.downstairs_thermostat_thermostat_has_leaf:
+  friendly_name: Nest Has Leaf
+binary_sensor.downstairs_thermostat_thermostat_is_locked:
+  friendly_name: Nest is Locked
+binary_sensor.downstairs_thermostat_thermostat_is_using_emergency_heat:
+  friendly_name: Nest E-Heat
+binary_sensor.downstairs_thermostat_thermostat_online:
+  friendly_name: Nest Online
+sensor.downstairs_thermostat_thermostat_humidity:
+  friendly_name: Nest Humidity
+sensor.downstairs_thermostat_thermostat_operation_mode:
+  friendly_name: Nest Mode
+sensor.downstairs_thermostat_thermostat_target:
+  friendly_name: Nest Target
+sensor.downstairs_thermostat_thermostat_temperature:
+  friendly_name: Nest Temperature
+sensor.downstairs_thermostat_thermostat_hvac_state:
+  friendly_name: Nest State
+light.bedroom:
+  hidden: true
+light.office:
+  hidden: true
+light.living_room:
+  hidden: true
+switch.back_door_32:
+  hidden: true
+switch.front_door_sensor_252:
+  hidden: true
+switch.garage_entry_sensor_223:
+  hidden: true
+scene.fireplace_lights_on:
+  hidden: true
+scene.fireplace_lights_off:
+  hidden: true
+scene.fireplace_lights_dim:
+  hidden: true
+switch.upstairs_motion_321:
+  hidden: true
+switch.downstairs_motion_323:
+  hidden: true
+binary_sensor.lg_garage_day:
+  hidden: true
+binary_sensor.lg_garage_night:
+  hidden: true
+binary_sensor.sm_garage_day:
+  hidden: true
+binary_sensor.sm_garage_night:
+  hidden: true
+binary_sensor.front_lock_open:
+  hidden: true
+binar_sensor.garage_lock_open:
+  hidden: true
+script.ryansleep:
+  hidden: true
+script.ryanbattery:
+  hidden: true
+script.ryancharging:
+  hidden: true
+script.ryanfull:
+  hidden: true
+script.ryancar:
+  hidden: true
+device_tracker.googlehome_3:
+  hidden: true
+device_tracker.ted5000:
+  hidden: true
+device_tracker.winc0000:
+  hidden: true
+device_tracker.ryans_phone:
+  hidden: true
+device_tracker.ryan_note5:
+  hidden: true
+device_tracker.kristi:
+  hidden: true
+device_tracker.ryan:
+  hidden: true
+device_tracker.c232ffa1c033:
+  hidden: true
+group.all_automations:
+  hidden: false
+group.all_scripts:
+  hidden: false
+group.all_devices: {}
+switch.play_room_heater:
+  friendly_name: Living Room Decorative
+sensor.ring_backyard_battery:
+  hidden: true

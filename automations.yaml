@@ -1,0 +1,16 @@
+- action:
+  - service: input_select.select_option
+  alias: Set Washing Machine Running
+  condition:
+  - condition: state
+    entity_id: binary_sensor.washer_door
+    state: 'off'
+  - condition: state
+    entity_id: input_select.washing_machine_status
+    state: Idle
+  id: '1510943362187'
+  trigger:
+  - entity_id: binary_sensor.washer_active
+    from: 'off'
+    platform: state
+    to: 'on'

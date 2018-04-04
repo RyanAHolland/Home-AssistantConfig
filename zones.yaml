@@ -1,0 +1,10 @@
+  - name: Mason
+    latitude: 38.944138
+    longitude: -94.261494
+    radius: 300
+    icon: mdi:school
+  - name: Pivot
+    latitude: 38.930646
+    longitude: -94.753464
+    radius: 200
+    icon: mdi:domain

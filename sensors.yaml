@@ -1,0 +1,299 @@
+#HASS Version
+ - platform: version
+# Weather Prediction
+ - platform: darksky
+   api_key: !secret dark_sky_api
+   monitored_conditions:
+      - summary
+      - precip_type
+      - precip_intensity
+      - precip_probability
+      - temperature
+      - apparent_temperature
+      - wind_speed
+      - wind_bearing
+      - cloud_cover
+      - humidity
+      - daily_summary
+      - temperature_max
+      - temperature_min
+      - precip_intensity_max
+# Roomba  Control
+ - platform: thinkingcleaner
+ - platform: ted5000
+   name: main
+   host: !secret ted_ip
+   port: 80
+ - platform: speedtest
+   monitored_conditions:
+     - ping
+     - download
+     - upload
+#PLEX
+ - platform: plex
+   username: !secret email
+   password: !secret plex_pass
+#RING
+ - platform: ring
+   monitored_conditions:
+     - battery
+     - last_activity
+     - last_ding
+     - last_motion
+     - volume
+
+#Pocket Casts
+ - platform: pocketcasts
+   username: !secret email
+   password: !secret casts_pass
+
+#Basement UPS
+ - platform: apcupsd
+   resources:
+     - bcharge
+     - linev
+     - loadpct
+     - nominv
+     - numxfers
+     - status
+     - timeleft
+     - tonbatt
+# Tracking Ryan to Home
+ - platform: google_travel_time
+   name: Ryan To Home
+   api_key: !secret google_api
+   origin: device_tracker.ryan_note8
+   destination: zone.home
+# Tracking Ryan to Work
+ - platform: google_travel_time
+   name: Ryan To Work
+   api_key: !secret google_api
+   origin: device_tracker.ryan_note8
+   destination: zone.pivot
+# Tracking Kristi to Home
+ - platform: google_travel_time
+   name: Kristi To Home
+   api_key: !secret google_api
+   origin: device_tracker.kristi_s5
+   destination: zone.home
+
+# Sensors from SmartThings
+ - platform: mqtt
+   state_topic: "smartthings/First Floor Entry/temperature"
+   name: "First Floor Entry Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "smartthings/First Floor Entry/battery"
+   name: "First Floor Entry Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/First Floor Entry/humidity"
+   name: "First Floor Entry Humidity"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/First Floor Entry/illuminance"
+   name: "First Floor Entry Light"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Kitchen Motion/temperature"
+   name: "Kitchen Motion Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "smartthings/Kitchen Motion/battery"
+   name: "Kitchen Motion Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Basement Motion/temperature"
+   name: "Basement Motion Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "smartthings/Basement Motion/battery"
+   name: "Basement Motion Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Iris 3405-L Keypad/temperature"
+   name: "Entry Keypad Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "smartthings/Iris 3405-L Keypad/battery"
+   name: "Entry Keypad Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Upstairs Motion/temperature"
+   name: "Upstairs Motion Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "smartthings/Upstairs Motion/battery"
+   name: "Upstairs Motion Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Basement North Window/temperature"
+   name: "Basement North Window Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "smartthings/Basement North Window/battery"
+   name: "Basement North Window Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Basement South Window 1/temperature"
+   name: "Basement South Window 1 Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "smartthings/Basement South Window 1/battery"
+   name: "Basement South Window 1 Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Basement South Window 2/temperature"
+   name: "Basement South Window 2 Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "smartthings/Basement South Window 2/battery"
+   name: "Basement South Window 2 Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Front Window 1/temperature"
+   name: "Front Window 1 Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "smartthings/Front Window 1/battery"
+   name: "Front Window 1 Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Front Window 2/temperature"
+   name: "Front Window 2 Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "smartthings/Front Window 2/battery"
+   name: "Front Window 2 Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Window Over Sink/temperature"
+   name: "Window Over Sink Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+#MySensors
+ - platform: mqtt
+   state_topic: "mysensors/3/0/1/0/0"
+   name: "Bedroom Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "mysensors/5/1/1/0/0"
+   name: "Liam Room Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "mysensors/5/0/1/0/1"
+   name: "Liam Room Humidity"
+   qos: 0
+   unit_of_measurement: '%RH'
+ - platform: mqtt
+   state_topic: "mysensors/6/1/1/0/0"
+   name: "Office Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "mysensors/6/0/1/0/1"
+   name: "Humidor Humidity"
+   qos: 0
+   unit_of_measurement: '%RH'
+ - platform: mqtt
+   state_topic: "smartthings/Window Over Sink/battery"
+   name: "Window Over Sink Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Dryer Sensor/battery"
+   name: "Dryer Sensor Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Washer Sensor/battery"
+   name: "Washer Sensor Battery"
+   qos: 0
+   unit_of_measurement: '%'
+##SmartThings Pre1sence
+ - platform: mqtt
+   state_topic: "smartthings/Ryan's Phone/presence"
+   name: "ST Ryan"
+   qos: 0
+##Vibration Sensors
+ - platform: mqtt
+   state_topic: "smartthings/Dryer Sensor/threeAxis"
+   name: "Dryer Movement"
+   qos: 0
+ - platform: mqtt
+   state_topic: "smartthings/Washer Sensor/threeAxis"
+   name: "Washer Movement"
+   qos: 0
+ - platform: mqtt
+   state_topic: "smartthings/Washer/power"
+   name: "Washer Power"
+   qos: 0
+   unit_of_measurement: 'W'
+ - platform: template
+   sensors:
+     ryan_smartthings:
+       value_template: '{% if is_state("sensor.st_ryan", "present") %}Home{% else %}Away{% endif %}'
+       friendly_name: "Ryan's SmartThings"
+ - platform: mqtt
+   state_topic: "smartthings/Kristi's Phone/presence"
+   name: "ST Kristi"
+   qos: 0
+ - platform: template
+   sensors:
+     kristi_smartthings:
+       value_template: '{% if is_state("sensor.st_kristi", "present") %}Home{% else %}Away{% endif %}'
+       friendly_name: "Kristi's SmartThings"
+##OwnTracks Data
+ - platform: mqtt
+   state_topic: "owntracks/ryan/Note8"
+   name: "Ryan Phone Battery"
+   unit_of_measurement: "%"
+   value_template: '{{ value_json.batt }}'
+ - platform: mqtt
+   state_topic: "owntracks/kristi/S5"
+   name: "Kristi Phone Battery"
+   unit_of_measurement: "%"
+   value_template: '{{ value_json.batt }}'
+##FIND Location
+ - platform: rest
+   resource: http://ml.internalpositioning.com/location?group=GREATGOAT&user=KINGDUTCH
+   value_template: '{{ value_json.users.KINGDUTCH[0].location }}'
+   method: GET
+   name: Ryan FIND Sensor
+   scan_interval: 1
+####PACKAGE SENSORS
+#UPS Packages
+ - platform: ups
+   username: ryanaholland
+   password: 8aEIINp8
+##USPS Camera
+ - platform: usps
+   scan_interval: 5
+##FedEx Packages
+ - platform: fedex
+   username: ryanaholland
+   password: Kristi0319
