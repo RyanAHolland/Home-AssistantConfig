@@ -445,6 +445,17 @@ weather:
       - sensor.dark_sky_temperature
       - sensor.dark_sky_wind_bearing
       - sensor.dark_sky_wind_speed
+      
+travis:
+    name: Travis CI Sensors
+    entities:
+      - sensor.ryanahollandhomeassistantconfig_last_build_duration
+      - sensor.ryanahollandhomeassistantconfig_last_build_finished_at
+      - sensor.ryanahollandhomeassistantconfig_last_build_id
+      - sensor.ryanahollandhomeassistantconfig_last_build_started_at
+      - sensor.ryanahollandhomeassistantconfig_last_build_state
+      - sensor.ryanahollandhomeassistantconfig_state      
+      
 ##VIEWS###
 media:
     name: Media
@@ -478,6 +489,7 @@ people:
       - group.lindabill
       - group.phone_state
       - group.travel_time
+
 scene tab:
     name: Scenes
     icon: mdi:animation
@@ -529,6 +541,7 @@ system:
     - group.network
     - group.1stBattery
     - group.package
+    - group.travis
 
 basement:
     name: Basement
