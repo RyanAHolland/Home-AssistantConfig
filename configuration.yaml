@@ -351,7 +351,7 @@ proximity:
     
 hue: 
   bridges:
-    - host: !secret hue_ip
+    - host: 192.168.1.239
     - allow_unreachable: true
 
 ####################################################
