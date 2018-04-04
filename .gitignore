@@ -2,5 +2,6 @@
 !*.yaml
 !scenes
 !.gitignore
+!automation\
 secrets.yaml
 known_devices.yaml
