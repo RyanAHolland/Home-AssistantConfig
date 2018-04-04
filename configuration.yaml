@@ -23,8 +23,8 @@ homeassistant:
 
 http:
   api_password: !secret api_password
-  ssl_certificate: /home/homeassistant/dehydrated/certs/hollandhaus.duckdns.org/fullchain.pem
-  ssl_key: /home/homeassistant/dehydrated/certs/hollandhaus.duckdns.org/privkey.pem
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
   base_url: !secret base_url
   trusted_networks:
     - 192.168.1.0/24
