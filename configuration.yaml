@@ -276,7 +276,7 @@ google_assistant:
   access_token: !secret ga_token
 
 shell_command:
-  get_latest_config: bash /home/homeassistant/.homeassistant/pullconfig.sh
+  get_latest_config: bash /home/homeassistant/.homeassistant/bin/update_config_from_github.sh
 
 climate:
   platform: nest
