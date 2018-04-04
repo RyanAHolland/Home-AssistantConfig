@@ -487,3 +487,9 @@
         entity_id: switch.st_awayhome_switch
       - service: switch.turn_off
         entity_id: switch.guest_mode
+
+###Update from Git and Restart
+  update_config:
+    sequence:
+      - service: shell_command.get_latest_config
+      - service: homeassistant.restart
