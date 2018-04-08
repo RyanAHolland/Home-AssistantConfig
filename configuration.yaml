@@ -294,7 +294,7 @@ device_tracker:
     new_device_defaults:
       track_new_devices: False
       hide_if_away: False
-  - platform: owntracks
+  - platform: owntracks_http
   - platform: ping
     hosts:
       mom: !secret mom_ip
