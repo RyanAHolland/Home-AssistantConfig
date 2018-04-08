@@ -1508,7 +1508,8 @@
         from: 'unknown'
         to: 'passed'
     action:
-      - service: script.update_config
+      - service: script.turn_on
+        entity_id: script.update_config
       - service: notify.pushover
         data:
           message: "An automated build has completed, I will now pull the latest version from Github and restart."
