@@ -269,6 +269,7 @@
        value_template: '{% if is_state("sensor.st_kristi", "present") %}Home{% else %}Away{% endif %}'
        friendly_name: "Kristi's SmartThings"
 ##OwnTracks Data
+
  - platform: mqtt
    state_topic: "owntracks/ryan/Note8"
    name: "Ryan Phone Battery"

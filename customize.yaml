@@ -47,7 +47,7 @@ group.color:
 device_tracker.ryan_note8:
   icon: map-marker
   friendly_name: Ryan Owntracks
-device_tracker.kristi_s5:
+device_tracker.kristi_s7:
   icon: map-marker
   friendly_name: Kristi Owntracks
 input_select.home_status:
