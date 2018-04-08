@@ -5,7 +5,7 @@ ryan:
    - sensor.ryan_smartthings
 
 kristi:
-   - device_tracker.kristi_s5
+   - device_tracker.kristi_s7
    - device_tracker.kristis_phone
    #- sensor.kristi_smartthings
 lindabill:
