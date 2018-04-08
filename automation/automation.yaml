@@ -1505,11 +1505,11 @@
     trigger:
       - platform: state
         entity_id: sensor.ryanahollandhomeassistantconfig_state
-        from: 'unknown'
+        from: 'started'
         to: 'passed'
     action:
       - service: script.turn_on
-        entity_id: script.update_config
+        entity_id: script.update_config
       - service: notify.pushover
         data:
           message: "An automated build has completed, I will now pull the latest version from Github and restart."
