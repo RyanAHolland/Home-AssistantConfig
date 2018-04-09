@@ -39,7 +39,7 @@
       - service: light.turn_off
         entity_id: group.living_room
       - service: light.turn_off
-        entity_id: light.dinning_room_lamps
+        entity_id: light.dining_room_lamps
       - delay:
           # supports seconds, milliseconds, minutes, hours
           seconds: 30
