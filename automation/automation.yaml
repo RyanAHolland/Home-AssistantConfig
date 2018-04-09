@@ -1462,8 +1462,8 @@
   - alias: "Dryer - Set Mode Idle"
     hide_entity: False
     trigger:
-      - platform: state
-        entity_id: binary_sensor.dryer_door
+      - platform: binary_sensor.dryer_vibration
+        entity_id: 
         to: 'on'
         for:
           seconds: 5
@@ -1498,3 +1498,19 @@
     trigger:
     - event: sunrise
       platform: sun
+
+#Automated build
+  - alias: "Automatically download updated build"
+    hide_entity: False
+    trigger:
+      - platform: state
+        entity_id: sensor.ryanahollandhomeassistantconfig_state
+        from: 'started'
+        to: 'passed'
+    action:
+      - service: script.turn_on
+        entity_id: script.update_config
+      - service: notify.pushover
+        data:
+          message: "An automated build has completed, I will now pull the latest version from Github and restart."
+          title: "HA"
