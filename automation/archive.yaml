@@ -1,0 +1,68 @@
+##Autonation
+
+#Set to Running
+#  - alias: "Dryer - Set Mode Running"
+#    hide_entity: False
+#    trigger:
+#      - platform: state
+#        entity_id: binary_sensor.dryer_vibration
+#        to: 'on'
+#        for:
+#          minutes: 2
+#    condition:
+#      condition: and
+#      conditions:
+#        - condition: state
+#          entity_id: binary_sensor.dryer_door
+#          state: 'off'
+#        - condition: state
+#          entity_id: input_select.dryer_status
+#          state: 'Idle'
+#   action:
+#      - service: input_select.select_option
+#        data:
+#          entity_id: input_select.dryer_status
+#          option: Running
+
+#Set to Clean
+  - alias: "Dryer - Set Mode Clean"
+    hide_entity: False
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.dryer_vibration
+        to: 'off'
+        for:
+          minutes: 5
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.dryer_door
+          state: 'off'
+        - condition: state
+          entity_id: input_select.dryer_status
+          state: 'Running'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.dryer_status
+          option: Clean
+
+#Set to Idle
+  - alias: "Dryer - Set Mode Idle"
+    hide_entity: False
+    trigger:
+      - platform: binary_sensor.dryer_vibration
+        entity_id: 
+        to: 'on'
+        for:
+          seconds: 5
+    condition:
+    - condition: state
+      entity_id: input_select.dryer_status
+      state: 'Clean'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.dryer_status
+          option: Idle
