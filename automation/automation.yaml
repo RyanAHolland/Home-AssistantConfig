@@ -1435,7 +1435,7 @@
     - event: sunrise
       platform: sun
 
-#Automated build
+#Automated build passed
   - alias: "Automatically download updated build"
     hide_entity: False
     trigger:
@@ -1449,4 +1449,18 @@
       - service: notify.pushover
         data:
           message: "An automated build has completed, I will now pull the latest version from Github and restart."
+          title: "HA"
+
+#Automated build failed
+  - alias: "Notify failed build"
+    hide_entity: False
+    trigger:
+      - platform: state
+        entity_id: sensor.ryanahollandhomeassistantconfig_state
+        from: 'started'
+        to: 'failed'
+    action:
+      - service: notify.pushover
+        data:
+          message: "An automated build has failed, I will not pull the update.  Please see: http://bit.ly/HausGit."
           title: "HA"
