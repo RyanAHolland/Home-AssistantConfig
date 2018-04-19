@@ -353,6 +353,8 @@ proximity:
     unit_of_measurement: mi
     
 hue:
+  bridges:
+    - host: 192.168.1.239
 
 ####################################################
 #                                                  #
