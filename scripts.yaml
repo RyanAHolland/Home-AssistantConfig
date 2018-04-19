@@ -249,7 +249,7 @@
     sequence:
       - service: script.turn_on
         entity_id: script.halloweenlights
-  
+
   colormoodlights:
     alias: Color Mood Lights
     sequence:

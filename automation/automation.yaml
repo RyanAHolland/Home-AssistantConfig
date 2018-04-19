@@ -72,7 +72,7 @@
         data:
           message: "Home state changed to away and system armed."
           title: "HollandHaus"
-      
+
 
   - alias: Home Actions
     hide_entity: False
@@ -224,7 +224,7 @@
         entity_id: scene.decorative_dim
       - service: homeassistant.turn_on
         entity_id: group.christmas_lights
-       
+
   - alias: "Indoor Sunset Actions"
     hide_entity: True
     trigger:
@@ -242,7 +242,7 @@
         state: 'on'
     action:
       - service: scene.turn_on
-        entity_id: scene.decorative_on 
+        entity_id: scene.decorative_on
       - service: homeassistant.turn_on
         entity_id: group.christmas_lights
 
@@ -296,7 +296,7 @@
       - service: scene.turn_on
         entity_id: scene.decorative_off
       - service: switch.turn_off
-        entity_id: switch.unnamed_device
+        entity_id: switch.front_lights
       - service: homeassistant.turn_off
         entity_id: group.christmas_lights
 
@@ -309,7 +309,7 @@
         at: '23:30:00'
     action:
       - service: homeassistant.turn_off
-        entity_id: switch.unnamed_device
+        entity_id: switch.front_lights
 
 ###NOTIFICATION###
 
@@ -652,7 +652,7 @@
         entity_id: group.bedroom
         state: 'on'
       - condition: template
-        value_template: '{{ relative_time(states.binary_sensor.upstairs_motion.last_updated) < "600" }}'        
+        value_template: '{{ relative_time(states.binary_sensor.upstairs_motion.last_updated) < "600" }}'
     action:
       service: scene.turn_on
       entity_id: scene.bedroom_off
@@ -675,8 +675,8 @@
         entity_id: sun.sun
         state: 'below_horizon'
     action:
-      service: homeassistant.turn_on
-      entity_id: switch.unnamed_device
+      service: swtich.turn_on
+      entity_id: switch.front_lights
 
 ####HEATER CONTROL####
 
@@ -693,7 +693,7 @@
       - condition: template
         value_template: '{{ (states.sensor.dark_sky_temperature.state) < "50" }}'
     action:
-      service: homeassistant.turn_on
+      service: swtich.turn_on
       entity_id: switch.play_room_heater
 
 
@@ -708,7 +708,7 @@
       - platform: template
         value_template: '{{ (states.sensor.dark_sky_temperature.state) > "55" }}'
     action:
-      service: homeassistant.turn_off
+      service: swtich.turn_off
       entity_id: switch.play_room_heater
 
 
@@ -913,8 +913,8 @@
         entity_id: sun.sun
         state: 'below_horizon'
     action:
-      - service: homeassistant.turn_on
-        entity_id: switch.unnamed_device
+      - service: swtich.turn_on
+        entity_id: switch.front_lights
 
 ##Turn off front lights without ring motion (built-in) 3min
   - alias: "Front Lights All Off"
@@ -950,7 +950,7 @@
         state: 'closed'
     action:
       - service: switch.turn_off
-        entity_id: switch.unnamed_device
+        entity_id: switch.front_lights
 
 ##Turn off front lights without ring motion (built-in) 3min
   - alias: "Front Lights Ring Motion Off"
@@ -973,7 +973,7 @@
         state: 'closed'
     action:
       - service: switch.turn_off
-        entity_id: switch.unnamed_device
+        entity_id: switch.front_lights
 
 ##Garage Front Lights On
 
@@ -993,8 +993,8 @@
         entity_id: sun.sun
         state: 'below_horizon'
     action:
-      - service: homeassistant.turn_on
-        entity_id: switch.unnamed_device
+      - service: swtich.turn_on
+        entity_id: switch.front_lights
 
 ##Garage Front Lights On
 
@@ -1022,8 +1022,8 @@
         entity_id: cover.small_door
         state: 'closed'
     action:
-      - service: homeassistant.turn_off
-        entity_id: switch.unnamed_device
+      - service: swtich.turn_off
+        entity_id: switch.front_lights
 
 ##Test Welcome Home
 
@@ -1155,7 +1155,7 @@
                   entity_id: input_select.ryan_phone_status
                   state: 'Sleep'
     action:
-      - service: homeassistant.turn_on
+      - service: swtich.turn_on
         entity_id: switch.st_good_morningnight_switch
       - service: input_select.select_option
         data:
@@ -1184,7 +1184,7 @@
         entity_id: switch.st_good_morningnight_switch
         state: 'on'
     action:
-      - service: homeassistant.turn_off
+      - service: swtich.turn_off
         entity_id: switch.st_good_morningnight_switch
       - service: input_select.select_option
         data:
@@ -1199,7 +1199,7 @@
         entity_id: input_select.home_status
         to: 'Away'
     action:
-      - service: homeassistant.turn_on
+      - service: swtich.turn_on
         entity_id: switch.st_awayhome_switch
 
   ##Set home on ST from HA
@@ -1210,7 +1210,7 @@
         entity_id: input_select.home_status
         to: 'Home'
     action:
-      - service: homeassistant.turn_off
+      - service: swtich.turn_off
         entity_id: switch.st_awayhome_switch
 
   ##Trigger when night
@@ -1411,7 +1411,7 @@
 
 ###DRYER Status
 
-# 
+#
 
 ##THEMES
   - action:
