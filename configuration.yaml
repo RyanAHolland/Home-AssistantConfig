@@ -160,6 +160,9 @@ logbook:
 ##Enable Recorder for Persistant input_select
 recorder:
 
+##Enable cloud
+cloud:
+
 # Track the sun
 sun:
 
@@ -351,7 +354,7 @@ proximity:
       - device_tracker.kristi_s5
     tolerance: 50
     unit_of_measurement: mi
-    
+
 hue:
   bridges:
     - host: 192.168.1.239
