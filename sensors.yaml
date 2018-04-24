@@ -279,7 +279,7 @@
    sensors:
      kristi_battery:
        value_template: '{{ states.device_tracker.kristi_s7.attributes.battery }}'
-       unit_of_measurement: '%''
+       unit_of_measurement: '%'
        friendly_name: "Kristi Phone Battery"
 
 ##FIND Location
