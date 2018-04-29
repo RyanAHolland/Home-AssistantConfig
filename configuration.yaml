@@ -301,6 +301,7 @@ device_tracker:
   - platform: ping
     hosts:
       mom: !secret mom_ip
+      wall-e: !secret walle_ip
 
 #Cameras
 camera:
