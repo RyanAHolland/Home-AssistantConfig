@@ -35,17 +35,17 @@
    username: !secret email
    password: !secret plex_pass
 #SABNZBD
-  - platform: sabnzbd
-    host: !secret sabnzbd_host
-    api_key: !secret sabnzbd_api
-    monitored_variables:
-      - 'current_status'
-      - 'speed'
-      - 'queue_size'
-      - 'queue_remaining'
-      - 'disk_size'
-      - 'disk_free'
-      - 'queue_count'
+ - platform: sabnzbd
+   host: !secret sabnzbd_host
+   api_key: !secret sabnzbd_api
+   monitored_variables:
+     - 'current_status'
+     - 'speed'
+     - 'queue_size'
+     - 'queue_remaining'
+     - 'disk_size'
+     - 'disk_free'
+     - 'queue_count'
 #RING
  - platform: ring
    monitored_conditions:
