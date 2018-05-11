@@ -106,13 +106,13 @@ fireplace lights:
       - light.left_light_2
       - light.right_light_2
 
-christmas lights:
-    name: Christmas Lights
-    entities:
-      - light.christmas_tree
-      - switch.mantle_lights
-      - switch.liams_tree
-      - switch.railing_lights
+#christmas lights:
+#    name: Christmas Lights
+#    entities:
+#      - light.christmas_tree
+#      - switch.mantle_lights
+#      - switch.liams_tree
+#      - switch.railing_lights
 
 dining_room:
     name: Dining Room
@@ -564,7 +564,7 @@ first_floor:
       - group.living_room
       - group.play_room
       - group.dining_room
-      - group.christmas_lights
+#      - group.christmas_lights
       - group.1stSensors
       - group.1stEnv
       - group.locks
