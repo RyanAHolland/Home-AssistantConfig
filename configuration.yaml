@@ -49,7 +49,7 @@ http:
 
 # Enables the frontend
 frontend:
-    them
+    theme:
       standard:
         primary-color: blue
       alert_day:
