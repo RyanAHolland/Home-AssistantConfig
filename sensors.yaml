@@ -185,8 +185,8 @@
    qos: 0
    unit_of_measurement: '°F'
  - platform: mqtt
-   state_topic: "smartthings/Front Window 2/battery"
-   name: "Front Window 2 Battery"
+   state_topic: "smartthings/Play Room Window/battery"
+   name: "Play Room Window Battery"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt

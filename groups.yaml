@@ -187,6 +187,7 @@ BasementSensors:
       - binary_sensor.front_window_1
       - binary_sensor.front_window_2
       - binary_sensor.window_over_sink
+      - binary_sensor.play_room_window
       - binary_sensor.first_floor_entry_motion
       - binary_sensor.kitchen_motion
       - binary_sensor.entry_keypad_motion
@@ -215,6 +216,7 @@ BasementSensors:
       - sensor.window_over_sink_battery
       - sensor.front_window_1_battery
       - sensor.front_window_2_battery
+      - sensor.play_room_window_battery
       - sensor.kitchen_motion_battery
       - sensor.entry_keypad_battery
 
