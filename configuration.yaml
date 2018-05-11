@@ -27,11 +27,11 @@ cloud:
        - group.decorative
        - group.fireplace_lights
        - group.color
-  entity_config:
-        group.color:
-          name: Color Lights
-            aliases:
-             - stupid lights  
+#  entity_config:
+#        group.color:
+#          name: Color Lights
+#            aliases:
+#             - stupid lights  
 
 
 
