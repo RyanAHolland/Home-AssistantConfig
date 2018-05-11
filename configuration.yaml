@@ -18,6 +18,22 @@ homeassistant:
 
 ##Enable cloud
 cloud:
+  google_actions:
+    filter:
+      include_entities:
+       - group.firstfloorlights
+       - group.secondfloorlights
+       - group.bedroomlamps
+       - group.decorative
+       - group.fireplace_lights
+       - group.color
+  entity_config:
+        group.color:
+          name: Color Lights
+          aliases:
+           - stupid lights  
+
+
 
 # Show links to resources in log and frontend
 # introduction:
@@ -33,7 +49,7 @@ http:
 
 # Enables the frontend
 frontend:
-    themes:
+    them
       standard:
         primary-color: blue
       alert_day:
