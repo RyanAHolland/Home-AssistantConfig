@@ -323,6 +323,26 @@
  - platform: fedex
    username: !secret username
    password: !secret fedex_pass
-
  - platform: travisci
    api_key:  !secret travis_api
+##presence server
+ - platform: mqtt
+   state_topic: 'location/owner/kitchen/!secret ryanphonebt'
+   value_template: '{{ value_json.confidence }}'
+   unit_of_measurement: '%'
+   name: 'Ryan First Floor'
+ - platform: mqtt
+   state_topic: 'location/owner/upstairs/!secret ryanphonebt'
+   value_template: '{{ value_json.confidence }}'
+   unit_of_measurement: '%'
+   name: 'Ryan Second Floor'
+ - platform: mqtt
+   state_topic: 'location/owner/kitchen/!secret kristiphonebt'
+   value_template: '{{ value_json.confidence }}'
+   unit_of_measurement: '%'
+   name: 'Kristi First Floor'
+ - platform: mqtt
+   state_topic: 'location/owner/upstairs/!secret kristiphonebt'
+   value_template: '{{ value_json.confidence }}'
+   unit_of_measurement: '%'
+   name: 'Kristi Second Floor'
