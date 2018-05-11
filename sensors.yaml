@@ -306,7 +306,7 @@
 
 ##FIND Location
  - platform: rest
-   resource: http://ml.internalpositioning.com/location?group=GREATGOAT&user=!secret find_name
+   resource: !secret find_name
    value_template: !secret find_template
    method: GET
    name: Ryan FIND Sensor
