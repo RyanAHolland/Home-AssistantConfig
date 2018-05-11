@@ -18,10 +18,10 @@ all mobile devices:
    - group.lindabill
 phone state:
    - input_select.ryan_phone_status
-   - sensor.ryan_phone_battery
+   - sensor.ryan_battery
    - sensor.st_ryan
    - input_select.kristi_phone_status
-   - sensor.kristi_phone_battery
+   - sensor.kristi_battery
    - sensor.st_kristi
 travel time:
    - sensor.ryan_to_home
@@ -53,7 +53,7 @@ bedroom:
       - light.kristi_lamp
       - light.ryans_bloom
       - light.kristis_bloom
- 
+
 bedroomlamps:
     name: Bedroom Lamps
     entities:
@@ -85,7 +85,7 @@ insideLights:
       - group.kitchen
       - group.office
       - group.living_room
-      
+
 office:
     name: Office
     entities:
@@ -105,7 +105,7 @@ fireplace lights:
     entities:
       - light.left_light_2
       - light.right_light_2
-      
+
 christmas lights:
     name: Christmas Lights
     entities:
@@ -383,8 +383,10 @@ washer:
       - input_select.washing_machine_status
       - binary_sensor.washer_door
       - binary_sensor.washer_vibration
+      - sensor.washer_power
       - sensor.washer_movement
       - sensor.washer_sensor_battery
+      - sensor.washer_sensor_temperature
 
 dryer:
     name: Dryer sensors
@@ -394,6 +396,7 @@ dryer:
       - binary_sensor.dryer_vibration
       - sensor.dryer_movement
       - sensor.dryer_sensor_battery
+      - sensor.dryer_sensor_temperature
 
 systemSwitches:
     name: System Switches
@@ -447,7 +450,7 @@ weather:
       - sensor.dark_sky_temperature
       - sensor.dark_sky_wind_bearing
       - sensor.dark_sky_wind_speed
-      
+
 travis:
     name: Travis CI Sensors
     entities:
@@ -456,8 +459,8 @@ travis:
       - sensor.ryanahollandhomeassistantconfig_last_build_id
       - sensor.ryanahollandhomeassistantconfig_last_build_started_at
       - sensor.ryanahollandhomeassistantconfig_last_build_state
-      - sensor.ryanahollandhomeassistantconfig_state      
-      
+      - sensor.ryanahollandhomeassistantconfig_state
+
 ##VIEWS###
 media:
     name: Media
@@ -605,7 +608,7 @@ cameras:
     - camera.front_door
     - camera.play_room_camera
     - camera.basement
-    
+
 HomeGroup:
     name: Home Group
     icon: mdi:music

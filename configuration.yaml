@@ -16,7 +16,8 @@ homeassistant:
   time_zone: America/Chicago
   customize: !include customize.yaml
 
-
+##Enable cloud
+cloud:
 
 # Show links to resources in log and frontend
 # introduction:
@@ -159,9 +160,6 @@ logbook:
 
 ##Enable Recorder for Persistant input_select
 recorder:
-
-##Enable cloud
-cloud:
 
 # Track the sun
 sun:
@@ -352,7 +350,7 @@ proximity:
       - Mason
     devices:
       - device_tracker.ryan_note8
-      - device_tracker.kristi_s5
+      - device_tracker.kristi_s7
     tolerance: 50
     unit_of_measurement: mi
 
