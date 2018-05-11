@@ -194,6 +194,16 @@
    name: "Window Over Sink Temperature"
    qos: 0
    unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "smartthings/Washer Sensor/temperature"
+   name: "Washer Sensor Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "smartthings/Dryer Sensor/temperature"
+   name: "Dryer Sensor Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
 #MySensors
  - platform: mqtt
    state_topic: "mysensors/3/0/1/0/0"
