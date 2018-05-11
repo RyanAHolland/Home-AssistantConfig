@@ -30,8 +30,8 @@ cloud:
   entity_config:
         group.color:
           name: Color Lights
-          aliases:
-           - stupid lights  
+            aliases:
+             - stupid lights  
 
 
 
