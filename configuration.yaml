@@ -32,6 +32,8 @@ cloud:
        - light
        - switch
        - input_boolean
+       - script
+       - automation
 #  entity_config:
 #        group.color:
 #          name: Color Lights
