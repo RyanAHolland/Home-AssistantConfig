@@ -28,12 +28,12 @@ cloud:
        - group.fireplace_lights
        - group.color
       exclude_domains:
-       - groups
-       - lights
-       - switches
-       - automations
+       - group
+       - light
+       - switch
+       - automation
        - climate
-       - scripts
+       - script
 #  entity_config:
 #        group.color:
 #          name: Color Lights
