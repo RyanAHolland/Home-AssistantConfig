@@ -34,6 +34,9 @@ cloud:
        - input_boolean
        - script
        - automation
+       - scene
+       - climate
+       - media_player
 #  entity_config:
 #        group.color:
 #          name: Color Lights
