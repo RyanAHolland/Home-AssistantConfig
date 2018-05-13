@@ -31,9 +31,7 @@ cloud:
        - group
        - light
        - switch
-       - automation
-       - climate
-       - script
+       - input_boolean
 #  entity_config:
 #        group.color:
 #          name: Color Lights
@@ -186,6 +184,8 @@ recorder:
 
 # Track the sun
 sun:
+
+ios:
 
 #Add WeMo
 wemo:
