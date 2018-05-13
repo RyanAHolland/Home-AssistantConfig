@@ -182,7 +182,7 @@
     payload_off: "closed"
     device_class: safety
 #washer
-#  - platform: mqtt
+  - platform: mqtt
     state_topic: "smartthings/Washer Sensor/acceleration"
     name: "Washer Vibration"
     qos: 0
