@@ -37,6 +37,7 @@ cloud:
        - scene
        - climate
        - media_player
+       - cover
 #  entity_config:
 #        group.color:
 #          name: Color Lights
