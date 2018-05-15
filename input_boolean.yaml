@@ -1,0 +1,8 @@
+force_home:
+    name: Force At Home
+    initial: off
+    icon: mdi:home-map-marker
+door_notify_mode:
+    name: Door Notify Mode
+    initial: off
+    icon: mdi:surround-sound

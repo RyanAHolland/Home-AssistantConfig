@@ -42,7 +42,7 @@ cloud:
 #        group.color:
 #          name: Color Lights
 #            aliases:
-#             - stupid lights  
+#             - stupid lights
 
 
 
@@ -351,15 +351,6 @@ camera:
 
 ffmpeg:
 
-input_boolean:
-  force_home:
-      name: Force At Home
-      initial: off
-      icon: mdi:home-map-marker
-  door_notify_mode:
-      name: Door Notify Mode
-      initial: off
-      icon: mdi:surround-sound
 
 ##USPS Package Tracking
 usps:
@@ -428,3 +419,6 @@ lock: !include lock.yaml
 
 ##Lights
 light: !include lights.yaml
+
+##input_boolean
+input_boolean: !include input_boolean.yaml
