@@ -327,25 +327,25 @@
    api_key:  !secret travis_api
 ##presence server
  - platform: mqtt
-   state_topic: "!secret 1stryanphonebt"
+   state_topic: !secret 1stryanphonebt
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
    name: 'Ryan First Floor'
+# - platform: mqtt
+#   state_topic: !secret 2ndryanphonebt
+#   value_template: '{{ value_json.confidence }}'
+#   unit_of_measurement: '%'
+#   name: 'Ryan Second Floor'
  - platform: mqtt
-   state_topic: '!secret 2ndryanphonebt'
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Ryan Second Floor'
- - platform: mqtt
-   state_topic: "!secret 1stkristiphonebt"
+   state_topic: !secret 1stkristiphonebt
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
    name: 'Kristi First Floor'
- - platform: mqtt
-   state_topic: '!secret 2ndkristiphonebt'
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Kristi Second Floor'
+# - platform: mqtt
+#   state_topic: '!secret 2ndkristiphonebt'
+#   value_template: '{{ value_json.confidence }}'
+#   unit_of_measurement: '%'
+#   name: 'Kristi Second Floor'
 ##presence logic
  - platform: min_max
    name: "Ryan Home Occupancy Confidence"
@@ -353,11 +353,11 @@
    round_digits: 0
    entity_ids:
      - sensor.ryan_first_floor
-     - sensor.ryan_second_floor
+#     - sensor.ryan_second_floor
  - platform: min_max
    name: "Kristi Home Occupancy Confidence"
    type: mean
    round_digits: 0
    entity_ids:
      - sensor.kristi_first_floor
-     - sensor.kristi_second_floor    
+#     - sensor.kristi_second_floor
