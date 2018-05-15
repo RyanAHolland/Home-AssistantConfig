@@ -1464,7 +1464,7 @@
     hide_entity: true
     trigger:
       - platform: numeric_state
-        entity_id: sensor.ryan_home_occupancy_confidence
+        entity_id: sensor.ryan_first_floor
         above: 10
     action:
       - service: homeassistant.turn_on
@@ -1474,7 +1474,7 @@
     hide_entity: true
     trigger:
       - platform: numeric_state
-        entity_id: sensor.kristi_home_occupancy_confidence
+        entity_id: sensor.kristi_first_floor
         above: 10
     action:
       - service: homeassistant.turn_on
