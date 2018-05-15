@@ -8,9 +8,7 @@ door_notify_mode:
     icon: mdi:surround-sound
 ryan_occupancy:
     name: Ryan Occupancy
-    inital: off
     icon: mdi:human-male
 kristi_occupancy:
     name: Kristi Occupancy
-    inital: off
     icon: mdi:human-female
