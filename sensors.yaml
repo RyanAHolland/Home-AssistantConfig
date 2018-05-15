@@ -341,11 +341,11 @@
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
    name: 'Mom First Floor'
-# - platform: mqtt
-#   state_topic: '!secret 2ndkristiphonebt'
-#   value_template: '{{ value_json.confidence }}'
-#   unit_of_measurement: '%'
-#   name: 'Kristi Second Floor'
+ - platform: mqtt
+   state_topic: '!secret 1stkristiphonebt'
+   value_template: '{{ value_json.confidence }}'
+   unit_of_measurement: '%'
+   name: 'Kristi First Floor'
 ##presence logic
 # - platform: min_max
 #   name: "Ryan Home Occupancy Confidence"
