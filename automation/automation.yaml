@@ -859,7 +859,7 @@
         data:
           message: 'Garage Entry Door Opened.'
 
-  - alias: "Garage Door Notify"
+  - alias: "Liam's Door Notify"
     trigger:
       - platform: state
         entity_id: binary_sensor.liams_room_door
