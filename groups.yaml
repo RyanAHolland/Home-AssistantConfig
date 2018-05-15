@@ -16,6 +16,15 @@ all mobile devices:
    - group.ryan
    - group.kristi
    - group.lindabill
+presence sensors:
+   - sensor.ryan_first_floor
+   - sensor.ryan_second_floor
+   - sensor.ryan_home_occupancy_confidence
+   - input_boolean.ryan_occupancy
+   - sensor.kristi_first_floor
+   - sensor.kristi_second_floor
+   - sensor.kristi_home_occupancy_confidence
+   - input_boolean.kristi_occupancy
 phone state:
    - input_select.ryan_phone_status
    - sensor.ryan_battery
@@ -492,6 +501,7 @@ people:
       - group.ryan
       - group.kristi
       - group.lindabill
+      - group.presence_sensors
       - group.phone_state
       - group.travel_time
 

@@ -1459,3 +1459,24 @@
         data:
           message: "An automated build has failed, I will not pull the update.  Please see: http://bit.ly/HausGit."
           title: "HA"
+##presence automations
+  - alias: Ryan Occupancy
+    hide_entity: true
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.ryan_home_occupancy_confidence
+        above: 10
+    action:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: input_boolean.ryan_occupancy
+  - alias: Kristi Occupancy
+    hide_entity: true
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.kristi_home_occupancy_confidence
+        above: 10
+    action:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: input_boolean.kristi_occupancy
