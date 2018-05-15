@@ -327,7 +327,7 @@
    api_key:  !secret travis_api
 ##presence server
  - platform: mqtt
-   state_topic: '!secret 1stryanphonebt'
+   state_topic: "!secret 1stryanphonebt"
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
    name: 'Ryan First Floor'
@@ -337,7 +337,7 @@
    unit_of_measurement: '%'
    name: 'Ryan Second Floor'
  - platform: mqtt
-   state_topic: '!secret 1stkristiphonebt'
+   state_topic: "!secret 1stkristiphonebt"
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
    name: 'Kristi First Floor'
