@@ -347,17 +347,17 @@
    unit_of_measurement: '%'
    name: 'Kristi Second Floor'
 ##presence logic
-- platform: min_max
-  name: "Ryan Home Occupancy Confidence"
-  type: mean
-  round_digits: 0
-  entity_ids:
-    - sensor.ryan_first_floor
-    - sensor.ryan_second_floor
-- platform: min_max
-  name: "Kristi Home Occupancy Confidence"
-  type: mean
-  round_digits: 0
-  entity_ids:
-    - sensor.kristi_first_floor
-    - sensor.kristi_second_floor    
+ - platform: min_max
+   name: "Ryan Home Occupancy Confidence"
+   type: mean
+   round_digits: 0
+   entity_ids:
+     - sensor.ryan_first_floor
+     - sensor.ryan_second_floor
+ - platform: min_max
+   name: "Kristi Home Occupancy Confidence"
+   type: mean
+   round_digits: 0
+   entity_ids:
+     - sensor.kristi_first_floor
+     - sensor.kristi_second_floor    
