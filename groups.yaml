@@ -18,13 +18,15 @@ all mobile devices:
    - group.lindabill
 presence sensors:
    - sensor.ryan_first_floor
-   - sensor.ryan_second_floor
-   - sensor.ryan_home_occupancy_confidence
-   - input_boolean.ryan_occupancy
+#   - sensor.ryan_second_floor
+   - sensor.ryan_occupancy
+#   - sensor.ryan_home_occupancy_confidence
+#   - input_boolean.ryan_occupancy
    - sensor.kristi_first_floor
-   - sensor.kristi_second_floor
-   - sensor.kristi_home_occupancy_confidence
-   - input_boolean.kristi_occupancy
+   - kristi_occupancy
+#   - sensor.kristi_second_floor
+#   - sensor.kristi_home_occupancy_confidence
+#   - input_boolean.kristi_occupancy
 phone state:
    - input_select.ryan_phone_status
    - sensor.ryan_battery
