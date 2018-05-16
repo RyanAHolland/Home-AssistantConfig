@@ -361,3 +361,14 @@
 #   entity_ids:
 #     - sensor.kristi_first_floor
 #     - sensor.kristi_second_floor
+##BT Occupancy Sensors
+ - platform: template
+   sensors:
+     ryan_occupancy:
+       value_template: '{% if states("sensor.ryan_first_floor") | float > 10 %}Home{% else %}Away{%endif %}'
+       friendly_name: "Ryan's BT Occupancy"
+ - platform: template
+   sensors:
+     kristi_occupancy:
+       value_template: '{% if states("sensor.kristi_first_floor") | float > 10 %}Home{% else %}Away{%endif %}'
+       friendly_name: "Kristi's BT Occupancy"
