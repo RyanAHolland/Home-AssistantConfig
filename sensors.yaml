@@ -388,7 +388,7 @@
      - sensor.kristi_first_floor
      - sensor.kristi_second_floor
      - sensor.kristi_basement
-- platform: min_max
+ - platform: min_max
    name: "Mom Home Occupancy Confidence"
    type: mean
    round_digits: 0
