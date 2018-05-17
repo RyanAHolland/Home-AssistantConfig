@@ -179,7 +179,7 @@
       - service: notify.pushover
         data:
           message: "The system has informed me to start cleaning."
-         title: "Wall-E Starting"
+          title: "Wall-E Starting"
 
 ###DOCK ROOMBA WHEN BATTERY LOW
   - alias: Roomba Battery Low
