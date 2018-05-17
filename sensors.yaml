@@ -407,7 +407,6 @@
      kristi_occupancy:
        value_template: '{% if states("sensor.kristi_home_occupancy_confidence") | float > 10 %}Home{% else %}Away{%endif %}'
        friendly_name: "Kristi's BT Occupancy"
-        - platform: template
  - platform: template
    sensors:
      mom_occupancy:
