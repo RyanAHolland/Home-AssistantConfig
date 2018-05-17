@@ -3,7 +3,6 @@ ryan:
    - device_tracker.ryan_note8
    - device_tracker.galaxynote8
    - sensor.ryan_smartthings
-
 kristi:
    - device_tracker.kristi_s7
    - device_tracker.kristis_phone
@@ -18,19 +17,27 @@ all mobile devices:
    - group.lindabill
 presence sensors:
    - sensor.ryan_first_floor
-#   - sensor.ryan_second_floor
+   - sensor.ryan_second_floor
+   - sensor.ryan_basement
    - sensor.ryan_occupancy
-#   - sensor.ryan_home_occupancy_confidence
-#   - input_boolean.ryan_occupancy
+   - sensor.ryan_home_occupancy_confidence
    - sensor.kristi_first_floor
+   - sensor.kristi_second_floor
+   - sensor.kristi_basement
    - sensor.kristi_occupancy
-#   - sensor.kristi_second_floor
-#   - sensor.kristi_home_occupancy_confidence
-#   - input_boolean.kristi_occupancy
+   - sensor.kristi_home_occupancy_confidence
+   - sensor.mom_first_floor
+   - sensor.mom_second_floor
+   - sensor.mom_basement
+   - sensor.mom_occupancy
+   - sensor.mom_home_occupancy_confidence
 phone state:
    - input_select.ryan_phone_status
    - sensor.ryan_battery
    - sensor.st_ryan
+   - sensor.ryan_find_sensor	
+   - sensor.ryans_ipad_battery_level
+   - sensor.ryans_ipad_battery_state
    - input_select.kristi_phone_status
    - sensor.kristi_battery
    - sensor.st_kristi
