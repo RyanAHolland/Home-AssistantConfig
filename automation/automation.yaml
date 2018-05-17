@@ -103,7 +103,7 @@
         entity_id: input_boolean.force_home
         state: 'off'
 #      - condition: template
-#        value_template: '{{ relative_time(states.group.doorsensors.last_changed) < "30 min" }}'
+#        value_template:  '{{ relative_time(states.group.doorsensors.last_changed) < "30 min" }}'
     action:
       - service: input_select.select_option
         data:
