@@ -196,6 +196,8 @@ ios:
 #Add WeMo
 wemo:
 
+python_script:
+
 #Add Input Select
 input_select:
   home_status:

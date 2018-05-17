@@ -41,7 +41,8 @@
 
 ###HOME STATE
 
-  - alias: Set Home State Away
+  - id: set_home_away
+    alias: Set Home State Away
     trigger:
       platform: state
       entity_id: group.all_mobile_devices
@@ -72,8 +73,8 @@
           message: "Home state changed to away and system armed."
           title: "HollandHaus"
 
-
-  - alias: Home Actions
+  - id: home_actions
+    alias: Home Actions
     hide_entity: False
     trigger:
       platform: state
@@ -93,7 +94,8 @@
       - service: alarm_control_panel.alarm_disarm
         entity_id: alarm_control_panel.shm
 
-  - alias: Light Away Actions
+  - id: light_away_actions
+    alias: Light Away Actions
     trigger:
       platform: state
       entity_id: input_select.home_status
@@ -174,10 +176,10 @@
     action:
       - service: switch.turn_on
         entity_id: switch.walle_clean
-#      - service: notify.pushover
-#        data:
-#          message: "I have started cleaning the house.  Have a great day!"
-#         title: "Wall-E Starting"
+      - service: notify.pushover
+        data:
+          message: "The system has informed me to start cleaning."
+         title: "Wall-E Starting"
 
 ###DOCK ROOMBA WHEN BATTERY LOW
   - alias: Roomba Battery Low
@@ -218,10 +220,43 @@
         entity_id: input_boolean.force_home
         state: 'on'
     action:
-      - service: scene.turn_on
-        entity_id: scene.decorative_dim
-      - service: homeassistant.turn_on
-        entity_id: group.christmas_lights
+    ##Fade in Left Light
+      - service: python_script.fade_in_light
+        data:
+          entity_id: light.left_light_2
+          delay_in_sec: 20
+          start_level_pct: 0
+          end_level_pct: 60
+          step_in_level_pct: 1
+    ##Fade in Right Light
+      - service: python_script.fade_in_light
+        data:
+          entity_id: light.right_light_2
+          delay_in_sec: 20
+          start_level_pct: 0
+          end_level_pct: 60
+          step_in_level_pct: 1
+    ##Fade in Floor Lamp
+      - service: python_script.fade_in_light
+        data:
+          entity_id: light.floor_lamp
+          delay_in_sec: 20
+          start_level_pct: 0
+          end_level_pct: 60
+          step_in_level_pct: 1
+  
+  - alias: "Light Fade Test"
+    hide_entity: False
+    action:
+    ##Fade in Left Light
+      - service: python_script.fade_in_light
+        data:
+          entity_id: light.ryan_lamp
+          delay_in_sec: 20
+          start_level_pct: 0
+          end_level_pct: 60
+          step_in_level_pct: 1
+
 
   - alias: "Indoor Sunset Actions"
     hide_entity: True
@@ -251,8 +286,10 @@
         event: sunset
         offset: "-00:15:00"
     action:
-      service: switch.turn_on
-      entity_id: switch.north_up_lights
+      - service: switch.turn_on
+        entity_id: switch.north_up_lights
+      - service: switch.turn_on
+        entity_id: switch.liams_tree
 
   - alias: "Sunrise Actions No Cloud"
     hide_entity: True
@@ -271,6 +308,8 @@
     action:
       - service: switch.turn_off
         entity_id: switch.north_up_lights
+      - service: switch.turn_off
+        entity_id: switch.liams_tree
       - service: scene.turn_on
         entity_id: scene.decorative_off
       - service: homeassistant.turn_off
@@ -294,6 +333,8 @@
       - service: scene.turn_on
         entity_id: scene.decorative_off
       - service: switch.turn_off
+        entity_id: switch.liams_tree
+      - service: switch.turn_off
         entity_id: switch.front_lights
       - service: homeassistant.turn_off
         entity_id: group.christmas_lights
@@ -306,7 +347,7 @@
     # Military time format.
         at: '23:30:00'
     action:
-      - service: homeassistant.turn_off
+      - service: switch.turn_off
         entity_id: switch.front_lights
 
 ###NOTIFICATION###
