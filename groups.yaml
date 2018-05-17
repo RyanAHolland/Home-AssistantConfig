@@ -35,7 +35,7 @@ phone state:
    - input_select.ryan_phone_status
    - sensor.ryan_battery
    - sensor.st_ryan
-   - sensor.ryan_find_sensor	
+   - sensor.ryan_find_sensor
    - sensor.ryans_ipad_battery_level
    - sensor.ryans_ipad_battery_state
    - input_select.kristi_phone_status
