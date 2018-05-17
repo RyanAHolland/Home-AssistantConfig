@@ -21,3 +21,6 @@ while new_level >= end_level :
                 hass.services.call('light', 'turn_on', data)
                 new_level = new_level - step
                 time.sleep(sleep_delay)
+				
+data = { "entity_id" : entity_id, "brightness" : end_level }
+hass.services.call('light', 'turn_on', data)
