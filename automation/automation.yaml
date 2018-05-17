@@ -15,8 +15,30 @@
         entity_id: sun.sun
         state: 'below_horizon'
     action:
-      - service: scene.turn_on
-        entity_id: scene.livingroom_normal
+    ##Fade in Left Lamp
+      - service: python_script.fade_in_light
+        data:
+          entity_id: light.left_light_2
+          delay_in_sec: 1
+          start_level_pct: 5
+          end_level_pct: 60
+          step_in_level_pct: 10
+    ##Fade in Right Lamp
+      - service: python_script.fade_in_light
+        data:
+          entity_id: light.right_light_2
+          delay_in_sec: 1
+          start_level_pct: 5
+          end_level_pct: 60
+          step_in_level_pct: 10
+    ##Fade in Floor Lamp
+      - service: python_script.fade_in_light
+        data:
+          entity_id: light.floor_lamp
+          delay_in_sec: 1
+          start_level_pct: 5
+          end_level_pct: 60
+          step_in_level_pct: 10
 
   - id: lr_media_play
     alias: "Media player playing"
@@ -33,8 +55,30 @@
         entity_id: sun.sun
         state: 'below_horizon'
     action:
-      - service: scene.turn_on
-        entity_id: scene.livingroom_dim
+    ##Fade out Left Lamp
+      - service: python_script.fade_out_light
+        data:
+          entity_id: light.left_light_2
+          delay_in_sec: 1
+          start_level_pct: 60
+          end_level_pct: 5
+          step_in_level_pct: 10
+     ##Fade out Right Lamp
+      - service: python_script.fade_out_light
+        data:
+          entity_id: light.right_light_2
+          delay_in_sec: 1
+          start_level_pct: 60
+          end_level_pct: 5
+          step_in_level_pct: 10
+    ##Fade out Floor Lamp
+      - service: python_script.fade_out_light
+        data:
+          entity_id: light.floor_lamp
+          delay_in_sec: 1
+          start_level_pct: 60
+          end_level_pct: 5
+          step_in_level_pct: 10
 
 
 #####PRESENCE#####
@@ -256,9 +300,9 @@
       - service: python_script.fade_in_light
         data:
           entity_id: light.ryan_lamp
-          delay_in_sec: 20
+          delay_in_sec: .5
           start_level_pct: 0
-          end_level_pct: 60
+          end_level_pct: 10
           step_in_level_pct: 1
 
 
