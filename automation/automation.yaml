@@ -247,6 +247,10 @@
   
   - alias: "Light Fade Test"
     hide_entity: False
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: "+00:10:00"
     action:
     ##Fade in Left Light
       - service: python_script.fade_in_light
