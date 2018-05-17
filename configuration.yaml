@@ -424,3 +424,6 @@ light: !include lights.yaml
 
 ##input_boolean
 input_boolean: !include input_boolean.yaml
+
+##rest_commands
+rest_commands: !include rest.yaml
