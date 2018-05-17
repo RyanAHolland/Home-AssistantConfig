@@ -23,7 +23,7 @@ presence sensors:
 #   - sensor.ryan_home_occupancy_confidence
 #   - input_boolean.ryan_occupancy
    - sensor.kristi_first_floor
-   - kristi_occupancy
+   - sensor.kristi_occupancy
 #   - sensor.kristi_second_floor
 #   - sensor.kristi_home_occupancy_confidence
 #   - input_boolean.kristi_occupancy
