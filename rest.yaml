@@ -1,7 +1,7 @@
-  walle_clean:
-    url: 'https://thinkingsync.com/api/v1/commands/add_command'
-    method: POST
-    payload: 'auth_token=hoED4U9nyQE9SNhQajFs&device_uuid=2a4f26821825fc60&command=clean'
+walle_clean:
+  url: 'https://thinkingsync.com/api/v1/commands/add_command'
+  method: POST
+  payload: 'auth_token=hoED4U9nyQE9SNhQajFs&device_uuid=2a4f26821825fc60&command=clean'
 
 walle_stop:
   url: 'https://thinkingsync.com/api/v1/commands/add_command'
