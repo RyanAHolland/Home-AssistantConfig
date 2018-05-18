@@ -249,7 +249,7 @@
 #####TIME OF DAY#####
 
   - alias: "Indoor Pre-Sunset Actions"
-    hide_entity: True
+    hide_entity: False
     trigger:
       - platform: sun
         event: sunset
