@@ -350,7 +350,7 @@
    state_topic: !secret 2ndkristiphonebt
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
-   name: 'Kristi 2nd Floor'
+   name: 'Kristi Second Floor'
  - platform: mqtt
    state_topic: !secret basekristiphonebt
    value_template: '{{ value_json.confidence }}'
