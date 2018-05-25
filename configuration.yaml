@@ -196,6 +196,7 @@ ios:
 #Add WeMo
 wemo:
 
+#Python Scripting
 python_script:
 
 #Add Input Select
@@ -379,6 +380,14 @@ proximity:
 hue:
   bridges:
     - host: 192.168.1.239
+    
+variable:  
+  last_motion:
+    value: 'Unknown'
+    restore: true
+    attributes:
+      icon: mdi:map-marker
+      name: "Last Motion"
 
 ####################################################
 #                                                  #
@@ -423,7 +432,8 @@ lock: !include lock.yaml
 light: !include lights.yaml
 
 ##input_boolean
-input_boolean: !include input_boolean.yaml
+#input_boolean: !include input_boolean.yaml
+##Removed as no longer needed for BT Presence (05/25/18 - RAH)
 
 ##rest_commands
 rest_command: !include rest.yaml

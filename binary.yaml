@@ -216,3 +216,23 @@
 #        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.dryer_movement.last_changed) > 30 }}'
 #        friendly_name: "Dryer Active"
 #        device_class: moving
+  - platform: bayesian
+    prior: 0.5
+    name: 'Ryan Presence'
+    probability_threshold: 0.9
+    observations:
+      - entity_id: 'device_tracker.ryan_note8'
+        prob_given_true: 0.9
+        prob_given_false: 0.1
+        platform: 'state'
+        to_state: 'home'
+      - entity_id: 'device_tracker.galaxy-note8'
+        prob_given_true: 0.7
+        prob_given_false: 0.1
+        platform: 'state'
+        to_state: 'home'
+      - entity_id: 'sensor.ryan_occupancy'
+        prob_given_true: 0.9
+        prob_given_false: 0.3
+        platform: 'state'
+        to_state: 'home'
