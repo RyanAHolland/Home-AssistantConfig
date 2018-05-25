@@ -234,6 +234,11 @@
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
+   state_topic: "smartthings/Play Room Window/battery"
+   name: "Play Room Window Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
    state_topic: "smartthings/Upstairs Keypad/battery"
    name: "Entry Keypad Battery"
    qos: 0
@@ -423,6 +428,6 @@
          "{% if is_state('binary_sensor.ryan_presence', 'on') %}
          home
          {% else %}
-         not_home
+         away
          {% endif %}"
        friendly_name: Ryan Home
