@@ -14,7 +14,7 @@
       - wind_speed
       - wind_bearing
       - cloud_cover
-      - idity
+      - humidity
       - daily_summary
       - temperature_max
       - temperature_min
