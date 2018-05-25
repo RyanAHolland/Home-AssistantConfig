@@ -14,7 +14,7 @@
       - wind_speed
       - wind_bearing
       - cloud_cover
-      - humidity
+      - idity
       - daily_summary
       - temperature_max
       - temperature_min
@@ -109,6 +109,21 @@
  - platform: mqtt
    state_topic: "smartthings/First Floor Entry/illuminance"
    name: "First Floor Entry Light"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Humidor Sensor/temperature"
+   name: "Humidor Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "smartthings/Humidor Sensor/humidity"
+   name: "Humidor Humidity"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Bathroom Motion/illuminance"
+   name: "Bathroom Motion Light Sensor"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
@@ -350,7 +365,7 @@
    state_topic: !secret 2ndkristiphonebt
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
-   name: 'Kristi Second Floor'
+   name: 'Kristi 2nd Floor'
  - platform: mqtt
    state_topic: !secret basekristiphonebt
    value_template: '{{ value_json.confidence }}'

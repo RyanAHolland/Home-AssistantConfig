@@ -124,6 +124,13 @@
     payload_off: "inactive"
     device_class: motion
   - platform: mqtt
+    state_topic: "smartthings/Bathroom Motion/motion"
+    name: "Bathroom Motion"
+    qos: 0
+    payload_on: "active"
+    payload_off: "inactive"
+    device_class: motion
+  - platform: mqtt
     state_topic: "smartthings/Iris 3405-L Keypad/motion"
     name: "Entry Keypad Motion"
     qos: 0
