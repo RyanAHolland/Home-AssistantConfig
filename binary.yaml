@@ -100,6 +100,13 @@
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
+  - platform: mqtt
+    state_topic: "smartthings/Play Room Window/contact"
+    name: "Play Room Window"
+    qos: 0
+    payload_on: "open"
+    payload_off: "closed"
+    device_class: opening
 ##GARAGE DOOR
   - platform: mqtt
     state_topic: "smartthings/Large Door/contact"
