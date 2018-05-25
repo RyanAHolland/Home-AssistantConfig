@@ -365,7 +365,7 @@
    state_topic: !secret 2ndkristiphonebt
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
-   name: 'Kristi 2nd Floor'
+   name: 'Kristi Second Floor'
  - platform: mqtt
    state_topic: !secret basekristiphonebt
    value_template: '{{ value_json.confidence }}'
@@ -427,3 +427,23 @@
      mom_occupancy:
        value_template: '{% if states("sensor.mom_home_occupancy_confidence") | float > 10 %}Home{% else %}Away{%endif %}'
        friendly_name: "Mom's BT Occupancy"
+ - platform: bayesian
+   prior: 0.5
+   name: 'Ryan Presence'
+   probability_threshold: 0.9
+   observations:
+     - entity_id: 'device_tracker.ryan_note8'
+       prob_given_true: 0.9
+       prob_given_false: 0.1
+       platform: 'state'
+       to_state: 'home'
+     - entity_id: 'device_tracker.galaxy-note8'
+       prob_given_true: 0.7
+       prob_given_false: 0.1
+       platform: 'state'
+       to_state: 'home'
+     - entity_id: 'sensor.ryan_occupancy'
+       prob_given_true: 0.9
+       prob_given_false: 0.3
+       platform: 'state'
+       to_state: 'home'
