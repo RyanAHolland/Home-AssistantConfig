@@ -85,6 +85,11 @@ light.floor_lamp:
   hidden: true
 light.floor_lamp_2:
   icon: mdi:lamp
+light.office_lamp:
+  icon: mdi:lamp
+  hidden: true
+light.office_lamp_2:
+  icon: mdi:lamp
 light.island_lights:
   icon: mdi:lightbulb
 lights.living_room_overhead:
