@@ -117,7 +117,7 @@ living room:
       - light.left_light_2
       - light.right_light_2
       - light.stair_lamp
-      - light.floor_lamp
+      - light.floor_lamp_2
       - light.living_room_overhead
 
 fireplace lights:
@@ -155,7 +155,7 @@ decorative:
       - light.left_light_2
       - light.right_light_2
       - light.stair_lamp
-      - light.floor_lamp
+      - light.floor_lamp_2
       - light.kitchen_lamp
       - light.dining_room_lamps
 

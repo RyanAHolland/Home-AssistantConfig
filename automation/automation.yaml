@@ -34,7 +34,7 @@
     ##Fade in Floor Lamp
       - service: python_script.fade_in_light
         data:
-          entity_id: light.floor_lamp
+          entity_id: light.floor_lamp_2
           delay_in_sec: 1
           start_level_pct: 5
           end_level_pct: 60
@@ -74,7 +74,7 @@
     ##Fade out Floor Lamp
       - service: python_script.fade_out_light
         data:
-          entity_id: light.floor_lamp
+          entity_id: light.floor_lamp_2
           delay_in_sec: 1
           start_level_pct: 60
           end_level_pct: 5
@@ -283,7 +283,7 @@
     ##Fade in Floor Lamp
       - service: python_script.fade_in_light
         data:
-          entity_id: light.floor_lamp
+          entity_id: light.floor_lamp_2
           delay_in_sec: 20
           start_level_pct: 0
           end_level_pct: 60
