@@ -1430,11 +1430,8 @@
   - alias: "Washer - Set Mode Running"
     hide_entity: False
     trigger:
-      - platform: state
-        entity_id: binary_sensor.washer_vibration
-        to: 'on'
-        for:
-          minutes: 2
+        - platform: template
+          value_template: '{{ states.sensor.washer_power.state > "5" }}'
     condition:
       condition: and
       conditions:
@@ -1454,11 +1451,8 @@
   - alias: "Washer - Set Mode Clean"
     hide_entity: False
     trigger:
-      - platform: state
-        entity_id: binary_sensor.washer_vibratione
-        to: 'off'
-        for:
-          minutes: 5
+        - platform: template
+          value_template: '{{ relative_time(states.sensor.washer_power.last_changed) > "3 Minutes" }}'
     condition:
       condition: and
       conditions:
@@ -1468,6 +1462,8 @@
         - condition: state
           entity_id: input_select.washing_machine_status
           state: 'Running'
+        - condition: template
+          value_template: '{{ states.sensor.washer_power.state < "5" }}'
     action:
       - service: input_select.select_option
         data:
@@ -1492,6 +1488,8 @@
         data:
           entity_id: input_select.washing_machine_status
           option: Idle
+
+          
 
 ###DRYER Status
 
