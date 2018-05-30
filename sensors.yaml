@@ -115,10 +115,20 @@
    name: "Humidor Humidity"
    qos: 0
    unit_of_measurement: '%RH'
+ - platform: mqtt
+   state_topic: "smartthings/Liam's Room Sensor/humidity"
+   name: "Liam's Room Humidity"
+   qos: 0
+   unit_of_measurement: '%RH'
 #Temperature Sensors
  - platform: mqtt
    state_topic: "smartthings/First Floor Entry/temperature"
    name: "First Floor Entry Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "smartthings/Liam's Room Sensor/temperature"
+   name: "Liam's Room Temperature"
    qos: 0
    unit_of_measurement: '°F'
  - platform: mqtt

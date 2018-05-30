@@ -432,8 +432,8 @@ lock: !include lock.yaml
 light: !include lights.yaml
 
 ##input_boolean
-#input_boolean: !include input_boolean.yaml
-##Removed as no longer needed for BT Presence (05/25/18 - RAH)
+input_boolean: !include input_boolean.yaml
+
 
 ##rest_commands
 rest_command: !include rest.yaml
