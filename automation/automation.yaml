@@ -433,8 +433,50 @@
           message: "I am all done cleaning."
           title: "Wall-E"
 
+  - alias: Washer Clean Notification Home
+    hide_entity: True
+    trigger:
+      platform: state
+      entity_id: input_select.washer_status
+      to: 'Clean'
+      for:
+        minutes: 2
+    condition:
+      conditions:
+        - condition: state
+          entity_id: group.all_mobile_devices
+          state: 'home'
+    action:
+      - service: notify.pushover
+        data:
+          message: "By the way, it looks like the washing machine is done.  Don't forget to move to the dryer!"
+          title: "HA"
 
-###SCENE###
+          
+  - alias: Washer Clean Notification Away
+    hide_entity: True
+    trigger:
+      platform: state
+      entity_id: group.all_mobile_devices
+      to: 'home'
+      for:
+        minutes: 1
+    condition:
+      conditions:
+        - condition: state
+          entity_id: input_select.washer_status
+          state: 'Clean'
+    action:
+      - service: notify.pushover
+        data:
+          message: "Welcome home it looks like the washing machine is done.  Don't forget to move to the dryer!"
+          title: "HA"
+#      - service: tts.google_say
+#        entity_id: media_player.kitchen_home
+#        data:
+#          message: 'Welcome Home, it looks like the washer is done. Don't forget to move the clothes to the dryer!'
+          
+          ###SCENE###
 
 
 ###SENSORS#####
