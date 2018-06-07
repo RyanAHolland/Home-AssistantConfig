@@ -801,39 +801,6 @@
       service: swtich.turn_on
       entity_id: switch.front_lights
 
-####HEATER CONTROL####
-
-  - alias: 'Turn Heater in Playroom'
-    hide_entity: True
-    trigger:
-      - platform: state
-        entity_id: media_player.lg_webos_smart_tv
-        to: 'playing'
-    condition:
-      - condition: state
-        entity_id: group.all_mobile_devices
-        state: 'home'
-      - condition: template
-        value_template: '{{ (states.sensor.dark_sky_temperature.state) < "50" }}'
-    action:
-      service: swtich.turn_on
-      entity_id: switch.play_room_heater
-
-
-  - alias: 'Turn Heater off with TV'
-    hide_entity: True
-    trigger:
-      - platform: state
-        entity_id: media_player.lg_webos_smart_tv
-        to: 'off'
-        for:
-          minutes: 5
-      - platform: template
-        value_template: '{{ (states.sensor.dark_sky_temperature.state) > "55" }}'
-    action:
-      service: swtich.turn_off
-      entity_id: switch.play_room_heater
-
 
 ##UPS ON BATTERY
   - alias: 'UPS on Battery Notify'
@@ -1410,10 +1377,32 @@
         data:
           message: "Smart Alarm Has Been Triggered."
           title: "ALERT"
+          priority: 1
+          sound: alien
+      - service: notify.pushover
+        data:
+          title: "ALERT"
+          priority: 1
+          sound: alien
+          message: >-
+            {%- for item in states.group.securitysensors.attributes.entity_id -%}
+            {%- if states(item) == "on" -%}
+            {{ (item) | replace ("binary_sensor.","") | replace ("_"," ") | capitalize() }} is {{ states(item) }}
+            {% endif %}
+            {%- endfor -%}
       - service: tts.google_say
         entity_id: media_player.kitchen_home
         data:
           message: 'ALERT ALERT ALERT Alarm Has Been Triggered. Authorities have been contacted'
+     - service: tts.google_say
+        entity_id: media_player.kitchen_home
+        data:
+          message: >-
+            {%- for item in states.group.securitysensors.attributes.entity_id -%}
+            {%- if states(item) == "on" -%}
+            {{ (item) | replace ("binary_sensor.","") | replace ("_"," ") | capitalize() }} is {{ states(item) }}
+            {% endif %}
+            {%- endfor -%}
 #Have it read out what sensor has been triggered
 #Build script to repeat this and Flash Lamps
 
