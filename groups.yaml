@@ -245,6 +245,8 @@ BasementSensors:
     name: Second Floor Sensors
     entities:
       - binary_sensor.liams_room_door
+      - sensor.liams_room_temperature
+      - sensor.liams_room_humidity
       - binary_sensor.upstairs_motion
       - sensor.upstairs_motion_temperature
       - sensor.upstairs_motion_battery
@@ -270,11 +272,18 @@ SecuritySensors:
       - binary_sensor.kitchen_motion
       - binary_sensor.bathroom_motion
       - binary_sensor.upstairs_motion
-      - binary_sensor.Driveway_Camera_Motion
-      - group.garagedoor
+      - binary_sensor.large_garage_door_contact
+      - binary_sensor.small_garage_door_contact
+      - binary_sensor.basement_north_window
+      - binary_sensor.basement_south_window_1
+      - binary_sensor.basement_south_window_2
+      - binary_sensor.front_window_1
+      - binary_sensor.front_window_2
+      - binary_sensor.window_over_sink
+      - binary_sensor.play_room_window
 
 GarageDoor:
-    name: Security Sensors
+    name: Garage Door Sensors
     entities:
       - cover.large_door
       - binary_sensor.large_garage_door_contact
@@ -376,6 +385,8 @@ climateSensors:
       - sensor.upstairs_motion_temperature
       - sensor.updatirs_keypad_temperature
       - sensor.humidor_temperature
+      - sensor.liams_room_temperature
+      - sensor.liams_room_humidity
 
 frontHouse:
     name: Front of House
