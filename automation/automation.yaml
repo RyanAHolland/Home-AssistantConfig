@@ -1459,7 +1459,7 @@
     hide_entity: False
     trigger:
         - platform: template
-          value_template: '{{ states.sensor.washer_power.state > "5" }}'
+          value_template: '{{ float(states.sensor.washer_power.state) > 5 }}'
     condition:
       condition: and
       conditions:
@@ -1491,7 +1491,7 @@
           entity_id: input_select.washing_machine_status
           state: 'Running'
         - condition: template
-          value_template: '{{ states.sensor.washer_power.state < "5" }}'
+          value_template: '{{ float(states.sensor.washer_power.state) < 5 }}'
     action:
       - service: input_select.select_option
         data:
