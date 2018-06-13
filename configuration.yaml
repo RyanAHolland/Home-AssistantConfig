@@ -357,7 +357,7 @@ ffmpeg:
 
 ##USPS Package Tracking
 usps:
-    username: !secret username
+    username: !secret usps_user
     password: !secret usps_pass
 
 cover:
