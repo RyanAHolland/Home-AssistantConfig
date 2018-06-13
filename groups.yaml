@@ -109,7 +109,7 @@ insideLights:
 office:
     name: Office
     entities:
-      - light.office_lamp
+      - light.office_lamp_2
 
 living room:
     name: Living Room

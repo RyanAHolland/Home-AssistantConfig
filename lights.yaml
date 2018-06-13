@@ -171,7 +171,8 @@
     payload_off: "off" 
     retain: true
     brightness_scale: 99
-  - platform: mqtt 
+
+  - platform: mqtt_template
     name: "Office Lamp" 
     state_topic: "smartthings/Office Lamp/switch" 
     command_topic: "smartthings/Office Lamp/switch" 

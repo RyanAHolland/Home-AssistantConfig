@@ -297,14 +297,11 @@
         offset: "+00:10:00"
     action:
     ##Fade in Left Light
-      - service: python_script.fade_in_light
+      - service: light.turn_on
         data:
-          entity_id: light.ryan_lamp
-          delay_in_sec: .5
-          start_level_pct: 0
-          end_level_pct: 10
-          step_in_level_pct: 1
-
+          entity_id: light.office_lamp_2
+          brightness: 255
+          transition: 30    
 
   - alias: "Indoor Sunset Actions"
     hide_entity: True
