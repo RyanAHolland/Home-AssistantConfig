@@ -289,22 +289,8 @@
           end_level_pct: 60
           step_in_level_pct: 1
   
-  - alias: "Light Fade Test"
-    hide_entity: False
-    trigger:
-      - platform: sun
-        event: sunset
-        offset: "+00:10:00"
-    action:
-    ##Fade in Left Light
-      - service: light.turn_on
-        data:
-          entity_id: light.office_lamp_2
-          brightness: 255
-          transition: 30    
-
   - alias: "Indoor Sunset Actions"
-    hide_entity: True
+    hide_entity: False
     trigger:
       - platform: sun
         event: sunset
@@ -325,7 +311,7 @@
         entity_id: group.christmas_lights
 
   - alias: "Outdoor Sunset Actions"
-    hide_entity: True
+    hide_entity: False
     trigger:
       - platform: sun
         event: sunset
@@ -337,7 +323,7 @@
         entity_id: switch.liams_tree
 
   - alias: "Sunrise Actions No Cloud"
-    hide_entity: True
+    hide_entity: False
     trigger:
       - platform: sun
         event: sunrise
@@ -361,7 +347,7 @@
         entity_id: group.christmas_lights
 
   - alias: "Sunrise Actions with Clouds"
-    hide_entity: True
+    hide_entity: False
     trigger:
       - platform: sun
         event: sunrise
