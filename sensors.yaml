@@ -103,7 +103,7 @@
    state_topic: "smartthings/Bedroon Motion/illuminance"
    name: "Bedroon Motion Light Sensor"
    qos: 0
-   unit_of_measurement: '%'
+   unit_of_measurement: 'lux'
 #Humidity Sensors
  - platform: mqtt
    state_topic: "smartthings/First Floor Entry/humidity"

@@ -173,7 +173,7 @@
     payload_off: "inactive"
     device_class: motion
   - platform: mqtt
-    state_topic: "smartthings/Bedroom Motion"
+    state_topic: "smartthings/Bedroom Motion/motion"
     name: "Bedroom Motion"
     qos: 0
     payload_on: "active"
