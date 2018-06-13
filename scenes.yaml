@@ -106,7 +106,7 @@
     entities:
         light.dining_room_lamps:
             state: on
-            brightness: 
+            brightness: 150
         light.kitchen_lamp:
             state: on
             brightness: 150
@@ -123,8 +123,6 @@
             state: on
             transition: 10
             brightness: 150
-        switch.ap_switch:
-            state: on
 
   - name: Decorative Dim
     entities:
