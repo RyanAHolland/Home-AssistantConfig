@@ -176,6 +176,8 @@
     name: "Office Lamp" 
     state_topic: "smartthings/Office Lamp/switch" 
     command_topic: "smartthings/Office Lamp/switch" 
+    command_on_template: "on"
+    command_off_template: "off"
     brightness_state_topic: "smartthings/Office Lamp/level" 
     brightness_command_topic: "smartthings/Office Lamp/level" 
     color_temp_command_topic: "smartthings/Office Lamp/colorTemperature"
