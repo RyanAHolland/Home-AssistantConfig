@@ -351,6 +351,8 @@ camera:
     mjpeg_url: !secret basement_cam_url
     name: Basement
   - platform: ring
+  - platform: usps
+    scan_interval: 5
 
 ffmpeg:
 
@@ -359,6 +361,7 @@ ffmpeg:
 usps:
     username: !secret usps_user
     password: !secret usps_pass
+    driver: chrome
 
 cover:
   - platform: myq
