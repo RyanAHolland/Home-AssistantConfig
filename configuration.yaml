@@ -269,6 +269,8 @@ mqtt:
   client_id: haas
   keepalive: 60
   protocol: 3.1.1
+  discovery: true 
+  discovery_prefix: homeassistant
 
 
 media_player:
@@ -350,6 +352,9 @@ camera:
   - platform: mjpeg
     mjpeg_url: !secret basement_cam_url
     name: Basement
+  - platform: ffmpeg 
+    name: Living Room
+    input: !secret lr_cam_url
   - platform: ring
   - platform: usps
     scan_interval: 5
