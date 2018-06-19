@@ -319,6 +319,26 @@ FloodCameraSensors:
       - sensor.ring_backyard_last_activity
       - sensor.ring_backyard_last_motion
       - sensor.ring_backyard_volume
+      
+lrCameraSensors:
+    name: Living Room Camera Sensors
+    entities:
+        - camera.lrcam
+        - switch.lrcam_h264_rtsp_server
+        - switch.lrcam_mjpeg_rtsp_server
+        - sensor.lrcam
+        - device_tracker.lrcam
+        - sensor.lrcam_light_sensor
+        - switch.lrcam_ir_filter
+        - switch.lrcam_ir_led
+        - switch.lrcam_night_mode
+        - switch.lrcam_night_mode_auto
+        - switch.lrcam_blue_led
+        - switch.lrcam_yellow_led
+        - switch.lrcam_motion_detection
+        - switch.lrcam_motion_tracking
+        - camera.lrcam_motion_snapshot
+        - binary_sensor.lrcam_motion_sensor
 
 UPSSensors:
     name: UPS Sensors
