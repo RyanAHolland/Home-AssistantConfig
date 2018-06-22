@@ -18,17 +18,17 @@ all mobile devices:
    - group.lindabill
 presence sensors:
    - sensor.ryan_home
-   - sensor.ryan_first_floor
+#   - sensor.ryan_first_floor
    - sensor.ryan_second_floor
    - sensor.ryan_basement
    - sensor.ryan_occupancy
    - sensor.ryan_home_occupancy_confidence
-   - sensor.kristi_first_floor
+#   - sensor.kristi_first_floor
    - sensor.kristi_second_floor
    - sensor.kristi_basement
    - sensor.kristi_occupancy
    - sensor.kristi_home_occupancy_confidence
-   - sensor.mom_first_floor
+#   - sensor.mom_first_floor
    - sensor.mom_second_floor
    - sensor.mom_basement
    - sensor.mom_occupancy
