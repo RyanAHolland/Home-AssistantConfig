@@ -210,6 +210,16 @@
     payload_off: "off" 
     retain: true
     brightness_scale: 99
+  - platform: mqtt 
+    name: "Front Lights" 
+    state_topic: "smartthings/Front Lights/switch" 
+    command_topic: "smartthings/Front Lights/switch" 
+    brightness_state_topic: "smartthings/Front Lights/level" 
+    brightness_command_topic: "smartthings/Front Lights/level" 
+    payload_on: "on" 
+    payload_off: "off" 
+    retain: true
+    brightness_scale: 99
 
 #CHRISTMAS LIGHTS
 #  - platform: mqtt 
