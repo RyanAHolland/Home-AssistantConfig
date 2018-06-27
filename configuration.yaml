@@ -358,6 +358,7 @@ camera:
   - platform: ring
   - platform: usps
     scan_interval: 5
+  - platform: zoneminder
 
 ffmpeg:
 

@@ -515,6 +515,22 @@ travis:
       - sensor.ryanahollandhomeassistantconfig_last_build_started_at
       - sensor.ryanahollandhomeassistantconfig_last_build_state
       - sensor.ryanahollandhomeassistantconfig_state
+      
+ZMSensors:
+    name: ZoneMinder Sensors
+    entities:
+      - sensor.baby_camera_events
+      - sensor.baby_camera_status
+      - sensor.back_deck_events
+      - sensor.back_deck_status
+      - sensor.basement_events
+      - sensor.basement_status
+      - sensor.front_house_events
+      - sensor.front_house_status
+      - sensor.living_room_events
+      - sensor.living_room_status
+      - sensor.play_room_events
+      - sensor.play_room_status
 
 ##VIEWS###
 media:
@@ -666,6 +682,7 @@ cameras:
     - camera.living_room
     - camera.play_room_camera
     - group.lrCameraSensors
+    - group.ZMSensors
 
 HomeGroup:
     name: Home Group
