@@ -99,3 +99,27 @@
     action:
       service: swtich.turn_off
       entity_id: switch.play_room_heater
+      
+      ##Set away on ST from HA
+  - alias: "Trigger ST Away Mode"
+    hide_entity: True
+    trigger:
+      - platform: state
+        entity_id: input_select.home_status
+        to: 'Away'
+    action:
+      - service: swtich.turn_on
+        entity_id: switch.st_awayhome_switch
+
+  ##Set home on ST from HA
+  - alias: "Trigger ST Home Mode"
+    hide_entity: True
+    trigger:
+      - platform: state
+        entity_id: input_select.home_status
+        to: 'Home'
+    action:
+      - service: swtich.turn_off
+        entity_id: switch.st_awayhome_switch
+        
+        

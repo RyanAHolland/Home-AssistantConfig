@@ -1,84 +1,84 @@
 #####MEDIA#####
 
-  - id: lr_media_paused
-    alias: "Media player paused/stopped"
-    hide_entity: True
-    trigger:
-      - platform: state
-        entity_id: media_player.living_room
-        from: 'playing'
-      - platform: state
-        entity_id: media_player.living_room_roku
-        from: 'playing'
-    condition:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-    action:
-    ##Fade in Left Lamp
-      - service: python_script.fade_in_light
-        data:
-          entity_id: light.left_light_2
-          delay_in_sec: 1
-          start_level_pct: 5
-          end_level_pct: 60
-          step_in_level_pct: 10
-    ##Fade in Right Lamp
-      - service: python_script.fade_in_light
-        data:
-          entity_id: light.right_light_2
-          delay_in_sec: 1
-          start_level_pct: 5
-          end_level_pct: 60
-          step_in_level_pct: 10
-    ##Fade in Floor Lamp
-      - service: python_script.fade_in_light
-        data:
-          entity_id: light.floor_lamp_2
-          delay_in_sec: 1
-          start_level_pct: 5
-          end_level_pct: 60
-          step_in_level_pct: 10
+  # - id: lr_media_paused
+    # alias: "Media player paused/stopped"
+    # hide_entity: True
+    # trigger:
+      # - platform: state
+        # entity_id: media_player.living_room
+        # from: 'playing'
+      # - platform: state
+        # entity_id: media_player.living_room_roku
+        # from: 'playing'
+    # condition:
+      # - condition: state
+        # entity_id: sun.sun
+        # state: 'below_horizon'
+    # action:
+    # ##Fade in Left Lamp
+      # - service: python_script.fade_in_light
+        # data:
+          # entity_id: light.left_light_2
+          # delay_in_sec: 1
+          # start_level_pct: 5
+          # end_level_pct: 60
+          # step_in_level_pct: 10
+    # ##Fade in Right Lamp
+      # - service: python_script.fade_in_light
+        # data:
+          # entity_id: light.right_light_2
+          # delay_in_sec: 1
+          # start_level_pct: 5
+          # end_level_pct: 60
+          # step_in_level_pct: 10
+    # ##Fade in Floor Lamp
+      # - service: python_script.fade_in_light
+        # data:
+          # entity_id: light.floor_lamp_2
+          # delay_in_sec: 1
+          # start_level_pct: 5
+          # end_level_pct: 60
+          # step_in_level_pct: 10
 
-  - id: lr_media_play
-    alias: "Media player playing"
-    hide_entity: True
-    trigger:
-      - platform: state
-        entity_id: media_player.living_room
-        to: 'playing'
-      - platform: state
-        entity_id: media_player.living_room_roku
-        to: 'playing'
-    condition:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-    action:
-    ##Fade out Left Lamp
-      - service: python_script.fade_out_light
-        data:
-          entity_id: light.left_light_2
-          delay_in_sec: 1
-          start_level_pct: 60
-          end_level_pct: 5
-          step_in_level_pct: 10
-     ##Fade out Right Lamp
-      - service: python_script.fade_out_light
-        data:
-          entity_id: light.right_light_2
-          delay_in_sec: 1
-          start_level_pct: 60
-          end_level_pct: 5
-          step_in_level_pct: 10
-    ##Fade out Floor Lamp
-      - service: python_script.fade_out_light
-        data:
-          entity_id: light.floor_lamp_2
-          delay_in_sec: 1
-          start_level_pct: 60
-          end_level_pct: 5
-          step_in_level_pct: 10
+  # - id: lr_media_play
+    # alias: "Media player playing"
+    # hide_entity: True
+    # trigger:
+      # - platform: state
+        # entity_id: media_player.living_room
+        # to: 'playing'
+      # - platform: state
+        # entity_id: media_player.living_room_roku
+        # to: 'playing'
+    # condition:
+      # - condition: state
+        # entity_id: sun.sun
+        # state: 'below_horizon'
+    # action:
+    # ##Fade out Left Lamp
+      # - service: python_script.fade_out_light
+        # data:
+          # entity_id: light.left_light_2
+          # delay_in_sec: 1
+          # start_level_pct: 60
+          # end_level_pct: 5
+          # step_in_level_pct: 10
+     # ##Fade out Right Lamp
+      # - service: python_script.fade_out_light
+        # data:
+          # entity_id: light.right_light_2
+          # delay_in_sec: 1
+          # start_level_pct: 60
+          # end_level_pct: 5
+          # step_in_level_pct: 10
+    # ##Fade out Floor Lamp
+      # - service: python_script.fade_out_light
+        # data:
+          # entity_id: light.floor_lamp_2
+          # delay_in_sec: 1
+          # start_level_pct: 60
+          # end_level_pct: 5
+          # step_in_level_pct: 10
 
 
 #####PRESENCE#####
@@ -1263,28 +1263,6 @@
         data:
           entity_id: input_select.home_status
           option: Home
-
-##Set away on ST from HA
-  - alias: "Trigger ST Away Mode"
-    hide_entity: True
-    trigger:
-      - platform: state
-        entity_id: input_select.home_status
-        to: 'Away'
-    action:
-      - service: swtich.turn_on
-        entity_id: switch.st_awayhome_switch
-
-  ##Set home on ST from HA
-  - alias: "Trigger ST Home Mode"
-    hide_entity: True
-    trigger:
-      - platform: state
-        entity_id: input_select.home_status
-        to: 'Home'
-    action:
-      - service: swtich.turn_off
-        entity_id: switch.st_awayhome_switch
 
   ##Trigger when night
   - alias: "Trigger with Night Mode"
