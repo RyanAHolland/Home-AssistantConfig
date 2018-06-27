@@ -605,7 +605,6 @@ system:
     - group.travis
 
 first_floor:
-  default_view:
     name: First Floor
     view: yes
     icon: mdi:numeric-1-box-outline
