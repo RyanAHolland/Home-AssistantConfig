@@ -274,11 +274,11 @@
    qos: 0
    unit_of_measurement: '%'
 ##SmartThings Pre1sence
- - platform: mqtt
-   state_topic: "smartthings/Ryan's Phone/presence"
-   name: "ST Ryan"
-   qos: 0
-##Vibration Sensors
+ # - platform: mqtt
+   # state_topic: "smartthings/Ryan's Phone/presence"
+   # name: "ST Ryan"
+   # qos: 0
+#Vibration Sensors
  - platform: mqtt
    state_topic: "smartthings/Dryer Sensor/threeAxis"
    name: "Dryer Movement"
