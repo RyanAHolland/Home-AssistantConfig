@@ -441,3 +441,6 @@
          away
          {% endif %}"
        friendly_name: Ryan Home
+       
+  - platform: zoneminder
+    include_archived: false

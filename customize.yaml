@@ -238,8 +238,6 @@ group.all_devices:
   hidden: false
 group.all_covers:
   hidden: false
-group.all_devices:
-  hidden: false
 group.all_lights:
   hidden: false
 group.all_locks:
