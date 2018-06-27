@@ -59,6 +59,6 @@
     qos: 0
     retain: true
 #ZoneMinder
-#  - platform: zoneminder
-#    command_on: Modect
-#    command_off: Monitor
+  - platform: zoneminder
+    command_on: Modect
+    command_off: Monitor

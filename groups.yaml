@@ -531,6 +531,28 @@ ZMSensors:
       - sensor.living_room_status
       - sensor.play_room_events
       - sensor.play_room_status
+      
+ZMCameras:
+    name: ZoneMinder Cameras
+    entities:
+    - camera.baby_camera_2
+    - camera.back_deck_camera
+    - camera.basement_2
+    - camera.front_house
+    - camera.living_room_2
+    - camera.play_room
+    
+
+DirectCameras:
+    name: Direct Cameras
+    entities:
+    - camera.baby_camera
+    - camera.basement
+    - camera.back_deck_camera
+    - camera.front_house_camera
+    - camera.front_door
+    - camera.living_room
+    - camera.play_room_camera
 
 ##VIEWS###
 media:
@@ -674,13 +696,7 @@ cameras:
     view: yes
     icon: mdi:camera
     entities:
-    - camera.baby_camera
-    - camera.basement
-    - camera.back_deck_camera
-    - camera.front_house_camera
-    - camera.front_door
-    - camera.living_room
-    - camera.play_room_camera
+    - group.ZMCameras
     - group.lrCameraSensors
     - group.ZMSensors
 
@@ -704,3 +720,4 @@ Everything:
       - group.all_mobile_devices
       - group.all_scripts
       - group.all_switches
+      - group.DirectCameras
