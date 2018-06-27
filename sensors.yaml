@@ -442,5 +442,5 @@
          {% endif %}"
        friendly_name: Ryan Home
        
-  - platform: zoneminder
-    include_archived: false
+ - platform: zoneminder
+   include_archived: false
