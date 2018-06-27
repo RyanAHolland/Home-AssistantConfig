@@ -517,6 +517,13 @@ travis:
       - sensor.ryanahollandhomeassistantconfig_state
 
 ##VIEWS###
+group:
+  default_view:
+    view: yes
+    icon: mdi:home
+    entities:
+      - group.first_floor
+
 media:
     name: Media
     icon: mdi:google-play
