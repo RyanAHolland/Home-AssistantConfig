@@ -659,11 +659,13 @@ cameras:
     icon: mdi:camera
     entities:
     - camera.baby_camera
+    - camera.basement
     - camera.back_deck_camera
     - camera.front_house_camera
     - camera.front_door
+    - camera.living_room
     - camera.play_room_camera
-    - camera.basement
+    - group.lrCameraSensors
 
 HomeGroup:
     name: Home Group
