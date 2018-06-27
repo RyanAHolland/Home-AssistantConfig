@@ -517,6 +517,13 @@ travis:
       - sensor.ryanahollandhomeassistantconfig_state
 
 ##VIEWS###
+group:
+  default_view:
+    view: yes
+    icon: mdi:home
+    entities:
+      - group.first_floor
+
 media:
     name: Media
     icon: mdi:google-play
@@ -605,7 +612,6 @@ system:
     - group.travis
 
 first_floor:
-  default_view:
     name: First Floor
     view: yes
     icon: mdi:numeric-1-box-outline
