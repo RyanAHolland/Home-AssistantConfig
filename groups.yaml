@@ -675,7 +675,11 @@ HomeGroup:
       
 Everything:
     name: Everything
+<<<<<<< HEAD
     icon: mdi:monitor-cellphone-star
+=======
+    icon :mdi:star
+>>>>>>> 4a9053a3e0875ee8a0af195c0f3306daa4a1d8c4
     view: yes
     entities:
       - group.all_automations
@@ -685,4 +689,9 @@ Everything:
       - group.all_locks
       - group.all_mobile_devices
       - group.all_scripts
+<<<<<<< HEAD
       - group.all_switches
+=======
+      - group.all_switches
+      
+>>>>>>> 4a9053a3e0875ee8a0af195c0f3306daa4a1d8c4
