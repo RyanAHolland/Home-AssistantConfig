@@ -569,6 +569,17 @@ zones:
     - binary_sensor.floorplan
 
 ##VIEWS###
+default_view:
+    name: Home
+    icon: mdi:home
+    view: yes
+    entities:
+      - group.systemSwitches
+      - group.phone_state
+      - group.stInterface
+      - climate.downstairs_thermostat
+      - group.garagedoor
+
 media:
     name: Media
     icon: mdi:google-play
