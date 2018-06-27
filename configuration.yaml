@@ -363,8 +363,8 @@ ffmpeg:
 
 zoneminder:
   host: !secret ZM_HOST
-  path: /zm
-  path_zms: /zm/cgi-bin/nph-zms
+#  path: /zm
+#  path_zms: /zm/cgi-bin/nph-zms
   ssl: False
 #  username: !secret ZM_USERNAME
 #  password: !secret ZM_PASSWORD
