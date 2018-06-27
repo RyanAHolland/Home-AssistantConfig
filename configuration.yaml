@@ -60,6 +60,8 @@ http:
 
 # Enables the frontend
 frontend:
+    extra_html_url:
+      - /local/custom_ui/state-card-floorplan.html
     themes:
       standard:
         primary-color: blue
@@ -405,9 +407,6 @@ variable:
       icon: mdi:map-marker
       name: "Last Motion"
       
-frontend:
-  extra_html_url:
-    - /local/custom_ui/state-card-floorplan.html
 panel_custom:
   - name: floorplan
     sidebar_title: Floorplan
