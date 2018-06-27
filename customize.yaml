@@ -250,3 +250,6 @@ group.all_switches:
   hidden: false
 sensor.ring_backyard_battery:
   hidden: true
+    binary_sensor.floorplan:
+      custom_ui_state_card: state-card-floorplan
+      config: !include floorplan.yaml

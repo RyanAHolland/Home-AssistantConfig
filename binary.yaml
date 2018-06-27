@@ -11,9 +11,9 @@
     payload_off: "inactive"
     device_class: motion
 #Placehold for Floorplan
-#  - platform: mqtt
-#    state_topic: dummy/floorplan/sensor
-#    name: Floorplan
+  - platform: mqtt
+    state_topic: dummy/floorplan/sensor
+    name: Floorplan
 #SmartThings Sensors
   - platform: mqtt
     state_topic: "smartthings/Front Door Sensor/contact"

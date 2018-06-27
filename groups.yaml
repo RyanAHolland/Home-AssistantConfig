@@ -562,6 +562,11 @@ DirectCameras:
     - camera.front_door
     - camera.living_room
     - camera.play_room_camera
+    
+zones:
+  name: Zones
+  entities:
+    - binary_sensor.floorplan
 
 ##VIEWS###
 media:
