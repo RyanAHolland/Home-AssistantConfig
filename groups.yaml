@@ -604,14 +604,8 @@ system:
     - group.package
     - group.travis
 
-basement:
-    name: Basement
-    view: yes
-    icon: mdi:arrow-down-drop-circle
-    entities:
-      - group.basementsensors
-
 first_floor:
+  default_view:
     name: First Floor
     view: yes
     icon: mdi:numeric-1-box-outline
@@ -637,6 +631,13 @@ second_floor:
       - group.2ndSensors
       - group.upstairs_hall
 
+basement:
+    name: Basement
+    view: yes
+    icon: mdi:arrow-down-drop-circle
+    entities:
+      - group.basementsensors
+      
 outside:
     name: Outside
     view: yes
@@ -671,3 +672,17 @@ HomeGroup:
     view: yes
     entities:
       - media_player.home_group
+      
+Everything:
+    name: Everything
+    icon: mdi:monitor-cellphone-star
+    view: yes
+    entities:
+      - group.all_automations
+      - group.all_covers
+      - group.all_devices
+      - group.all_lights
+      - group.all_locks
+      - group.all_mobile_devices
+      - group.all_scripts
+      - group.all_switches

@@ -225,12 +225,30 @@ device_tracker.ryan:
   hidden: true
 device_tracker.c232ffa1c033:
   hidden: true
+sensor.lees_summit_home_security_state:
+  hidden: true
+sensor.lees_summit_home_eta:
+  hidden: true
+binary_sensor.lees_summit_home_away:
+  hidden: true
+#Expose All groups
 group.all_automations:
+  hidden: false
+group.all_devices:
+  hidden: false
+group.all_covers:
+  hidden: false
+group.all_devices:
+  hidden: false
+group.all_lights:
+  hidden: false
+group.all_locks:
+  hidden: false
+group.all_mobile_devices:
   hidden: false
 group.all_scripts:
   hidden: false
-group.all_devices: {}
-switch.play_room_heater:
-  friendly_name: Living Room Decorative
+group.all_switches:
+  hidden: false
 sensor.ring_backyard_battery:
   hidden: true
