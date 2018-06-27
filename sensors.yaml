@@ -100,8 +100,8 @@
    qos: 0
    unit_of_measurement: 'lux'
  - platform: mqtt
-   state_topic: "smartthings/Bedroom Motion/illuminance"
-   name: "Bedroom Motion Light Sensor"
+   state_topic: "smartthings/Bathroom Motion/illuminance"
+   name: "Bathroom Motion Light Sensor"
    qos: 0
    unit_of_measurement: 'lux'
 #Humidity Sensors

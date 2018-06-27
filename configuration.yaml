@@ -361,6 +361,13 @@ camera:
 
 ffmpeg:
 
+zoneminder:
+  host: !secret ZM_HOST
+  path: /zm
+  path_zms: /zm/cgi-bin/nph-zms
+  ssl: False
+  username: ZM_USERNAME
+  password: ZM_PASSWORD
 
 ##USPS Package Tracking
 usps:
