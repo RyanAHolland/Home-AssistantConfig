@@ -541,7 +541,16 @@ ZMCameras:
     - camera.front_house
     - camera.living_room_2
     - camera.play_room
-    
+
+ZMSwitches:
+    name: ZoneMinder Switches
+    entities:
+    - switch.baby_camera_state
+    - switch.back_deck_state
+    - switch.basement_state
+    - switch.front_house_state
+    - switch.living_room_state
+    - switch.play_room_state
 
 DirectCameras:
     name: Direct Cameras
@@ -698,6 +707,7 @@ cameras:
     entities:
     - group.ZMCameras
     - group.lrCameraSensors
+    - group.ZMSwitches
     - group.ZMSensors
 
 HomeGroup:
