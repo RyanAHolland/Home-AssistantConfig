@@ -366,8 +366,8 @@ zoneminder:
   path: /zm
   path_zms: /zm/cgi-bin/nph-zms
   ssl: False
-  username: ZM_USERNAME
-  password: ZM_PASSWORD
+  username: !secret ZM_USERNAME
+  password: !secret ZM_PASSWORD
 
 ##USPS Package Tracking
 usps:
