@@ -1,6 +1,7 @@
   - platform: thinkingcleaner
   - platform: wake_on_lan
     mac_address: "e0-69-95-8d-54-74"
+    host: spike
     name: Wake Spike
 #  - platform: insteon_local
   - platform: rachio
