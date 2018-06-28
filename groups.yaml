@@ -3,19 +3,22 @@ ryan:
    - device_tracker.ryan_note8
    - device_tracker.galaxynote8
    - sensor.ryan_occupancy
+   - sensor.ryan_home
    #- sensor.ryan_smartthings
 kristi:
    - device_tracker.kristi_s7
    - device_tracker.kristis_phone
    #- sensor.kristi_smartthings
+   - sensor.kristi_home
 lindabill:
    - device_tracker.mom
    - device_tracker.moms_phone
    - device_tracker.billsphone
+   - sensor.mom_home
 all mobile devices:
-   - group.ryan
-   - group.kristi
-   - group.lindabill
+   - sensor.ryan_home
+   - sensor.kristi_home
+   - sensor.mom_home
 presence sensors:
    - sensor.ryan_home
    - sensor.ryan_first_floor
@@ -584,7 +587,7 @@ default_view:
     view: yes
     entities:
       - group.systemSwitches
-      - group.bayesian
+      - group.bayesian_home
       - group.phone_state
       - group.stInterface
       - climate.downstairs_thermostat
@@ -620,6 +623,7 @@ people:
       - group.ryan
       - group.kristi
       - group.lindabill
+      - group.all_mobile_devices
       - group.presence_sensors
       - group.phone_state
       - group.travel_time

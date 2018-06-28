@@ -52,6 +52,8 @@ device_tracker.kristi_s7:
   friendly_name: Kristi Owntracks
 input_select.home_status:
   friendly_name: Home Status
+group.presence_sensors:
+  friendly_name: BT Presence Sensors
 light.bedroom_fan:
   icon: mdi:fan
 light.ryan_lamp:
