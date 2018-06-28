@@ -243,3 +243,48 @@
         prob_given_false: 0.3
         platform: 'state'
         to_state: 'home'
+  - platform: bayesian
+    prior: 0.5
+    name: 'Kristi Presence'
+    probability_threshold: 0.9
+    observations:
+      - entity_id: 'device_tracker.kristi_s7'
+        prob_given_true: 0.9
+        prob_given_false: 0.1
+        platform: 'state'
+        to_state: 'home'
+      - entity_id: 'device_tracker.kristis_phone'
+        prob_given_true: 0.7
+        prob_given_false: 0.1
+        platform: 'state'
+        to_state: 'home'
+      - entity_id: 'sensor.kristi_occupancy'
+        prob_given_true: 0.9
+        prob_given_false: 0.3
+        platform: 'state'
+        to_state: 'home'
+  - platform: bayesian
+    prior: 0.5
+    name: 'Mom Presence'
+    probability_threshold: 0.9
+    observations:
+      - entity_id: 'device_tracker.mom'
+        prob_given_true: 0.7
+        prob_given_false: 0.1
+        platform: 'state'
+        to_state: 'home'
+      - entity_id: 'device_tracker.moms_phone'
+        prob_given_true: 0.7
+        prob_given_false: 0.1
+        platform: 'state'
+        to_state: 'home'
+      - entity_id: 'device_tracker.billsphone'
+        prob_given_true: 0.7
+        prob_given_false: 0.1
+        platform: 'state'
+        to_state: 'home'
+      - entity_id: 'sensor.mom_occupancy'
+        prob_given_true: 0.9
+        prob_given_false: 0.3
+        platform: 'state'
+        to_state: 'home'

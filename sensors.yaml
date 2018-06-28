@@ -344,51 +344,51 @@
  - platform: travisci
    api_key:  !secret travis_api
 ##presence server
-# - platform: mqtt
-#   state_topic: !secret 1stryanphonebt
-#   value_template: '{{ value_json.confidence }}'
-#   unit_of_measurement: '%'
-#   name: 'Ryan First Floor'
+- platform: mqtt
+  state_topic: !secret 1stryanphonebt
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'Ryan First Floor'
  - platform: mqtt
    state_topic: !secret 2ndryanphonebt
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
    name: 'Ryan Second Floor'
- - platform: mqtt
-   state_topic: !secret baseryanphonebt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Ryan Basement'
-# - platform: mqtt
-#   state_topic: !secret 1stkristiphonebt
-#   value_template: '{{ value_json.confidence }}'
-#   unit_of_measurement: '%'
-#   name: 'Kristi First Floor'
+ # - platform: mqtt
+   # state_topic: !secret baseryanphonebt
+   # value_template: '{{ value_json.confidence }}'
+   # unit_of_measurement: '%'
+   # name: 'Ryan Basement'
+- platform: mqtt
+  state_topic: !secret 1stkristiphonebt
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'Kristi First Floor'
  - platform: mqtt
    state_topic: !secret 2ndkristiphonebt
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
    name: 'Kristi Second Floor'
- - platform: mqtt
-   state_topic: !secret basekristiphonebt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Kristi Basement'
-# - platform: mqtt
-#   state_topic: !secret 1stmomphonebt
-#   value_template: '{{ value_json.confidence }}'
-#   unit_of_measurement: '%'
-#   name: 'Mom First Floor'
+ # - platform: mqtt
+   # state_topic: !secret basekristiphonebt
+   # value_template: '{{ value_json.confidence }}'
+   # unit_of_measurement: '%'
+   # name: 'Kristi Basement'
+- platform: mqtt
+  state_topic: !secret 1stmomphonebt
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'Mom First Floor'
  - platform: mqtt
    state_topic: !secret 2ndmomphonebt
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
    name: 'Mom Second Floor'
- - platform: mqtt
-   state_topic: !secret basemomphonebt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Mom Basement'
+ # - platform: mqtt
+   # state_topic: !secret basemomphonebt
+   # value_template: '{{ value_json.confidence }}'
+   # unit_of_measurement: '%'
+   # name: 'Mom Basement'
 ##BT presence logic
  - platform: min_max
    name: "Ryan Home Occupancy Confidence"
@@ -397,7 +397,7 @@
    entity_ids:
      - sensor.ryan_first_floor
      - sensor.ryan_second_floor
-     - sensor.ryan_basement
+    #  - sensor.ryan_basement
  - platform: min_max
    name: "Kristi Home Occupancy Confidence"
    type: mean
@@ -405,7 +405,7 @@
    entity_ids:
      - sensor.kristi_first_floor
      - sensor.kristi_second_floor
-     - sensor.kristi_basement
+    #  - sensor.kristi_basement
  - platform: min_max
    name: "Mom Home Occupancy Confidence"
    type: mean
@@ -413,7 +413,7 @@
    entity_ids:
      - sensor.mom_first_floor
      - sensor.mom_second_floor
-     - sensor.mom_basement
+    #  - sensor.mom_basement
 ##BT Occupancy Sensors
  - platform: template
    sensors:
@@ -441,6 +441,17 @@
          away
          {% endif %}"
        friendly_name: Ryan Home
+ - platform: template
+   sensors:
+     kristi_home:
+       value_template:
+         "{% if is_state('binary_sensor.kristi_presence', 'on') %}
+         home
+         {% else %}
+         away
+         {% endif %}"
+       friendly_name: Kristi Home
+
        
  - platform: zoneminder
    include_archived: false
