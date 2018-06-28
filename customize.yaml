@@ -42,7 +42,7 @@ group.color:
   google_assistant: true
   google_assistant_name: Color Lights
   aliases:
-    - stupid lights
+  - stupid lights
   google_assistant_type: light
 device_tracker.ryan_note8:
   icon: map-marker
@@ -233,7 +233,6 @@ sensor.lees_summit_home_eta:
   hidden: true
 binary_sensor.lees_summit_home_away:
   hidden: true
-#Expose All groups
 group.all_automations:
   hidden: false
 group.all_devices:
@@ -254,4 +253,86 @@ sensor.ring_backyard_battery:
   hidden: true
 binary_sensor.floorplan:
   custom_ui_state_card: state-card-floorplan
-  config: !include floorplan.yaml
+  config:
+    name: Demo Floorplan
+    image: /local/custom_ui/floorplan/floorplan.svg
+    stylesheet: /local/custom_ui/floorplan/floorplan.css
+    last_motion_entity: sensor.template_last_motion
+    last_motion_class: last-motion
+    groups:
+    - name: Sensors
+      entities:
+      - sensor.melbourne_now
+      text_template: '${entity.state ? entity.state : "unknown"}'
+      class_template: ' var temp = parseFloat(entity.state.replace("°", "")); if (temp
+        < 10) return "temp-low"; else if (temp < 30) return "temp-medium"; else return
+        "temp-high"; '
+    - name: Lights
+      entities:
+      - light.hallway
+      - light.living_room
+      - light.patio
+      states:
+      - state: 'on'
+        class: light-on
+      - state: 'off'
+        class: light-off
+    - name: Switches
+      entities:
+      - switch.doorbell
+      states:
+      - state: 'on'
+        class: doorbell-on
+      - state: 'off'
+        class: doorbell-off
+    - name: NVR
+      entities:
+      - binary_sensor.blue_iris_nvr
+      text_template: '${(entity.state === "on") ? "online" : "offline"}'
+      states:
+      - state: 'off'
+        class: danger-text
+      - state: 'on'
+        class: success-text
+    - name: Alarm Panel
+      entities:
+      - alarm_control_panel.alarm
+      states:
+      - state: armed_away
+        class: alarm-armed
+      - state: armed_home
+        class: alarm-armed
+      - state: disarmed
+        class: alarm-disarmed
+    - name: Binary sensors
+      entities:
+      - binary_sensor.front_hallway
+      - binary_sensor.kitchen
+      - binary_sensor.master_bedroom
+      - binary_sensor.theatre_room
+      states:
+      - state: 'off'
+        class: info-background
+      - state: 'on'
+        class: warning-background
+      state_transitions:
+      - name: On to off
+        from_state: 'on'
+        to_state: 'off'
+        duration: 10
+    - name: Cameras
+      entities:
+      - camera.hallway
+      - camera.driveway
+      - camera.front_door
+      - camera.backyard
+      states:
+      - state: idle
+        class: camera-idle
+sensor.ryan_home:
+  entity_picture: /local/ryan.jpg
+sensor.kristi_home:
+  entity_picture: /local/kristi.jpg
+sensor.mom_home:
+  entity_picture: /local/BillLinda.jpg
+  friendly_name: Linda/Bill Home
