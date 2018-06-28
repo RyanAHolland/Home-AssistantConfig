@@ -44,6 +44,12 @@ group.color:
   aliases:
   - stupid lights
   google_assistant_type: light
+input_boolean.auto_lights:
+  google_assistant: true
+  google_assistant_name: Automatic Lights
+  aliases:
+  - Motion Lights
+  google_assistant_type: light
 device_tracker.ryan_note8:
   icon: map-marker
   friendly_name: Ryan Owntracks

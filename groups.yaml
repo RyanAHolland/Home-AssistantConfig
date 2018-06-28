@@ -587,7 +587,7 @@ default_view:
     view: yes
     entities:
       - group.systemSwitches
-      - group.bayesian_home
+      - group.all_mobile_devices
       - group.phone_state
       - group.stInterface
       - climate.downstairs_thermostat
