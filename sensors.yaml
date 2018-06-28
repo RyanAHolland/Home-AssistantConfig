@@ -359,11 +359,11 @@
    # value_template: '{{ value_json.confidence }}'
    # unit_of_measurement: '%'
    # name: 'Ryan Basement'
-- platform: mqtt
-  state_topic: !secret 1stkristiphonebt
-  value_template: '{{ value_json.confidence }}'
-  unit_of_measurement: '%'
-  name: 'Kristi First Floor'
+ - platform: mqtt
+   state_topic: !secret 1stkristiphonebt
+   value_template: '{{ value_json.confidence }}'
+   unit_of_measurement: '%'
+   name: 'Kristi First Floor'
  - platform: mqtt
    state_topic: !secret 2ndkristiphonebt
    value_template: '{{ value_json.confidence }}'
@@ -374,11 +374,11 @@
    # value_template: '{{ value_json.confidence }}'
    # unit_of_measurement: '%'
    # name: 'Kristi Basement'
-- platform: mqtt
-  state_topic: !secret 1stmomphonebt
-  value_template: '{{ value_json.confidence }}'
-  unit_of_measurement: '%'
-  name: 'Mom First Floor'
+ - platform: mqtt
+   state_topic: !secret 1stmomphonebt
+   value_template: '{{ value_json.confidence }}'
+   unit_of_measurement: '%'
+   name: 'Mom First Floor'
  - platform: mqtt
    state_topic: !secret 2ndmomphonebt
    value_template: '{{ value_json.confidence }}'
