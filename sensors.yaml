@@ -451,7 +451,16 @@
          away
          {% endif %}"
        friendly_name: Kristi Home
-
+ - platform: template
+   sensors:
+     mom_home:
+       value_template:
+         "{% if is_state('binary_sensor.mom_presence', 'on') %}
+         home
+         {% else %}
+         away
+         {% endif %}"
+       friendly_name: Mom Home
        
  - platform: zoneminder
    include_archived: false
