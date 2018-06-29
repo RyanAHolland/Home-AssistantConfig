@@ -8,7 +8,7 @@ door_notify_mode:
     icon: mdi:surround-sound
 auto_lights:
     name: Automatic Lights
-    inital: on
+    initial: on
     icon: mdi:walk
 #ryan_occupancy:
 #    name: Ryan Occupancy
