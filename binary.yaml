@@ -179,6 +179,13 @@
     payload_on: "active"
     payload_off: "inactive"
     device_class: motion
+  - platform: mqtt
+    state_topic: "smartthings/Office Motion/motion"
+    name: "Office Motion"
+    qos: 0
+    payload_on: "active"
+    payload_off: "inactive"
+    device_class: motion
 ##SECURITY
   - platform: mqtt
     state_topic: "smartthings/Downstairs Glass Break Sensor/contact"

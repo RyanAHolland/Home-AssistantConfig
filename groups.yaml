@@ -265,7 +265,10 @@ BasementSensors:
       - sensor.bedroom_temperature
       - binary_sensor.bedroom_motion
       - binary_sensor.bathroom_motion
+      - bimary_sensor.office_motion
       - sensor.bathroom_motion_light_sensor
+      - sensor.bedroom_motion_light_sensor
+      - sensor.office_motion_light_sensor
       - sensor.liam_room_temperature
       - sensor.liam_room_humidity
       - sensor.updatirs_keypad_temperature
@@ -372,7 +375,9 @@ MotionSensors:
       - binary_sensor.first_floor_entry_motion
       - binary_sensor.kitchen_motion
       - binary_sensor.upstairs_motion
-      - binary_sensor.tempmotion_sensor_3_9
+      - binary_sensor.bathroom_motion
+      - binary_sensor.bedroom_motion
+      - binary_sensor.office_motion
 
 network:
     name: Network Sensors

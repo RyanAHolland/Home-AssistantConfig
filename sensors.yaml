@@ -104,6 +104,16 @@
    name: "Bathroom Motion Light Sensor"
    qos: 0
    unit_of_measurement: 'lux'
+ - platform: mqtt
+   state_topic: "smartthings/Bedroom Motion/illuminance"
+   name: "Bedroom Motion Light Sensor"
+   qos: 0
+   unit_of_measurement: 'lux'
+ - platform: mqtt
+   state_topic: "smartthings/Office Motion/illuminance"
+   name: "Office Motion Light Sensor"
+   qos: 0
+   unit_of_measurement: 'lux'
 #Humidity Sensors
  - platform: mqtt
    state_topic: "smartthings/First Floor Entry/humidity"
@@ -271,6 +281,21 @@
  - platform: mqtt
    state_topic: "smartthings/First Floor Entry/battery"
    name: "First Floor Entry Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Bathroom Motion/battery"
+   name: "Bathroom Motion Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Bedroom Motion/battery"
+   name: "Bedroom Motion Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Office Motion/battery"
+   name: "Office Motion Battery"
    qos: 0
    unit_of_measurement: '%'
 ##SmartThings Pre1sence
