@@ -265,7 +265,7 @@ BasementSensors:
       - sensor.bedroom_temperature
       - binary_sensor.bedroom_motion
       - binary_sensor.bathroom_motion
-      - bimary_sensor.office_motion
+      - binary_sensor.office_motion
       - sensor.bathroom_motion_light_sensor
       - sensor.bedroom_motion_light_sensor
       - sensor.office_motion_light_sensor
