@@ -413,6 +413,12 @@ panel_custom:
     sidebar_icon: mdi:home
     url_path: floorplan
     config: !include floorplan.yaml
+    
+telegram_bot: 
+  - platform: polling 
+    api_key: !secret telegram_api 
+    allowed_chat_ids: 
+      - !secret telegram_ryan
 
 ####################################################
 #                                                  #
