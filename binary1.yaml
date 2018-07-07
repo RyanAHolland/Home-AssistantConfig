@@ -135,4 +135,11 @@
     payload_on: "active"
     payload_off: "inactive"
     device_class: motion
+#ST Anywhere Sensors
+  - platform: mqtt
+    state_topic: "smartthings/Dryer Multi (contact1)/contact"
+    name: "Dryer Sound"
+    payload_on: "active"
+    payload_off: "inactive"
+    device_class: motion
     #TEMPLATE SENSORS
