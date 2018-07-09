@@ -504,7 +504,7 @@ cleaner:
       - switch.walle_clean
       - switch.walle_dock
       - switch.walle_find
-#      - binary_sensor.wall-e.ping
+      - binary_sensor.walle_ping
 weather:
     name: Weather
     entities:
