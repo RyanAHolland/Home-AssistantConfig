@@ -474,10 +474,9 @@ systemSwitches:
     name: System Switches
     entities:
       - input_select.home_status
-      - switch.ap_switch
-      - switch.camera_power
       - input_boolean.force_home
       - input_boolean.door_notify_mode
+      - input_boolean.auto_lights
       - switch.driveway_motion_state
       - switch.wake_spike
       - sensor.current_version
@@ -505,6 +504,7 @@ cleaner:
       - switch.walle_clean
       - switch.walle_dock
       - switch.walle_find
+      - binary_sensor.wall-e.ping
 weather:
     name: Weather
     entities:

@@ -295,3 +295,14 @@
         prob_given_false: 0.3
         platform: 'state'
         to_state: 'home'
+#ST Anywhere Sensors
+  - platform: mqtt
+    state_topic: "smartthings/Dryer Multi (contact1)/contact"
+    name: "Dryer Sound"
+    payload_on: "active"
+    payload_off: "inactive"
+    device_class: motion
+#Ping Sensors
+  - platform: ping 
+    host: !secret walle_ip
+    name: "Wall-E Ping"
