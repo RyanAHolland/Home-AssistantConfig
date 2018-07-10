@@ -85,58 +85,58 @@
 
 ###HOME STATE
 
-  - id: set_home_away
-    alias: Set Home State Away
-    trigger:
-      platform: state
-      entity_id: group.all_mobile_devices
-      to: 'not_home'
-      for:
-        minutes: 2
-    condition:
-      condition: and
-      conditions:
-#      - condition: numeric_state
-#        entity_id: proximity.home
-#        above: 1
-      - condition: state
-        entity_id: input_boolean.force_home
-        state: 'off'
-#      - condition: template
-#        value_template:  '{{ relative_time(states.group.doorsensors.last_changed) < "30 min" }}'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_status
-          option: Away
-      - service: climate.set_away_mode
-        data:
-          away_mode: true
-      - service: notify.pushover
-        data:
-          message: "Home state changed to away and system armed."
-          title: "HollandHaus"
+#   - id: set_home_away
+#     alias: Set Home State Away
+#     trigger:
+#       platform: state
+#       entity_id: group.all_mobile_devices
+#       to: 'not_home'
+#       for:
+#         minutes: 2
+#     condition:
+#       condition: and
+#       conditions:
+# #      - condition: numeric_state
+# #        entity_id: proximity.home
+# #        above: 1
+#       - condition: state
+#         entity_id: input_boolean.force_home
+#         state: 'off'
+# #      - condition: template
+# #        value_template:  '{{ relative_time(states.group.doorsensors.last_changed) < "30 min" }}'
+#     action:
+#       - service: input_select.select_option
+#         data:
+#           entity_id: input_select.home_status
+#           option: Away
+#       - service: climate.set_away_mode
+#         data:
+#           away_mode: true
+#       - service: notify.pushover
+#         data:
+#           message: "Home state changed to away and system armed."
+#           title: "HollandHaus"
 
-  - id: home_actions
-    alias: Home Actions
-    hide_entity: False
-    trigger:
-      platform: state
-      entity_id: group.all_mobile_devices
-      to: 'home'
-      for:
-        minutes: 1
-    action:
-      - service: notify.pushover
-        data:
-          message: "I see you are home."
-          title: "Home"
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_status
-          option: Home
-      - service: alarm_control_panel.alarm_disarm
-        entity_id: alarm_control_panel.shm
+#   - id: home_actions
+#     alias: Home Actions
+#     hide_entity: False
+#     trigger:
+#       platform: state
+#       entity_id: group.all_mobile_devices
+#       to: 'home'
+#       for:
+#         minutes: 1
+#     action:
+#       - service: notify.pushover
+#         data:
+#           message: "I see you are home."
+#           title: "Home"
+#       - service: input_select.select_option
+#         data:
+#           entity_id: input_select.home_status
+#           option: Home
+#       - service: alarm_control_panel.alarm_disarm
+#         entity_id: alarm_control_panel.shm
 
   - id: light_away_actions
     alias: Light Away Actions
@@ -197,33 +197,33 @@
 ####ROOMBA#####
 
 ###TRIGGER ROOMA WHEN AWAY
-  - alias: Roomba Away Actions
-    hide_entity: True
-    trigger:
-      platform: state
-      entity_id: input_select.home_status
-      to: 'Away'
-      for:
-        minutes: 10
-    condition:
-      condition: and
-      conditions:
-        - condition: numeric_state
-          entity_id: 'sensor.walle_battery'
-          above: '98'
-        - condition: time
-          after: '07:00:00'
-          before: '21:00:00'
-        - condition: state
-          entity_id: input_boolean.force_home
-          state: 'off'
-    action:
-      - service: switch.turn_on
-        entity_id: switch.walle_clean
-      - service: notify.pushover
-        data:
-          message: "The system has informed me to start cleaning."
-          title: "Wall-E Starting"
+  # - alias: Roomba Away Actions
+  #   hide_entity: True
+  #   trigger:
+  #     platform: state
+  #     entity_id: input_select.home_status
+  #     to: 'Away'
+  #     for:
+  #       minutes: 10
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #       - condition: numeric_state
+  #         entity_id: 'sensor.walle_battery'
+  #         above: '98'
+  #       - condition: time
+  #         after: '07:00:00'
+  #         before: '21:00:00'
+  #       - condition: state
+  #         entity_id: input_boolean.force_home
+  #         state: 'off'
+  #   action:
+  #     - service: switch.turn_on
+  #       entity_id: switch.walle_clean
+  #     - service: notify.pushover
+  #       data:
+  #         message: "The system has informed me to start cleaning."
+  #         title: "Wall-E Starting"
 
 ###DOCK ROOMBA WHEN BATTERY LOW
   - alias: Roomba Battery Low
@@ -248,138 +248,138 @@
 
 #####TIME OF DAY#####
 
-  - alias: "Indoor Pre-Sunset Actions"
-    hide_entity: False
-    trigger:
-      - platform: sun
-        event: sunset
-        offset: "-00:20:00"
-    condition:
-      condition: or
-      conditions:
-      - condition: state
-        entity_id: group.all_mobile_devices
-        state: home
-      - condition: state
-        entity_id: input_boolean.force_home
-        state: 'on'
-    action:
-    ##Fade in Left Light
-      - service: python_script.fade_in_light
-        data:
-          entity_id: light.left_light_2
-          delay_in_sec: 20
-          start_level_pct: 0
-          end_level_pct: 60
-          step_in_level_pct: 1
-    ##Fade in Right Light
-      - service: python_script.fade_in_light
-        data:
-          entity_id: light.right_light_2
-          delay_in_sec: 20
-          start_level_pct: 0
-          end_level_pct: 60
-          step_in_level_pct: 1
-    ##Fade in Floor Lamp
-      - service: python_script.fade_in_light
-        data:
-          entity_id: light.floor_lamp_2
-          delay_in_sec: 20
-          start_level_pct: 0
-          end_level_pct: 60
-          step_in_level_pct: 1
+  # - alias: "Indoor Pre-Sunset Actions"
+  #   hide_entity: False
+  #   trigger:
+  #     - platform: sun
+  #       event: sunset
+  #       offset: "-00:20:00"
+  #   condition:
+  #     condition: or
+  #     conditions:
+  #     - condition: state
+  #       entity_id: group.all_mobile_devices
+  #       state: home
+  #     - condition: state
+  #       entity_id: input_boolean.force_home
+  #       state: 'on'
+  #   action:
+  #   ##Fade in Left Light
+  #     - service: python_script.fade_in_light
+  #       data:
+  #         entity_id: light.left_light_2
+  #         delay_in_sec: 20
+  #         start_level_pct: 0
+  #         end_level_pct: 60
+  #         step_in_level_pct: 1
+  #   ##Fade in Right Light
+  #     - service: python_script.fade_in_light
+  #       data:
+  #         entity_id: light.right_light_2
+  #         delay_in_sec: 20
+  #         start_level_pct: 0
+  #         end_level_pct: 60
+  #         step_in_level_pct: 1
+  #   ##Fade in Floor Lamp
+  #     - service: python_script.fade_in_light
+  #       data:
+  #         entity_id: light.floor_lamp_2
+  #         delay_in_sec: 20
+  #         start_level_pct: 0
+  #         end_level_pct: 60
+  #         step_in_level_pct: 1
   
-  - alias: "Indoor Sunset Actions"
-    hide_entity: False
-    trigger:
-      - platform: sun
-        event: sunset
-        offset: "+00:10:00"
-    condition:
-      condition: or
-      conditions:
-      - condition: state
-        entity_id: group.all_mobile_devices
-        state: home
-      - condition: state
-        entity_id: input_boolean.force_home
-        state: 'on'
-    action:
-      - service: scene.turn_on
-        entity_id: scene.decorative_on
-      - service: homeassistant.turn_on
-        entity_id: group.christmas_lights
+  # - alias: "Indoor Sunset Actions"
+  #   hide_entity: False
+  #   trigger:
+  #     - platform: sun
+  #       event: sunset
+  #       offset: "+00:10:00"
+  #   condition:
+  #     condition: or
+  #     conditions:
+  #     - condition: state
+  #       entity_id: group.all_mobile_devices
+  #       state: home
+  #     - condition: state
+  #       entity_id: input_boolean.force_home
+  #       state: 'on'
+  #   action:
+  #     - service: scene.turn_on
+  #       entity_id: scene.decorative_on
+  #     - service: homeassistant.turn_on
+  #       entity_id: group.christmas_lights
 
-  - alias: "Outdoor Sunset Actions"
-    hide_entity: False
-    trigger:
-      - platform: sun
-        event: sunset
-        offset: "-00:15:00"
-    action:
-      - service: switch.turn_on
-        entity_id: switch.north_up_lights
-      - service: switch.turn_on
-        entity_id: switch.liams_tree
+  # - alias: "Outdoor Sunset Actions"
+  #   hide_entity: False
+  #   trigger:
+  #     - platform: sun
+  #       event: sunset
+  #       offset: "-00:15:00"
+  #   action:
+  #     - service: switch.turn_on
+  #       entity_id: switch.north_up_lights
+  #     - service: switch.turn_on
+  #       entity_id: switch.liams_tree
 
-  - alias: "Sunrise Actions No Cloud"
-    hide_entity: False
-    trigger:
-      - platform: sun
-        event: sunrise
-    condition:
-      condition: and
-      conditions:
-      - condition: state
-        entity_id: group.all_mobile_devices
-        state: home
-      - condition: numeric_state
-        entity_id: sensor.dark_sky_cloud_coverage
-        below: 79
-    action:
-      - service: switch.turn_off
-        entity_id: switch.north_up_lights
-      - service: switch.turn_off
-        entity_id: switch.liams_tree
-      - service: scene.turn_on
-        entity_id: scene.decorative_off
-      - service: homeassistant.turn_off
-        entity_id: group.christmas_lights
+  # - alias: "Sunrise Actions No Cloud"
+  #   hide_entity: False
+  #   trigger:
+  #     - platform: sun
+  #       event: sunrise
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #     - condition: state
+  #       entity_id: group.all_mobile_devices
+  #       state: home
+  #     - condition: numeric_state
+  #       entity_id: sensor.dark_sky_cloud_coverage
+  #       below: 79
+  #   action:
+  #     - service: switch.turn_off
+  #       entity_id: switch.north_up_lights
+  #     - service: switch.turn_off
+  #       entity_id: switch.liams_tree
+  #     - service: scene.turn_on
+  #       entity_id: scene.decorative_off
+  #     - service: homeassistant.turn_off
+  #       entity_id: group.christmas_lights
 
-  - alias: "Sunrise Actions with Clouds"
-    hide_entity: False
-    trigger:
-      - platform: sun
-        event: sunrise
-        offset: "+01:00:00"
-    condition:
-      condition: and
-      conditions:
-      - condition: state
-        entity_id: group.all_mobile_devices
-        state: home
-    action:
-      - service: switch.turn_off
-        entity_id: switch.north_up_lights
-      - service: scene.turn_on
-        entity_id: scene.decorative_off
-      - service: switch.turn_off
-        entity_id: switch.liams_tree
-      - service: switch.turn_off
-        entity_id: switch.front_lights
-      - service: homeassistant.turn_off
-        entity_id: group.christmas_lights
+  # - alias: "Sunrise Actions with Clouds"
+  #   hide_entity: False
+  #   trigger:
+  #     - platform: sun
+  #       event: sunrise
+  #       offset: "+01:00:00"
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #     - condition: state
+  #       entity_id: group.all_mobile_devices
+  #       state: home
+  #   action:
+  #     - service: switch.turn_off
+  #       entity_id: switch.north_up_lights
+  #     - service: scene.turn_on
+  #       entity_id: scene.decorative_off
+  #     - service: switch.turn_off
+  #       entity_id: switch.liams_tree
+  #     - service: switch.turn_off
+  #       entity_id: switch.front_lights
+  #     - service: homeassistant.turn_off
+  #       entity_id: group.christmas_lights
 
-  - alias: "Turn off Front Lights"
-    hide_entity: True
-    trigger:
-      - platform: time
-    # When 'at' is used, you cannot also match on hour, minute, seconds.
-    # Military time format.
-        at: '23:30:00'
-    action:
-      - service: switch.turn_off
-        entity_id: switch.front_lights
+  # - alias: "Turn off Front Lights"
+  #   hide_entity: True
+  #   trigger:
+  #     - platform: time
+  #   # When 'at' is used, you cannot also match on hour, minute, seconds.
+  #   # Military time format.
+  #       at: '23:30:00'
+  #   action:
+  #     - service: switch.turn_off
+  #       entity_id: switch.front_lights
 
 ###NOTIFICATION###
 
@@ -387,70 +387,70 @@
 
 ##ROOMBA NOTIFICATIONS
 
-  - alias: Wall-E Start Notification
-    hide_entity: True
-    trigger:
-      platform: state
-      entity_id: switch.walle_clean
-      to: 'on'
-      for:
-        minutes: 2
-    action:
-      - service: notify.pushover
-        data:
-          message: "Looks like it is time for me to clean!  Have a great day."
-          title: "Wall-E"
+  # - alias: Wall-E Start Notification
+  #   hide_entity: True
+  #   trigger:
+  #     platform: state
+  #     entity_id: switch.walle_clean
+  #     to: 'on'
+  #     for:
+  #       minutes: 2
+  #   action:
+  #     - service: notify.pushover
+  #       data:
+  #         message: "Looks like it is time for me to clean!  Have a great day."
+  #         title: "Wall-E"
 
-  - alias: Wall-E Stop Notification
-    hide_entity: True
-    trigger:
-      platform: state
-      entity_id: switch.walle_clean
-      to: 'off'
-      for:
-        minutes: 2
-    action:
-      - service: notify.pushover
-        data:
-          message: "I am all done cleaning."
-          title: "Wall-E"
+  # - alias: Wall-E Stop Notification
+  #   hide_entity: True
+  #   trigger:
+  #     platform: state
+  #     entity_id: switch.walle_clean
+  #     to: 'off'
+  #     for:
+  #       minutes: 2
+  #   action:
+  #     - service: notify.pushover
+  #       data:
+  #         message: "I am all done cleaning."
+  #         title: "Wall-E"
 
-  - alias: Washer Clean Notification Home
-    hide_entity: True
-    trigger:
-      platform: state
-      entity_id: input_select.washer_status
-      to: 'Clean'
-      for:
-        minutes: 2
-    condition:
-        - condition: state
-          entity_id: group.all_mobile_devices
-          state: 'home'
-    action:
-      - service: notify.pushover
-        data:
-          message: "By the way, it looks like the washing machine is done.  Don't forget to move to the dryer!"
-          title: "HA"
+  # - alias: Washer Clean Notification Home
+  #   hide_entity: True
+  #   trigger:
+  #     platform: state
+  #     entity_id: input_select.washer_status
+  #     to: 'Clean'
+  #     for:
+  #       minutes: 2
+  #   condition:
+  #       - condition: state
+  #         entity_id: group.all_mobile_devices
+  #         state: 'home'
+  #   action:
+  #     - service: notify.pushover
+  #       data:
+  #         message: "By the way, it looks like the washing machine is done.  Don't forget to move to the dryer!"
+  #         title: "HA"
 
           
-  - alias: Washer Clean Notification Away
-    hide_entity: True
-    trigger:
-      platform: state
-      entity_id: group.all_mobile_devices
-      to: 'home'
-      for:
-        minutes: 1
-    condition:
-        - condition: state
-          entity_id: input_select.washer_status
-          state: 'Clean'
-    action:
-      - service: notify.pushover
-        data:
-          message: "Welcome home it looks like the washing machine is done.  Don't forget to move to the dryer!"
-          title: "HA"
+  # - alias: Washer Clean Notification Away
+  #   hide_entity: True
+  #   trigger:
+  #     platform: state
+  #     entity_id: group.all_mobile_devices
+  #     to: 'home'
+  #     for:
+  #       minutes: 1
+  #   condition:
+  #       - condition: state
+  #         entity_id: input_select.washer_status
+  #         state: 'Clean'
+  #   action:
+  #     - service: notify.pushover
+  #       data:
+  #         message: "Welcome home it looks like the washing machine is done.  Don't forget to move to the dryer!"
+  #         title: "HA"
 #      - service: tts.google_say
 #        entity_id: media_player.kitchen_home
 #        data:
@@ -506,24 +506,24 @@
           title: "Welcome Home"
 
 ##PROX
-  - alias: Master / Nest Away
-    trigger:
-      platform: numeric_state
-      entity_id: proximity.home
-      above: 2
-    condition:
-      condition: and
-      conditions:
-      - condition: state
-        entity_id: input_select.home_status
-        state: 'Away'
-      - condition: state
-        entity_id: input_boolean.force_home
-        state: 'off'
-    action:
-    - service: climate.set_away_mode
-      data:
-        away_mode: true
+  # - alias: Master / Nest Away
+  #   trigger:
+  #     platform: numeric_state
+  #     entity_id: proximity.home
+  #     above: 2
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #     - condition: state
+  #       entity_id: input_select.home_status
+  #       state: 'Away'
+  #     - condition: state
+  #       entity_id: input_boolean.force_home
+  #       state: 'off'
+  #   action:
+  #   - service: climate.set_away_mode
+  #     data:
+  #       away_mode: true
 #    - service: notify.pushover
 #      data:
 #        message: "I see you have left the house, I am now in Eco mode."
@@ -570,16 +570,16 @@
 #          HOLLANDHAUS alarm state is set to {{ states("alarm_control_panel.shm") }}
 #        title: "Security System"
 
-  - alias: Force Home
-    hide_entity: True
-    trigger:
-        platform: state
-        entity_id: input_boolean.force_home
-        to: 'on'
-    action:
-    - service: climate.set_away_mode
-      data:
-        away_mode: false
+  # - alias: Force Home
+  #   hide_entity: True
+  #   trigger:
+  #       platform: state
+  #       entity_id: input_boolean.force_home
+  #       to: 'on'
+  #   action:
+  #   - service: climate.set_away_mode
+  #     data:
+  #       away_mode: false
 #    - service: notify.pushover
 #      data:
 #        message: "I have set the system to stay in home mode."
@@ -589,50 +589,50 @@
 
 ##When Roomba Run Set House alarm_trigger
 
-  - alias: 'Roomba Security On'
-    hide_entity: True
-    trigger:
-      - platform: state
-        entity_id: switch.walle_clean
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: switch.walle_dock
-        from: 'off'
-        to: 'on'
-    condition:
-      - condition: state
-        entity_id: alarm_control_panel.shm
-        state: 'armed_away'
-    action:
-      service: alarm_control_panel.alarm_arm_home
-      entity_id: alarm_control_panel.shm
+  # - alias: 'Roomba Security On'
+  #   hide_entity: True
+  #   trigger:
+  #     - platform: state
+  #       entity_id: switch.walle_clean
+  #       from: 'off'
+  #       to: 'on'
+  #     - platform: state
+  #       entity_id: switch.walle_dock
+  #       from: 'off'
+  #       to: 'on'
+  #   condition:
+  #     - condition: state
+  #       entity_id: alarm_control_panel.shm
+  #       state: 'armed_away'
+  #   action:
+  #     service: alarm_control_panel.alarm_arm_home
+  #     entity_id: alarm_control_panel.shm
 
-  - alias: 'Roomba Security Off'
-    hide_entity: True
-    trigger:
-      - platform: state
-        entity_id: switch.walle_clean
-        from: 'on'
-        to: 'off'
-        for:
-          minutes: 1
-      - platform: state
-        entity_id: switch.walle_dock
-        from: 'on'
-        to: 'off'
-        for:
-          minutes: 1
-    condition:
-      - condition: state
-        entity_id: alarm_control_panel.shm
-        state: 'armed_home'
-      - condition: state
-        entity_id: group.all_mobile_devices
-        state: 'not_home'
-    action:
-      service: alarm_control_panel.alarm_arm_away
-      entity_id: alarm_control_panel.shm
+  # - alias: 'Roomba Security Off'
+  #   hide_entity: True
+  #   trigger:
+  #     - platform: state
+  #       entity_id: switch.walle_clean
+  #       from: 'on'
+  #       to: 'off'
+  #       for:
+  #         minutes: 1
+  #     - platform: state
+  #       entity_id: switch.walle_dock
+  #       from: 'on'
+  #       to: 'off'
+  #       for:
+  #         minutes: 1
+  #   condition:
+  #     - condition: state
+  #       entity_id: alarm_control_panel.shm
+  #       state: 'armed_home'
+  #     - condition: state
+  #       entity_id: group.all_mobile_devices
+  #       state: 'not_home'
+  #   action:
+  #     service: alarm_control_panel.alarm_arm_away
+  #     entity_id: alarm_control_panel.shm
 
 ###MOTION
 
@@ -706,83 +706,83 @@
       service: homeassistant.turn_on
       entity_id: scene.decorative_dim
 
-  - alias: 'Bedroom Motion Night'
-    hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.bedroom_motion
-        from: 'off'
-        to: 'on'
-    condition:
-      condition: and
-      conditions:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-      - condition: time
-        after: '10:00:00'
-      - condition: time
-        before: '21:00:00'
-      - condition: state
-        entity_id: binary_sensor.upstairs_motion
-        state: 'on'
-      - condition: state
-        entity_id: group.bedroom
-        state: 'off'
-        for:
-          minutes: 3
-    action:
-      service: scene.turn_on
-      entity_id: scene.bedroom_normal
+  # - alias: 'Bedroom Motion Night'
+  #   hide_entity: False
+  #   trigger:
+  #     - platform: state
+  #       entity_id: binary_sensor.bedroom_motion
+  #       from: 'off'
+  #       to: 'on'
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #     - condition: state
+  #       entity_id: sun.sun
+  #       state: 'below_horizon'
+  #     - condition: time
+  #       after: '10:00:00'
+  #     - condition: time
+  #       before: '21:00:00'
+  #     - condition: state
+  #       entity_id: binary_sensor.upstairs_motion
+  #       state: 'on'
+  #     - condition: state
+  #       entity_id: group.bedroom
+  #       state: 'off'
+  #       for:
+  #         minutes: 3
+    # action:
+    #   service: scene.turn_on
+    #   entity_id: scene.bedroom_normal
 
-  - alias: 'Bedroom Motion Off'
-    hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.bedroom_motion
-        from: 'on'
-        to: 'off'
-        for:
-          minutes: 10
-    condition:
-      condition: and
-      conditions:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-      - condition: time
-        after: '17:00:00'
-      - condition: time
-        before: '21:00:00'
-      - condition: state
-        entity_id: group.bedroom
-        state: 'on'
-      - condition: template
-        value_template: '{{ relative_time(states.binary_sensor.upstairs_motion.last_updated) < "600" }}'
-    action:
-      service: scene.turn_on
-      entity_id: scene.bedroom_off
+  # - alias: 'Bedroom Motion Off'
+  #   hide_entity: False
+  #   trigger:
+  #     - platform: state
+  #       entity_id: binary_sensor.bedroom_motion
+  #       from: 'on'
+  #       to: 'off'
+  #       for:
+  #         minutes: 10
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #     - condition: state
+  #       entity_id: sun.sun
+  #       state: 'below_horizon'
+  #     - condition: time
+  #       after: '17:00:00'
+  #     - condition: time
+  #       before: '21:00:00'
+  #     - condition: state
+  #       entity_id: group.bedroom
+  #       state: 'on'
+  #     - condition: template
+  #       value_template: '{{ relative_time(states.binary_sensor.upstairs_motion.last_updated) < "600" }}'
+  #   action:
+  #     service: scene.turn_on
+  #     entity_id: scene.bedroom_off
 
-  - alias: 'Garage Door Light Night'
-    hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: cover.large_door
-        from: 'closed'
-        to: 'open'
-      - platform: state
-        entity_id: cover.small_door
-        from: 'closed'
-        to: 'open'
-    condition:
-      condition: and
-      conditions:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-    action:
-      service: swtich.turn_on
-      entity_id: switch.front_lights
+  # - alias: 'Garage Door Light Night'
+  #   hide_entity: False
+  #   trigger:
+  #     - platform: state
+  #       entity_id: cover.large_door
+  #       from: 'closed'
+  #       to: 'open'
+  #     - platform: state
+  #       entity_id: cover.small_door
+  #       from: 'closed'
+  #       to: 'open'
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #     - condition: state
+  #       entity_id: sun.sun
+  #       state: 'below_horizon'
+  #   action:
+  #     service: swtich.turn_on
+  #     entity_id: switch.front_lights
 
 
 ##UPS ON BATTERY
@@ -814,35 +814,35 @@
 
 
 ##BEDROOM REMOTE
-  - alias: 'Bedroom Remote 1'
-    hide_entity: True
-    trigger:
-      - platform: state
-        entity_id: sensor.bedroom_remote_button
-        to: '1'
-    action:
-      - service: scene.turn_on
-        entity_id: scene.bedroom_dim
+  # - alias: 'Bedroom Remote 1'
+  #   hide_entity: True
+  #   trigger:
+  #     - platform: state
+  #       entity_id: sensor.bedroom_remote_button
+  #       to: '1'
+  #   action:
+  #     - service: scene.turn_on
+  #       entity_id: scene.bedroom_dim
 
-  - alias: 'Bedroom Remote 2'
-    hide_entity: True
-    trigger:
-      - platform: state
-        entity_id: sensor.bedroom_remote_button
-        to: '2'
-    action:
-      - service: scene.turn_on
-        entity_id: scene.bedroom_off
+  # - alias: 'Bedroom Remote 2'
+  #   hide_entity: True
+  #   trigger:
+  #     - platform: state
+  #       entity_id: sensor.bedroom_remote_button
+  #       to: '2'
+  #   action:
+  #     - service: scene.turn_on
+  #       entity_id: scene.bedroom_off
 
-  - alias: 'Bedroom Remote 3'
-    hide_entity: True
-    trigger:
-      - platform: state
-        entity_id: sensor.bedroom_remote_button
-        to: '3'
-    action:
-      - service: scene.turn_on
-        entity_id: scene.bedroom_dim
+  # - alias: 'Bedroom Remote 3'
+  #   hide_entity: True
+  #   trigger:
+  #     - platform: state
+  #       entity_id: sensor.bedroom_remote_button
+  #       to: '3'
+  #   action:
+  #     - service: scene.turn_on
+  #       entity_id: scene.bedroom_dim
 
 ##SAFTEY MODE##
   - alias: "Front Door Notify"
@@ -970,299 +970,299 @@
 ####FRONT LIGHT AUTOMATION
 ##Turn on front lights with ring motion
 
-  - alias: "Front Lights Ring Motion On"
-    hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.ring_front_door_motion
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.front_doorbell_motion
-        from: 'off'
-        to: 'on'
-    condition:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-    action:
-      - service: swtich.turn_on
-        entity_id: switch.front_lights
+#   - alias: "Front Lights Ring Motion On"
+#     hide_entity: False
+#     trigger:
+#       - platform: state
+#         entity_id: binary_sensor.ring_front_door_motion
+#         from: 'off'
+#         to: 'on'
+#       - platform: state
+#         entity_id: binary_sensor.front_doorbell_motion
+#         from: 'off'
+#         to: 'on'
+#     condition:
+#       - condition: state
+#         entity_id: sun.sun
+#         state: 'below_horizon'
+#     action:
+#       - service: swtich.turn_on
+#         entity_id: switch.front_lights
 
-##Turn off front lights without ring motion (built-in) 3min
-  - alias: "Front Lights All Off"
-    hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.front_doorbell_motion
-        to: 'off'
-        for:
-          minutes: 3
-      - platform: state
-        entity_id: cover.large_door
-        to: 'closed'
-        for:
-          minutes: 3
-      - platform: state
-        entity_id: cover.small_door
-        to: 'closed'
-        for:
-          minutes: 3
-    condition:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-      - condition: state
-        entity_id: binary_sensor.front_doorbell_motion
-        state: 'off'
-      - condition: state
-        entity_id: cover.large_door
-        state: 'closed'
-      - condition: state
-        entity_id: cover.small_door
-        state: 'closed'
-    action:
-      - service: switch.turn_off
-        entity_id: switch.front_lights
+# ##Turn off front lights without ring motion (built-in) 3min
+#   - alias: "Front Lights All Off"
+#     hide_entity: False
+#     trigger:
+#       - platform: state
+#         entity_id: binary_sensor.front_doorbell_motion
+#         to: 'off'
+#         for:
+#           minutes: 3
+#       - platform: state
+#         entity_id: cover.large_door
+#         to: 'closed'
+#         for:
+#           minutes: 3
+#       - platform: state
+#         entity_id: cover.small_door
+#         to: 'closed'
+#         for:
+#           minutes: 3
+#     condition:
+#       - condition: state
+#         entity_id: sun.sun
+#         state: 'below_horizon'
+#       - condition: state
+#         entity_id: binary_sensor.front_doorbell_motion
+#         state: 'off'
+#       - condition: state
+#         entity_id: cover.large_door
+#         state: 'closed'
+#       - condition: state
+#         entity_id: cover.small_door
+#         state: 'closed'
+#     action:
+#       - service: switch.turn_off
+#         entity_id: switch.front_lights
 
-##Turn off front lights without ring motion (built-in) 3min
-  - alias: "Front Lights Ring Motion Off"
-    hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.ring_front_door_motion
-        to: 'off'
-        for:
-          minutes: 3
-    condition:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-      - condition: state
-        entity_id: cover.large_door
-        state: 'closed'
-      - condition: state
-        entity_id: cover.small_door
-        state: 'closed'
-    action:
-      - service: switch.turn_off
-        entity_id: switch.front_lights
+# ##Turn off front lights without ring motion (built-in) 3min
+#   - alias: "Front Lights Ring Motion Off"
+#     hide_entity: False
+#     trigger:
+#       - platform: state
+#         entity_id: binary_sensor.ring_front_door_motion
+#         to: 'off'
+#         for:
+#           minutes: 3
+#     condition:
+#       - condition: state
+#         entity_id: sun.sun
+#         state: 'below_horizon'
+#       - condition: state
+#         entity_id: cover.large_door
+#         state: 'closed'
+#       - condition: state
+#         entity_id: cover.small_door
+#         state: 'closed'
+#     action:
+#       - service: switch.turn_off
+#         entity_id: switch.front_lights
 
-##Garage Front Lights On
+# ##Garage Front Lights On
 
-  - alias: "Front Lights Garage Open"
-    hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: cover.large_door
-        from: 'closed'
-        to: 'open'
-      - platform: state
-        entity_id: cover.small_door
-        from: 'closed'
-        to: 'open'
-    condition:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-    action:
-      - service: swtich.turn_on
-        entity_id: switch.front_lights
+#   - alias: "Front Lights Garage Open"
+#     hide_entity: False
+#     trigger:
+#       - platform: state
+#         entity_id: cover.large_door
+#         from: 'closed'
+#         to: 'open'
+#       - platform: state
+#         entity_id: cover.small_door
+#         from: 'closed'
+#         to: 'open'
+#     condition:
+#       - condition: state
+#         entity_id: sun.sun
+#         state: 'below_horizon'
+#     action:
+#       - service: swtich.turn_on
+#         entity_id: switch.front_lights
 
-##Garage Front Lights On
+# ##Garage Front Lights On
 
-  - alias: "Front Lights Large Garage Closed"
-    hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: cover.large_door
-        to: 'closed'
-        for:
-          minutes: 3
-      - platform: state
-        entity_id: cover.small_door
-        to: 'closed'
-        for:
-          minutes: 3
-    condition:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-      - condition: state
-        entity_id: cover.large_door
-        state: 'closed'
-      - condition: state
-        entity_id: cover.small_door
-        state: 'closed'
-    action:
-      - service: swtich.turn_off
-        entity_id: switch.front_lights
+#   - alias: "Front Lights Large Garage Closed"
+#     hide_entity: False
+#     trigger:
+#       - platform: state
+#         entity_id: cover.large_door
+#         to: 'closed'
+#         for:
+#           minutes: 3
+#       - platform: state
+#         entity_id: cover.small_door
+#         to: 'closed'
+#         for:
+#           minutes: 3
+#     condition:
+#       - condition: state
+#         entity_id: sun.sun
+#         state: 'below_horizon'
+#       - condition: state
+#         entity_id: cover.large_door
+#         state: 'closed'
+#       - condition: state
+#         entity_id: cover.small_door
+#         state: 'closed'
+#     action:
+#       - service: swtich.turn_off
+#         entity_id: switch.front_lights
 
-##Test Welcome Home
+# ##Test Welcome Home
 
-  - alias: "Ryan Welcome Home"
-    hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.garage_entry_sensor
-        from: 'off'
-        to: 'on'
-    condition:
-      - condition: time
-        after: '8:00:00'
-        before: '21:00:00'
-##Only if Ryan Home
-      - condition: state
-        entity_id: device_tracker.ryan_note5
-        state: 'home'
-##Only runs if Ryan's Code is entered
-      - condition: template
-        value_template: '{{ states.sensor.garage_entry_pin.state == "Ryan" }}'
-##Only runs if code was entered or changed in the last minute
-      - condition: template
-        value_template: '{{ relative_time(states.sensor.garage_entry_last_update.last_changed) < "1 min" }}'
-##This line prevents the automation from running if ran within an hour
-      - condition: template
-        value_template: '{{ relative_time(states.automation.ryan_welcome_home.attributes.last_triggered) > "1 hour" }}'
-    action:
-      - service: notify.pushover
-        data:
-          message: "HA - I see you just got home and entered your door code."
-          title: "Door Code Welcome Check"
-      - service: tts.google_say
-        entity_id: media_player.kitchen_home
-        data:
-          message: 'Welcome Home Ryan,, Lord of the Manor,, King of the Castle.'
+#   - alias: "Ryan Welcome Home"
+#     hide_entity: False
+#     trigger:
+#       - platform: state
+#         entity_id: binary_sensor.garage_entry_sensor
+#         from: 'off'
+#         to: 'on'
+#     condition:
+#       - condition: time
+#         after: '8:00:00'
+#         before: '21:00:00'
+# ##Only if Ryan Home
+#       - condition: state
+#         entity_id: device_tracker.ryan_note5
+#         state: 'home'
+# ##Only runs if Ryan's Code is entered
+#       - condition: template
+#         value_template: '{{ states.sensor.garage_entry_pin.state == "Ryan" }}'
+# ##Only runs if code was entered or changed in the last minute
+#       - condition: template
+#         value_template: '{{ relative_time(states.sensor.garage_entry_last_update.last_changed) < "1 min" }}'
+# ##This line prevents the automation from running if ran within an hour
+#       - condition: template
+#         value_template: '{{ relative_time(states.automation.ryan_welcome_home.attributes.last_triggered) > "1 hour" }}'
+#     action:
+#       - service: notify.pushover
+#         data:
+#           message: "HA - I see you just got home and entered your door code."
+#           title: "Door Code Welcome Check"
+#       - service: tts.google_say
+#         entity_id: media_player.kitchen_home
+#         data:
+#           message: 'Welcome Home Ryan,, Lord of the Manor,, King of the Castle.'
 
-  - alias: "Kristi Welcome Home"
-    hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.garage_entry_sensor
-        from: 'off'
-        to: 'on'
-    condition:
-      - condition: time
-        after: '8:00:00'
-        before: '21:00:00'
-##Only if Kristi Home
-      - condition: state
-        entity_id: device_tracker.kristi_s5
-        state: 'home'
-##Only runs if Kristi's Code is entered
-      - condition: template
-        value_template: '{{ states.sensor.garage_entry_pin.state == "Mom" }}'
-##Only runs if code was entered or changed in the last minute
-      - condition: template
-        value_template: '{{ relative_time(states.sensor.garage_entry_last_update.last_changed) < "1 min" }}'
-##This line prevents the automation from running if ran within an hour
-      - condition: template
-        value_template: '{{ relative_time(states.automation.kristi_welcome_home.attributes.last_triggered) > "1 hour" }}'
-    action:
-      - service: notify.pushover
-        data:
-          message: "HA - Kristi just got home and entered her door code."
-          title: "Kristi Code Welcome Check"
-      - service: media_player.play_media
-        data:
-          entity_id: media_player.kitchen_home
-          media_content_id: '/local/Powerless.mp3'
-          media_content_type: 'audio/mp3'
+#   - alias: "Kristi Welcome Home"
+#     hide_entity: False
+#     trigger:
+#       - platform: state
+#         entity_id: binary_sensor.garage_entry_sensor
+#         from: 'off'
+#         to: 'on'
+#     condition:
+#       - condition: time
+#         after: '8:00:00'
+#         before: '21:00:00'
+# ##Only if Kristi Home
+#       - condition: state
+#         entity_id: device_tracker.kristi_s5
+#         state: 'home'
+# ##Only runs if Kristi's Code is entered
+#       - condition: template
+#         value_template: '{{ states.sensor.garage_entry_pin.state == "Mom" }}'
+# ##Only runs if code was entered or changed in the last minute
+#       - condition: template
+#         value_template: '{{ relative_time(states.sensor.garage_entry_last_update.last_changed) < "1 min" }}'
+# ##This line prevents the automation from running if ran within an hour
+#       - condition: template
+#         value_template: '{{ relative_time(states.automation.kristi_welcome_home.attributes.last_triggered) > "1 hour" }}'
+#     action:
+#       - service: notify.pushover
+#         data:
+#           message: "HA - Kristi just got home and entered her door code."
+#           title: "Kristi Code Welcome Check"
+#       - service: media_player.play_media
+#         data:
+#           entity_id: media_player.kitchen_home
+#           media_content_id: '/local/Powerless.mp3'
+#           media_content_type: 'audio/mp3'
 
 ##NIGHT Mode
-  - alias: "Trigger Night Mode"
-    hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: input_select.kristi_phone_status
-        to: 'Sleep'
-      - platform: state
-        entity_id: input_select.ryan_phone_status
-        to: 'Sleep'
-    condition:
-        condition: or
-        conditions:
-            - condition: and
-              conditions:
-                - condition: time
-                  after: '21:00:00'
-                  before: '02:00:00'
-                - condition: state
-                  entity_id: group.ryan
-                  state: 'home'
-                - condition: state
-                  entity_id: group.kristi
-                  state: 'home'
-                - condition: state
-                  entity_id: input_select.ryan_phone_status
-                  state: 'Sleep'
-                - condition: state
-                  entity_id: input_select.kristi_phone_status
-                  state: 'Sleep'
-            - condition: and
-              conditions:
-                - condition: time
-                  after: '21:00:00'
-                  before: '02:00:00'
-                - condition: state
-                  entity_id: group.ryan
-                  state: 'not_home'
-                - condition: state
-                  entity_id: group.kristi
-                  state: 'home'
-                - condition: state
-                  entity_id: input_select.kristi_phone_status
-                  state: 'Sleep'
-            - condition: and
-              conditions:
-                - condition: time
-                  after: '21:00:00'
-                  before: '02:00:00'
-                - condition: state
-                  entity_id: group.ryan
-                  state: 'home'
-                - condition: state
-                  entity_id: group.kristi
-                  state: 'not_home'
-                - condition: state
-                  entity_id: input_select.ryan_phone_status
-                  state: 'Sleep'
-    action:
-      - service: swtich.turn_on
-        entity_id: switch.st_good_morningnight_switch
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_status
-          option: Sleep
+#   - alias: "Trigger Night Mode"
+#     hide_entity: False
+#     trigger:
+#       - platform: state
+#         entity_id: input_select.kristi_phone_status
+#         to: 'Sleep'
+#       - platform: state
+#         entity_id: input_select.ryan_phone_status
+#         to: 'Sleep'
+#     condition:
+#         condition: or
+#         conditions:
+#             - condition: and
+#               conditions:
+#                 - condition: time
+#                   after: '21:00:00'
+#                   before: '02:00:00'
+#                 - condition: state
+#                   entity_id: group.ryan
+#                   state: 'home'
+#                 - condition: state
+#                   entity_id: group.kristi
+#                   state: 'home'
+#                 - condition: state
+#                   entity_id: input_select.ryan_phone_status
+#                   state: 'Sleep'
+#                 - condition: state
+#                   entity_id: input_select.kristi_phone_status
+#                   state: 'Sleep'
+#             - condition: and
+#               conditions:
+#                 - condition: time
+#                   after: '21:00:00'
+#                   before: '02:00:00'
+#                 - condition: state
+#                   entity_id: group.ryan
+#                   state: 'not_home'
+#                 - condition: state
+#                   entity_id: group.kristi
+#                   state: 'home'
+#                 - condition: state
+#                   entity_id: input_select.kristi_phone_status
+#                   state: 'Sleep'
+#             - condition: and
+#               conditions:
+#                 - condition: time
+#                   after: '21:00:00'
+#                   before: '02:00:00'
+#                 - condition: state
+#                   entity_id: group.ryan
+#                   state: 'home'
+#                 - condition: state
+#                   entity_id: group.kristi
+#                   state: 'not_home'
+#                 - condition: state
+#                   entity_id: input_select.ryan_phone_status
+#                   state: 'Sleep'
+#     action:
+#       - service: swtich.turn_on
+#         entity_id: switch.st_good_morningnight_switch
+#       - service: input_select.select_option
+#         data:
+#           entity_id: input_select.home_status
+#           option: Sleep
 
-##Morning Mode
-  - alias: "Trigger Morning Mode"
-    hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: input_select.kristi_phone_status
-        to: 'On Battery'
-        for:
-          minutes: 2
-      - platform: state
-        entity_id: input_select.ryan_phone_status
-        to: 'On Battery'
-        for:
-          minutes: 2
-    condition:
-      - condition: time
-        after: '4:00:00'
-        before: '9:00:00'
-      - condition: state
-        entity_id: switch.st_good_morningnight_switch
-        state: 'on'
-    action:
-      - service: swtich.turn_off
-        entity_id: switch.st_good_morningnight_switch
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_status
-          option: Home
+# ##Morning Mode
+#   - alias: "Trigger Morning Mode"
+#     hide_entity: False
+#     trigger:
+#       - platform: state
+#         entity_id: input_select.kristi_phone_status
+#         to: 'On Battery'
+#         for:
+#           minutes: 2
+#       - platform: state
+#         entity_id: input_select.ryan_phone_status
+#         to: 'On Battery'
+#         for:
+#           minutes: 2
+#     condition:
+#       - condition: time
+#         after: '4:00:00'
+#         before: '9:00:00'
+#       - condition: state
+#         entity_id: switch.st_good_morningnight_switch
+#         state: 'on'
+#     action:
+#       - service: swtich.turn_off
+#         entity_id: switch.st_good_morningnight_switch
+#       - service: input_select.select_option
+#         data:
+#           entity_id: input_select.home_status
+#           option: Home
 
   ##Trigger when night
   - alias: "Trigger with Night Mode"
@@ -1271,7 +1271,7 @@
       - platform: state
         entity_id: input_select.home_status
         from: 'Home'
-        to: 'Night'
+        to: 'Sleep'
     action:
       - service: switch.turn_on
         entity_id: input_boolean.door_notify_mode
@@ -1282,37 +1282,37 @@
     trigger:
       - platform: state
         entity_id: input_select.home_status
-        from: 'Night'
+        from: 'Sleep'
         to: 'Home'
     action:
       - service: switch.turn_off
         entity_id: input_boolean.door_notify_mode
 
 ##Set away on HA from ST
-  - alias: "Trigger HA Away Mode"
-    hide_entity: True
-    trigger:
-      - platform: state
-        entity_id: switch.st_awayhome_switch
-        to: 'on'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_status
-          option: Away
+  # - alias: "Trigger HA Away Mode"
+  #   hide_entity: True
+  #   trigger:
+  #     - platform: state
+  #       entity_id: switch.st_awayhome_switch
+  #       to: 'on'
+  #   action:
+  #     - service: input_select.select_option
+  #       data:
+  #         entity_id: input_select.home_status
+  #         option: Away
 
-  ##Set home on ST from HA
-  - alias: "Trigger HA Home Mode"
-    hide_entity: True
-    trigger:
-      - platform: state
-        entity_id: switch.st_awayhome_switch
-        to: 'off'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_status
-          option: Home
+  # ##Set home on ST from HA
+  # - alias: "Trigger HA Home Mode"
+  #   hide_entity: True
+  #   trigger:
+  #     - platform: state
+  #       entity_id: switch.st_awayhome_switch
+  #       to: 'off'
+  #   action:
+  #     - service: input_select.select_option
+  #       data:
+  #         entity_id: input_select.home_status
+  #         option: Home
 
 ##ALARM NOTIFICATION
   - alias: "Trigger Alarm"
@@ -1416,67 +1416,67 @@
 
 ###WASHING MACHINE Status
 #Set to Running
-  - alias: "Washer - Set Mode Running"
-    hide_entity: False
-    trigger:
-        - platform: template
-          value_template: '{{ float(states.sensor.washer_power.state) > 5 }}'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: binary_sensor.washer_door
-          state: 'off'
-        - condition: state
-          entity_id: input_select.washing_machine_status
-          state: 'Idle'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.washing_machine_status
-          option: Running
+#   - alias: "Washer - Set Mode Running"
+#     hide_entity: False
+#     trigger:
+#         - platform: template
+#           value_template: '{{ float(states.sensor.washer_power.state) > 5 }}'
+#     condition:
+#       condition: and
+#       conditions:
+#         - condition: state
+#           entity_id: binary_sensor.washer_door
+#           state: 'off'
+#         - condition: state
+#           entity_id: input_select.washing_machine_status
+#           state: 'Idle'
+#     action:
+#       - service: input_select.select_option
+#         data:
+#           entity_id: input_select.washing_machine_status
+#           option: Running
 
-#Set to Clean
-  - alias: "Washer - Set Mode Clean"
-    hide_entity: False
-    trigger:
-        - platform: template
-          value_template: '{{ relative_time(states.sensor.washer_power.last_changed) > "3 Minutes" }}'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: binary_sensor.washer_door
-          state: 'off'
-        - condition: state
-          entity_id: input_select.washing_machine_status
-          state: 'Running'
-        - condition: template
-          value_template: '{{ float(states.sensor.washer_power.state) < 5 }}'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.washing_machine_status
-          option: Clean
+# #Set to Clean
+#   - alias: "Washer - Set Mode Clean"
+#     hide_entity: False
+#     trigger:
+#         - platform: template
+#           value_template: '{{ relative_time(states.sensor.washer_power.last_changed) > "3 Minutes" }}'
+#     condition:
+#       condition: and
+#       conditions:
+#         - condition: state
+#           entity_id: binary_sensor.washer_door
+#           state: 'off'
+#         - condition: state
+#           entity_id: input_select.washing_machine_status
+#           state: 'Running'
+#         - condition: template
+#           value_template: '{{ float(states.sensor.washer_power.state) < 5 }}'
+#     action:
+#       - service: input_select.select_option
+#         data:
+#           entity_id: input_select.washing_machine_status
+#           option: Clean
 
-#Set to Idle
-  - alias: "Washer - Set Mode Idle"
-    hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.washer_door
-        to: 'on'
-        for:
-          seconds: 5
-    condition:
-    - condition: state
-      entity_id: input_select.washing_machine_status
-      state: 'Clean'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.washing_machine_status
-          option: Idle
+# #Set to Idle
+#   - alias: "Washer - Set Mode Idle"
+#     hide_entity: False
+#     trigger:
+#       - platform: state
+#         entity_id: binary_sensor.washer_door
+#         to: 'on'
+#         for:
+#           seconds: 5
+#     condition:
+#     - condition: state
+#       entity_id: input_select.washing_machine_status
+#       state: 'Clean'
+#     action:
+#       - service: input_select.select_option
+#         data:
+#           entity_id: input_select.washing_machine_status
+#           option: Idle
 
           
 
