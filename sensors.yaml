@@ -465,6 +465,16 @@
      mom_occupancy:
        value_template: '{% if states("sensor.mom_home_occupancy_confidence") | float > 10 %}Home{% else %}Away{%endif %}'
        friendly_name: "Mom's BT Occupancy"
+ - platform: template
+   sensors:
+     outlander:
+       value_template: '{% if states("sensor.1stoutlanderbt") | float > 10 %}Home{% else %}Away{%endif %}'
+       friendly_name: "Outlander Garage"
+ - platform: template
+   sensors:
+     volvo:
+       value_template: '{% if states("sensor.1stvolvobt") | float > 10 %}Home{% else %}Away{%endif %}'
+       friendly_name: "Volvo Garage"
 ##Bayesian Device Tracker
  - platform: template
    sensors:

@@ -591,6 +591,8 @@ cars:
   entities:
     - sensor.1stvolvobt
     - sensor.1stoutlanderbt
+    - sensor.outlander
+    - sensor.volvo
 
 
 ##VIEWS###
