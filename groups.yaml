@@ -589,8 +589,9 @@ zones:
 cars:
   name: Cars
   entities:
-    - 1stvolvobt
-    - 1stoutlanderbt
+   # - 1stvolvobt
+ #   - 1stoutlanderbt
+
 
 ##VIEWS###
 default_view:
