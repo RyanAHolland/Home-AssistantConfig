@@ -418,12 +418,12 @@
    state_topic: !secret 1stoutlanderbt
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
-   name: 'Outlander Confidence'
+   name: 'Outlander First Floor'
  - platform: mqtt
    state_topic: !secret 1stvolvobt
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
-   name: 'Volvo Confidence'
+   name: 'Volvo First Floor'
 ##BT presence logic
  - platform: min_max
    name: "Ryan Home Occupancy Confidence"
@@ -468,12 +468,12 @@
  - platform: template
    sensors:
      outlander:
-       value_template: '{% if states("sensor.outlander_confidence") | float > 10 %}Home{% else %}Away{%endif %}'
+       value_template: '{% if states("sensor.outlander_first_floor") | float > 10 %}Home{% else %}Away{%endif %}'
        friendly_name: "Outlander Garage"
  - platform: template
    sensors:
      volvo:
-       value_template: '{% if states("sensor.volvo_confidence") | float > 10 %}Home{% else %}Away{%endif %}'
+       value_template: '{% if states("sensor.volvo_first_floor") | float > 10 %}Home{% else %}Away{%endif %}'
        friendly_name: "Volvo Garage"
 ##Bayesian Device Tracker
  - platform: template

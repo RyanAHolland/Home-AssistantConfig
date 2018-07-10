@@ -751,6 +751,7 @@ cameras:
     icon: mdi:camera
     entities:
     - group.ZMCameras
+    - camera.front_door
     - group.lrCameraSensors
     - group.ZMSwitches
     - group.ZMSensors
