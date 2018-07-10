@@ -589,8 +589,8 @@ zones:
 cars:
   name: Cars
   entities:
-    - 1stvolvobt
-    - 1stoutlanderbt
+    - sensor.1stvolvobt
+    - sensor.1stoutlanderbt
 
 
 ##VIEWS###
