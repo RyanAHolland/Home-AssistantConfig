@@ -414,6 +414,16 @@
    # value_template: '{{ value_json.confidence }}'
    # unit_of_measurement: '%'
    # name: 'Mom Basement'
+ - platform: mqtt
+   state_topic: !secret 1stoutlanderbt
+   value_template: '{{ value_json.confidence }}'
+   unit_of_measurement: '%'
+   name: 'Outlander'
+ - platform: mqtt
+   state_topic: !secret 1stvolvobt
+   value_template: '{{ value_json.confidence }}'
+   unit_of_measurement: '%'
+   name: 'Volvo'
 ##BT presence logic
  - platform: min_max
    name: "Ryan Home Occupancy Confidence"

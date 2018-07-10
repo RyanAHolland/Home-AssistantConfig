@@ -586,6 +586,12 @@ zones:
   entities:
     - binary_sensor.floorplan
 
+cars:
+  name: Cars
+  entities:
+    - 1stvolvobt
+    - 1stoutlanderbt
+
 ##VIEWS###
 default_view:
     icon: mdi:home
@@ -726,6 +732,7 @@ outside:
     entities:
       - group.frontHouse
       - group.garagedoor
+      - group.cars
       - group.DoorbellSensors
       - group.SideCameraSensors
       - group.FloodCameraSensors
