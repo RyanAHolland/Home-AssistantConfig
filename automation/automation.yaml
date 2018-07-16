@@ -636,20 +636,20 @@
 
 ###MOTION
 
-  - alias: 'Hallway Light'
-    hide_entity: True
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.upstairs_motion
-        from: 'off'
-        to: 'on'
-    condition:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-    action:
-      service: homeassistant.turn_on
-      entity_id: script.light_test
+  # - alias: 'Hallway Light'
+  #   hide_entity: True
+  #   trigger:
+  #     - platform: state
+  #       entity_id: binary_sensor.upstairs_motion
+  #       from: 'off'
+  #       to: 'on'
+  #   condition:
+  #     - condition: state
+  #       entity_id: sun.sun
+  #       state: 'below_horizon'
+  #   action:
+  #     service: homeassistant.turn_on
+  #     entity_id: script.light_test
 
   - alias: 'Downstairs Motion Night Light'
     hide_entity: True
@@ -706,62 +706,62 @@
       service: homeassistant.turn_on
       entity_id: scene.decorative_dim
 
-  - alias: 'Bedroom Motion Night'
-    hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.bedroom_motion
-        from: 'off'
-        to: 'on'
-    condition:
-      condition: and
-      conditions:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-      - condition: time
-        after: '10:00:00'
-      - condition: time
-        before: '21:00:00'
-      - condition: state
-        entity_id: binary_sensor.upstairs_motion
-        state: 'on'
-      - condition: state
-        entity_id: group.bedroom
-        state: 'off'
-        for:
-          minutes: 3
-    action:
-      service: scene.turn_on
-      entity_id: scene.bedroom_normal
+  # - alias: 'Bedroom Motion Night'
+  #   hide_entity: False
+  #   trigger:
+  #     - platform: state
+  #       entity_id: binary_sensor.bedroom_motion
+  #       from: 'off'
+  #       to: 'on'
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #     - condition: state
+  #       entity_id: sun.sun
+  #       state: 'below_horizon'
+  #     - condition: time
+  #       after: '10:00:00'
+  #     - condition: time
+  #       before: '21:00:00'
+  #     - condition: state
+  #       entity_id: binary_sensor.upstairs_motion
+  #       state: 'on'
+  #     - condition: state
+  #       entity_id: group.bedroom
+  #       state: 'off'
+  #       for:
+  #         minutes: 3
+  #   action:
+  #     service: scene.turn_on
+  #     entity_id: scene.bedroom_normal
 
-  - alias: 'Bedroom Motion Off'
-    hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.bedroom_motion
-        from: 'on'
-        to: 'off'
-        for:
-          minutes: 10
-    condition:
-      condition: and
-      conditions:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-      - condition: time
-        after: '17:00:00'
-      - condition: time
-        before: '21:00:00'
-      - condition: state
-        entity_id: group.bedroom
-        state: 'on'
-      - condition: template
-        value_template: '{{ relative_time(states.binary_sensor.upstairs_motion.last_updated) < "600" }}'
-    action:
-      service: scene.turn_on
-      entity_id: scene.bedroom_off
+  # - alias: 'Bedroom Motion Off'
+  #   hide_entity: False
+  #   trigger:
+  #     - platform: state
+  #       entity_id: binary_sensor.bedroom_motion
+  #       from: 'on'
+  #       to: 'off'
+  #       for:
+  #         minutes: 10
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #     - condition: state
+  #       entity_id: sun.sun
+  #       state: 'below_horizon'
+  #     - condition: time
+  #       after: '17:00:00'
+  #     - condition: time
+  #       before: '21:00:00'
+  #     - condition: state
+  #       entity_id: group.bedroom
+  #       state: 'on'
+  #     - condition: template
+  #       value_template: '{{ relative_time(states.binary_sensor.upstairs_motion.last_updated) < "600" }}'
+  #   action:
+  #     service: scene.turn_on
+  #     entity_id: scene.bedroom_off
 
   - alias: 'Garage Door Light Night'
     hide_entity: False
