@@ -537,7 +537,7 @@ daily_forecast:
       - sensor.pws_weather_4n
 
 weather_overview:
-    name: Weather overview
+    name: Weather overview )WU)
     entities:
       - sensor.pws_alerts
       - sensor.pws_weather_1d
@@ -772,6 +772,15 @@ outside:
       - group.locks
       - group.LockInfo
       - group.DoorSensors
+
+weather:
+    name: Weather
+    view: yes
+    icon: mdi:cloud
+    entities:
+      - group.weather
+      - group.daily_forecast
+      - group.weather_overview
 
 cameras:
     name: Cameras
