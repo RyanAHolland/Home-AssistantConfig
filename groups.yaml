@@ -537,7 +537,7 @@ daily_forecast:
       - sensor.pws_weather_4n
 
 weather_overview:
-    name: Weather overview )WU)
+    name: Weather overview (WU)
     entities:
       - sensor.pws_alerts
       - sensor.pws_weather_1d
@@ -768,7 +768,6 @@ outside:
       - group.SideCameraSensors
       - group.FloodCameraSensors
       - group.rachioSwitches
-      - group.weather
       - group.locks
       - group.LockInfo
       - group.DoorSensors
@@ -776,7 +775,7 @@ outside:
 weather:
     name: Weather
     view: yes
-    icon: mdi:cloud
+    icon: mdi:weather-lightning-rainy
     entities:
       - group.weather
       - group.daily_forecast
