@@ -306,3 +306,9 @@
   - platform: ping 
     host: !secret walle_ip
     name: "Wall-E Ping"
+  - platform: ping
+    host: !secret rachio_ip
+    name: "Rachio Ping"
+  - platform: ping
+    host: !secret frontcam_ip
+    name: "Front Camera Ping"  
