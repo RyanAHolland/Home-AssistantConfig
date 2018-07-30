@@ -138,38 +138,38 @@
 #       - service: alarm_control_panel.alarm_disarm
 #         entity_id: alarm_control_panel.shm
 
-  - id: light_away_actions
-    alias: Light Away Actions
-    trigger:
-      platform: state
-      entity_id: input_select.home_status
-      to: 'Away'
-      for:
-        minutes: 10
-    condition:
-      condition: and
-      conditions:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-      - condition: time
-        after: '16:00:00'
-      - condition: state
-        entity_id: group.decorative
-        state: 'on'
-      - condition: state
-        entity_id: input_boolean.force_home
-        state: 'off'
-##ADD IN ALL HOUSE LIGHTS
-    action:
-      - service: scene.turn_on
-        entity_id: scene.decorative_off
-      - service: homeassistant.turn_off
-        entity_id: group.christmas_lights
-      - service: notify.pushover
-        data:
-          message: "I see you have left for the night and some of the lights are still on. I have turned them off for you."
-          title: "HASS"
+#   - id: light_away_actions
+#     alias: Light Away Actions
+#     trigger:
+#       platform: state
+#       entity_id: input_select.home_status
+#       to: 'Away'
+#       for:
+#         minutes: 10
+#     condition:
+#       condition: and
+#       conditions:
+#       - condition: state
+#         entity_id: sun.sun
+#         state: 'below_horizon'
+#       - condition: time
+#         after: '16:00:00'
+#       - condition: state
+#         entity_id: group.decorative
+#         state: 'on'
+#       - condition: state
+#         entity_id: input_boolean.force_home
+#         state: 'off'
+# ##ADD IN ALL HOUSE LIGHTS
+#     action:
+#       - service: scene.turn_on
+#         entity_id: scene.decorative_off
+#       - service: homeassistant.turn_off
+#         entity_id: group.christmas_lights
+#       - service: notify.pushover
+#         data:
+#           message: "I see you have left for the night and some of the lights are still on. I have turned them off for you."
+#           title: "HASS"
 
   - alias: Fix Nest Away
     hide_entity: True
@@ -636,20 +636,20 @@
 
 ###MOTION
 
-  - alias: 'Hallway Light'
-    hide_entity: True
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.upstairs_motion
-        from: 'off'
-        to: 'on'
-    condition:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-    action:
-      service: homeassistant.turn_on
-      entity_id: script.light_test
+  # - alias: 'Hallway Light'
+  #   hide_entity: True
+  #   trigger:
+  #     - platform: state
+  #       entity_id: binary_sensor.upstairs_motion
+  #       from: 'off'
+  #       to: 'on'
+  #   condition:
+  #     - condition: state
+  #       entity_id: sun.sun
+  #       state: 'below_horizon'
+  #   action:
+  #     service: homeassistant.turn_on
+  #     entity_id: script.light_test
 
   - alias: 'Downstairs Motion Night Light'
     hide_entity: True
