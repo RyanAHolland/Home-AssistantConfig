@@ -386,7 +386,7 @@ network:
       - sensor.speedtest_ping
       - sensor.speedtest_upload
       - binary_sensor.rachio_ping
-      - binary_sensor.front_door_ping
+      - binary_sensor.front_camera_ping
 
 mediaSensors:
     name: Media Sensors
