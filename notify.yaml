@@ -1,8 +1,11 @@
   - name: PushOver
     platform: pushover
-    api_key: a1mxj61vhzxqqy9dye45k1sjxxc4w1
-    user_key: 0XqqJ7XNsmeEllfKV7ChjiKBoWrW3L
+    api_key: !secret pushover_api
+    user_key: !secret pushover_key
   - platform: joaoapps_join
-    device_id: 79906dd8938f40e7a07e0487dd242920
+    device_id: !secret join_device
     name: Note5
-    api_key: dd1d61e4b6374924bbbd492101b9139d
+    api_key: !secret join_api
+  - name: Telegram
+    platform: telegram
+    chat_id: !secret telegram_ryan

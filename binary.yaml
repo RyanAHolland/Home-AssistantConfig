@@ -211,13 +211,13 @@
     payload_off: "inactive"
     device_class: vibration
 #Dryer
-  - platform: mqtt
-    state_topic: "smartthings/Dryer Sensor/acceleration"
-    name: "Dryer Vibration"
-    qos: 0
-    payload_on: "active"
-    payload_off: "inactive"
-    device_class: vibration
+#  - platform: mqtt
+#    state_topic: "smartthings/Dryer Sensor/acceleration"
+#    name: "Dryer Vibration"
+#    qos: 0
+#    payload_on: "active"
+#    payload_off: "inactive"
+#    device_class: vibration
 #  - platform: template
 #    sensors:
 #      washer_active:
@@ -295,3 +295,20 @@
         prob_given_false: 0.3
         platform: 'state'
         to_state: 'home'
+#ST Anywhere Sensors
+  - platform: mqtt
+    state_topic: "smartthings/Dryer Multi (contact1)/contact"
+    name: "Dryer Vibration"
+    payload_on: "closed"
+    payload_off: "open"
+    device_class: vibration
+#Ping Sensors
+  - platform: ping 
+    host: !secret walle_ip
+    name: "Wall-E Ping"
+  - platform: ping
+    host: !secret rachio_ip
+    name: "Rachio Ping"
+  - platform: ping
+    host: !secret frontcam_ip
+    name: "Front Camera Ping"  
