@@ -51,6 +51,16 @@
     retain: true 
     brightness_scale: 99
   - platform: mqtt 
+    name: "Camera Lights" 
+    state_topic: "smartthings/Camera Lights/switch" 
+    command_topic: "smartthings/Camera Lights/switch" 
+    brightness_state_topic: "smartthings/Camera Lights/level" 
+    brightness_command_topic: "smartthings/Camera Lights/level" 
+    payload_on: "on" 
+    payload_off: "off" 
+    retain: true 
+    brightness_scale: 99
+  - platform: mqtt 
     name: "Dining Room Lamps" 
     state_topic: "smartthings/Dining Room Lamps/switch" 
     command_topic: "smartthings/Dining Room Lamps/switch" 
@@ -171,7 +181,7 @@
     payload_off: "off" 
     retain: true
     brightness_scale: 99
-
+##Ikea Lights
   - platform: mqtt
     name: "Office Lamp" 
     state_topic: "smartthings/Office Lamp/switch" 

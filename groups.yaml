@@ -131,6 +131,7 @@ office:
     name: Office
     entities:
       - light.office_lamp_2
+      - light.camera_lights
 
 living room:
     name: Living Room
