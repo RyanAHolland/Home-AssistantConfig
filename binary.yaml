@@ -246,7 +246,7 @@
         platform: 'state'
         to_state: 'home'
       - entity_id: 'sensor.ryan_occupancy'
-        prob_given_true: 0.9
+        prob_given_true: 1
         prob_given_false: 0.3
         platform: 'state'
         to_state: 'home'
@@ -266,7 +266,7 @@
         platform: 'state'
         to_state: 'home'
       - entity_id: 'sensor.kristi_occupancy'
-        prob_given_true: 0.9
+        prob_given_true: 1
         prob_given_false: 0.3
         platform: 'state'
         to_state: 'home'
@@ -291,7 +291,7 @@
         platform: 'state'
         to_state: 'home'
       - entity_id: 'sensor.mom_occupancy'
-        prob_given_true: 0.9
+        prob_given_true: 1
         prob_given_false: 0.3
         platform: 'state'
         to_state: 'home'
