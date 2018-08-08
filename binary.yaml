@@ -233,7 +233,7 @@
   - platform: bayesian
     prior: 0.5
     name: 'Ryan Presence'
-    probability_threshold: 0.9
+    probability_threshold: 0.85
     observations:
       - entity_id: 'device_tracker.ryan_note8'
         prob_given_true: 0.9
@@ -253,7 +253,7 @@
   - platform: bayesian
     prior: 0.5
     name: 'Kristi Presence'
-    probability_threshold: 0.9
+    probability_threshold: 0.85
     observations:
       - entity_id: 'device_tracker.kristi_s7'
         prob_given_true: 0.9
@@ -273,7 +273,7 @@
   - platform: bayesian
     prior: 0.5
     name: 'Mom Presence'
-    probability_threshold: 0.9
+    probability_threshold: 0.85
     observations:
       - entity_id: 'device_tracker.mom'
         prob_given_true: 0.7
