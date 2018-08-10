@@ -215,8 +215,7 @@
     name: "Bathroom Button"
     qos: 0
     payload_on: "pushed"
-    payload_off: "release"
-    force_update: true
+    payload_off: "released"
 #Dryer
 #  - platform: mqtt
 #    state_topic: "smartthings/Dryer Sensor/acceleration"
