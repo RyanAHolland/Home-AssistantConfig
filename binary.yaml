@@ -233,7 +233,7 @@
   - platform: bayesian
     prior: 0.5
     name: 'Ryan Presence'
-    probability_threshold: 0.9
+    probability_threshold: 0.85
     observations:
       - entity_id: 'device_tracker.ryan_note8'
         prob_given_true: 0.9
@@ -246,14 +246,14 @@
         platform: 'state'
         to_state: 'home'
       - entity_id: 'sensor.ryan_occupancy'
-        prob_given_true: 0.9
+        prob_given_true: 1
         prob_given_false: 0.3
         platform: 'state'
         to_state: 'home'
   - platform: bayesian
     prior: 0.5
     name: 'Kristi Presence'
-    probability_threshold: 0.9
+    probability_threshold: 0.85
     observations:
       - entity_id: 'device_tracker.kristi_s7'
         prob_given_true: 0.9
@@ -266,14 +266,14 @@
         platform: 'state'
         to_state: 'home'
       - entity_id: 'sensor.kristi_occupancy'
-        prob_given_true: 0.9
+        prob_given_true: 1
         prob_given_false: 0.3
         platform: 'state'
         to_state: 'home'
   - platform: bayesian
     prior: 0.5
     name: 'Mom Presence'
-    probability_threshold: 0.9
+    probability_threshold: 0.85
     observations:
       - entity_id: 'device_tracker.mom'
         prob_given_true: 0.7
@@ -291,7 +291,7 @@
         platform: 'state'
         to_state: 'home'
       - entity_id: 'sensor.mom_occupancy'
-        prob_given_true: 0.9
+        prob_given_true: 1
         prob_given_false: 0.3
         platform: 'state'
         to_state: 'home'

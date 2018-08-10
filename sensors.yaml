@@ -439,6 +439,16 @@
    # unit_of_measurement: '%'
    # name: 'Mom Basement'
  - platform: mqtt
+   state_topic: !secret 1stdadphonebt
+   value_template: '{{ value_json.confidence }}'
+   unit_of_measurement: '%'
+   name: 'Dad First Floor'
+ - platform: mqtt
+   state_topic: !secret 2nddadphonebt
+   value_template: '{{ value_json.confidence }}'
+   unit_of_measurement: '%'
+   name: 'Dad Second Floor'
+ - platform: mqtt
    state_topic: !secret 1stoutlanderbt
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
@@ -473,6 +483,14 @@
      - sensor.mom_first_floor
      - sensor.mom_second_floor
     #  - sensor.mom_basement
+ - platform: min_max
+   name: "Dad Home Occupancy Confidence"
+   type: mean
+   round_digits: 0
+   entity_ids:
+     - sensor.dad_first_floor
+     - sensor.dad_second_floor
+    #  - sensor.mom_basement
 ##BT Occupancy Sensors
  - platform: template
    sensors:
@@ -489,6 +507,11 @@
      mom_occupancy:
        value_template: '{% if states("sensor.mom_home_occupancy_confidence") | float > 10 %}Home{% else %}Away{%endif %}'
        friendly_name: "Mom's BT Occupancy"
+ - platform: template
+   sensors:
+     dad_occupancy:
+       value_template: '{% if states("sensor.dad_home_occupancy_confidence") | float > 10 %}Home{% else %}Away{%endif %}'
+       friendly_name: "Dad's BT Occupancy"
  - platform: template
    sensors:
      outlander:
@@ -530,6 +553,16 @@
          not_home
          {% endif %}"
        friendly_name: Mom Home
+ - platform: template
+   sensors:
+     dad_home:
+       value_template:
+         "{% if is_state('binary_sensor.dad_presence', 'on') %}
+         home
+         {% else %}
+         not_home
+         {% endif %}"
+       friendly_name: Dad Home
        
  - platform: zoneminder
    include_archived: false

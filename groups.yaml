@@ -15,10 +15,13 @@ lindabill:
    - device_tracker.moms_phone
    - device_tracker.billsphone
    - sensor.mom_home
+dad:
+   - sensor.mom_home
 all mobile devices:
    - sensor.ryan_home
    - sensor.kristi_home
    - sensor.mom_home
+   - sensor.dad_home
 presence sensors:
    - sensor.ryan_home
    - sensor.ryan_first_floor
@@ -36,14 +39,21 @@ presence sensors:
 #   - sensor.mom_basement
    - sensor.mom_occupancy
    - sensor.mom_home_occupancy_confidence
+   - sensor.dad_first_floor
+   - sensor.dad_second_floor
+#   - sensor.mom_basement
+   - sensor.dad_occupancy
+   - sensor.dad_home_occupancy_confidence
 bayesian:
    - binary_sensor.ryan_presence
    - binary_sensor.kristi_presence
    - binary_sensor.mom_presence
+   - binary_sensor.dad_presence
 bayesian home:
    - sensor.ryan_home
    - sensor.kristi_home
    - sensor.mom_home
+   - sensor.dad_home
 phone state:
    - input_select.ryan_phone_status
    - sensor.ryan_battery
