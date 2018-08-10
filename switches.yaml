@@ -58,6 +58,14 @@
     payload_off: "off"
     qos: 0
     retain: true
+##Button
+  - platform: mqtt
+    name: "Bathroom Button"
+    command_topic: "smartthings/Bathroom Button/button"
+    payload_on: "pushed"
+    payload_off: "released"
+    qos: 0
+    retain: true
 #ZoneMinder
   - platform: zoneminder
     command_on: Modect
