@@ -210,6 +210,13 @@
     payload_on: "active"
     payload_off: "inactive"
     device_class: vibration
+  - platform: mqtt
+    state_topic: "smartthings/Bathroom Button/button"
+    name: "Bathroom Button"
+    qos: 0
+    payload_on: "pushed"
+    payload_off: "release
+    force_update: true
 #Dryer
 #  - platform: mqtt
 #    state_topic: "smartthings/Dryer Sensor/acceleration"
