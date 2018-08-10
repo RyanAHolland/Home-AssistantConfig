@@ -215,7 +215,7 @@
     name: "Bathroom Button"
     qos: 0
     payload_on: "pushed"
-    payload_off: "release
+    payload_off: "release"
     force_update: true
 #Dryer
 #  - platform: mqtt
