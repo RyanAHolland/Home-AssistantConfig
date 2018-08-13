@@ -443,7 +443,7 @@ frontHouse:
     name: Front of House
     entities:
       - switch.south_yard_lights
-      - switch.front_lights
+      - light.front_lights
       - binary_sensor.driveway_camera_motion
       - binary_sensor.front_doorbell_motion
 
