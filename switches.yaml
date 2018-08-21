@@ -42,7 +42,13 @@
     payload_off: "off"
     qos: 0
     retain: true
-
+  - platform: mqtt
+    name: "Living Room Fan"
+    command_topic: "smartthings/Living Room Fan/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 0
+    retain: true
   - platform: mqtt
     name: "North Up Lights"
     command_topic: "smartthings/North Up Lights/switch"
