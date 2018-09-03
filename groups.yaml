@@ -112,6 +112,7 @@ kitchen:
       - light.island_lights
       - light.kitchen_lamp
       - light.kitchen_overhead
+      - light.pantry_light
 
 overhead:
     name: Overhead Lights
@@ -227,6 +228,7 @@ BasementSensors:
       - binary_sensor.back_door_sensor
       - binary_sensor.front_door_sensor
       - binary_sensor.garage_entry_sensor
+      - binary_sensor.pantry_door
       - binary_sensor.front_window_1
       - binary_sensor.front_window_2
       - binary_sensor.window_over_sink
@@ -501,6 +503,7 @@ floorlights:
       - group.kitchen
       - group.living_room
       - group.dining_room
+      - group.decorative_lights
 
 secondfloorlights:
     name: Second Floor Lights
