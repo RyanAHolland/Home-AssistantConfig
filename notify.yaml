@@ -9,3 +9,7 @@
   - name: Telegram
     platform: telegram
     chat_id: !secret telegram_ryan
+  - name: RyanHangout
+    platform: hangouts
+    default_conversations:
+      - id: UgyrNA8E-WBfhiqgmsJ4AaABAagBocyeDQ
