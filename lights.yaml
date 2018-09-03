@@ -51,6 +51,16 @@
     retain: true 
     brightness_scale: 99
   - platform: mqtt 
+    name: "Pantry Light" 
+    state_topic: "smartthings/Pantry Light/switch" 
+    command_topic: "smartthings/Pantry Light/switch" 
+    brightness_state_topic: "smartthings/Pantry Light/level" 
+    brightness_command_topic: "smartthings/Pantry Light/level" 
+    payload_on: "on" 
+    payload_off: "off" 
+    retain: true 
+    brightness_scale: 99
+  - platform: mqtt 
     name: "Camera Lights" 
     state_topic: "smartthings/Camera Lights/switch" 
     command_topic: "smartthings/Camera Lights/switch" 
