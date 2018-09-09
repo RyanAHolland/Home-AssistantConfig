@@ -114,7 +114,7 @@
             state: on
         light.stair_lamp:
             state: on
-            brightness: 150
+            brightness: 80
         light.left_light_2:
             state: on
             transition: 10
