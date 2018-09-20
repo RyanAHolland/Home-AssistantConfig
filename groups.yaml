@@ -90,10 +90,12 @@ bedroom:
     entities:
       - light.bedroom_overhead
       - light.bedroom_fan
-      - light.ryan_lamp
       - light.kristi_lamp
-      - light.ryans_bloom
       - light.kristis_bloom
+      - light.kristi_reading_lamp
+      - light.ryan_lamp
+      - light.ryans_bloom
+      - light.ryan_reading_lamp
 
 bedroomlamps:
     name: Bedroom Lamps
