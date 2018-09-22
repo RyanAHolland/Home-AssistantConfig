@@ -12,4 +12,8 @@
   - name: RyanHangout
     platform: hangouts
     default_conversations:
-      - id: UgyrNA8E-WBfhiqgmsJ4AaABAagBocyeDQ
+      - id: !secret hangouts_ryan
+  - name: KristiHangout
+    platform: hangouts
+    default_conversations:
+      - id: !secret hangouts_kristi
