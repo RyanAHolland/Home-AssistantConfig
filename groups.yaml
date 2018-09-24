@@ -524,7 +524,7 @@ cleaner:
       - switch.walle_dock
       - switch.walle_find
       - binary_sensor.walle_ping
-weather:
+ds_weather:
     name: Dark Sky Weather
     entities:
       - sun.sun
@@ -794,7 +794,7 @@ weather:
     view: yes
     icon: mdi:weather-lightning-rainy
     entities:
-      - group.weather
+      - group.ds_weather
       - group.daily_forecast
       - group.weather_overview
 
