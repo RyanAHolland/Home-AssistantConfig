@@ -454,11 +454,13 @@ frontHouse:
 rachioSwitches:
     name: Rachio Control
     entities:
-      - switch.front_yard
-      - switch.side_walk
-      - switch.back_yard
-      - switch.north_back_yard
-      - switch.north_side
+      - switch.front_yard_2
+      - switch.side_walk_2
+      - switch.back_yard_2
+      - switch.north_back_yard_2
+      - switch.north_side_2
+      - binary_sensor.home_online
+      - binary_sensor.rachio_ping
 
 package:
     name: Package Sensors
