@@ -359,15 +359,15 @@ camera:
   - platform: ring
   - platform: usps
     scan_interval: 5
-  - platform: zoneminder
+#  - platform: zoneminder
 
 ffmpeg:
 
-zoneminder:
-  host: !secret ZM_HOST
+#zoneminder:
+#  host: !secret ZM_HOST
 #  path: /zm
 #  path_zms: /zm/cgi-bin/nph-zms
-  ssl: False
+#  ssl: False
 #  username: !secret ZM_USERNAME
 #  password: !secret ZM_PASSWORD
 
@@ -382,6 +382,9 @@ cover:
     username: !secret email
     password: !secret myq_pass
     type: liftmaster
+
+rachio:
+  api_key: !secret rachio_api
 
 proximity:
   home:
@@ -418,6 +421,12 @@ telegram_bot:
     api_key: !secret telegram_api 
     allowed_chat_ids: 
       - !secret telegram_ryan
+
+panel_iframe:
+  rachio:
+    title: Rachio
+    url: "https://app.rach.io"
+    icon: mdi:water-pump
 
 ####################################################
 #                                                  #

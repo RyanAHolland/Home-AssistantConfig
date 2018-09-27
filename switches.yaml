@@ -4,8 +4,6 @@
     host: spike
     name: Wake Spike
 #  - platform: insteon_local
-  - platform: rachio
-    access_token: 18177e56-a3b3-4194-b6ea-fed8237c9a8a
   - platform: mqtt
     name: "ST Vacation/Home Switch"
     command_topic: "smartthings/zzVacationHomeSwitch/switch"
@@ -64,7 +62,7 @@
     payload_off: "off"
     qos: 0
     retain: true
-#ZoneMinder
-  - platform: zoneminder
-    command_on: Modect
-    command_off: Monitor
+##ZoneMinder
+#  - platform: zoneminder
+#    command_on: Modect
+#    command_off: Monitor

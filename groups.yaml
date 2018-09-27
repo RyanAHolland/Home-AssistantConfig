@@ -581,41 +581,41 @@ travis:
       - sensor.ryanahollandhomeassistantconfig_last_build_state
       - sensor.ryanahollandhomeassistantconfig_state
       
-ZMSensors:
-    name: ZoneMinder Sensors
-    entities:
-      - sensor.baby_camera_events
-      - sensor.baby_camera_status
-      - sensor.back_deck_events
-      - sensor.back_deck_status
-      - sensor.basement_events
-      - sensor.basement_status
-      - sensor.front_house_events
-      - sensor.front_house_status
-      - sensor.living_room_events
-      - sensor.living_room_status
-      - sensor.play_room_events
-      - sensor.play_room_status
+# ZMSensors:
+#     name: ZoneMinder Sensors
+#     entities:
+#       - sensor.baby_camera_events
+#       - sensor.baby_camera_status
+#       - sensor.back_deck_events
+#       - sensor.back_deck_status
+#       - sensor.basement_events
+#       - sensor.basement_status
+#       - sensor.front_house_events
+#       - sensor.front_house_status
+#       - sensor.living_room_events
+#       - sensor.living_room_status
+#       - sensor.play_room_events
+#       - sensor.play_room_status
       
-ZMCameras:
-    name: ZoneMinder Cameras
-    entities:
-    - camera.baby_camera_2
-    - camera.back_deck_camera
-    - camera.basement_2
-    - camera.front_house
-    - camera.living_room_2
-    - camera.play_room
+# ZMCameras:
+#     name: ZoneMinder Cameras
+#     entities:
+#     - camera.baby_camera_2
+#     - camera.back_deck_camera
+#     - camera.basement_2
+#     - camera.front_house
+#     - camera.living_room_2
+#     - camera.play_room
 
-ZMSwitches:
-    name: ZoneMinder Switches
-    entities:
-    - switch.baby_camera_state
-    - switch.back_deck_state
-    - switch.basement_state
-    - switch.front_house_state
-    - switch.living_room_state
-    - switch.play_room_state
+#ZMSwitches:
+#    name: ZoneMinder Switches
+#    entities:
+#    - switch.baby_camera_state
+#    - switch.back_deck_state
+    # - switch.basement_state
+    # - switch.front_house_state
+    # - switch.living_room_state
+    # - switch.play_room_state
 
 DirectCameras:
     name: Direct Cameras
@@ -803,10 +803,11 @@ cameras:
     view: yes
     icon: mdi:camera
     entities:
-    - group.ZMCameras
-    - group.lrCameraSensors
-    - group.ZMSwitches
-    - group.ZMSensors
+    # - group.ZMCameras
+    # - group.lrCameraSensors
+    # - group.ZMSwitches
+    # - group.ZMSensors
+      - group.DirectCameras
 
 HomeGroup:
     name: Home Group

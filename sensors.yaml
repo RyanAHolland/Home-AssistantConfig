@@ -564,5 +564,5 @@
          {% endif %}"
        friendly_name: Dad Home
        
- - platform: zoneminder
-   include_archived: false
+ #- platform: zoneminder
+ #  include_archived: false
