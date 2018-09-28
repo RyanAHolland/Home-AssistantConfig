@@ -260,10 +260,10 @@ ifttt:
 apcupsd:
 
 #JOIN
-joaoapps_join:
-  - name: Join
-    device_id: group.join
-    api_key: !secret join_key
+# joaoapps_join:
+#   - name: Join
+#     device_id: group.join
+#     api_key: !secret join_key
 
 mqtt:
   broker: !secret mqtt_ip
@@ -399,7 +399,7 @@ proximity:
 
 hue:
   bridges:
-    - host: 192.168.1.239
+    - host: 192.168.1.227
     
 variable:  
   last_motion:
