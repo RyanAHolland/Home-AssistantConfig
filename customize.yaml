@@ -80,22 +80,12 @@ light.kitchen_lamp:
   friendly_name: Kitchen Lamp
 light.left_light:
   icon: mdi:lamp
-  hidden: true
-light.left_light2:
-  icon: mdi:lamp
 light.right_light:
-  icon: mdi:lamp
-  hidden: true
-light.right_light2:
   icon: mdi:lamp
 light.floor_lamp:
   icon: mdi:lamp
-  hidden: true
-light.floor_lamp_2:
-  icon: mdi:lamp
 light.office_lamp:
   icon: mdi:lamp
-  hidden: true
 light.office_lamp_2:
   icon: mdi:lamp
 light.island_lights:
