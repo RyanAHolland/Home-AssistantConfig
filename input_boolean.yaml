@@ -14,6 +14,14 @@ hue_arora:
     name: Hue Arora
     initial: off
     icon: mdi:lighthouse-on
+hue_mood:
+    name: Hue Mood
+    initial: off
+    icon: mdi:lighthouse-on
+hue_candle:
+    name: Hue Arora
+    initial: off
+    icon: mdi:lighthouse-on
 #ryan_occupancy:
 #    name: Ryan Occupancy
 #    icon: mdi:human-male

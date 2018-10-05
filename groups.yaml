@@ -103,6 +103,14 @@ bedroomlamps:
       - light.ryan_lamp
       - light.kristi_lamp
 
+
+bedroomcolors:
+    name: Bedroom Colors
+    entities:
+      - input_boolean.hue_arora
+      - input_boolean.hue_mood
+      - input_boolean.hue_candle
+
 bathroom:
     name: Master Bathroom
     entities:
@@ -764,6 +772,7 @@ second_floor:
       - group.secondfloorlights
       - group.office
       - group.bedroom
+      - group.bedroomcolors
       - group.bathroom
       - group.2ndSensors
       - group.upstairs_hall
