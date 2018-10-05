@@ -10,6 +10,10 @@ auto_lights:
     name: Automatic Lights
     initial: on
     icon: mdi:walk
+hue_arora:
+    name: Hue Arora
+    initial: off
+    icon: mdi:lighthouse-on
 #ryan_occupancy:
 #    name: Ryan Occupancy
 #    icon: mdi:human-male
