@@ -211,28 +211,28 @@
     retain: true
     brightness_scale: 99
 
-  - platform: mqtt 
-    name: "Kristi Reading Lamp" 
-    state_topic: "smartthings/Kristi Reading Lamp/switch" 
-    command_topic: "smartthings/Kristi Reading Lamp/switch" 
-    brightness_state_topic: "smartthings/Kristi Reading Lamp/level" 
-    brightness_command_topic: "smartthings/Kristi Reading Lamp/level" 
-    color_temp_command_topic: "smartthings/Kristi Reading Lamp/colorTemperature"
-    color_temp_state_topic: "smartthings/Kristi Reading Lamp/colorTemperature"
-    payload_on: "on" 
-    payload_off: "off" 
-    retain: true
-    brightness_scale: 99
-  - platform: mqtt 
-    name: "Front Lights" 
-    state_topic: "smartthings/Front Lights/switch" 
-    command_topic: "smartthings/Front Lights/switch" 
-    brightness_state_topic: "smartthings/Front Lights/level" 
-    brightness_command_topic: "smartthings/Front Lights/level" 
-    payload_on: "on" 
-    payload_off: "off" 
-    retain: true
-    brightness_scale: 99
+  # - platform: mqtt 
+  #   name: "Kristi Reading Lamp" 
+  #   state_topic: "smartthings/Kristi Reading Lamp/switch" 
+  #   command_topic: "smartthings/Kristi Reading Lamp/switch" 
+  #   brightness_state_topic: "smartthings/Kristi Reading Lamp/level" 
+  #   brightness_command_topic: "smartthings/Kristi Reading Lamp/level" 
+  #   color_temp_command_topic: "smartthings/Kristi Reading Lamp/colorTemperature"
+  #   color_temp_state_topic: "smartthings/Kristi Reading Lamp/colorTemperature"
+  #   payload_on: "on" 
+  #   payload_off: "off" 
+  #   retain: true
+  #   brightness_scale: 99
+  # - platform: mqtt 
+  #   name: "Front Lights" 
+  #   state_topic: "smartthings/Front Lights/switch" 
+  #   command_topic: "smartthings/Front Lights/switch" 
+  #   brightness_state_topic: "smartthings/Front Lights/level" 
+  #   brightness_command_topic: "smartthings/Front Lights/level" 
+  #   payload_on: "on" 
+  #   payload_off: "off" 
+  #   retain: true
+  #   brightness_scale: 99
 
 #CHRISTMAS LIGHTS
 #  - platform: mqtt 
