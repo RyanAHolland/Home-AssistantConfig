@@ -185,8 +185,8 @@ play_room:
 decorative:
     name: Decorative Lights
     entities:
-      - light.left_light_2
-      - light.right_light_2
+      - light.left_light
+      - light.right_light
       - light.stair_lamp
       - light.floor_lamp_2
       - light.kitchen_lamp
@@ -509,7 +509,7 @@ systemSwitches:
       - switch.wake_spike
       - sensor.current_version
 
-floorlights:
+firstfloorlights:
     name: First Floor Lights
     entities:
       - group.kitchen
