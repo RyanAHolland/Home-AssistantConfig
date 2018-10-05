@@ -73,7 +73,7 @@ light.kristi_lamp:
 light.kitchen_overhead:
   icon: mdi:spotlight
 light.stair_lamp:
-  icon: mdi:lamp
+  icon: mdi:stair-lamp
   friendly_name: Stair Lamp
 light.kitchen_lamp:
   icon: mdi:lamp
@@ -88,8 +88,16 @@ light.office_lamp:
   icon: mdi:lamp
 light.office_lamp_2:
   icon: mdi:lamp
+light.ryan_lamp:
+  icon: mdi:lamp
+light.kristi_lamp:
+  icon: mdi:lamp
+light.kristi_reading_lamp:
+  icon: mdi:track-light
+light.ryan_reading_lamp:
+  icon: mdi:track-light
 light.island_lights:
-  icon: mdi:lightbulb
+  icon: mdi:ceiling-light
 lights.living_room_overhead:
   icon: mdi:spotlight
 switch.south_yard_lights:

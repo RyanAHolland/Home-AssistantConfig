@@ -19,7 +19,7 @@ hue_mood:
     initial: off
     icon: mdi:lighthouse-on
 hue_candle:
-    name: Hue Arora
+    name: Hue Candle
     initial: off
     icon: mdi:lighthouse-on
 #ryan_occupancy:
