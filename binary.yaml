@@ -241,12 +241,12 @@
 #        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.washer_movement.last_changed) > 30 }}'
 #        friendly_name: "Washer Active"
 #        device_class: moving
-#  - platform: template
-#    sensors:
-#      dryer_active:
-#        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.dryer_movement.last_changed) > 30 }}'
-#        friendly_name: "Dryer Active"
-#        device_class: moving
+- platform: template
+    sensors:
+      dryer_active:
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.binary_sensor.dryer_vibration.last_updated) < 120  }}'
+        friendly_name: "Dryer Active"
+        device_class: moving
   - platform: bayesian
     prior: 0.5
     name: 'Ryan Presence'

@@ -494,7 +494,7 @@ dryer:
       - input_select.dryer_status
       - binary_sensor.dryer_door
       - binary_sensor.dryer_vibration
-      - sensor.dryer_movement
+      - binary_sensor.dryer_active
       - sensor.dryer_sensor_battery
       - sensor.dryer_sensor_temperature
 
