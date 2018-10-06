@@ -241,7 +241,7 @@
 #        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.washer_movement.last_changed) > 30 }}'
 #        friendly_name: "Washer Active"
 #        device_class: moving
-- platform: template
+  - platform: template
     sensors:
       dryer_active:
         value_template: '{{ as_timestamp(now()) - as_timestamp(states.binary_sensor.dryer_vibration.last_updated) < 120  }}'
