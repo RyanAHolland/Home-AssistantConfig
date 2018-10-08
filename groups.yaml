@@ -141,23 +141,23 @@ insideLights:
 office:
     name: Office
     entities:
-      - light.office_lamp_2
+      - light.office_lamp
       - light.camera_lights
 
 living room:
     name: Living Room
     entities:
-      - light.left_light_2
-      - light.right_light_2
+      - light.left_light
+      - light.right_light
       - light.stair_lamp
-      - light.floor_lamp_2
+      - light.floor_lamp
       - light.living_room_overhead
 
 fireplace lights:
     name: Fireplace Lights
     entities:
-      - light.left_light_2
-      - light.right_light_2
+      - light.left_light
+      - light.right_light
 
 #christmas lights:
 #    name: Christmas Lights

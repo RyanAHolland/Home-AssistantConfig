@@ -8,7 +8,7 @@
             state: on
             transition: 5
             brightness: 215
-        light.floor_lamp_2:
+        light.floor_lamp:
             state: on
             transition: 5
             brightness: 215
@@ -22,7 +22,7 @@
             state: on
             transition: 5
             brightness: 15
-        light.floor_lamp_2:
+        light.floor_lamp:
             state: on
             transition: 5
             brightness: 15
@@ -110,7 +110,7 @@
         light.kitchen_lamp:
             state: on
             brightness: 150
-        light.floor_lamp_2:
+        light.floor_lamp:
             state: on
         light.stair_lamp:
             state: on
@@ -134,7 +134,7 @@
             state: on
             brightness: 102
             transition: 10
-        light.floor_lamp_2:
+        light.floor_lamp:
             state: on
             brightness: 102
             transition: 10
@@ -161,7 +161,7 @@
         light.kitchen_lamp:
             state: off
             transition: 10
-        light.floor_lamp_2:
+        light.floor_lamp:
             state: off
             transition: 10
         light.stair_lamp:
