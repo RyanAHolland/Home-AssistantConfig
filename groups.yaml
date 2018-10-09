@@ -805,6 +805,7 @@ weather:
     view: yes
     icon: mdi:weather-lightning-rainy
     entities:
+      - sensor.weather_alert
       - group.ds_weather
       - group.daily_forecast
       - group.weather_overview
