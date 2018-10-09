@@ -228,13 +228,6 @@
     payload_on: "pushed"
     payload_off: "released"
 #Dryer
-#  - platform: mqtt
-#    state_topic: "smartthings/Dryer Sensor/acceleration"
-#    name: "Dryer Vibration"
-#    qos: 0
-#    payload_on: "active"
-#    payload_off: "inactive"
-#    device_class: vibration
 #  - platform: template
 #    sensors:
 #      washer_active:
