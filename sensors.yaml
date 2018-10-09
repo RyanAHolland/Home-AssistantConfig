@@ -567,15 +567,15 @@
  - platform: template
    sensors:
      weather_alert:
-        value_template:
-          "{% if states.sensor.pws_alerts|regex_search('_TOR') %}'Tornado Warning'
-          {% elif states.sensor.pws_alerts.attributes|regex_search('_TOW') %}'Tornado Watch'
-          {% elif states.sensor.pws_alerts.attributes|regex_search('_WRN') %}'Severe Thunderstorm Warning'
-          {% elif states.sensor.pws_alerts.attributes|regex_search('_FLO') %}'Flood Warning'
-          {% elif states.sensor.pws_alerts.attributes|regex_search('_WIN') %}'Winter Storm Advisory'
-          {% else %}
-          'No Alert'
-          {% endif %}"
+       value_template:
+         "{% if states.sensor.pws_alerts|regex_search('_TOR') %}'Tornado Warning'
+         {% elif states.sensor.pws_alerts.attributes|regex_search('_TOW') %}'Tornado Watch'
+         {% elif states.sensor.pws_alerts.attributes|regex_search('_WRN') %}'Severe Thunderstorm Warning'
+         {% elif states.sensor.pws_alerts.attributes|regex_search('_FLO') %}'Flood Warning'
+         {% elif states.sensor.pws_alerts.attributes|regex_search('_WIN') %}'Winter Storm Advisory'
+         {% else %}
+         'No Alert'
+         {% endif %}"
        friendly_name: Weather Alert
 
        
