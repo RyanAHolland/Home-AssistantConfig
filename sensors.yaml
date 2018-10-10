@@ -458,6 +458,11 @@
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
    name: 'Volvo First Floor'
+ - platform: mqtt
+   state_topic: !secret 1sttestbt
+   value_template: '{{ value_json.confidence }}'
+   unit_of_measurement: '%'
+   name: 'Test First Floor'
 ##BT presence logic
  - platform: min_max
    name: "Ryan Home Occupancy Confidence"
