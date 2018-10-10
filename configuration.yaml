@@ -317,6 +317,7 @@ google_assistant:
 
 shell_command:
   get_latest_config: bash /home/homeassistant/.homeassistant/bin/update_config_from_github.sh
+  restart_mqtt: docker restart mqtt_bridge
 
 climate:
   platform: nest

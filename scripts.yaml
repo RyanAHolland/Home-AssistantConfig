@@ -493,3 +493,8 @@
     sequence:
       - service: shell_command.get_latest_config
       - service: homeassistant.restart
+
+  fix_mqtt:
+    sequence:
+      - service: shell_command.restart_mqtt
+      - service: homeassistant.restart
