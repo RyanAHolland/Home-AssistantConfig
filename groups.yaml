@@ -15,8 +15,6 @@ lindabill:
    - device_tracker.moms_phone
    - device_tracker.billsphone
    - sensor.mom_home
-dad:
-   - sensor.mom_home
 earl:
     - device_tracker.dads_phone
 all mobile devices:
