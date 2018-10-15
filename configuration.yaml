@@ -310,10 +310,10 @@ tts:
     cache_dir: /tmp/tts
     time_memory: 300
 
-google_assistant:
-  project_id: !secret ga_project
-  client_id: !secret ga_id
-  access_token: !secret ga_token
+#google_assistant:
+#  project_id: !secret ga_project
+#  client_id: !secret ga_id
+#  access_token: !secret ga_token
 
 shell_command:
   get_latest_config: bash /home/homeassistant/.homeassistant/bin/update_config_from_github.sh
