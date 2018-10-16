@@ -22,6 +22,18 @@ hue_candle:
     name: Hue Candle
     initial: off
     icon: mdi:lighthouse-on
+outlander_home:
+    name: Outlander Home
+    initial: off
+    icon: mdi:car
+volvo_home:
+    name: Volvo Home
+    initial: off
+    icon: mdi:car
+dryer_active:
+    name: Dryer Active
+    initial: off
+    icon: mdi:tumble-dryer
 #ryan_occupancy:
 #    name: Ryan Occupancy
 #    icon: mdi:human-male
