@@ -1,0 +1,148 @@
+climate.downstairs_thermostat:
+  name:
+  platform: nest
+  unique_id: MLXi2VN-obw7bv7I9fXdRD-hybmnHwKk
+media_player.play_room_tv:
+  name:
+  platform: cast
+  unique_id: 9c526521-9091-e60a-c381-d18a857cdf9c
+media_player.bedroom_home:
+  name:
+  platform: cast
+  unique_id: 296f5695-c447-e6e0-6636-894c3088335b
+media_player.home_group:
+  name:
+  platform: cast
+  unique_id: 29e5b6dd-9a2c-4d50-9213-fc687204ddb9
+media_player.bedroom_suite:
+  name:
+  platform: cast
+  unique_id: 4ff56074-174c-4319-9d35-16a96e608eb9
+media_player.soundbar:
+  name:
+  platform: cast
+  unique_id: 4c131f07-2e16-4392-09b4-b8bc516734e8
+media_player.bathroom_speaker:
+  name:
+  platform: cast
+  unique_id: 19ee3895-3e27-7651-dfd6-f46b868796b6
+media_player.bedroom_tv:
+  name:
+  platform: cast
+  unique_id: de6e2d73-16fe-2a68-5f16-8759024323a6
+media_player.office_home:
+  name:
+  platform: cast
+  unique_id: 5ade0893-a9d3-4dd7-2250-220f96fdc5e4
+media_player.office_speakers:
+  name:
+  platform: cast
+  unique_id: b17aab26-96e9-e97c-0818-886714310192
+media_player.kitchen_home:
+  name:
+  platform: cast
+  unique_id: c9626191-ab82-3409-0f13-92fa9e581e5c
+media_player.basement_tv:
+  name:
+  platform: cast
+  unique_id: 3301b242-d121-535e-f396-0eaad52a4e86
+media_player.living_room_tv:
+  name:
+  platform: cast
+  unique_id: 4e519a55-61fc-3de2-1150-7100bb4db43a
+switch.north_back_yard:
+  name:
+  platform: rachio
+  unique_id: 945c6f23-b625-4d94-b783-e2294d1e65e8-77512e4f-d34f-40aa-9f34-e3c5aace6659
+switch.back_yard:
+  name:
+  platform: rachio
+  unique_id: 945c6f23-b625-4d94-b783-e2294d1e65e8-b8319902-e87e-4f20-bf7d-b910b45fc44d
+switch.front_yard:
+  name:
+  platform: rachio
+  unique_id: 945c6f23-b625-4d94-b783-e2294d1e65e8-e4bf1183-f8f5-4871-8d47-b4ae1f68df6b
+switch.north_side:
+  name:
+  platform: rachio
+  unique_id: 945c6f23-b625-4d94-b783-e2294d1e65e8-20a450e8-615b-4136-865b-92f90bdc0dda
+switch.side_walk:
+  name:
+  platform: rachio
+  unique_id: 945c6f23-b625-4d94-b783-e2294d1e65e8-5beeace0-27b6-4553-aedb-4f102bb98087
+switch.mantle_lights:
+  name:
+  platform: wemo
+  unique_id: 221335K010059A
+switch.liams_tree:
+  name:
+  platform: wemo
+  unique_id: 221619K01002CB
+switch.basement_tv:
+  name:
+  platform: wemo
+  unique_id: 221335K010064D
+light.122593:
+  name:
+  platform: insteon_local
+  unique_id: '122593'
+light.office_lamp:
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:02:30:4c:cf-0b
+light.ryans_bloom:
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:01:24:1e:24-0b
+light.reading_lamp:
+  name:
+  platform: hue
+  unique_id: 7c:e5:24:00:00:03:51:6f-01
+light.floor_lamp:
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:02:7f:d3:9f-0b
+light.kristis_bloom:
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:01:24:65:cc-0b
+light.left_light:
+  name:
+  platform: hue
+  unique_id: 7c:e5:24:00:00:12:15:a0-01
+light.right_light:
+  name:
+  platform: hue
+  unique_id: 7c:e5:24:00:00:14:7e:8f-01
+media_player.galaxy_s7_edge:
+  name:
+  platform: plex
+  unique_id: 71165d19638fd782-com-plexapp-android
+media_player.galaxy_note8:
+  name:
+  platform: plex
+  unique_id: fc15208fce94ca41-com-plexapp-android
+media_player.living_room_roku_2:
+  name:
+  platform: plex
+  unique_id: 2a59d3e20b4fd9a713a505094383d40d
+media_player.sparebedroom_2:
+  name:
+  platform: plex
+  unique_id: 15b4b55b93cdbeb220ea4b50de922123
+switch.1840d5:
+  name:
+  platform: insteon_local
+  unique_id: 1840D5
+media_player.unnamed_device:
+  name:
+  platform: plex
+  unique_id: 8x9jaamugtf8yqfrkgsev85s
+media_player.chrome:
+  name:
+  platform: plex
+  unique_id: rfh0h2mhxhtdjyn9w2rorbe2
+media_player.chrome_2:
+  name:
+  platform: plex
+  unique_id: ikgyv6uwebktr90p491rfejf
