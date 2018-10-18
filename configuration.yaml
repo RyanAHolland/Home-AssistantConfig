@@ -310,13 +310,14 @@ tts:
     cache_dir: /tmp/tts
     time_memory: 300
 
-google_assistant:
-  project_id: !secret ga_project
-  client_id: !secret ga_id
-  access_token: !secret ga_token
+#google_assistant:
+#  project_id: !secret ga_project
+#  client_id: !secret ga_id
+#  access_token: !secret ga_token
 
 shell_command:
   get_latest_config: bash /home/homeassistant/.homeassistant/bin/update_config_from_github.sh
+  restart_mqtt: docker restart mqtt_bridge
 
 climate:
   platform: nest
@@ -335,6 +336,10 @@ device_tracker:
   - platform: ping
     hosts:
       mom: !secret mom_ip
+  - platform: google_maps
+    username: !secret google_user
+    password: !secret google_pass
+    max_gps_accuracy: 500
 
 #Cameras
 camera:
