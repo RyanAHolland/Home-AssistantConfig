@@ -583,12 +583,12 @@
          {% endif %}"
        friendly_name: Weather Alert
 
- - platform: rest
-   sensors:
-     resource: http://localhost:7999/1/detection/status
-     method: GET
-     name: Back Deck Motion Record
-     value_template: '{{ value }}'
+#  - platform: rest
+#    sensors:
+#      resource: http://localhost:7999/1/detection/status
+#      method: GET
+#      name: Back Deck Motion Record
+#      value_template: '{{ value }}'
        
  #- platform: zoneminder
  #  include_archived: false
