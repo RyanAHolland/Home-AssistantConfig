@@ -119,114 +119,114 @@
 ### Sensors from SmartThings
 ##Light Sensors
  - platform: mqtt
-   state_topic: "smartthings/First Floor Entry/illuminance"
+   state_topic: "smartthings/First Floor Entry/illuminance/state""
    name: "First Floor Entry Light"
    qos: 0
    unit_of_measurement: 'lux'
  - platform: mqtt
-   state_topic: "smartthings/Bathroom Motion/illuminance"
+   state_topic: "smartthings/Bathroom Motion/illuminance/state""
    name: "Bathroom Motion Light Sensor"
    qos: 0
    unit_of_measurement: 'lux'
  - platform: mqtt
-   state_topic: "smartthings/Bedroom Motion/illuminance"
+   state_topic: "smartthings/Bedroom Motion/illuminance/state""
    name: "Bedroom Motion Light Sensor"
    qos: 0
    unit_of_measurement: 'lux'
  - platform: mqtt
-   state_topic: "smartthings/Office Motion/illuminance"
+   state_topic: "smartthings/Office Motion/illuminance/state""
    name: "Office Motion Light Sensor"
    qos: 0
    unit_of_measurement: 'lux'
 #Humidity Sensors
  - platform: mqtt
-   state_topic: "smartthings/First Floor Entry/humidity"
+   state_topic: "smartthings/First Floor Entry/humidity/state"
    name: "First Floor Entry Humidity"
    qos: 0
    unit_of_measurement: '%RH'
  - platform: mqtt
-   state_topic: "smartthings/Humidor Sensor/humidity"
+   state_topic: "smartthings/Humidor Sensor/humidity/state"
    name: "Humidor Humidity"
    qos: 0
    unit_of_measurement: '%RH'
  - platform: mqtt
-   state_topic: "smartthings/Liam's Room Sensor/humidity"
+   state_topic: "smartthings/Liam's Room Sensor/humidity/state/state"
    name: "Liam's Room Humidity"
    qos: 0
    unit_of_measurement: '%RH'
 #Temperature Sensors
  - platform: mqtt
-   state_topic: "smartthings/First Floor Entry/temperature"
+   state_topic: "smartthings/First Floor Entry/temperature/state"
    name: "First Floor Entry Temperature"
    qos: 0
    unit_of_measurement: '°F'
  - platform: mqtt
-   state_topic: "smartthings/Liam's Room Sensor/temperature"
+   state_topic: "smartthings/Liam's Room Sensor/temperature/state"
    name: "Liam's Room Temperature"
    qos: 0
    unit_of_measurement: '°F'
  - platform: mqtt
-   state_topic: "smartthings/Humidor Sensor/temperature"
+   state_topic: "smartthings/Humidor Sensor/temperature/state"
    name: "Humidor Temperature"
    qos: 0
    unit_of_measurement: '°F'
  - platform: mqtt
-   state_topic: "smartthings/Kitchen Motion/temperature"
+   state_topic: "smartthings/Kitchen Motion/temperature/state"
    name: "Kitchen Motion Temperature"
    qos: 0
    unit_of_measurement: '°F'
  - platform: mqtt
-   state_topic: "smartthings/Basement Motion/temperature"
+   state_topic: "smartthings/Basement Motion/temperature/state"
    name: "Basement Motion Temperature"
    qos: 0
    unit_of_measurement: '°F'
  - platform: mqtt
-   state_topic: "smartthings/Iris 3405-L Keypad/temperature"
+   state_topic: "smartthings/Iris 3405-L Keypad/temperature/state"
    name: "Entry Keypad Temperature"
    qos: 0
    unit_of_measurement: '°F'
  - platform: mqtt
-   state_topic: "smartthings/Upstairs Motion/temperature"
+   state_topic: "smartthings/Upstairs Motion/temperature/state"
    name: "Upstairs Motion Temperature"
    qos: 0
    unit_of_measurement: '°F'
  - platform: mqtt
-   state_topic: "smartthings/Basement North Window/temperature"
+   state_topic: "smartthings/Basement North Window/temperature/state"
    name: "Basement North Window Temperature"
    qos: 0
    unit_of_measurement: '°F'
  - platform: mqtt
-   state_topic: "smartthings/Basement South Window 1/temperature"
+   state_topic: "smartthings/Basement South Window 1/temperature/state"
    name: "Basement South Window 1 Temperature"
    qos: 0
    unit_of_measurement: '°F'
  - platform: mqtt
-   state_topic: "smartthings/Basement South Window 2/temperature"
+   state_topic: "smartthings/Basement South Window 2/temperature/state"
    name: "Basement South Window 2 Temperature"
    qos: 0
    unit_of_measurement: '°F'
  - platform: mqtt
-   state_topic: "smartthings/Front Window 1/temperature"
+   state_topic: "smartthings/Front Window 1/temperature/state"
    name: "Front Window 1 Temperature"
    qos: 0
    unit_of_measurement: '°F'
  - platform: mqtt
-   state_topic: "smartthings/Front Window 2/temperature"
+   state_topic: "smartthings/Front Window 2/temperature/state"
    name: "Front Window 2 Temperature"
    qos: 0
    unit_of_measurement: '°F'
  - platform: mqtt
-   state_topic: "smartthings/Window Over Sink/temperature"
+   state_topic: "smartthings/Window Over Sink/temperature/state"
    name: "Window Over Sink Temperature"
    qos: 0
    unit_of_measurement: '°F'
  - platform: mqtt
-   state_topic: "smartthings/Washer Sensor/temperature"
+   state_topic: "smartthings/Washer Sensor/temperature/state"
    name: "Washer Sensor Temperature"
    qos: 0
    unit_of_measurement: '°F'
  - platform: mqtt
-   state_topic: "smartthings/Dryer Sensor/temperature"
+   state_topic: "smartthings/Dryer Sensor/temperature/state"
    name: "Dryer Sensor Temperature"
    qos: 0
    unit_of_measurement: '°F'
@@ -238,87 +238,87 @@
    unit_of_measurement: '°F'
 #Battery Sensors
  - platform: mqtt
-   state_topic: "smartthings/Window Over Sink/battery"
+   state_topic: "smartthings/Window Over Sink/battery/state"
    name: "Window Over Sink Battery"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
-   state_topic: "smartthings/Dryer Sensor/battery"
+   state_topic: "smartthings/Dryer Sensor/battery/state"
    name: "Dryer Sensor Battery"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
-   state_topic: "smartthings/Washer Sensor/battery"
+   state_topic: "smartthings/Washer Sensor/battery/state"
    name: "Washer Sensor Battery"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
-   state_topic: "smartthings/Play Room Window/battery"
+   state_topic: "smartthings/Play Room Window/battery/state"
    name: "Play Room Window Battery"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
-   state_topic: "smartthings/Front Window 1/battery"
+   state_topic: "smartthings/Front Window 1/battery/state"
    name: "Front Window 1 Battery"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
-   state_topic: "smartthings/Basement South Window 2/battery"
+   state_topic: "smartthings/Basement South Window 2/battery/state"
    name: "Basement South Window 2 Battery"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
-   state_topic: "smartthings/Basement South Window 1/battery"
+   state_topic: "smartthings/Basement South Window 1/battery/state"
    name: "Basement South Window 1 Battery"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
-   state_topic: "smartthings/Basement North Window/battery"
+   state_topic: "smartthings/Basement North Window/battery/state"
    name: "Basement North Window Battery"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
-   state_topic: "smartthings/Play Room Window/battery"
+   state_topic: "smartthings/Play Room Window/battery/state"
    name: "Play Room Window Battery"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
-   state_topic: "smartthings/Upstairs Keypad/battery"
+   state_topic: "smartthings/Upstairs Keypad/battery/state"
    name: "Entry Keypad Battery"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
-   state_topic: "smartthings/Upstairs Motion/battery"
+   state_topic: "smartthings/Upstairs Motion/battery/state"
    name: "Upstairs Motion Battery"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
-   state_topic: "smartthings/Basement Motion/battery"
+   state_topic: "smartthings/Basement Motion/battery/state"
    name: "Basement Motion Battery"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
-   state_topic: "smartthings/Kitchen Motion/battery"
+   state_topic: "smartthings/Kitchen Motion/battery/state"
    name: "Kitchen Motion Battery"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
-   state_topic: "smartthings/First Floor Entry/battery"
+   state_topic: "smartthings/First Floor Entry/battery/state"
    name: "First Floor Entry Battery"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
-   state_topic: "smartthings/Bathroom Motion/battery"
+   state_topic: "smartthings/Bathroom Motion/battery/state"
    name: "Bathroom Motion Battery"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
-   state_topic: "smartthings/Bedroom Motion/battery"
+   state_topic: "smartthings/Bedroom Motion/battery/state"
    name: "Bedroom Motion Battery"
    qos: 0
    unit_of_measurement: '%'
  - platform: mqtt
-   state_topic: "smartthings/Office Motion/battery"
+   state_topic: "smartthings/Office Motion/battery/state"
    name: "Office Motion Battery"
    qos: 0
    unit_of_measurement: '%'

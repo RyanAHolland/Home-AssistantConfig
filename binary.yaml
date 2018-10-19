@@ -4,7 +4,7 @@
       - ding
       - motion
   - platform: mqtt
-    state_topic: "smartthings/Front Doorbell/motion"
+    state_topic: "smartthings/Front Doorbell/motion/state"
     name: "Front Doorbell Motion"
     qos: 0
     payload_on: "active"
@@ -19,35 +19,35 @@
 #SmartThings Sensors
 ##DOOR
   - platform: mqtt
-    state_topic: "smartthings/Front Door Sensor/contact"
+    state_topic: "smartthings/Front Door Sensor/contact/state"
     name: "Front Door Sensor"
     qos: 0
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
   - platform: mqtt
-    state_topic: "smartthings/Back Door/contact"
+    state_topic: "smartthings/Back Door/contact/state"
     name: "Back Door Sensor"
     qos: 0
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
   - platform: mqtt
-    state_topic: "smartthings/Garage Entry Sensor/contact"
+    state_topic: "smartthings/Garage Entry Sensor/contact/state"
     name: "Garage Entry Sensor"
     qos: 0
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
   - platform: mqtt
-    state_topic: "smartthings/Liam's Room/contact"
+    state_topic: "smartthings/Liam's Room/contact/state"
     name: "Liam's Room Door"
     qos: 0
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
   - platform: mqtt
-    state_topic: "smartthings/Pantry Door/contact"
+    state_topic: "smartthings/Pantry Door/contact/state"
     name: "Pantry Door"
     qos: 0
     payload_on: "open"
@@ -55,14 +55,14 @@
     device_class: opening
 ##APPLIANCE
   - platform: mqtt
-    state_topic: "smartthings/Washer Sensor/contact"
+    state_topic: "smartthings/Washer Sensor/contact/state"
     name: "Washer Door"
     qos: 0
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
   - platform: mqtt
-    state_topic: "smartthings/Dryer Sensor/contact"
+    state_topic: "smartthings/Dryer Sensor/contact/state"
     name: "Dryer Door"
     qos: 0
     payload_on: "open"
@@ -70,49 +70,49 @@
     device_class: opening
 ##WINDOWS
   - platform: mqtt
-    state_topic: "smartthings/Front Window 1/contact"
+    state_topic: "smartthings/Front Window 1/contact/state"
     name: "Front Window 1"
     qos: 0
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
   - platform: mqtt
-    state_topic: "smartthings/Front Window 2/contact"
+    state_topic: "smartthings/Front Window 2/contact/state"
     name: "Front Window 2"
     qos: 0
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
   - platform: mqtt
-    state_topic: "smartthings/Window Over Sink/contact"
+    state_topic: "smartthings/Window Over Sink/contact/state"
     name: "Window Over Sink"
     qos: 0
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
   - platform: mqtt
-    state_topic: "smartthings/Basement North Window/contact"
+    state_topic: "smartthings/Basement North Window/contact/state"
     name: "Basement North Window"
     qos: 0
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
   - platform: mqtt
-    state_topic: "smartthings/Basement South Window 1/contact"
+    state_topic: "smartthings/Basement South Window 1/contact/state"
     name: "Basement South Window 1"
     qos: 0
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
   - platform: mqtt
-    state_topic: "smartthings/Basement South Window 2/contact"
+    state_topic: "smartthings/Basement South Window 2/contact/state"
     name: "Basement South Window 2"
     qos: 0
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
   - platform: mqtt
-    state_topic: "smartthings/Play Room Window/contact"
+    state_topic: "smartthings/Play Room Window/contact/state"
     name: "Play Room Window"
     qos: 0
     payload_on: "open"
@@ -120,14 +120,14 @@
     device_class: opening
 ##GARAGE DOOR
   - platform: mqtt
-    state_topic: "smartthings/Large Door/contact"
+    state_topic: "smartthings/Large Door/contact/state"
     name: "Large Garage Door Contact"
     qos: 0
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
   - platform: mqtt
-    state_topic: "smartthings/Small Door/contact"
+    state_topic: "smartthings/Small Door/contact/state"
     name: "Small Garage Door Contact"
     qos: 0
     payload_on: "open"
@@ -135,63 +135,63 @@
     device_class: opening
 ##MOTION
   - platform: mqtt
-    state_topic: "smartthings/First Floor Entry/motion"
+    state_topic: "smartthings/First Floor Entry/motion/state"
     name: "First Floor Entry Motion"
     qos: 0
     payload_on: "active"
     payload_off: "inactive"
     device_class: motion
   - platform: mqtt
-    state_topic: "smartthings/Bathroom Motion/motion"
+    state_topic: "smartthings/Bathroom Motion/motion/state"
     name: "Bathroom Motion"
     qos: 0
     payload_on: "active"
     payload_off: "inactive"
     device_class: motion
   - platform: mqtt
-    state_topic: "smartthings/Iris 3405-L Keypad/motion"
+    state_topic: "smartthings/Iris 3405-L Keypad/motion/state"
     name: "Entry Keypad Motion"
     qos: 0
     payload_on: "active"
     payload_off: "inactive"
     device_class: motion
   - platform: mqtt
-    state_topic: "smartthings/Kitchen Motion/motion"
+    state_topic: "smartthings/Kitchen Motion/motion/state"
     name: "Kitchen Motion"
     qos: 0
     payload_on: "active"
     payload_off: "inactive"
     device_class: motion
   - platform: mqtt
-    state_topic: "smartthings/Upstairs Motion/motion"
+    state_topic: "smartthings/Upstairs Motion/motion/state"
     name: "Upstairs Motion"
     qos: 0
     payload_on: "active"
     payload_off: "inactive"
     device_class: motion
   - platform: mqtt
-    state_topic: "smartthings/Basement Motion/motion"
+    state_topic: "smartthings/Basement Motion/motion/state"
     name: "Basement Motion"
     qos: 0
     payload_on: "active"
     payload_off: "inactive"
     device_class: motion
   - platform: mqtt
-    state_topic: "smartthings/Front Door Cam/motion"
+    state_topic: "smartthings/Front Door Cam/motion/state"
     name: "Driveway Camera Motion"
     qos: 0
     payload_on: "active"
     payload_off: "inactive"
     device_class: motion
   - platform: mqtt
-    state_topic: "smartthings/Bedroom Motion/motion"
+    state_topic: "smartthings/Bedroom Motion/motion/state"
     name: "Bedroom Motion"
     qos: 0
     payload_on: "active"
     payload_off: "inactive"
     device_class: motion
   - platform: mqtt
-    state_topic: "smartthings/Office Motion/motion"
+    state_topic: "smartthings/Office Motion/motion/state"
     name: "Office Motion"
     qos: 0
     payload_on: "active"
@@ -199,7 +199,7 @@
     device_class: motion
 ##SECURITY
   - platform: mqtt
-    state_topic: "smartthings/Downstairs Glass Break Sensor/contact"
+    state_topic: "smartthings/Downstairs Glass Break Sensor/contact/state"
     name: "Downstairs Glass Break"
     qos: 0
     payload_on: "open"
@@ -207,7 +207,7 @@
     device_class: sound
 ##SmartAlarm Trigger Device
   - platform: mqtt
-    state_topic: "smartthings/zzSA Trigger/contact"
+    state_topic: "smartthings/zzSA Trigger/contact/state"
     name: "SmartAlarm Triggered"
     qos: 0
     payload_on: "open"
@@ -328,7 +328,7 @@
         to_state: 'home'
 #ST Anywhere Sensors
   - platform: mqtt
-    state_topic: "smartthings/Dryer Multi (contact1)/contact"
+    state_topic: "smartthings/Dryer Multi (contact1)/contact/state"
     name: "Dryer Vibration"
     payload_on: "closed"
     payload_off: "open"
