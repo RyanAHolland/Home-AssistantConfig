@@ -7,7 +7,8 @@
 #  - platform: insteon_local
   - platform: mqtt
     name: "ST Vacation/Home Switch"
-    command_topic: "smartthings/zzVacationHomeSwitch/switch"
+    state_topic: "smartthings/zzVacationHomeSwitch/switch/state"
+    command_topic: "smartthings/zzVacationHomeSwitch/switch/set"
     payload_on: "on"
     payload_off: "off"
     optimistic: false
@@ -15,42 +16,56 @@
     retain: true
   - platform: mqtt
     name: "ST Good Morning/Night Switch"
-    command_topic: "smartthings/zzGoodMorningNight/switch"
+    state_topic: "smartthings/zzGoodMorningNight/switch/state" 
+    command_topic: "smartthings/zzGoodMorningNight/switch/set"
     payload_on: "on"
     payload_off: "off"
     qos: 0
     retain: true
   - platform: mqtt
     name: "ST Away/Home Switch"
-    command_topic: "smartthings/zzHomeAwaySwitch/switch"
+    state_topic: "smartthings/zzHomeAwaySwitch/switch/state" 
+    command_topic: "smartthings/zzHomeAwaySwitch/set"
     payload_on: "on"
     payload_off: "off"
     qos: 0
     retain: true
   - platform: mqtt
     name: "Guest Mode"
-    command_topic: "smartthings/zzGuestMode/switch"
+    state_topic: "smartthings/zzGuestMode/switch/state"
+    command_topic: "smartthings/zzGuestMode/switch/set"
     payload_on: "on"
     payload_off: "off"
     qos: 0
     retain: true
   - platform: mqtt
     name: "Railing Lights"
-    command_topic: "smartthings/Railing Lights/switch"
+    state_topic: "smartthings/Railing Lights/switch/state"
+    command_topic: "smartthings/Railing Lights/switch/set"
     payload_on: "on"
     payload_off: "off"
     qos: 0
     retain: true
   - platform: mqtt
     name: "Living Room Fan"
-    command_topic: "smartthings/Living Room Fan/switch"
+    state_topic: "smartthings/Living Room Fan/switch/state"
+    command_topic: "smartthings/Living Room Fan/switch/set"
     payload_on: "on"
     payload_off: "off"
     qos: 0
     retain: true
   - platform: mqtt
     name: "North Up Lights"
-    command_topic: "smartthings/North Up Lights/switch"
+    state_topic: "smartthings/North Up Lights/switch/state"
+    command_topic: "smartthings/North Up Lights/switch/set"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 0
+    retain: true
+  - platform: mqtt
+    name: "Driveway Camera Switch"
+    state_topic: "smartthings/Driveway Camera Switch/switch/state"
+    command_topic: "smartthings/Driveway Camera Switch/switch/set"
     payload_on: "on"
     payload_off: "off"
     qos: 0
@@ -58,7 +73,8 @@
 ##Insteon Switches
   - platform: mqtt
     name: "Front Lights"
-    command_topic: "smartthings/Front Lights/switch"
+    state_topic: "smartthings/Front Lights/switch/state"
+    command_topic: "smartthings/Front Lights/switch/set"
     payload_on: "on"
     payload_off: "off"
     qos: 0
