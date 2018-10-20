@@ -296,8 +296,8 @@ ring:
 
 alarm_control_panel:
   platform: mqtt
-  state_topic: "smartthings/alarm system status/alarmSystemStatus"
-  command_topic: "smartthings/alarm system status/alarmSystemStatus"
+  state_topic: "smartthings/alarm system status/alarmSystemStatus/state"
+  command_topic: "smartthings/alarm system status/alarmSystemStatus/set"
   name: "SHM"
   payload_disarm: "off"
   payload_arm_home: "stay"
