@@ -60,7 +60,7 @@
     payload_off: "off" 
     retain: true 
     brightness_scale: 99
-    on_command_type: "first"
+    on_command_type: "brightness"
   - platform: mqtt 
     name: "Camera Lights" 
     state_topic: "smartthings/Camera Lights/switch/state" 
