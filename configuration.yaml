@@ -302,7 +302,7 @@ alarm_control_panel:
   payload_disarm: "disarmed"
   payload_arm_home: "armed_home"
   payload_arm_away: "armed_away"
-  code: 
+  code: !secret alarmcode
 
 tts:
   - platform: google
