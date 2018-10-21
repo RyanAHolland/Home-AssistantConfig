@@ -299,9 +299,10 @@ alarm_control_panel:
   state_topic: "smartthings/alarm system status/alarmSystemStatus/state"
   command_topic: "smartthings/alarm system status/alarmSystemStatus/set"
   name: "SHM"
-  payload_disarm: "off"
-  payload_arm_home: "stay"
-  payload_arm_away: "away"
+  payload_disarm: "disarmed"
+  payload_arm_home: "armed_home"
+  payload_arm_away: "armed_away"
+  code: 
 
 tts:
   - platform: google
