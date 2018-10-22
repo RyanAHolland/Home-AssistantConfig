@@ -24,7 +24,7 @@
   - platform: mqtt
     name: "ST Away/Home Switch"
     state_topic: "smartthings/zzHomeAwaySwitch/switch" 
-    command_topic: "smartthings/zzHomeAwaySwitch/set"
+    command_topic: "smartthings/zzHomeAwaySwitch/switch/set"
     payload_on: "on"
     payload_off: "off"
     qos: 0
