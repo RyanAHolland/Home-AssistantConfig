@@ -257,7 +257,7 @@ ifttt:
   key: !secret ifttt_key
 
 #APCUPS
-apcupsd:
+#apcupsd:
 
 #JOIN
 # joaoapps_join:
@@ -416,12 +416,12 @@ variable:
       icon: mdi:map-marker
       name: "Last Motion"
       
-panel_custom:
-  - name: floorplan
-    sidebar_title: Floorplan
-    sidebar_icon: mdi:home
-    url_path: floorplan
-    config: !include floorplan.yaml
+# panel_custom:
+#   - name: floorplan
+#     sidebar_title: Floorplan
+#     sidebar_icon: mdi:home
+#     url_path: floorplan
+#     config: !include floorplan.yaml
     
 telegram_bot: 
   - platform: polling 
