@@ -15,7 +15,6 @@
     state_topic: dummy/floorplan/sensor
     name: Floorplan
 #Rachio Sensors
-  - platform: rachio
 #SmartThings Sensors
 ##DOOR
   - platform: mqtt
