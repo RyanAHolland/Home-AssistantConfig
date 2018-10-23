@@ -82,29 +82,29 @@
     retain: true 
     brightness_scale: 99
   - platform: mqtt 
-    name: "Left Light" 
-    state_topic: "smartthings/Left Light/switch" 
-    command_topic: "smartthings/Left Light/switch/set" 
-    color_temp_command_topic: "smartthings/Left Light/colorTemperature/set"
-    color_temp_state_topic: "smartthings/Left Light/colorTemperature"
-    brightness_state_topic: "smartthings/Left Light/level" 
-    brightness_command_topic: "smartthings/Left Light/level/set" 
-    payload_on: "on" 
-    payload_off: "off" 
-    retain: true 
-    brightness_scale: 99
-  - platform: mqtt 
-    name: "Right Light" 
-    state_topic: "smartthings/Right Light/switch" 
-    command_topic: "smartthings/Right Light/switch/set" 
-    color_temp_command_topic: "smartthings/Right Light/colorTemperature/set"
-    color_temp_state_topic: "smartthings/Right Light/colorTemperature"
-    brightness_state_topic: "smartthings/Right Light/level" 
-    brightness_command_topic: "smartthings/Right Light/level/set" 
-    payload_on: "on" 
-    payload_off: "off" 
-    retain: true 
-    brightness_scale: 99
+#    name: "Left Light" 
+#    state_topic: "smartthings/Left Light/switch" 
+#    command_topic: "smartthings/Left Light/switch/set" 
+#    color_temp_command_topic: "smartthings/Left Light/colorTemperature/set"
+#    color_temp_state_topic: "smartthings/Left Light/colorTemperature"
+#    brightness_state_topic: "smartthings/Left Light/level" 
+#    brightness_command_topic: "smartthings/Left Light/level/set" 
+#    payload_on: "on" 
+#    payload_off: "off" 
+#    retain: true 
+#    brightness_scale: 99
+#  - platform: mqtt 
+#    name: "Right Light" 
+#    state_topic: "smartthings/Right Light/switch" 
+#    command_topic: "smartthings/Right Light/switch/set" 
+#    color_temp_command_topic: "smartthings/Right Light/colorTemperature/set"
+#    color_temp_state_topic: "smartthings/Right Light/colorTemperature"
+#    brightness_state_topic: "smartthings/Right Light/level" 
+#    brightness_command_topic: "smartthings/Right Light/level/set" 
+#    payload_on: "on" 
+#    payload_off: "off" 
+#    retain: true 
+#    brightness_scale: 99
 # - platform: mqtt 
 #    name: "Floor Lamp" 
 #    state_topic: "smartthings/Floor Lamp/switch" 
@@ -186,18 +186,18 @@
     retain: true
     brightness_scale: 99
 ##Ikea Lights
-  - platform: mqtt
-    name: "Office Lamp" 
-    state_topic: "smartthings/Office Lamp/switch" 
-    command_topic: "smartthings/Office Lamp/switch/set" 
-    brightness_state_topic: "smartthings/Office Lamp/level" 
-    brightness_command_topic: "smartthings/Office Lamp/level/set"
-    color_temp_command_topic: "smartthings/Office Lamp/colorTemperature/set"
-    color_temp_state_topic: "smartthings/Office Lamp/colorTemperature"
-    payload_on: "on" 
-    payload_off: "off" 
-    retain: true
-    brightness_scale: 99
+#  - platform: mqtt
+#    name: "Office Lamp" 
+#    state_topic: "smartthings/Office Lamp/switch" 
+#    command_topic: "smartthings/Office Lamp/switch/set" 
+#    brightness_state_topic: "smartthings/Office Lamp/level" 
+#    brightness_command_topic: "smartthings/Office Lamp/level/set"
+#    color_temp_command_topic: "smartthings/Office Lamp/colorTemperature/set"
+#    color_temp_state_topic: "smartthings/Office Lamp/colorTemperature"
+#    payload_on: "on" 
+#    payload_off: "off" 
+#    retain: true
+#    brightness_scale: 99
 
   # - platform: mqtt 
   #   name: "Ryan Reading Lamp" 
