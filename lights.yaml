@@ -75,7 +75,7 @@
     payload_on: "on" 
     payload_off: "off" 
     brightness_scale: 99
-  - platform: mqtt 
+#  - platform: mqtt 
 #    name: "Left Light" 
 #    state_topic: "smartthings/Left Light/switch" 
 #    command_topic: "smartthings/Left Light/switch/set" 
