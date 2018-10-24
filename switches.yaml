@@ -6,7 +6,7 @@
 #  - platform: insteon_local
   - platform: mqtt
     name: "ST Vacation/Home Switch"
-    state_topic: "smartthings/zzVacationHomeSwitch/switch"
+    state_topic: "smartthings/zzVacationHomeSwitch/switch/state"
     command_topic: "smartthings/zzVacationHomeSwitch/switch/set"
     payload_on: "on"
     payload_off: "off"
@@ -15,7 +15,7 @@
     retain: true
   - platform: mqtt
     name: "ST Good Morning/Night Switch"
-    state_topic: "smartthings/zzGoodMorningNight/switch" 
+    state_topic: "smartthings/zzGoodMorningNight/switch/state"
     command_topic: "smartthings/zzGoodMorningNight/switch/set"
     payload_on: "on"
     payload_off: "off"
@@ -23,7 +23,7 @@
     retain: true
   - platform: mqtt
     name: "ST Away/Home Switch"
-    state_topic: "smartthings/zzHomeAwaySwitch/switch" 
+    state_topic: "smartthings/zzHomeAwaySwitch/switch/state"
     command_topic: "smartthings/zzHomeAwaySwitch/switch/set"
     payload_on: "on"
     payload_off: "off"

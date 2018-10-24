@@ -2,27 +2,27 @@
 ##Lights from SmartThings
   - platform: mqtt 
     name: "Living Room Overhead" 
-    state_topic: "smartthings/Living Room Overhead/switch" 
+    state_topic: "smartthings/Living Room Overhead/switch/state"
     command_topic: "smartthings/Living Room Overhead/switch/set" 
-    brightness_state_topic: "smartthings/Living Room Overhead/level" 
+    brightness_state_topic: "smartthings/Living Room Overhead/level/state"
     brightness_command_topic: "smartthings/Living Room Overhead/level/set" 
     payload_on: "on" 
     payload_off: "off"  
     brightness_scale: 99
   - platform: mqtt 
     name: "Bedroom Fan" 
-    state_topic: "smartthings/Bedroom Fan/switch" 
+    state_topic: "smartthings/Bedroom Fan/switch/state"
     command_topic: "smartthings/Bedroom Fan/switch/set" 
-    brightness_state_topic: "smartthings/Bedroom Fan/level" 
+    brightness_state_topic: "smartthings/Bedroom Fan/level/state"
     brightness_command_topic: "smartthings/Bedroom Fan/level/set" 
     payload_on: "on" 
     payload_off: "off" 
     brightness_scale: 99
   - platform: mqtt 
     name: "Ryan Lamp" 
-    state_topic: "smartthings/Ryan Lamp/switch" 
-    command_topic: "smartthings/Ryan Lamp/switch" 
-    brightness_state_topic: "smartthings/Ryan Lamp/level" 
+    state_topic: "smartthings/Ryan Lamp/switch/state"
+    command_topic: "smartthings/Ryan Lamp/switch/state"
+    brightness_state_topic: "smartthings/Ryan Lamp/level/state"
     brightness_command_topic: "smartthings/Ryan Lamp/level/set" 
     payload_on: "on" 
     payload_off: "off" 
@@ -30,9 +30,9 @@
     brightness_scale: 99
   - platform: mqtt 
     name: "Kristi Lamp" 
-    state_topic: "smartthings/Kristi Lamp/switch" 
+    state_topic: "smartthings/Kristi Lamp/switch/state"
     command_topic: "smartthings/Kristi Lamp/switch/set" 
-    brightness_state_topic: "smartthings/Kristi Lamp/level" 
+    brightness_state_topic: "smartthings/Kristi Lamp/level/state"
     brightness_command_topic: "smartthings/Kristi Lamp/level/set" 
     payload_on: "on" 
     payload_off: "off" 
@@ -40,18 +40,18 @@
     brightness_scale: 99
   - platform: mqtt 
     name: "Book Nook" 
-    state_topic: "smartthings/Book Nook/switch" 
-    command_topic: "smartthings/Book Nook/switch" 
-    brightness_state_topic: "smartthings/Book Nook/level" 
+    state_topic: "smartthings/Book Nook/switch/state"
+    command_topic: "smartthings/Book Nook/switch/state"
+    brightness_state_topic: "smartthings/Book Nook/level/state"
     brightness_command_topic: "smartthings/Book Nook/level/set" 
     payload_on: "on" 
     payload_off: "off" 
     brightness_scale: 99
   - platform: mqtt 
     name: "Pantry Light" 
-    state_topic: "smartthings/Pantry Light/switch" 
+    state_topic: "smartthings/Pantry Light/switch/state"
     command_topic: "smartthings/Pantry Light/switch/set" 
-    brightness_state_topic: "smartthings/Pantry Light/level" 
+    brightness_state_topic: "smartthings/Pantry Light/level/state"
     brightness_command_topic: "smartthings/Pantry Light/level/set" 
     payload_on: "on" 
     payload_off: "off"  
@@ -59,29 +59,29 @@
     on_command_type: "first"
   - platform: mqtt 
     name: "Camera Lights" 
-    state_topic: "smartthings/Camera Lights/switch" 
+    state_topic: "smartthings/Camera Lights/switch/state"
     command_topic: "smartthings/Camera Lights/switch/set" 
-    brightness_state_topic: "smartthings/Camera Lights/level" 
+    brightness_state_topic: "smartthings/Camera Lights/level/state"
     brightness_command_topic: "smartthings/Camera Lights/level/set" 
     payload_on: "on" 
     payload_off: "off" 
     brightness_scale: 99
   - platform: mqtt 
     name: "Dining Room Lamps" 
-    state_topic: "smartthings/Dining Room Lamps/switch" 
+    state_topic: "smartthings/Dining Room Lamps/switch/state"
     command_topic: "smartthings/Dining Room Lamps/switch/set" 
-    brightness_state_topic: "smartthings/Dining Room Lamps/level" 
+    brightness_state_topic: "smartthings/Dining Room Lamps/level/state"
     brightness_command_topic: "smartthings/Dining Room Lamps/level/set" 
     payload_on: "on" 
     payload_off: "off" 
     brightness_scale: 99
 #  - platform: mqtt 
 #    name: "Left Light" 
-#    state_topic: "smartthings/Left Light/switch" 
+#    state_topic: "smartthings/Left Light/switch/state"
 #    command_topic: "smartthings/Left Light/switch/set" 
 #    color_temp_command_topic: "smartthings/Left Light/colorTemperature/set"
 #    color_temp_state_topic: "smartthings/Left Light/colorTemperature"
-#    brightness_state_topic: "smartthings/Left Light/level" 
+#    brightness_state_topic: "smartthings/Left Light/level/state"
 #    brightness_command_topic: "smartthings/Left Light/level/set" 
 #    payload_on: "on" 
 #    payload_off: "off" 
@@ -89,11 +89,11 @@
 #    brightness_scale: 99
 #  - platform: mqtt 
 #    name: "Right Light" 
-#    state_topic: "smartthings/Right Light/switch" 
+#    state_topic: "smartthings/Right Light/switch/state"
 #    command_topic: "smartthings/Right Light/switch/set" 
 #    color_temp_command_topic: "smartthings/Right Light/colorTemperature/set"
 #    color_temp_state_topic: "smartthings/Right Light/colorTemperature"
-#    brightness_state_topic: "smartthings/Right Light/level" 
+#    brightness_state_topic: "smartthings/Right Light/level/state"
 #    brightness_command_topic: "smartthings/Right Light/level/set" 
 #    payload_on: "on" 
 #    payload_off: "off" 
@@ -101,75 +101,75 @@
 #    brightness_scale: 99
 # - platform: mqtt 
 #    name: "Floor Lamp" 
-#    state_topic: "smartthings/Floor Lamp/switch" 
-#    command_topic: "smartthings/Floor Lamp/switch" 
-#    brightness_state_topic: "smartthings/Floor Lamp/level" 
-#    brightness_command_topic: "smartthings/Floor Lamp/level" 
+#    state_topic: "smartthings/Floor Lamp/switch/state"
+#    command_topic: "smartthings/Floor Lamp/switch/state"
+#    brightness_state_topic: "smartthings/Floor Lamp/level/state"
+#    brightness_command_topic: "smartthings/Floor Lamp/level/state"
 #    payload_on: "on" 
 #    payload_off: "off" 
 #    retain: true 
 #    brightness_scale: 99
 #  - platform: mqtt 
 #    name: "Reading Lamp" 
-#    state_topic: "smartthings/Reading Lamp/switch" 
-#    command_topic: "smartthings/Reading Lamp/switch" 
-#    brightness_state_topic: "smartthings/Reading Lamp/level" 
-#    brightness_command_topic: "smartthings/Reading Lamp/level" 
+#    state_topic: "smartthings/Reading Lamp/switch/state"
+#    command_topic: "smartthings/Reading Lamp/switch/state"
+#    brightness_state_topic: "smartthings/Reading Lamp/level/state"
+#    brightness_command_topic: "smartthings/Reading Lamp/level/state"
 #    payload_on: "on" 
 #    payload_off: "off" 
 #    retain: true 
 #    brightness_scale: 99
   - platform: mqtt 
     name: "Island Lights" 
-    state_topic: "smartthings/Island Lights/switch" 
+    state_topic: "smartthings/Island Lights/switch/state"
     command_topic: "smartthings/Island Lights/switch/set" 
-    brightness_state_topic: "smartthings/Island Lights/level" 
+    brightness_state_topic: "smartthings/Island Lights/level/state"
     brightness_command_topic: "smartthings/Island Lights/level/set" 
     payload_on: "on" 
     payload_off: "off" 
     brightness_scale: 99
   - platform: mqtt 
     name: "Kitchen Lamp" 
-    state_topic: "smartthings/Kitchen Lamp/switch" 
+    state_topic: "smartthings/Kitchen Lamp/switch/state"
     command_topic: "smartthings/Kitchen Lamp/switch/set" 
-    brightness_state_topic: "smartthings/Kitchen Lamp/level" 
+    brightness_state_topic: "smartthings/Kitchen Lamp/level/state"
     brightness_command_topic: "smartthings/Kitchen Lamp/level/set" 
     payload_on: "on" 
     payload_off: "off" 
     brightness_scale: 99
   - platform: mqtt 
     name: "Kitchen Overhead" 
-    state_topic: "smartthings/Kitchen Overhead/switch" 
+    state_topic: "smartthings/Kitchen Overhead/switch/state"
     command_topic: "smartthings/Kitchen Overhead/switch/set" 
-    brightness_state_topic: "smartthings/Kitchen Overhead/level" 
+    brightness_state_topic: "smartthings/Kitchen Overhead/level/state"
     brightness_command_topic: "smartthings/Kitchen Overhead/level/set" 
     payload_on: "on" 
     payload_off: "off" 
     brightness_scale: 99
 #  - platform: mqtt 
 #    name: "Stair Lamp" 
-#    state_topic: "smartthings/Stair Lamp/switch" 
-#    command_topic: "smartthings/Stair Lamp/switch" 
-#    brightness_state_topic: "smartthings/Stair Lamp/level" 
-#    brightness_command_topic: "smartthings/Stair Lamp/level" 
+#    state_topic: "smartthings/Stair Lamp/switch/state"
+#    command_topic: "smartthings/Stair Lamp/switch/state"
+#    brightness_state_topic: "smartthings/Stair Lamp/level/state"
+#    brightness_command_topic: "smartthings/Stair Lamp/level/state"
 #    payload_on: "on" 
 #    payload_off: "off" 
 #    retain: true
 #    brightness_scale: 99
   - platform: mqtt 
     name: "Bathroom Light" 
-    state_topic: "smartthings/Bathroom Light/switch" 
+    state_topic: "smartthings/Bathroom Light/switch/state"
     command_topic: "smartthings/Bathroom Light/switch/set" 
-    brightness_state_topic: "smartthings/Bathroom Light/level" 
+    brightness_state_topic: "smartthings/Bathroom Light/level/state"
     brightness_command_topic: "smartthings/Bathroom Light/level/set" 
     payload_on: "on" 
     payload_off: "off" 
     brightness_scale: 99
   - platform: mqtt 
     name: "Bedroom Overhead" 
-    state_topic: "smartthings/Bedroom Overhead/switch" 
+    state_topic: "smartthings/Bedroom Overhead/switch/state"
     command_topic: "smartthings/Bedroom Overhead/switch/set" 
-    brightness_state_topic: "smartthings/Bedroom Overhead/level" 
+    brightness_state_topic: "smartthings/Bedroom Overhead/level/state"
     brightness_command_topic: "smartthings/Bedroom Overhead/level/set" 
     payload_on: "on" 
     payload_off: "off" 
@@ -177,9 +177,9 @@
 ##Ikea Lights
 #  - platform: mqtt
 #    name: "Office Lamp" 
-#    state_topic: "smartthings/Office Lamp/switch" 
+#    state_topic: "smartthings/Office Lamp/switch/state"
 #    command_topic: "smartthings/Office Lamp/switch/set" 
-#    brightness_state_topic: "smartthings/Office Lamp/level" 
+#    brightness_state_topic: "smartthings/Office Lamp/level/state"
 #    brightness_command_topic: "smartthings/Office Lamp/level/set"
 #    color_temp_command_topic: "smartthings/Office Lamp/colorTemperature/set"
 #    color_temp_state_topic: "smartthings/Office Lamp/colorTemperature"
@@ -190,10 +190,10 @@
 
   # - platform: mqtt 
   #   name: "Ryan Reading Lamp" 
-  #   state_topic: "smartthings/Ryan Reading Lamp/switch" 
-  #   command_topic: "smartthings/Ryan Reading Lamp/switch" 
-  #   brightness_state_topic: "smartthings/Ryan Reading Lamp/level" 
-  #   brightness_command_topic: "smartthings/Ryan Reading Lamp/level" 
+  #   state_topic: "smartthings/Ryan Reading Lamp/switch/state"
+  #   command_topic: "smartthings/Ryan Reading Lamp/switch/state"
+  #   brightness_state_topic: "smartthings/Ryan Reading Lamp/level/state"
+  #   brightness_command_topic: "smartthings/Ryan Reading Lamp/level/state"
   #   color_temp_command_topic: "smartthings/Ryan Reading Lamp/colorTemperature"
   #   color_temp_state_topic: "smartthings/Ryan Reading Lamp/colorTemperature"
   #   payload_on: "on" 
@@ -203,10 +203,10 @@
 
   # - platform: mqtt 
   #   name: "Kristi Reading Lamp" 
-  #   state_topic: "smartthings/Kristi Reading Lamp/switch" 
-  #   command_topic: "smartthings/Kristi Reading Lamp/switch" 
-  #   brightness_state_topic: "smartthings/Kristi Reading Lamp/level" 
-  #   brightness_command_topic: "smartthings/Kristi Reading Lamp/level" 
+  #   state_topic: "smartthings/Kristi Reading Lamp/switch/state"
+  #   command_topic: "smartthings/Kristi Reading Lamp/switch/state"
+  #   brightness_state_topic: "smartthings/Kristi Reading Lamp/level/state"
+  #   brightness_command_topic: "smartthings/Kristi Reading Lamp/level/state"
   #   color_temp_command_topic: "smartthings/Kristi Reading Lamp/colorTemperature"
   #   color_temp_state_topic: "smartthings/Kristi Reading Lamp/colorTemperature"
   #   payload_on: "on" 
@@ -215,9 +215,9 @@
   #   brightness_scale: 99
   - platform: mqtt 
     name: "Front Lights" 
-    state_topic: "smartthings/Front Lights/switch" 
+    state_topic: "smartthings/Front Lights/switch/state"
     command_topic: "smartthings/Front Lights/switch/set" 
-    brightness_state_topic: "smartthings/Front Lights/level" 
+    brightness_state_topic: "smartthings/Front Lights/level/state"
     brightness_command_topic: "smartthings/Front Lights/level/set" 
     payload_on: "on" 
     payload_off: "off" 
@@ -226,10 +226,10 @@
 #CHRISTMAS LIGHTS
 #  - platform: mqtt 
 #    name: "Christmas Tree" 
-#    state_topic: "smartthings/Christmas Tree/switch" 
-#    command_topic: "smartthings/Christmas Tree/switch" 
-#    brightness_state_topic: "smartthings/Christmas Tree/level" 
-#    brightness_command_topic: "smartthings/Christmas Tree/level" 
+#    state_topic: "smartthings/Christmas Tree/switch/state"
+#    command_topic: "smartthings/Christmas Tree/switch/state"
+#    brightness_state_topic: "smartthings/Christmas Tree/level/state"
+#    brightness_command_topic: "smartthings/Christmas Tree/level/state"
 #    payload_on: "on" 
 #    payload_off: "off" 
 #    retain: true
