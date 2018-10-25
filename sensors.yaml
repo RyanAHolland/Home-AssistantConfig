@@ -140,7 +140,7 @@
    unit_of_measurement: 'lux'
 #Humidity Sensors
  - platform: mqtt
-   state_topic: "smartthings/First Floor Entry/humidity"
+   state_topic: "smartthings/First Floor Entry/humidity/state"
    name: "First Floor Entry Humidity"
    qos: 0
    unit_of_measurement: '%RH'
@@ -228,12 +228,6 @@
  - platform: mqtt
    state_topic: "smartthings/Dryer Sensor/temperature/state"
    name: "Dryer Sensor Temperature"
-   qos: 0
-   unit_of_measurement: '°F'
-#MySensors
- - platform: mqtt
-   state_topic: "mysensors/3/0/1/0/0"
-   name: "Bedroom Temperature"
    qos: 0
    unit_of_measurement: '°F'
 #Battery Sensors
@@ -338,7 +332,7 @@
    qos: 0
 #Power Sensors   
  - platform: mqtt
-   state_topic: "smartthings/Washer/power"
+   state_topic: "smartthings/Washer/power/state"
    name: "Washer Power"
    qos: 0
    unit_of_measurement: 'W'

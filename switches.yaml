@@ -12,7 +12,7 @@
     payload_off: "off"
     optimistic: false
     qos: 0
-    retain: true
+    retain: false
   - platform: mqtt
     name: "ST Good Morning/Night Switch"
     state_topic: "smartthings/zzGoodMorningNight/switch/state"
@@ -20,7 +20,7 @@
     payload_on: "on"
     payload_off: "off"
     qos: 0
-    retain: true
+    retain: false
   - platform: mqtt
     name: "ST Away/Home Switch"
     state_topic: "smartthings/zzHomeAwaySwitch/switch/state"
@@ -28,7 +28,7 @@
     payload_on: "on"
     payload_off: "off"
     qos: 0
-    retain: true
+    retain: false
   - platform: mqtt
     name: "Guest Mode"
     state_topic: "smartthings/zzGuestMode/switch"
@@ -36,7 +36,7 @@
     payload_on: "on"
     payload_off: "off"
     qos: 0
-    retain: true
+    retain: false
   - platform: mqtt
     name: "Railing Lights"
     state_topic: "smartthings/Railing Lights/switch"
@@ -44,7 +44,7 @@
     payload_on: "on"
     payload_off: "off"
     qos: 0
-    retain: true
+    retain: false
   - platform: mqtt
     name: "Living Room Fan"
     state_topic: "smartthings/Living Room Fan/switch"
@@ -52,7 +52,7 @@
     payload_on: "on"
     payload_off: "off"
     qos: 0
-    retain: true
+    retain: false
   - platform: mqtt
     name: "North Up Lights"
     state_topic: "smartthings/North Up Lights/switch"
@@ -60,7 +60,7 @@
     payload_on: "on"
     payload_off: "off"
     qos: 0
-    retain: true
+    retain: false
   - platform: mqtt
     name: "Driveway Camera Switch"
     state_topic: "smartthings/Driveway Camera Switch/switch"
@@ -68,7 +68,7 @@
     payload_on: "on"
     payload_off: "off"
     qos: 0
-    retain: true
+    retain: false
 ##Insteon Switches
   - platform: mqtt
     name: "Front Lights"
@@ -77,7 +77,7 @@
     payload_on: "on"
     payload_off: "off"
     qos: 0
-    retain: true
+    retain: false
 ##ZoneMinder
 #  - platform: zoneminder
 #    command_on: Modect

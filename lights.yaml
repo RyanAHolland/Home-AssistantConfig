@@ -9,6 +9,7 @@
     payload_on: "on" 
     payload_off: "off"  
     brightness_scale: 99
+    retain: false
   - platform: mqtt 
     name: "Bedroom Fan" 
     state_topic: "smartthings/Bedroom Fan/switch/state"
@@ -18,6 +19,7 @@
     payload_on: "on" 
     payload_off: "off" 
     brightness_scale: 99
+    retain: false
   - platform: mqtt 
     name: "Ryan Lamp" 
     state_topic: "smartthings/Ryan Lamp/switch/state"
@@ -26,7 +28,7 @@
     brightness_command_topic: "smartthings/Ryan Lamp/level/set" 
     payload_on: "on" 
     payload_off: "off" 
-    retain: true 
+    retain: false 
     brightness_scale: 99
   - platform: mqtt 
     name: "Kristi Lamp" 
@@ -36,7 +38,7 @@
     brightness_command_topic: "smartthings/Kristi Lamp/level/set" 
     payload_on: "on" 
     payload_off: "off" 
-    retain: true 
+    retain: false 
     brightness_scale: 99
   - platform: mqtt 
     name: "Book Nook" 
@@ -46,6 +48,7 @@
     brightness_command_topic: "smartthings/Book Nook/level/set" 
     payload_on: "on" 
     payload_off: "off" 
+    retain: false
     brightness_scale: 99
   - platform: mqtt 
     name: "Pantry Light" 
@@ -56,6 +59,7 @@
     payload_on: "on" 
     payload_off: "off"  
     brightness_scale: 99
+    retain: false
     on_command_type: "first"
   - platform: mqtt 
     name: "Camera Lights" 
@@ -65,6 +69,7 @@
     brightness_command_topic: "smartthings/Camera Lights/level/set" 
     payload_on: "on" 
     payload_off: "off" 
+    retain: false
     brightness_scale: 99
   - platform: mqtt 
     name: "Dining Room Lamps" 
@@ -73,7 +78,8 @@
     brightness_state_topic: "smartthings/Dining Room Lamps/level/state"
     brightness_command_topic: "smartthings/Dining Room Lamps/level/set" 
     payload_on: "on" 
-    payload_off: "off" 
+    payload_off: "off"
+    retain: false
     brightness_scale: 99
 #  - platform: mqtt 
 #    name: "Left Light" 
@@ -126,7 +132,8 @@
     brightness_state_topic: "smartthings/Island Lights/level/state"
     brightness_command_topic: "smartthings/Island Lights/level/set" 
     payload_on: "on" 
-    payload_off: "off" 
+    payload_off: "off"
+    retain: false
     brightness_scale: 99
   - platform: mqtt 
     name: "Kitchen Lamp" 
@@ -136,6 +143,7 @@
     brightness_command_topic: "smartthings/Kitchen Lamp/level/set" 
     payload_on: "on" 
     payload_off: "off" 
+    retain: false
     brightness_scale: 99
   - platform: mqtt 
     name: "Kitchen Overhead" 
@@ -144,7 +152,8 @@
     brightness_state_topic: "smartthings/Kitchen Overhead/level/state"
     brightness_command_topic: "smartthings/Kitchen Overhead/level/set" 
     payload_on: "on" 
-    payload_off: "off" 
+    payload_off: "off"
+    retain: false
     brightness_scale: 99
 #  - platform: mqtt 
 #    name: "Stair Lamp" 
@@ -164,6 +173,7 @@
     brightness_command_topic: "smartthings/Bathroom Light/level/set" 
     payload_on: "on" 
     payload_off: "off" 
+    retain: false
     brightness_scale: 99
   - platform: mqtt 
     name: "Bedroom Overhead" 
@@ -172,7 +182,8 @@
     brightness_state_topic: "smartthings/Bedroom Overhead/level/state"
     brightness_command_topic: "smartthings/Bedroom Overhead/level/set" 
     payload_on: "on" 
-    payload_off: "off" 
+    payload_off: "off"
+    retain: false
     brightness_scale: 99
 ##Ikea Lights
 #  - platform: mqtt
@@ -221,6 +232,7 @@
     brightness_command_topic: "smartthings/Front Lights/level/set" 
     payload_on: "on" 
     payload_off: "off" 
+    retain: false
     brightness_scale: 99
 
 #CHRISTMAS LIGHTS
