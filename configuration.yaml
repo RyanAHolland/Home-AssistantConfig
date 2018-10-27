@@ -281,6 +281,9 @@ media_player:
   - platform: roku
   - platform: webostv
     host: !secret play_tv_ip
+  - platform: xboxone
+    device: !secret xbox_one
+    name: Xbox One
 
 nest:
   client_id: !secret nest_id
