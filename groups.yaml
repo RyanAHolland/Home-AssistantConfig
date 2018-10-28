@@ -684,7 +684,7 @@ media:
       - media_player.lg_webos_smart_tv
       - media_player.play_room_tv
       - media_player.soundbar
-      - media_player.sparebedroom
+      - media_player.xbox_one
 
 people:
     name: People
