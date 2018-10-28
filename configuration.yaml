@@ -365,6 +365,9 @@ camera:
   - platform: ffmpeg 
     name: Living Room
     input: !secret lr_cam_url
+  - platform: ffmpeg 
+    name: Garage Camera
+    input: !secret garage_cam_url
   - platform: ring
   - platform: usps
     scan_interval: 5

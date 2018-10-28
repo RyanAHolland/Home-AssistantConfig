@@ -638,6 +638,7 @@ DirectCameras:
     - camera.front_door
     - camera.living_room
     - camera.play_room_camera
+    - camera.garage_camera
     
 zones:
   name: Zones
