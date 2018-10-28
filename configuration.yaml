@@ -440,6 +440,10 @@ panel_iframe:
     title: Rachio
     url: "https://app.rach.io"
     icon: mdi:water-pump
+  terminal:
+    title: Terminal
+    icon: mdi:console
+    url: "https://hollandhaus.duckdns.org:7681"
 
 ####################################################
 #                                                  #
