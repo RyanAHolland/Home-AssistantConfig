@@ -361,24 +361,24 @@ FloodCameraSensors:
       - sensor.ring_backyard_volume
       
 lrCameraSensors:
-    name: Living Room Camera Sensors
+    name: Entry Camera Sensors
     entities:
-        - camera.lrcam
-        - switch.lrcam_h264_rtsp_server
-        - switch.lrcam_mjpeg_rtsp_server
-        - sensor.lrcam
-        - device_tracker.lrcam
-        - sensor.lrcam_light_sensor
-        - switch.lrcam_ir_filter
-        - switch.lrcam_ir_led
-        - switch.lrcam_night_mode
-        - switch.lrcam_night_mode_auto
-        - switch.lrcam_blue_led
-        - switch.lrcam_yellow_led
-        - switch.lrcam_motion_detection
-        - switch.lrcam_motion_tracking
-        - camera.lrcam_motion_snapshot
-        - binary_sensor.lrcam_motion_sensor
+        - camera.entrycam
+        - switch.entrycam_h264_rtsp_server
+        - switch.entrycam_mjpeg_rtsp_server
+        - sensor.entrycam
+        - device_tracker.entrycam
+        - sensor.entrycam_light_sensor
+        - switch.entrycam_ir_filter
+        - switch.entrycam_ir_led
+        - switch.entrycam_night_mode
+        - switch.entrycam_night_mode_auto
+        - switch.entrycam_blue_led
+        - switch.entrycam_yellow_led
+        - switch.entrycam_motion_detection
+        - switch.entrycam_motion_tracking
+        - camera.entrycam_motion_snapshot
+        - binary_sensor.entrycam_motion_sensor
 
 UPSSensors:
     name: UPS Sensors
@@ -819,7 +819,7 @@ cameras:
     icon: mdi:camera
     entities:
     # - group.ZMCameras
-    # - group.lrCameraSensors
+     - group.lrCameraSensors
     # - group.ZMSwitches
     # - group.ZMSensors
       - group.DirectCameras
