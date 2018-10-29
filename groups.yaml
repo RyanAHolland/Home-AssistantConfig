@@ -819,7 +819,7 @@ cameras:
     icon: mdi:camera
     entities:
     # - group.ZMCameras
-     - group.lrCameraSensors
+      - group.lrCameraSensors
     # - group.ZMSwitches
     # - group.ZMSensors
       - group.DirectCameras
