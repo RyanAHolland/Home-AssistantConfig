@@ -329,7 +329,7 @@ device_tracker:
     port: 8443
     verify_ssl: false
     new_device_defaults:
-      track_new_devices: False
+      track_new_devices: true
       hide_if_away: False
   - platform: owntracks_http
   - platform: ping
