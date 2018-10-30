@@ -1,0 +1,119 @@
+
+- cal_id: ad4kn0bfiadji7f74jlr02cujo@group.calendar.google.com
+  entities:
+  - device_id: pivot_work
+    ignore_availability: true
+    name: Pivot Work
+    track: true
+
+- cal_id: h3chut55us1nj3nn36gf3sbjfc@group.calendar.google.com
+  entities:
+  - device_id: drc_sound_booth
+    ignore_availability: true
+    name: 'DRC: Sound Booth'
+    track: true
+
+- cal_id: mk410bi0jam97ebor6qjukjqfc@group.calendar.google.com
+  entities:
+  - device_id: holland_family_calendar
+    ignore_availability: true
+    name: Holland Family Calendar
+    track: true
+
+- cal_id: 7oa41q2atqb9hsi00q9hkb5aisgm45dh@import.calendar.google.com
+  entities:
+  - device_id: calendar
+    ignore_availability: true
+    name: Calendar
+    track: true
+
+- cal_id: g436e7sb6fves125hb911bauos@group.calendar.google.com
+  entities:
+  - device_id: school_year_calendar
+    ignore_availability: true
+    name: School Year Calendar
+    track: true
+
+- cal_id: v7u3clnkk8t9qbcu5pkc949b94@group.calendar.google.com
+  entities:
+  - device_id: home_schedule
+    ignore_availability: true
+    name: Home Schedule
+    track: true
+
+- cal_id: epni9iaatommjqca8roiu7s5vc@group.calendar.google.com
+  entities:
+  - device_id: weekly_theme
+    ignore_availability: true
+    name: Weekly Theme
+    track: true
+
+- cal_id: bfbkcfnfqkb49bjv457ader0pthrrmum@import.calendar.google.com
+  entities:
+  - device_id: ryan_hollands_facebook_events
+    ignore_availability: true
+    name: Ryan Holland's Facebook Events
+    track: true
+
+- cal_id: g8e52aup9q3euuvds0rstbnf4cfncu2d@import.calendar.google.com
+  entities:
+  - device_id: service_desk_tasks
+    ignore_availability: true
+    name: Service Desk Tasks
+    track: true
+
+- cal_id: 6tacmnon1pv3okn3kdnethh0st99fvgu@import.calendar.google.com
+  entities:
+  - device_id: the_roads_calendar
+    ignore_availability: true
+    name: The Road's Calendar
+    track: true
+
+- cal_id: family08654292450934377458@group.calendar.google.com
+  entities:
+  - device_id: family
+    ignore_availability: true
+    name: Family
+    track: true
+
+- cal_id: f0pl51jmgich7ul2cqclij3h1tb8rsc6@import.calendar.google.com
+  entities:
+  - device_id: time_blocking
+    ignore_availability: true
+    name: Time Blocking
+    track: true
+
+- cal_id: kristiholland@gmail.com
+  entities:
+  - device_id: kristihollandgmailcom
+    ignore_availability: true
+    name: kristiholland@gmail.com
+    track: true
+
+- cal_id: ryanaholland@gmail.com
+  entities:
+  - device_id: ryanahollandgmailcom
+    ignore_availability: true
+    name: ryanaholland@gmail.com
+    track: true
+
+- cal_id: dhdfghcmlknjugholgo5pievtd5qhceg@import.calendar.google.com
+  entities:
+  - device_id: change_calendar__implementing
+    ignore_availability: true
+    name: Change Calendar - Implementing
+    track: true
+
+- cal_id: '#contacts@group.v.calendar.google.com'
+  entities:
+  - device_id: contacts
+    ignore_availability: true
+    name: Contacts
+    track: true
+
+- cal_id: en.usa#holiday@group.v.calendar.google.com
+  entities:
+  - device_id: holidays_in_united_states
+    ignore_availability: true
+    name: Holidays in United States
+    track: true

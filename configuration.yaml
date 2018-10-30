@@ -257,7 +257,7 @@ ifttt:
   key: !secret ifttt_key
 
 #APCUPS
-apcupsd:
+#apcupsd:
 
 #JOIN
 # joaoapps_join:
@@ -281,6 +281,9 @@ media_player:
   - platform: roku
   - platform: webostv
     host: !secret play_tv_ip
+  - platform: xboxone
+    device: !secret xbox_one
+    name: Xbox One
 
 nest:
   client_id: !secret nest_id
@@ -296,12 +299,13 @@ ring:
 
 alarm_control_panel:
   platform: mqtt
-  state_topic: "smartthings/alarm system status/alarmSystemStatus"
-  command_topic: "smartthings/alarm system status/alarmSystemStatus"
+  state_topic: "smartthings/alarm system status/alarmSystemStatus/state"
+  command_topic: "smartthings/alarm system status/alarmSystemStatus/set"
   name: "SHM"
-  payload_disarm: "off"
-  payload_arm_home: "stay"
-  payload_arm_away: "away"
+  payload_disarm: "disarmed"
+  payload_arm_home: "armed_home"
+  payload_arm_away: "armed_away"
+  code: !secret alarmcode
 
 tts:
   - platform: google
@@ -310,13 +314,14 @@ tts:
     cache_dir: /tmp/tts
     time_memory: 300
 
-google_assistant:
-  project_id: !secret ga_project
-  client_id: !secret ga_id
-  access_token: !secret ga_token
+#google_assistant:
+#  project_id: !secret ga_project
+#  client_id: !secret ga_id
+#  access_token: !secret ga_token
 
 shell_command:
   get_latest_config: bash /home/homeassistant/.homeassistant/bin/update_config_from_github.sh
+  restart_mqtt: docker restart mqtt_bridge
 
 climate:
   platform: nest
@@ -335,6 +340,10 @@ device_tracker:
   - platform: ping
     hosts:
       mom: !secret mom_ip
+  - platform: google_maps
+    username: !secret google_user
+    password: !secret google_pass
+    max_gps_accuracy: 500
 
 #Cameras
 camera:
@@ -356,6 +365,9 @@ camera:
   - platform: ffmpeg 
     name: Living Room
     input: !secret lr_cam_url
+  - platform: ffmpeg 
+    name: Garage Camera
+    input: !secret garage_cam_url
   - platform: ring
   - platform: usps
     scan_interval: 5
@@ -397,10 +409,10 @@ proximity:
     tolerance: 50
     unit_of_measurement: mi
 
-hue:
-  bridges:
-    - host: 192.168.1.227
-      allow_unreachable: true
+# hue:
+  # bridges:
+  #   - host: 192.168.1.42
+  #     allow_unreachable: true
     
 variable:  
   last_motion:
@@ -410,12 +422,12 @@ variable:
       icon: mdi:map-marker
       name: "Last Motion"
       
-panel_custom:
-  - name: floorplan
-    sidebar_title: Floorplan
-    sidebar_icon: mdi:home
-    url_path: floorplan
-    config: !include floorplan.yaml
+# panel_custom:
+#   - name: floorplan
+#     sidebar_title: Floorplan
+#     sidebar_icon: mdi:home
+#     url_path: floorplan
+#     config: !include floorplan.yaml
     
 telegram_bot: 
   - platform: polling 
@@ -428,6 +440,10 @@ panel_iframe:
     title: Rachio
     url: "https://app.rach.io"
     icon: mdi:water-pump
+  terminal:
+    title: Terminal
+    icon: mdi:console
+    url: "https://hollandhaus.duckdns.org:7681"
 
 ####################################################
 #                                                  #

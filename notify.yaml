@@ -2,10 +2,10 @@
     platform: pushover
     api_key: !secret pushover_api
     user_key: !secret pushover_key
-  - platform: joaoapps_join
-    device_id: !secret join_device
-    name: Note5
-    api_key: !secret join_api
+#  - platform: joaoapps_join
+#    device_id: !secret join_device
+#    name: Note8
+#    api_key: !secret join_api
   - name: Telegram
     platform: telegram
     chat_id: !secret telegram_ryan

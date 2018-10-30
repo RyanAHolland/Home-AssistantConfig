@@ -15,13 +15,14 @@ lindabill:
    - device_tracker.moms_phone
    - device_tracker.billsphone
    - sensor.mom_home
-dad:
-   - sensor.mom_home
+earl:
+    - device_tracker.earls_phone
+    - sensor.dad_occupancy
 all mobile devices:
    - sensor.ryan_home
    - sensor.kristi_home
    - sensor.mom_home
-   - sensor.dad_home
+   - group.earl
 presence sensors:
    - sensor.ryan_home
    - sensor.ryan_first_floor
@@ -360,24 +361,24 @@ FloodCameraSensors:
       - sensor.ring_backyard_volume
       
 lrCameraSensors:
-    name: Living Room Camera Sensors
+    name: Entry Camera Sensors
     entities:
-        - camera.lrcam
-        - switch.lrcam_h264_rtsp_server
-        - switch.lrcam_mjpeg_rtsp_server
-        - sensor.lrcam
-        - device_tracker.lrcam
-        - sensor.lrcam_light_sensor
-        - switch.lrcam_ir_filter
-        - switch.lrcam_ir_led
-        - switch.lrcam_night_mode
-        - switch.lrcam_night_mode_auto
-        - switch.lrcam_blue_led
-        - switch.lrcam_yellow_led
-        - switch.lrcam_motion_detection
-        - switch.lrcam_motion_tracking
-        - camera.lrcam_motion_snapshot
-        - binary_sensor.lrcam_motion_sensor
+        - camera.entrycam
+        - switch.entrycam_h264_rtsp_server
+        - switch.entrycam_mjpeg_rtsp_server
+        - sensor.entrycam
+        - device_tracker.entrycam
+        - sensor.entrycam_light_sensor
+        - switch.entrycam_ir_filter
+        - switch.entrycam_ir_led
+        - switch.entrycam_night_mode
+        - switch.entrycam_night_mode_auto
+        - switch.entrycam_blue_led
+        - switch.entrycam_yellow_led
+        - switch.entrycam_motion_detection
+        - switch.entrycam_motion_tracking
+        - camera.entrycam_motion_snapshot
+        - binary_sensor.entrycam_motion_sensor
 
 UPSSensors:
     name: UPS Sensors
@@ -637,6 +638,7 @@ DirectCameras:
     - camera.front_door
     - camera.living_room
     - camera.play_room_camera
+    - camera.garage_camera
     
 zones:
   name: Zones
@@ -682,7 +684,7 @@ media:
       - media_player.lg_webos_smart_tv
       - media_player.play_room_tv
       - media_player.soundbar
-      - media_player.sparebedroom
+      - media_player.xbox_one
 
 people:
     name: People
@@ -692,6 +694,7 @@ people:
       - group.ryan
       - group.kristi
       - group.lindabill
+      - group.earl
       - group.all_mobile_devices
       - group.presence_sensors
       - group.phone_state
@@ -805,6 +808,7 @@ weather:
     view: yes
     icon: mdi:weather-lightning-rainy
     entities:
+      - sensor.weather_alert
       - group.ds_weather
       - group.daily_forecast
       - group.weather_overview
@@ -815,7 +819,7 @@ cameras:
     icon: mdi:camera
     entities:
     # - group.ZMCameras
-    # - group.lrCameraSensors
+      - group.lrCameraSensors
     # - group.ZMSwitches
     # - group.ZMSensors
       - group.DirectCameras

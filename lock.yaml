@@ -1,14 +1,14 @@
   - platform: mqtt
     name: Front Lock
-    state_topic: "smartthings/Front Lock/lock"
-    command_topic: "smartthings/Front Lock/lock"
+    state_topic: "smartthings/Front Lock/lock/state"
+    command_topic: "smartthings/Front Lock/lock/set"
     payload_lock: "locked"
     payload_unlock: "unlocked"
-    retain: true
+    retain: false
   - platform: mqtt
     name: Garage Lock
-    state_topic: "smartthings/Garage Door Lock/lock"
-    command_topic: "smartthings/Garage Door Lock/lock"
+    state_topic: "smartthings/Garage Entry Lock/lock/state"
+    command_topic: "smartthings/Garage Entry Lock/lock/set"
     payload_lock: "locked"
     payload_unlock: "unlocked"
-    retain: true
+    retain: false

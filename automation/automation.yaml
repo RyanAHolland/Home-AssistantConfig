@@ -1508,7 +1508,7 @@
 
 #Automated build passed
   - alias: "Automatically download updated build"
-    hide_entity: True
+    hide_entity: False
     trigger:
       - platform: state
         entity_id: sensor.ryanahollandhomeassistantconfig_state
@@ -1524,7 +1524,7 @@
 
 #Automated build failed
   - alias: "Notify failed build"
-    hide_entity: True
+    hide_entity: False
     trigger:
       - platform: state
         entity_id: sensor.ryanahollandhomeassistantconfig_state
