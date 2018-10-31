@@ -409,10 +409,10 @@ proximity:
     tolerance: 50
     unit_of_measurement: mi
 
- hue:
-   bridges:
-     - host: 192.168.1.42
-       allow_unreachable: true
+hue:
+  bridges:
+    - host: !secret hue_ip
+      allow_unreachable: true
     
 variable:  
   last_motion:
