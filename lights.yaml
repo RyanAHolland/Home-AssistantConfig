@@ -43,7 +43,7 @@
   - platform: mqtt 
     name: "Book Nook" 
     state_topic: "smartthings/Book Nook/switch/state"
-    command_topic: "smartthings/Book Nook/switch/state"
+    command_topic: "smartthings/Book Nook/switch/set"
     brightness_state_topic: "smartthings/Book Nook/level/state"
     brightness_command_topic: "smartthings/Book Nook/level/set" 
     payload_on: "on" 
