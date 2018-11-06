@@ -380,6 +380,26 @@ lrCameraSensors:
         - camera.entrycam_motion_snapshot
         - binary_sensor.entrycam_motion_sensor
 
+garageCameraSensors:
+    name: Garage Camera Sensors
+    entities:
+        - camera.garagecam
+        - switch.garagecam_h264_rtsp_server
+        - switch.garagecam_mjpeg_rtsp_server
+        - sensor.garagecam
+        - device_tracker.garagecam
+        - sensor.garagecam_light_sensor
+        - switch.garagecam_ir_filter
+        - switch.garagecam_ir_led
+        - switch.garagecam_night_mode
+        - switch.garagecam_night_mode_auto
+        - switch.garagecam_blue_led
+        - switch.garagecam_yellow_led
+        - switch.garagecam_motion_detection
+        - switch.garagecam_motion_tracking
+        - camera.garagecam_motion_snapshot
+        - binary_sensor.garagecam_motion_sensor
+
 UPSSensors:
     name: UPS Sensors
     entities:
@@ -819,10 +839,11 @@ cameras:
     icon: mdi:camera
     entities:
     # - group.ZMCameras
-      - group.lrCameraSensors
     # - group.ZMSwitches
     # - group.ZMSensors
       - group.DirectCameras
+      - group.lrCameraSensors
+      - group.garageCameraSensors
 
 HomeGroup:
     name: Home Group
