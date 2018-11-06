@@ -113,7 +113,7 @@
  - platform: google_travel_time
    name: Kristi To Home
    api_key: !secret google_api
-   origin: device_tracker.kristi_s5
+   origin: device_tracker.kristi_s7
    destination: zone.home
 
 ### Sensors from SmartThings
@@ -527,9 +527,9 @@
      ryan_home:
        value_template:
          "{% if is_state('binary_sensor.ryan_presence', 'on') %}
-         home
+         Home
          {% else %}
-         not_home
+         Away
          {% endif %}"
        friendly_name: Ryan Home
  - platform: template
@@ -537,9 +537,9 @@
      kristi_home:
        value_template:
          "{% if is_state('binary_sensor.kristi_presence', 'on') %}
-         home
+         Home
          {% else %}
-         not_home
+         Away
          {% endif %}"
        friendly_name: Kristi Home
  - platform: template
@@ -547,9 +547,9 @@
      mom_home:
        value_template:
          "{% if is_state('binary_sensor.mom_presence', 'on') %}
-         home
+         Home
          {% else %}
-         not_home
+         Away
          {% endif %}"
        friendly_name: Mom Home
  - platform: template
@@ -557,9 +557,9 @@
      dad_home:
        value_template:
          "{% if is_state('binary_sensor.dad_presence', 'on') %}
-         home
+         Home
          {% else %}
-         not_home
+         Away
          {% endif %}"
        friendly_name: Dad Home
 

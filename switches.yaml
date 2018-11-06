@@ -53,22 +53,22 @@
     payload_off: "off"
     qos: 0
     retain: false
-  - platform: mqtt
-    name: "North Up Lights"
-    state_topic: "smartthings/North Up Lights/switch"
-    command_topic: "smartthings/North Up Lights/switch/set"
-    payload_on: "on"
-    payload_off: "off"
-    qos: 0
-    retain: false
-  - platform: mqtt
-    name: "Driveway Camera Switch"
-    state_topic: "smartthings/Driveway Camera Switch/switch"
-    command_topic: "smartthings/Driveway Camera Switch/switch/set"
-    payload_on: "on"
-    payload_off: "off"
-    qos: 0
-    retain: false
+  # - platform: mqtt
+  #   name: "North Up Lights"
+  #   state_topic: "smartthings/North Up Lights/switch"
+  #   command_topic: "smartthings/North Up Lights/switch/set"
+  #   payload_on: "on"
+  #   payload_off: "off"
+  #   qos: 0
+  #   retain: false
+  # - platform: mqtt
+  #   name: "Driveway Camera Switch"
+  #   state_topic: "smartthings/Driveway Camera Switch/switch"
+  #   command_topic: "smartthings/Driveway Camera Switch/switch/set"
+  #   payload_on: "on"
+  #   payload_off: "off"
+  #   qos: 0
+  #   retain: false
 ##Insteon Switches
   - platform: mqtt
     name: "Front Lights"
