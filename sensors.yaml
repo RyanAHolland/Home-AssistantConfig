@@ -529,7 +529,7 @@
          "{% if is_state('binary_sensor.ryan_presence', 'on') %}
          Home
          {% else %}
-         Away
+         not_home
          {% endif %}"
        friendly_name: Ryan Home
  - platform: template
@@ -539,7 +539,7 @@
          "{% if is_state('binary_sensor.kristi_presence', 'on') %}
          Home
          {% else %}
-         Away
+         not_home
          {% endif %}"
        friendly_name: Kristi Home
  - platform: template
@@ -549,7 +549,7 @@
          "{% if is_state('binary_sensor.mom_presence', 'on') %}
          Home
          {% else %}
-         Away
+         not_home
          {% endif %}"
        friendly_name: Mom Home
  - platform: template
@@ -559,7 +559,7 @@
          "{% if is_state('binary_sensor.dad_presence', 'on') %}
          Home
          {% else %}
-         Away
+         not_home
          {% endif %}"
        friendly_name: Dad Home
 
