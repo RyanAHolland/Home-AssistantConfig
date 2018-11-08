@@ -14,6 +14,7 @@ lindabill:
    - device_tracker.mom
    - device_tracker.moms_phone
    - device_tracker.billsphone
+   - group.lindabill
    - sensor.mom_home
 earl:
     - device_tracker.earls_phone
@@ -21,7 +22,7 @@ earl:
 all mobile devices:
    - sensor.ryan_home
    - sensor.kristi_home
-   - sensor.mom_home
+   - group.lindabill
    - group.earl
 presence sensors:
    - sensor.ryan_home
