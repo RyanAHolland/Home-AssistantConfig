@@ -494,32 +494,32 @@
  - platform: template
    sensors:
      ryan_occupancy:
-       value_template: '{% if states("sensor.ryan_home_occupancy_confidence") | float > 10 %}Home{% else %}Away{%endif %}'
+       value_template: '{% if states("sensor.ryan_home_occupancy_confidence") | float > 10 %}home{% else %}not_home{%endif %}'
        friendly_name: "Ryan's BT Occupancy"
  - platform: template
    sensors:
      kristi_occupancy:
-       value_template: '{% if states("sensor.kristi_home_occupancy_confidence") | float > 10 %}Home{% else %}Away{%endif %}'
+       value_template: '{% if states("sensor.kristi_home_occupancy_confidence") | float > 10 %}home{% else %}not_home{%endif %}'
        friendly_name: "Kristi's BT Occupancy"
  - platform: template
    sensors:
      mom_occupancy:
-       value_template: '{% if states("sensor.mom_home_occupancy_confidence") | float > 10 %}Home{% else %}Away{%endif %}'
+       value_template: '{% if states("sensor.mom_home_occupancy_confidence") | float > 10 %}home{% else %}not_home{%endif %}'
        friendly_name: "Mom's BT Occupancy"
  - platform: template
    sensors:
      dad_occupancy:
-       value_template: '{% if states("sensor.dad_home_occupancy_confidence") | float > 10 %}Home{% else %}Away{%endif %}'
+       value_template: '{% if states("sensor.dad_home_occupancy_confidence") | float > 10 %}home{% else %}not_home{%endif %}'
        friendly_name: "Dad's BT Occupancy"
  - platform: template
    sensors:
      outlander:
-       value_template: '{% if states("sensor.outlander_first_floor") | float > 10 %}Home{% else %}Away{%endif %}'
+       value_template: '{% if states("sensor.outlander_first_floor") | float > 10 %}home{% else %}not_home{%endif %}'
        friendly_name: "Outlander Garage"
  - platform: template
    sensors:
      volvo:
-       value_template: '{% if states("sensor.volvo_first_floor") | float > 10 %}Home{% else %}Away{%endif %}'
+       value_template: '{% if states("sensor.volvo_first_floor") | float > 10 %}home{% else %}not_home{%endif %}'
        friendly_name: "Volvo Garage"
 ##Bayesian Device Tracker
  - platform: template
