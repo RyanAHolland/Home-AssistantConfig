@@ -22,7 +22,7 @@ earl:
 all mobile devices:
    - sensor.ryan_home
    - sensor.kristi_home
-   - group.lindabill
+   - sensor.mom_occupancy
    - group.earl
 presence sensors:
    - sensor.ryan_home
