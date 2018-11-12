@@ -200,17 +200,17 @@
     retain: true 
     brightness_scale: 99
   - platform: mqtt
-   name: "Office Lamp" 
-   state_topic: "smartthings/Office Lamp/switch/state"
-   command_topic: "smartthings/Office Lamp/switch/set" 
-   brightness_state_topic: "smartthings/Office Lamp/level/state"
-   brightness_command_topic: "smartthings/Office Lamp/level/set"
-   color_temp_command_topic: "smartthings/Office Lamp/colorTemperature/set"
-   color_temp_state_topic: "smartthings/Office Lamp/colorTemperature"
-   payload_on: "on" 
-   payload_off: "off" 
-   retain: true
-   brightness_scale: 99
+    name: "Office Lamp" 
+    state_topic: "smartthings/Office Lamp/switch/state"
+    command_topic: "smartthings/Office Lamp/switch/set" 
+    brightness_state_topic: "smartthings/Office Lamp/level/state"
+    brightness_command_topic: "smartthings/Office Lamp/level/set"
+    color_temp_command_topic: "smartthings/Office Lamp/colorTemperature/set"
+    color_temp_state_topic: "smartthings/Office Lamp/colorTemperature"
+    payload_on: "on" 
+    payload_off: "off" 
+    retain: true
+    brightness_scale: 99
   - platform: mqtt 
     name: "Ryan Reading Lamp" 
     state_topic: "smartthings/Ryan Reading Lamp/switch/state"
