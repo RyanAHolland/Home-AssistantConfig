@@ -1,15 +1,15 @@
 ###GROUPS###
 ryan:
    - device_tracker.ryan_note8
-   - device_tracker.galaxynote8
+#    - device_tracker.galaxynote8
    - sensor.ryan_occupancy
-   - sensor.ryan_home
+#    - sensor.ryan_home
    #- sensor.ryan_smartthings
 kristi:
    - device_tracker.kristi_s7
-   - device_tracker.kristis_phone
+#    - device_tracker.kristis_phone
    #- sensor.kristi_smartthings
-   - sensor.kristi_home
+#    - sensor.kristi_home
    - sensor.kristi_occupancy
 lindabill:
    - device_tracker.mom
