@@ -6,8 +6,8 @@ ryan:
 #    - sensor.ryan_home
    #- sensor.ryan_smartthings
 kristi:
-   - device_tracker.kristi_s7
-#    - device_tracker.kristis_phone
+#    - device_tracker.kristi_s7
+   - device_tracker.kristis_phone
    #- sensor.kristi_smartthings
 #    - sensor.kristi_home
 #    - sensor.kristi_occupancy
