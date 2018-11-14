@@ -1,16 +1,14 @@
 ###GROUPS###
 ryan:
    - device_tracker.ryan_note8
-#    - device_tracker.galaxynote8
+   - device_tracker.galaxynote8
    - sensor.ryan_occupancy
-#    - sensor.ryan_home
    #- sensor.ryan_smartthings
 kristi:
-#    - device_tracker.kristi_s7
+   - device_tracker.kristi_s7
    - device_tracker.kristis_phone
    #- sensor.kristi_smartthings
-#    - sensor.kristi_home
-#    - sensor.kristi_occupancy
+   - sensor.kristi_occupancy
 lindabill:
    - device_tracker.mom
    - device_tracker.moms_phone
@@ -20,9 +18,9 @@ earl:
     - device_tracker.earls_phone
     - sensor.dad_occupancy
 all mobile devices:
-   - sensor.ryan_home
-   - sensor.kristi_home
-   - sensor.mom_occupancy
+    - group.ryan
+    - group.kristi
+    - group.lindabill
 #    - group.earl
 presence sensors:
    - sensor.ryan_home
