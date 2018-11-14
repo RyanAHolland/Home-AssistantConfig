@@ -10,7 +10,7 @@ kristi:
 #    - device_tracker.kristis_phone
    #- sensor.kristi_smartthings
 #    - sensor.kristi_home
-   - sensor.kristi_occupancy
+#    - sensor.kristi_occupancy
 lindabill:
    - device_tracker.mom
    - device_tracker.moms_phone
