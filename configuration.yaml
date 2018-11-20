@@ -273,6 +273,12 @@ mqtt:
   protocol: 3.1.1
   discovery: true 
   discovery_prefix: homeassistant
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
 
 
 media_player:
@@ -421,6 +427,12 @@ variable:
     attributes:
       icon: mdi:map-marker
       name: "Last Motion"
+  last_door:
+    value: 'Unknown'
+    restore: true
+    attributes:
+      icon: mdi:door-open
+      name: "Last Door"
       
 # panel_custom:
 #   - name: floorplan

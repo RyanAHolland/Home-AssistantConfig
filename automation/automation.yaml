@@ -1555,3 +1555,23 @@
             }
       data_template:
         value: "{{ trigger.to_state.attributes.friendly_name }}"
+
+#Last Door Automation
+# Update Last Door variable
+  - alias: "Update Last Door"
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door, binary_sensor.back_door, binary_sensor.garage_entry_)door
+      to: 'on'
+    action:
+    - service: variable.set_variable
+      data:
+        variable: last_door
+        attributes_template: >
+            {
+              "history_1": "{{ variable.state }}",
+              "history_2": "{{ variable.attributes.history_1 }}",
+              "history_3": "{{ variable.attributes.history_2 }}"
+            }
+      data_template:
+        value: "{{ trigger.to_state.attributes.friendly_name }}"
