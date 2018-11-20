@@ -246,7 +246,7 @@
     retain: true
     brightness_scale: 99
   - platform: mqtt
-    name: "Kristis" Bloom"
+    name: "Kristis Bloom"
     state_topic: "smartthings/Kristi's Bloom/switch/state"
     command_topic: "smartthings/Kristi's Bloom/switch/set" 
     brightness_state_topic: "smartthings/Kristi's Bloom/level/state"
