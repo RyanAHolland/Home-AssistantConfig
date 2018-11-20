@@ -1561,7 +1561,7 @@
   - alias: "Update Last Door"
     trigger:
     - platform: state
-      entity_id: binary_sensor.front_door, binary_sensor.back_door, binary_sensor.garage_entry_)door
+      entity_id: binary_sensor.front_door_sensor, binary_sensor.back_door_sensor, binary_sensor.garage_entry_sensor
       to: 'on'
     action:
     - service: variable.set_variable
