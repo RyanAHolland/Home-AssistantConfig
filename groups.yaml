@@ -176,6 +176,11 @@ upstairs_hall:
     name: Upstairs Hall
     entities:
       - light.book_nook
+      
+liam_room:
+    name: Liam's Room
+    entities:
+      - light.liam_light
 
 play_room:
     name: Play Room
@@ -188,7 +193,7 @@ decorative:
       - light.left_light
       - light.right_light
       - light.stair_lamp
-      - light.floor_lamp_2
+      - light.floor_lamp
       - light.kitchen_lamp
       - light.dining_room_lamps
 
@@ -793,6 +798,7 @@ second_floor:
     entities:
       - group.secondfloorlights
       - group.office
+      - group.liam_room
       - group.bedroom
       - group.bedroomcolors
       - group.bathroom
