@@ -159,13 +159,13 @@ fireplace lights:
       - light.left_light
       - light.right_light
 
-#christmas lights:
-#    name: Christmas Lights
-#    entities:
-#      - light.christmas_tree
-#      - switch.mantle_lights
-#      - switch.liams_tree
-#      - switch.railing_lights
+christmas lights:
+    name: Christmas Lights
+    entities:
+      - light.christmas_tree
+      - switch.mantle_lights
+      - switch.liams_tree
+      - switch.railing_lights
 
 dining_room:
     name: Dining Room
@@ -280,9 +280,7 @@ BasementSensors:
     name: Second Floor Sensors
     entities:
       - binary_sensor.liams_room_door
-      - binary_sensor.bathroom_button
-      - sensor.liams_room_temperature
-      - sensor.liams_room_humidity
+      - sensor.liam_button
       - binary_sensor.upstairs_motion
       - sensor.upstairs_motion_temperature
       - sensor.upstairs_motion_battery
@@ -293,12 +291,14 @@ BasementSensors:
       - sensor.bathroom_motion_light_sensor
       - sensor.bedroom_motion_light_sensor
       - sensor.office_motion_light_sensor
-      - sensor.liam_room_temperature
+      - sensor.liam_room_temp
       - sensor.liam_room_humidity
+      - sensor.liam_room_pressure
       - sensor.updatirs_keypad_temperature
       - sensor.updatirs_keypad_battery
       - sensor.humidor_temperature
       - sensor.humidor_humidity
+      - sensor.humidor_pressure
 
 
 SecuritySensors:
@@ -781,7 +781,7 @@ first_floor:
       - group.living_room
       - group.play_room
       - group.dining_room
-#      - group.christmas_lights
+      - group.christmas_lights
       - group.1stSensors
       - group.1stEnv
       - group.locks
