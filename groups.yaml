@@ -163,7 +163,7 @@ christmas lights:
     name: Christmas Lights
     entities:
       - light.christmas_tree
-      - switch.mantle_lights
+      - light.mantle_lights
       - switch.liams_tree
       - switch.railing_lights
 
