@@ -147,8 +147,8 @@ office:
 living room:
     name: Living Room
     entities:
-      - light.left_light
-      - light.right_light
+      - light.left_lamp
+      - light.right_lamp
       - light.stair_lamp
       - light.floor_lamp
       - light.living_room_overhead
@@ -156,8 +156,8 @@ living room:
 fireplace lights:
     name: Fireplace Lights
     entities:
-      - light.left_light
-      - light.right_light
+      - light.left_lamp
+      - light.right_lamp
 
 christmas lights:
     name: Christmas Lights
@@ -190,8 +190,8 @@ play_room:
 decorative:
     name: Decorative Lights
     entities:
-      - light.left_light
-      - light.right_light
+      - light.left_lamp
+      - light.right_lamp
       - light.stair_lamp
       - light.floor_lamp
       - light.kitchen_lamp
