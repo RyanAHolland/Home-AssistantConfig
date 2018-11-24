@@ -150,9 +150,9 @@
   - platform: mqtt 
     name: "Christmas Tree" 
     state_topic: "smartthings/Christmas Tree/switch/state"
-    command_topic: "smartthings/Christmas Tree/switch/state"
+    command_topic: "smartthings/Christmas Tree/switch/set"
     brightness_state_topic: "smartthings/Christmas Tree/level/state"
-    brightness_command_topic: "smartthings/Christmas Tree/level/state"
+    brightness_command_topic: "smartthings/Christmas Tree/level/set"
     payload_on: "on" 
     payload_off: "off" 
     retain: false
@@ -161,7 +161,7 @@
   - platform: mqtt 
     name: "Mantle Lights" 
     state_topic: "smartthings/Mantle Lights/switch/state"
-    command_topic: "smartthings/Mantle Lights/switch/state"
+    command_topic: "smartthings/Mantle Lights/switch/set"
     payload_on: "on" 
     payload_off: "off" 
     retain: false
