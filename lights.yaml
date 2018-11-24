@@ -148,44 +148,7 @@
 
 
 
-  - platform: mqtt
-    name: "Ryan Bloom" 
-    state_topic: "smartthings/Ryan's Bloom/switch/state"
-    command_topic: "smartthings/Ryan's Bloom/switch/set" 
-    brightness_state_topic: "smartthings/Ryan's Bloom/level/state"
-    brightness_command_topic: "smartthings/Ryan's Bloom/level/set"
-    hs_command_topic: "smartthings/Ryan's Bloom/hue/set"
-    hs_state_topic: "smartthings/Ryan's Bloom/hue/state"
-    rgb_command_topic: "smartthings/Ryan's Bloom/color/set"
-    rgb_state_topic: "smartthings/Ryan's Bloom/color/state"
-    payload_on: "on" 
-    payload_off: "off" 
-    retain: true
-    brightness_scale: 99
-  - platform: mqtt 
-    name: "Kristi Reading Lamp" 
-    state_topic: "smartthings/Kristi Reading Lamp/switch/state"
-    command_topic: "smartthings/Kristi Reading Lamp/switch/set"
-    brightness_state_topic: "smartthings/Kristi Reading Lamp/level/state"
-    brightness_command_topic: "smartthings/Kristi Reading Lamp/level/set"
-    payload_on: "on" 
-    payload_off: "off" 
-    retain: true
-    brightness_scale: 99
-  - platform: mqtt
-    name: "Kristis Bloom"
-    state_topic: "smartthings/Kristi's Bloom/switch/state"
-    command_topic: "smartthings/Kristi's Bloom/switch/set" 
-    brightness_state_topic: "smartthings/Kristi's Bloom/level/state"
-    brightness_command_topic: "smartthings/Kristi's Bloom/level/set"
-    hs_command_topic: "smartthings/Kristi's Bloom/hue/set"
-    hs_state_topic: "smartthings/Kristi's Bloom/hue/state"
-    rgb_command_topic: "smartthings/Kristi's Bloom/color/set"
-    rgb_state_topic: "smartthings/Kristi's Bloom/color/state"
-    payload_on: "on" 
-    payload_off: "off" 
-    retain: true
-    brightness_scale: 99
+
 
 #CHRISTMAS LIGHTS
 #  - platform: mqtt 
