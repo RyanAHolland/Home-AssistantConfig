@@ -146,18 +146,22 @@
     brightness_scale: 99
 ##Hue lights via SmartThings
 
-
-
-
-
 #CHRISTMAS LIGHTS
-#  - platform: mqtt 
-#    name: "Christmas Tree" 
-#    state_topic: "smartthings/Christmas Tree/switch/state"
-#    command_topic: "smartthings/Christmas Tree/switch/state"
-#    brightness_state_topic: "smartthings/Christmas Tree/level/state"
-#    brightness_command_topic: "smartthings/Christmas Tree/level/state"
-#    payload_on: "on" 
-#    payload_off: "off" 
-#    retain: true
-#    brightness_scale: 99
+  - platform: mqtt 
+    name: "Christmas Tree" 
+    state_topic: "smartthings/Christmas Tree/switch/state"
+    command_topic: "smartthings/Christmas Tree/switch/state"
+    brightness_state_topic: "smartthings/Christmas Tree/level/state"
+    brightness_command_topic: "smartthings/Christmas Tree/level/state"
+    payload_on: "on" 
+    payload_off: "off" 
+    retain: false
+    brightness_scale: 99
+    
+  - platform: mqtt 
+    name: "Mantle Lights" 
+    state_topic: "smartthings/Mantle Lights/switch/state"
+    command_topic: "smartthings/Mantle Lights/switch/state"
+    payload_on: "on" 
+    payload_off: "off" 
+    retain: false
