@@ -27,6 +27,7 @@ cloud:
        - group.decorative
        - group.fireplace_lights
        - group.color
+       - group.christmas_lights
       exclude_domains:
        - group
        - light
