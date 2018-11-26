@@ -165,7 +165,7 @@ christmas lights:
       - light.christmas_tree
       - light.mantle_lights
       - switch.liams_tree
-      - switch.railing_lights
+      - light.railing_lights
 
 dining_room:
     name: Dining Room
