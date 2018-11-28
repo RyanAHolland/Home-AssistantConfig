@@ -261,32 +261,32 @@
   - platform: template
     sensors:
       lg_garage_night:
-        value_template: '{{ is_state('sun.sun', 'below_horizon') and is_state('states.binary_sensor.large_garage_door_contact.state', 'on') }}'
+        value_template: "{{ is_state('sun.sun', 'below_horizon') and is_state('states.binary_sensor.large_garage_door_contact.state', 'on') }}"
         friendly_name: 'Large Garage Open @ Night'
   - platform: template
     sensors:
       sm_garage_night:
-        value_template: '{{ is_state('sun.sun', 'below_horizon') and is_state('states.binary_sensor.small_garage_door_contact.state', 'on') }}'
+        value_template: "{{ is_state('sun.sun', 'below_horizon') and is_state('states.binary_sensor.small_garage_door_contact.state', 'on') }}"
         friendly_name: 'Small Garage Open @ Night'
   - platform: template
     sensors:
       lg_garage_day:
-        value_template: '{{ is_state('sun.sun', 'above_horizon') and is_state('states.binary_sensor.large_garage_door_contact.state', 'on') }}'
+        value_template: "{{ is_state('sun.sun', 'above_horizon') and is_state('states.binary_sensor.large_garage_door_contact.state', 'on') }}"
         friendly_name: 'Large Garage Open during Day'
   - platform: template
     sensors:
       sm_garage_day:
-        value_template: '{{ is_state('sun.sun', 'above_horizon') and is_state('states.binary_sensor.small_garage_door_contact.state', 'on') }}'
+        value_template: "{{ is_state('sun.sun', 'above_horizon') and is_state('states.binary_sensor.small_garage_door_contact.state', 'on') }}"
         friendly_name: 'Small Garage Open during Day'
   - platform: template
     sensors:
       garage_lock_open:
-        value_template: '{{ is_state('states.lock.garage_lock.state', 'locked') }}'
+        value_template: "{{ is_state('states.lock.garage_lock.state', 'locked') }}"
         friendly_name: 'Garage Lock Unlocked'
   - platform: template
     sensors:
       front_lock_open:
-        value_template: '{{ is_state('states.lock.front_lock.state', 'locked') }}'
+        value_template: "{{ is_state('states.lock.front_lock.state', 'locked') }}"
         friendly_name: 'Front Lock Unlocked'
 #Bayesian
   - platform: bayesian
