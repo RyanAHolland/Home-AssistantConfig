@@ -288,6 +288,14 @@
       front_lock_open:
         value_template: "{{ is_state('states.lock.front_lock.state', 'locked') }}"
         friendly_name: 'Front Lock Unlocked'
+
+##Nest Climate
+  - platform: template
+    sensors:
+      nest_away:
+        value_template: "{{ is_state(states.climate.downstairs_thermostat.attributes.away_mode,'off') }}"
+        friendly_name: 'Nest Away Mode'
+        
 #Bayesian
   - platform: bayesian
     prior: 0.5

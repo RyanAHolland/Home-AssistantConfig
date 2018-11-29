@@ -465,6 +465,7 @@ climateSensors:
       - binary_sensor.downstairs_thermostat_thermostat_is_locked
       - binary_sensor.downstairs_thermostat_thermostat_is_using_emergency_heat
       - binary_sensor.downstairs_thermostat_thermostat_online
+      - binary_sensor.nest_away
       - sensor.motiontemp_1_0
       - sensor.motiontemp_3_0
       - sensor.first_floor_entry_temperature

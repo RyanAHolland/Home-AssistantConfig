@@ -554,6 +554,7 @@ views:
           - binary_sensor.downstairs_thermostat_thermostat_is_locked
           - binary_sensor.downstairs_thermostat_thermostat_is_using_emergency_heat
           - binary_sensor.downstairs_thermostat_thermostat_online
+          - binary_sensor.nest_away
           - sensor.first_floor_entry_temperature
           - sensor.kitchen_motion_temperature
           - sensor.entry_keypad_temperature
