@@ -18,5 +18,5 @@ walle_max:
   method: POST
   payload: 'auth_token=hoED4U9nyQE9SNhQajFs&device_uuid=2a4f26821825fc60&command=max'
 
- tasker_playlist:
+tasker_playlist:
   url: 'https://autoremotejoaomgcd.appspot.com/sendmessage?key=APA91bHs3Tqwua0d_ZKRzPvYb83nmFE25FXCnfv178N3strcfjTcDNT-qLcdq1JUZSwuWe9E_39lxMpSDlZvKhguHpsORydA_7y2VWeszb-DxxininvGUMg0eZWR7yQTP7ZR0bQZKrZ2&message=playlist=:={{ state.input_select.gmusic_playlist.state }},{{ state.input_select.media_speakers.state }}'
