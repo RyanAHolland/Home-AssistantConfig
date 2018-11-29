@@ -984,6 +984,13 @@ views:
       - id: b22ff8c983f94b7486ac6120065f584d  # Automatically created id
         type: media-control
         entity: media_player.home_group
+      - id: 82bbbcadafbe419b80172ad6301181ab  # Automatically created id
+        type: entities
+        title: Playlist Test
+        show_header_toggle: true
+        entities:
+          - input_select.gmusic_playlists
+          - input_select.media_speakers
   - id: 14  # Automatically created id
     title: Everything
     icon: mdi:monitor-cellphone-star

@@ -254,6 +254,30 @@ input_select:
     initial: On Battery
     icon: mdi:cellphone-android
 
+  gmusic_playlists:
+    name: Google Music Playlist
+    options:
+    - Thumbs Up
+    - Yoga
+    - Deep Beats
+    - Worship
+    - Morning Flow
+    - Meditate Nature
+    - TransAtlantic Lullaby
+    - SPA Treatment
+
+  media_speakers:
+    name: Media Speakers
+    options:
+    - Home Group
+    - Bedroom Suite
+    - Bedroom Home
+    - Bathroom Home
+    - Office Home
+    - Office Speakers
+    - Kitchen Home
+    - Soundbar
+
 ifttt:
   key: !secret ifttt_key
 
