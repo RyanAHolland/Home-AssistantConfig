@@ -293,7 +293,7 @@
   - platform: template
     sensors:
       nest_away:
-        value_template: "{{ is_state(states.climate.downstairs_thermostat.attributes.away_mode,'off') }}"
+        value_template: "{{ is_state_attr('climate.downstairs_thermostat', 'away_mode', 'off') }}"
         friendly_name: 'Nest Away Mode'
         
 #Bayesian
