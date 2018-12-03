@@ -482,6 +482,10 @@ panel_iframe:
     icon: mdi:console
     url: "https://hollandhaus.duckdns.org:7681"
 
+weather:
+  - platform: darksky
+    api_key: !secret dark_sky_api
+
 ####################################################
 #                                                  #
 #                     Includes                     #
