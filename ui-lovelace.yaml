@@ -8,7 +8,7 @@ views:
     icon: mdi:home
     cards:
       - id: 964c29994c0044fcba7e5bcb81d9bd3c  # Automatically created id
-        type: entities
+        type: thermostat
         entities:
           - climate.downstairs_thermostat
       - id: 941a4721844b47f6ae3d1a7f464485b3  # Automatically created id
