@@ -372,7 +372,7 @@
    unit_of_measurement: 'W'
  - platform: mqtt
    state_topic: "smartthings/Ted 5000/energy/state"
-   name: "House Engergy Use"
+   name: "House Energy Use"
    qos: 0
    unit_of_measurement: 'V'
 ##FIND Location
