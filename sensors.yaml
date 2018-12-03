@@ -364,7 +364,17 @@
        value_template: '{{ states.device_tracker.kristi_s7.attributes.battery }}'
        unit_of_measurement: '%'
        friendly_name: "Kristi Phone Battery"
-
+##Power Sensor
+ - platform: mqtt
+   state_topic: "smartthings/Ted 5000/power/state"
+   name: "House Power Use"
+   qos: 0
+   unit_of_measurement: 'W'
+ - platform: mqtt
+   state_topic: "smartthings/Ted 5000/energy/state"
+   name: "House Engergy Use"
+   qos: 0
+   unit_of_measurement: 'V'
 ##FIND Location
  - platform: rest
    resource: !secret find_name

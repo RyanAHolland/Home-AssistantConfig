@@ -233,6 +233,12 @@ views:
         show_header_toggle: true
         entities:
           - sensor.ryan_to_work
+      - id: b9030c37a232422fa136a69c7863c365  # Automatically created id
+        type: sensor
+        title: Home Power
+        show_header_toggle: true
+        entities:
+          - sensor.house_power_use
   - id: 3  # Automatically created id
     title: Scenes
     icon: mdi:animation
