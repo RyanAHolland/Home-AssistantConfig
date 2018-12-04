@@ -9,8 +9,7 @@ views:
     cards:
       - id: 964c29994c0044fcba7e5bcb81d9bd3c  # Automatically created id
         type: thermostat
-        entity:
-          - climate.downstairs_thermostat
+        entity: climate.downstairs_thermostat
       - id: 941a4721844b47f6ae3d1a7f464485b3  # Automatically created id
         type: entities
         title: System Switches
@@ -237,7 +236,7 @@ views:
         title: Home Power
         show_header_toggle: true
         entities:
-          - sensor.house_power_use
+          - sensor.main_mtu1_power
   - id: 3  # Automatically created id
     title: Scenes
     icon: mdi:animation
