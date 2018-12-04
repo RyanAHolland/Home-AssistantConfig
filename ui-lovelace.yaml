@@ -7,6 +7,9 @@ views:
     title: default_view
     icon: mdi:home
     cards:
+      - type: alarm-panel
+        title: House Alarm
+        entity: alarm_control_panel.shm
       - id: 964c29994c0044fcba7e5bcb81d9bd3c  # Automatically created id
         type: thermostat
         entity: climate.downstairs_thermostat
@@ -76,7 +79,11 @@ views:
           - cover.large_door
           - binary_sensor.large_garage_door_contact
           - cover.small_door
-          - binary_sensor.small_garage_door_contact
+          - binary_sensor.small_garfage_door_contact
+      - type: sensor
+        title: Home Power
+        show_header_toggle: true
+        entity: sensor.main_mtu1_power
   - id: 1  # Automatically created id
     title: Media
     icon: mdi:google-play
@@ -235,8 +242,7 @@ views:
       - type: sensor
         title: Home Power
         show_header_toggle: true
-        entities:
-          - sensor.main_mtu1_power
+        entity: sensor.main_mtu1_power
   - id: 3  # Automatically created id
     title: Scenes
     icon: mdi:animation
