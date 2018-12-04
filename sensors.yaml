@@ -87,16 +87,16 @@
    password: !secret casts_pass
 
 #Basement UPS
-#  - platform: apcupsd
-#    resources:
-#      - bcharge
-#      - linev
-#      - loadpct
-#      - nominv
-#      - numxfers
-#      - status
-#      - timeleft
-#      - tonbatt
+  - platform: apcupsd
+    resources:
+      - bcharge
+      - linev
+      - loadpct
+      - nominv
+      - numxfers
+      - status
+      - timeleft
+      - tonbatt
 # Tracking Ryan to Home
  - platform: google_travel_time
    name: Ryan To Home
