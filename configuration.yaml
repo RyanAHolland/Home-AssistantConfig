@@ -359,10 +359,10 @@ climate:
 
 device_tracker:
   - platform: unifi
+    host: !secret server_ip
+    port: 8443
     username: !secret email
     password: !secret unifi_pass
-    host: !secret hostname
-    port: 8443
     verify_ssl: false
     new_device_defaults:
       track_new_devices: true
