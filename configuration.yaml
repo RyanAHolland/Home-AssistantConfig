@@ -351,7 +351,7 @@ tts:
 #  access_token: !secret ga_token
 
 shell_command:
-  get_latest_config: bash /root/config/update_config_from_github.sh
+  get_latest_config: 'python3 /config/python_scripts/git_pull_wrapper.py'
 
 climate:
   platform: nest
