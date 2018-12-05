@@ -28,11 +28,12 @@ views:
           - sensor.current_version
       - id: ccf5cb7b21f742aa9651c6ade3add551  # Automatically created id
         type: entities
-        title: Ryan Devices
+        title: 
         show_header_toggle: true
         entities:
           - device_tracker.ryan_note8
           - sensor.ryan_occupancy
+          - device_tracker.google_maps_118314383764095593834
       - id: 111a475f6f664d42982421c25c259d1f  # Automatically created id
         type: entities
         title: Kristi Devices
@@ -146,14 +147,15 @@ views:
     icon: mdi:account
     cards:
       - id: 515acd85b5014abb894416f158d4ecd3  # Automatically created id
-        type: entities
+        type: glance
         title: Ryan Devices
         show_header_toggle: true
         entities:
           - device_tracker.ryan_note8
           - sensor.ryan_occupancy
+          - device_tracker.google_maps_118314383764095593834	
       - id: 317f41a5c66940a9a10d99ccbc340696  # Automatically created id
-        type: entities
+        type: glance
         title: Kristi Devices
         show_header_toggle: true
         entities:
@@ -161,7 +163,7 @@ views:
           - device_tracker.kristis_phone
           - sensor.kristi_occupancy
       - id: 5b012a0248d24ec5b1708a022e305b8b  # Automatically created id
-        type: entities
+        type: glance
         title: Linda/Bill Devices
         show_header_toggle: true
         entities:
@@ -170,36 +172,12 @@ views:
           - device_tracker.billsphone
           - sensor.mom_occupancy
       - id: 50309c12f76849e5a8a59a4f070cc07b  # Automatically created id
-        type: entities
+        type: glance
         title: earl
         show_header_toggle: true
         entities:
           - device_tracker.earls_phone
           - sensor.dad_occupancy
-      - id: 1a9086c53617418ab7448f926723b8bb  # Automatically created id
-        type: entities
-        title: Ryan Devices
-        show_header_toggle: true
-        entities:
-          - device_tracker.ryan_note8
-          - sensor.ryan_occupancy
-      - id: 1c8687506703491ea601e2d34f8501cb  # Automatically created id
-        type: entities
-        title: Kristi Devices
-        show_header_toggle: true
-        entities:
-          - device_tracker.kristi_s7
-          - device_tracker.kristis_phone
-          - sensor.kristi_occupancy
-      - id: 4ab549a818ed4956a0dda98404f35207  # Automatically created id
-        type: entities
-        title: Linda/Bill Devices
-        show_header_toggle: true
-        entities:
-          - device_tracker.mom
-          - device_tracker.moms_phone
-          - device_tracker.billsphone
-          - sensor.mom_occupancy
       - id: cd37caf9b1ac41b4ba03b729c69a2fc1  # Automatically created id
         type: entities
         title: BT Presence Sensors
@@ -348,6 +326,7 @@ views:
         entities:
           - device_tracker.ryan_note8
           - sensor.ryan_occupancy
+          - device_tracker.google_maps_118314383764095593834	
       - id: 9f935034ba4b4e19a445d6cbbb85de68  # Automatically created id
         type: entities
         title: Kristi Devices
@@ -1111,6 +1090,7 @@ views:
         entities:
           - device_tracker.ryan_note8
           - sensor.ryan_occupancy
+          - device_tracker.google_maps_118314383764095593834	
       - id: 482fb554854347e9b6fde96406ca94ae  # Automatically created id
         type: entities
         title: Kristi Devices

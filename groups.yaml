@@ -3,6 +3,7 @@ ryan:
    - device_tracker.ryan_note8
    - device_tracker.galaxynote8
    - sensor.ryan_occupancy
+   - device_tracker.google_maps_118314383764095593834
    #- sensor.ryan_smartthings
 kristi:
    - device_tracker.kristi_s7
