@@ -729,6 +729,7 @@ views:
           - sensor.liam_room_humidity
           - sensor.liam_room_pressure
           - sensor.liam_room_temp
+          - binary_sensor.liams_room_door
       - id: 604e8e1843c548e7b55f62700729b0f7  # Automatically created id
         type: entities
         title: Second Floor Sensors
