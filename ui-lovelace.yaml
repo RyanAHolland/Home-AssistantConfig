@@ -80,7 +80,7 @@ views:
           - cover.large_door
           - binary_sensor.large_garage_door_contact
           - cover.small_door
-          - binary_sensor.small_garfage_door_contact
+          - binary_sensor.small_garage_door_contact
       - type: sensor
         title: Home Power
         show_header_toggle: true
