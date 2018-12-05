@@ -8,7 +8,8 @@ views:
     title: default_view
     icon: mdi:home
     cards:
-      - type: alarm-panel
+      - id: be421f6bdf044f36b1f2d55c55a8aaf0  # Automatically created id
+        type: alarm-panel
         title: House Alarm
         entity: alarm_control_panel.shm
       - id: 964c29994c0044fcba7e5bcb81d9bd3c  # Automatically created id
@@ -81,7 +82,8 @@ views:
           - binary_sensor.large_garage_door_contact
           - cover.small_door
           - binary_sensor.small_garfage_door_contact
-      - type: sensor
+      - id: 45be95dc401945e98f487788da06ebe8  # Automatically created id
+        type: sensor
         title: Home Power
         show_header_toggle: true
         entity: sensor.main_mtu1_power
@@ -240,7 +242,8 @@ views:
         show_header_toggle: true
         entities:
           - sensor.ryan_to_work
-      - type: sensor
+      - id: 17715123d8f2453d90674c4b6b146f0c  # Automatically created id
+        type: sensor
         title: Home Power
         show_header_toggle: true
         entity: sensor.main_mtu1_power
