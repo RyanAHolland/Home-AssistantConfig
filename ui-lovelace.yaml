@@ -81,9 +81,8 @@ views:
           - cover.large_door
           - binary_sensor.large_garage_door_contact
           - cover.small_door
-          - binary_sensor.small_garfage_door_contact
-      - id: 45be95dc401945e98f487788da06ebe8  # Automatically created id
-        type: sensor
+          - binary_sensor.small_garage_door_contact
+      - type: sensor
         title: Home Power
         show_header_toggle: true
         entity: sensor.main_mtu1_power
@@ -709,17 +708,6 @@ views:
         show_header_toggle: true
         entities:
           - light.bathroom_light
-      - id: 18ea336936f4414ebbcf9e97f22884e7  # Automatically created id
-        type: entities
-        title: Bedroom
-        show_header_toggle: true
-        entities:
-          - light.bedroom_overhead
-          - light.bedroom_fan
-          - light.kristi_lamp
-          - light.kristis_bloom
-          - light.ryan_lamp
-          - light.ryans_bloom
       - id: 0a73c9ad01504d3d95942b0356d5c3cc  # Automatically created id
         type: entities
         title: Bedroom Colors
@@ -743,6 +731,7 @@ views:
           - sensor.liam_room_humidity
           - sensor.liam_room_pressure
           - sensor.liam_room_temp
+          - binary_sensor.liams_room_door
       - id: 604e8e1843c548e7b55f62700729b0f7  # Automatically created id
         type: entities
         title: Second Floor Sensors

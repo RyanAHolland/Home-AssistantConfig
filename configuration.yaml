@@ -351,8 +351,7 @@ tts:
 #  access_token: !secret ga_token
 
 shell_command:
-  get_latest_config: bash /home/homeassistant/.homeassistant/bin/update_config_from_github.sh
-  restart_mqtt: docker restart mqtt_bridge
+  get_latest_config: bash /config/update_config_from_github.sh
 
 climate:
   platform: nest
