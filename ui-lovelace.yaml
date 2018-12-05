@@ -706,17 +706,6 @@ views:
         show_header_toggle: true
         entities:
           - light.bathroom_light
-      - id: 18ea336936f4414ebbcf9e97f22884e7  # Automatically created id
-        type: entities
-        title: Bedroom
-        show_header_toggle: true
-        entities:
-          - light.bedroom_overhead
-          - light.bedroom_fan
-          - light.kristi_lamp
-          - light.kristis_bloom
-          - light.ryan_lamp
-          - light.ryans_bloom
       - id: 0a73c9ad01504d3d95942b0356d5c3cc  # Automatically created id
         type: entities
         title: Bedroom Colors
