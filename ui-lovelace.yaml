@@ -48,7 +48,7 @@ views:
         show_header_toggle: true
         entities:
           - device_tracker.mom
-          - device_tracker.lindas8
+          - device_tracker.lindass8
           - device_tracker.billsphone
           - sensor.mom_occupancy
       - id: 8fd199061ade468abb3e2bbe76077cc6  # Automatically created id
@@ -168,7 +168,7 @@ views:
         show_header_toggle: true
         entities:
           - device_tracker.mom
-          - device_tracker.lindas8
+          - device_tracker.lindass8
           - device_tracker.billsphone
           - sensor.mom_occupancy
       - id: 50309c12f76849e5a8a59a4f070cc07b  # Automatically created id
@@ -341,7 +341,7 @@ views:
         show_header_toggle: true
         entities:
           - device_tracker.mom
-          - device_tracker.lindas8
+          - device_tracker.lindass8
           - device_tracker.billsphone
           - sensor.mom_occupancy
       - id: 9f52707ec0444dbd81b2bb23b966c101  # Automatically created id
@@ -1031,7 +1031,7 @@ views:
           - device_tracker.kristis_phone
           - device_tracker.ryan
           - device_tracker.ryans_phone
-          - device_tracker.lindas8
+          - device_tracker.lindass8
           - device_tracker.mom
           - device_tracker.billsphone
           - device_tracker.google_maps_118314383764095593834
@@ -1105,7 +1105,7 @@ views:
         show_header_toggle: true
         entities:
           - device_tracker.mom
-          - device_tracker.lindas8
+          - device_tracker.lindass8
           - device_tracker.billsphone
           - sensor.mom_occupancy
       - id: 9df35daa36284b739efcec4836c228f5  # Automatically created id

@@ -10,8 +10,8 @@ kristi:
    - sensor.kristi_occupancy
    - device_tracker.google_maps_114680120030307638360
 lindabill:
-   - device_tracker.mom
-   - device_tracker.lindas8
+#   - device_tracker.mom
+   - device_tracker.lindass8
    - device_tracker.billsphone
    - sensor.mom_occupancy
 earl:
