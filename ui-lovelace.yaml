@@ -48,7 +48,7 @@ views:
         show_header_toggle: true
         entities:
           - device_tracker.mom
-          - device_tracker.moms_phone
+          - device_tracker.lindas8
           - device_tracker.billsphone
           - sensor.mom_occupancy
       - id: 8fd199061ade468abb3e2bbe76077cc6  # Automatically created id
@@ -151,15 +151,15 @@ views:
         title: Ryan Devices
         show_header_toggle: true
         entities:
-          - device_tracker.ryan_note8
+          - device_tracker.google_maps_118314383764095593834
           - sensor.ryan_occupancy
-          - device_tracker.google_maps_118314383764095593834	
+          - device_tracker.ryans_phone	
       - id: 317f41a5c66940a9a10d99ccbc340696  # Automatically created id
         type: glance
         title: Kristi Devices
         show_header_toggle: true
         entities:
-          - device_tracker.kristi_s7
+          - device_tracker.google_maps_114680120030307638360
           - device_tracker.kristis_phone
           - sensor.kristi_occupancy
       - id: 5b012a0248d24ec5b1708a022e305b8b  # Automatically created id
@@ -168,7 +168,7 @@ views:
         show_header_toggle: true
         entities:
           - device_tracker.mom
-          - device_tracker.moms_phone
+          - device_tracker.lindas8
           - device_tracker.billsphone
           - sensor.mom_occupancy
       - id: 50309c12f76849e5a8a59a4f070cc07b  # Automatically created id
@@ -324,7 +324,7 @@ views:
         title: Ryan Devices
         show_header_toggle: true
         entities:
-          - device_tracker.ryan_note8
+          - device_tracker.google_maps_118314383764095593834
           - sensor.ryan_occupancy
           - device_tracker.google_maps_118314383764095593834	
       - id: 9f935034ba4b4e19a445d6cbbb85de68  # Automatically created id
@@ -332,7 +332,7 @@ views:
         title: Kristi Devices
         show_header_toggle: true
         entities:
-          - device_tracker.kristi_s7
+          - device_tracker.google_maps_114680120030307638360
           - device_tracker.kristis_phone
           - sensor.kristi_occupancy
       - id: 0baef40ded2e4dc0b32f12612cbbaccc  # Automatically created id
@@ -341,7 +341,7 @@ views:
         show_header_toggle: true
         entities:
           - device_tracker.mom
-          - device_tracker.moms_phone
+          - device_tracker.lindas8
           - device_tracker.billsphone
           - sensor.mom_occupancy
       - id: 9f52707ec0444dbd81b2bb23b966c101  # Automatically created id
@@ -1031,11 +1031,11 @@ views:
           - device_tracker.kristis_phone
           - device_tracker.ryan
           - device_tracker.ryans_phone
-          - device_tracker.moms_phone
+          - device_tracker.lindas8
           - device_tracker.mom
           - device_tracker.billsphone
-          - device_tracker.ryan_note8
-          - device_tracker.kristi_s7
+          - device_tracker.google_maps_118314383764095593834
+          - device_tracker.google_maps_114680120030307638360
           - device_tracker.earls_phone
       - id: 8282ab791ede4a0180152be082c774c9  # Automatically created id
         type: entities
@@ -1088,7 +1088,7 @@ views:
         title: Ryan Devices
         show_header_toggle: true
         entities:
-          - device_tracker.ryan_note8
+          - device_tracker.google_maps_118314383764095593834
           - sensor.ryan_occupancy
           - device_tracker.google_maps_118314383764095593834	
       - id: 482fb554854347e9b6fde96406ca94ae  # Automatically created id
@@ -1096,7 +1096,7 @@ views:
         title: Kristi Devices
         show_header_toggle: true
         entities:
-          - device_tracker.kristi_s7
+          - device_tracker.google_maps_114680120030307638360
           - device_tracker.kristis_phone
           - sensor.kristi_occupancy
       - id: c96c441f8fd144bfb400dd923b0a0f90  # Automatically created id
@@ -1105,7 +1105,7 @@ views:
         show_header_toggle: true
         entities:
           - device_tracker.mom
-          - device_tracker.moms_phone
+          - device_tracker.lindas8
           - device_tracker.billsphone
           - sensor.mom_occupancy
       - id: 9df35daa36284b739efcec4836c228f5  # Automatically created id
