@@ -336,3 +336,7 @@ sensor.kristi_home:
 sensor.mom_home:
   entity_picture: /local/BillLinda.jpg
   friendly_name: Linda/Bill Home
+device_tracker.google_maps_114680120030307638360:
+  friendly_name: Kristi Location
+device_tracker.google_maps_118314383764095593834:
+  friendly_name: Ryan Location
