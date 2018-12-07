@@ -1,17 +1,17 @@
 ###GROUPS###
 ryan:
-   - device_tracker.ryan_note8
-   - device_tracker.galaxynote8
+   - device_tracker.ryans_phone
    - sensor.ryan_occupancy
+   - device_tracker.google_maps_118314383764095593834
    #- sensor.ryan_smartthings
 kristi:
-   - device_tracker.kristi_s7
    - device_tracker.kristis_phone
    #- sensor.kristi_smartthings
    - sensor.kristi_occupancy
+   - device_tracker.google_maps_114680120030307638360
 lindabill:
    - device_tracker.mom
-   - device_tracker.moms_phone
+   - device_tracker.lindas8
    - device_tracker.billsphone
    - sensor.mom_occupancy
 earl:
@@ -465,6 +465,7 @@ climateSensors:
       - binary_sensor.downstairs_thermostat_thermostat_is_locked
       - binary_sensor.downstairs_thermostat_thermostat_is_using_emergency_heat
       - binary_sensor.downstairs_thermostat_thermostat_online
+      - binary_sensor.nest_away
       - sensor.motiontemp_1_0
       - sensor.motiontemp_3_0
       - sensor.first_floor_entry_temperature

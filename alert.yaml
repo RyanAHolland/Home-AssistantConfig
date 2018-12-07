@@ -6,7 +6,7 @@
     can_acknowledge: True
     skip_first: True
     notifiers:
-      - PushOver
+      - RyanHangout
 
   garage_lock:
     name: Garage Lock is Unlocked
@@ -16,7 +16,7 @@
     can_acknowledge: True
     skip_first: True
     notifiers:
-      - PushOver
+      - RyanHangout
 
   lg_garage_day:
     name: Large Garage Door has been left open.
@@ -26,7 +26,7 @@
     can_acknowledge: False
     skip_first: True
     notifiers:
-      - PushOver
+      - RyanHangout
 
   lg_garage_night:
     name: Large Garage Door has been left open.
@@ -36,7 +36,7 @@
     can_acknowledge: False
     skip_first: True
     notifiers:
-      - PushOver
+      - RyanHangout
 
   sm_garage_day:
     name: Small Garage Door has been left open.
@@ -46,7 +46,7 @@
     can_acknowledge: False
     skip_first: True
     notifiers:
-      - PushOver
+      - RyanHangout
 
   sm_garage_night:
     name: Small Garage Door has been left open.
@@ -56,4 +56,4 @@
     can_acknowledge: False
     skip_first: True
     notifiers:
-      - PushOver
+      - RyanHangout

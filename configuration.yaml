@@ -258,6 +258,30 @@ input_select:
     initial: On Battery
     icon: mdi:cellphone-android
 
+  gmusic_playlists:
+    name: Google Music Playlist
+    options:
+    - Thumbs Up
+    - Yoga
+    - Deep Beats
+    - Worship
+    - Morning Flow
+    - Meditate Nature
+    - TransAtlantic Lullaby
+    - SPA Treatment
+
+  media_speakers:
+    name: Media Speakers
+    options:
+    - Home Group
+    - Bedroom Suite
+    - Bedroom Home
+    - Bathroom Home
+    - Office Home
+    - Office Speakers
+    - Kitchen Home
+    - Soundbar
+
 ifttt:
   key: !secret ifttt_key
 
@@ -331,23 +355,21 @@ tts:
 #  access_token: !secret ga_token
 
 shell_command:
-  get_latest_config: bash /home/homeassistant/.homeassistant/bin/update_config_from_github.sh
-  restart_mqtt: docker restart mqtt_bridge
+  get_latest_config: 'python3 /config/python_scripts/git_pull_wrapper.py'
 
 climate:
   platform: nest
 
 device_tracker:
   - platform: unifi
+    host: !secret server_ip
+    port: 8443
     username: !secret email
     password: !secret unifi_pass
-    host: !secret hostname
-    port: 8443
     verify_ssl: false
     new_device_defaults:
       track_new_devices: true
       hide_if_away: False
-  - platform: owntracks_http
   - platform: ping
     hosts:
       mom: !secret mom_ip
@@ -355,6 +377,8 @@ device_tracker:
     username: !secret google_user
     password: !secret google_pass
     max_gps_accuracy: 500
+
+owntracks:
 
 #Cameras
 camera:
@@ -461,6 +485,10 @@ panel_iframe:
     title: Terminal
     icon: mdi:console
     url: "https://hollandhaus.duckdns.org:7681"
+
+weather:
+  - platform: darksky
+    api_key: !secret dark_sky_api
 
 ####################################################
 #                                                  #
