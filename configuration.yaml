@@ -203,8 +203,8 @@ wemo:
 python_script:
 
 ##ZWAVE
-zwave:
-  usb_path: /dev/ttyAMA0
+# zwave:
+#   usb_path: /dev/ttyAMA0
 
 #Add Input Select
 input_select:
