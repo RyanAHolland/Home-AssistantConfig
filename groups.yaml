@@ -305,6 +305,12 @@ BasementSensors:
       - sensor.humidor_humidity
       - sensor.humidor_pressure
 
+DoorSensors:
+    name: Door Sensors
+    entities:
+      - binary_sensor.front_door_sensor
+      - binary_sensor.back_door_sensor
+      - binary_sensor.garage_entry_sensor
 
 SecuritySensors:
     name: Security Sensors
