@@ -38,7 +38,7 @@ cloud:
        - climate
        - media_player
        - cover
-       exclude_entities:
+      exclude_entities:
        - light.left_lamp
        - light.right_lamp
        - light.floor_lamp
