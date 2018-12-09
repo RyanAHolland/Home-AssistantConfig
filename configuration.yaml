@@ -202,6 +202,10 @@ wemo:
 #Python Scripting
 python_script:
 
+##ZWAVE
+# zwave:
+#   usb_path: /dev/ttyAMA0
+
 #Add Input Select
 input_select:
   home_status:
