@@ -30,7 +30,6 @@ cloud:
        - group.christmas_lights
       exclude_domains:
        - group
-       - light
        - switch
        - input_boolean
        - script
@@ -39,6 +38,17 @@ cloud:
        - climate
        - media_player
        - cover
+       exclude_entities:
+       - light.left_lamp
+       - light.right_lamp
+       - light.floor_lamp
+       - light.liam_lamp
+       - light.ryan_bloom
+       - light.kristi_bloom
+       - light.ryan_reading_lamp
+       - light.kristi_reading_lamp
+       - light.office_lamp
+       - light.spare_lamp
 #  entity_config:
 #        group.color:
 #          name: Color Lights
@@ -448,6 +458,13 @@ hue:
   bridges:
     - host: !secret hue_ip
       allow_unreachable: true
+
+insteon:
+  host: !secret insteon_ip
+  ip_port: !secret insteon_port
+  username:  !secret insteon_user
+  password: !secret insteon_pass
+  hub_version: 2
     
 variable:  
   last_motion:
