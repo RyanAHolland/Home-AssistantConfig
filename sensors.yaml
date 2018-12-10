@@ -170,26 +170,26 @@
 #    name: "Humidor Temperature"
 #    qos: 0
 #    unit_of_measurement: '°F'
-#  - platform: mqtt
-#    state_topic: "smartthings/Kitchen Motion/temperature/state"
-#    name: "Kitchen Motion Temperature"
-#    qos: 0
-#    unit_of_measurement: '°F'
-#  - platform: mqtt
-#    state_topic: "smartthings/Basement Motion/temperature/state"
-#    name: "Basement Motion Temperature"
-#    qos: 0
-#    unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "smartthings/Kitchen Motion/temperature/state"
+   name: "Kitchen Motion Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "smartthings/Basement Motion/temperature/state"
+   name: "Basement Motion Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
  - platform: mqtt
    state_topic: "smartthings/Iris 3405-L Keypad/temperature/state"
    name: "Entry Keypad Temperature"
    qos: 0
    unit_of_measurement: '°F'
-#  - platform: mqtt
-#    state_topic: "smartthings/Upstairs Motion/temperature/state"
-#    name: "Upstairs Motion Temperature"
-#    qos: 0
-#    unit_of_measurement: '°F'
+ - platform: mqtt
+   state_topic: "smartthings/Upstairs Motion/temperature/state"
+   name: "Upstairs Motion Temperature"
+   qos: 0
+   unit_of_measurement: '°F'
  - platform: mqtt
    state_topic: "smartthings/Basement North Window/temperature/state"
    name: "Basement North Window Temperature"
@@ -281,21 +281,21 @@
    name: "Entry Keypad Battery"
    qos: 0
    unit_of_measurement: '%'
-#  - platform: mqtt
-#    state_topic: "smartthings/Upstairs Motion/battery/state"
-#    name: "Upstairs Motion Battery"
-#    qos: 0
-#    unit_of_measurement: '%'
-#  - platform: mqtt
-#    state_topic: "smartthings/Basement Motion/battery/state"
-#    name: "Basement Motion Battery"
-#    qos: 0
-#    unit_of_measurement: '%'
-#  - platform: mqtt
-#    state_topic: "smartthings/Kitchen Motion/battery/state"
-#    name: "Kitchen Motion Battery"
-#    qos: 0
-#    unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Upstairs Motion/battery/state"
+   name: "Upstairs Motion Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Basement Motion/battery/state"
+   name: "Basement Motion Battery"
+   qos: 0
+   unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Kitchen Motion/battery/state"
+   name: "Kitchen Motion Battery"
+   qos: 0
+   unit_of_measurement: '%'
 #  - platform: mqtt
 #    state_topic: "smartthings/First Floor Entry/battery/state"
 #    name: "First Floor Entry Battery"

@@ -70,14 +70,14 @@
   #   qos: 0
   #   retain: false
 ##Insteon Switches
-  # - platform: mqtt
-  #   name: "Front Lights"
-  #   state_topic: "smartthings/Front Lights/switch"
-  #   command_topic: "smartthings/Front Lights/switch/set"
-  #   payload_on: "on"
-  #   payload_off: "off"
-  #   qos: 0
-  #   retain: false
+  - platform: mqtt
+    name: "Front Lights"
+    state_topic: "smartthings/Front Lights/switch"
+    command_topic: "smartthings/Front Lights/switch/set"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 0
+    retain: false
 ##ZoneMinder
 #  - platform: zoneminder
 #    command_on: Modect
