@@ -27,15 +27,15 @@ views:
           - switch.wake_spike
           - sensor.current_version
       - id: ccf5cb7b21f742aa9651c6ade3add551  # Automatically created id
-        type: entities
-        title: 
+        type: glance
+        title: Ryan's Devices
         show_header_toggle: true
         entities:
           - device_tracker.ryans_phone
           - sensor.ryan_occupancy
           - device_tracker.google_maps_118314383764095593834
       - id: 111a475f6f664d42982421c25c259d1f  # Automatically created id
-        type: entities
+        type: glance
         title: Kristi Devices
         show_header_toggle: true
         entities:
@@ -43,11 +43,10 @@ views:
           - sensor.kristi_occupancy
           - device_tracker.google_maps_114680120030307638360
       - id: 218b44eedf54470581bdf114caeb0e01  # Automatically created id
-        type: entities
+        type: glance
         title: Linda/Bill Devices
         show_header_toggle: true
         entities:
-          - device_tracker.mom
           - device_tracker.lindass8
           - device_tracker.billsphone
           - sensor.mom_occupancy
@@ -386,7 +385,7 @@ views:
           - binary_sensor.downstairs_glass_break
           - binary_sensor.back_door_sensor
           - binary_sensor.front_door_sensor
-          - binary_sensor.garage_entry_sensor
+          - binary_sensor.garage_entry_door_sensor
           - binary_sensor.pantry_door
           - binary_sensor.front_window_1
           - binary_sensor.front_window_2
@@ -637,7 +636,7 @@ views:
           - binary_sensor.downstairs_glass_break
           - binary_sensor.back_door_sensor
           - binary_sensor.front_door_sensor
-          - binary_sensor.garage_entry_sensor
+          - binary_sensor.garage_entry_door_sensor
           - binary_sensor.pantry_door
           - binary_sensor.front_window_1
           - binary_sensor.front_window_2

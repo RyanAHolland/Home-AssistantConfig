@@ -242,7 +242,7 @@ BasementSensors:
       - binary_sensor.downstairs_glass_break
       - binary_sensor.back_door_sensor
       - binary_sensor.front_door_sensor
-      - binary_sensor.garage_entry_sensor
+      - binary_sensor.garage_entry_door_sensor
       - binary_sensor.pantry_door
       - binary_sensor.front_window_1
       - binary_sensor.front_window_2
@@ -257,9 +257,9 @@ BasementSensors:
 1stEnv:
     name: First Floor Environment Sensors
     entities:
-      - sensor.first_floor_entry_temperature
-      - sensor.first_floor_entry_light
-      - sensor.first_floor_entry_humidity
+      - sensor.vision_zp3111_multisensor_4in1_temperature_2
+      - sensor.vision_zp3111_multisensor_4in1_luminance
+      - sensor.vision_zp3111_multisensor_4in1_relative_humidity_2
       - sensor.window_over_sink_temperature
       - sensor.front_window_1_temperature
       - sensor.front_window_2_temperature
@@ -310,14 +310,14 @@ DoorSensors:
     entities:
       - binary_sensor.front_door_sensor
       - binary_sensor.back_door_sensor
-      - binary_sensor.garage_entry_sensor
+      - binary_sensor.garage_entry_door_sensor
 
 SecuritySensors:
     name: Security Sensors
     entities:
       - binary_sensor.back_door_sensor
       - binary_sensor.front_door_sensor
-      - binary_sensor.garage_entry_sensor
+      - binary_sensor.garage_entry_door_sensor
       - binary_sensor.first_floor_entry_motion
       - binary_sensor.kitchen_motion
       - binary_sensor.bathroom_motion
@@ -474,7 +474,7 @@ climateSensors:
       - binary_sensor.nest_away
       - sensor.motiontemp_1_0
       - sensor.motiontemp_3_0
-      - sensor.first_floor_entry_temperature
+      - sensor.vision_zp3111_multisensor_4in1_temperature_2
       - sensor.kitchen_motion_temperature
       - sensor.entry_keypad_temperature
       - sensor.upstairs_motion_temperature

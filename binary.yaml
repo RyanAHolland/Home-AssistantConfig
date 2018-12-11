@@ -218,6 +218,38 @@
     payload_on: "open"
     payload_off: "closed"
     device_class: safety
+
+##Virtual Binary from Zwave
+  - platform: template
+    sensors:
+      dryer_active:
+        friendly_name: "Front Door Sensor"
+        device_class: opening
+        value_template: "{% if is_state('sensor.vision_zd2105us5_recessed_doorwindow_sensor_door_alarm_2','0')  %}Off{% else %}On{% endif %}"
+
+  - platform: template
+    sensors:
+      dryer_active:
+        friendly_name: "Back Door Sensor"
+        device_class: opening
+        value_template: "{% if is_state('sensor.vision_zd2105us5_recessed_doorwindow_sensor_alarm_level','0')  %}Off{% else %}On{% endif %}"
+
+  - platform: template
+    sensors:
+      dryer_active:
+        friendly_name: "Garage Entry Door Sensor"
+        device_class: opening
+        value_template: "{% if is_state('sensor.vision_zd2102_au_doorwindow_sensor_burglar','0')  %}Off{% else %}On{% endif %}"
+
+  - platform: template
+    sensors:
+      dryer_active:
+        friendly_name: "First Floor Entry Motion"
+        device_class: motion
+        value_template: "{% if is_state('sensor.vision_zp3111_multisensor_4in1_alarm_level_2','0')  %}Off{% else %}On{% endif %}"
+
+
+##Might be different value
 #washer
   - platform: mqtt
     state_topic: "smartthings/Washer Sensor/acceleration"
