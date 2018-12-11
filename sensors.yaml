@@ -118,12 +118,12 @@
 
 ### Sensors from SmartThings
 ##Light Sensors
- - platform: mqtt
-   state_topic: "smartthings/First Floor Entry/illuminance/state"
-   name: "First Floor Entry Light"
-   qos: 0
-   unit_of_measurement: 'lux'
 #  - platform: mqtt
+#    state_topic: "smartthings/First Floor Entry/illuminance/state"
+#    name: "First Floor Entry Light"
+#    qos: 0
+#    unit_of_measurement: 'lux'
+# #  - platform: mqtt
 #    state_topic: "smartthings/Bathroom Motion/illuminance/state"
 #    name: "Bathroom Motion Light Sensor"
 #    qos: 0

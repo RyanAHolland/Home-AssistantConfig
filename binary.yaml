@@ -6,30 +6,30 @@
 
 #SmartThings Sensors
 ##DOOR
-  - platform: mqtt
-    state_topic: "smartthings/Front Door Sensor/contact/state"
-    name: "Front Door Sensor"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-    retain: false
-  - platform: mqtt
-    state_topic: "smartthings/Back Door/contact/state"
-    name: "Back Door Sensor"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-    retain: false
-  - platform: mqtt
-    state_topic: "smartthings/Garage Entry Sensor/contact/state"
-    name: "Garage Entry Sensor"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-    retain: false
+  # - platform: mqtt
+  #   state_topic: "smartthings/Front Door Sensor/contact/state"
+  #   name: "Front Door Sensor"
+  #   qos: 0
+  #   payload_on: "open"
+  #   payload_off: "closed"
+  #   device_class: opening
+  #   retain: false
+  # - platform: mqtt
+  #   state_topic: "smartthings/Back Door/contact/state"
+  #   name: "Back Door Sensor"
+  #   qos: 0
+  #   payload_on: "open"
+  #   payload_off: "closed"
+  #   device_class: opening
+  #   retain: false
+  # - platform: mqtt
+  #   state_topic: "smartthings/Garage Entry Sensor/contact/state"
+  #   name: "Garage Entry Sensor"
+  #   qos: 0
+  #   payload_on: "open"
+  #   payload_off: "closed"
+  #   device_class: opening
+  #   retain: false
   - platform: mqtt
     state_topic: "smartthings/Liam's Room/contact/state"
     name: "Liam's Room Door"
@@ -38,14 +38,14 @@
     payload_off: "closed"
     device_class: opening
     retain: false
-  - platform: mqtt
-    state_topic: "smartthings/Pantry Door/contact/state"
-    name: "Pantry Door"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-    retain: false
+  # - platform: mqtt
+  #   state_topic: "smartthings/Pantry Door/contact/state"
+  #   name: "Pantry Door"
+  #   qos: 0
+  #   payload_on: "open"
+  #   payload_off: "closed"
+  #   device_class: opening
+  #   retain: false
 ##APPLIANCE
   - platform: mqtt
     state_topic: "smartthings/Washer Sensor/contact/state"
