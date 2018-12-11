@@ -407,7 +407,7 @@ camera:
   - platform: mjpeg
     mjpeg_url: !secret basement_cam_url
     name: Basement
-  - platform: ffmpeg 
+  - platform: generic 
     name: Living Room
     username: !secret cam_user
     password: !secret cam_pass
@@ -415,7 +415,7 @@ camera:
     still_image_url: !secret lr_cam_url
     verify_ssl: false
     scan_interval: 5
-  - platform: ffmpeg 
+  - platform: generic 
     name: Garage Camera
     username: !secret cam_user
     password: !secret cam_pass
@@ -426,7 +426,6 @@ camera:
   - platform: ring
   - platform: usps
     scan_interval: 5
-#  - platform: zoneminder
 
 ffmpeg:
 
