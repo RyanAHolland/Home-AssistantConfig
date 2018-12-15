@@ -30,14 +30,14 @@
   #   payload_off: "closed"
   #   device_class: opening
   #   retain: false
-  - platform: mqtt
-    state_topic: "smartthings/Liam's Room/contact/state"
-    name: "Liam's Room Door"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-    retain: false
+#  - platform: mqtt
+#    state_topic: "smartthings/Liam's Room/contact/state"
+#    name: "Liam's Room Door"
+#    qos: 0
+#    payload_on: "open"
+#    payload_off: "closed"
+#    device_class: opening
+#    retain: false
   # - platform: mqtt
   #   state_topic: "smartthings/Pantry Door/contact/state"
   #   name: "Pantry Door"
@@ -121,22 +121,22 @@
   #   device_class: opening
   #   retain: false
 ##GARAGE DOOR
-  - platform: mqtt
-    state_topic: "smartthings/Large Door/contact/state"
-    name: "Large Garage Door Contact"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-    retain: false
-  - platform: mqtt
-    state_topic: "smartthings/Small Door/contact/state"
-    name: "Small Garage Door Contact"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-    retain: false
+#  - platform: mqtt
+#    state_topic: "smartthings/Large Door/contact/state"
+ #   name: "Large Garage Door Contact"
+ #   qos: 0
+#    payload_on: "open"
+ #   payload_off: "closed"
+#    device_class: opening
+#    retain: false
+#  - platform: mqtt
+#    state_topic: "smartthings/Small Door/contact/state"
+ #   name: "Small Garage Door Contact"
+ #   qos: 0
+#    payload_on: "open"
+#    payload_off: "closed"
+#    device_class: opening
+#    retain: false
 ##MOTION
   # - platform: mqtt
   #   state_topic: "smartthings/First Floor Entry/motion/state"
@@ -160,20 +160,20 @@
     payload_on: "active"
     payload_off: "inactive"
     device_class: motion
-  - platform: mqtt
-    state_topic: "smartthings/Kitchen Motion/motion/state"
-    name: "Kitchen Motion"
-    qos: 0
-    payload_on: "active"
-    payload_off: "inactive"
-    device_class: motion
-  - platform: mqtt
-    state_topic: "smartthings/Upstairs Motion/motion/state"
-    name: "Upstairs Motion"
-    qos: 0
-    payload_on: "active"
-    payload_off: "inactive"
-    device_class: motion
+ # - platform: mqtt
+ #   state_topic: "smartthings/Kitchen Motion/motion/state"
+#    name: "Kitchen Motion"
+ #   qos: 0
+#    payload_on: "active"
+#    payload_off: "inactive"
+ #   device_class: motion
+#  - platform: mqtt
+ #   state_topic: "smartthings/Upstairs Motion/motion/state"
+ #   name: "Upstairs Motion"
+ #   qos: 0
+#    payload_on: "active"
+#    payload_off: "inactive"
+ #   device_class: motion
   - platform: mqtt
     state_topic: "smartthings/Basement Motion/motion/state"
     name: "Basement Motion"

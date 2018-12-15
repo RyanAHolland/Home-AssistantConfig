@@ -28,6 +28,7 @@ cloud:
        - group.fireplace_lights
        - group.color
        - group.christmas_lights
+       - fan.bedroom
       exclude_domains:
        - group
        - switch
