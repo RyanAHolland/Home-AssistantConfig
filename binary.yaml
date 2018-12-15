@@ -317,27 +317,27 @@
         friendly_name: 'Nest Away Mode'
         
 #Bayesian
-  - platform: bayesian
-    prior: 0.5
-    name: 'Ryan Presence'
-    probability_threshold: 0.85
-    observations:
-      - entity_id: 'device_tracker.ryan_note8'
-        prob_given_true: 0.9
-        prob_given_false: 0.1
-        platform: 'state'
-        to_state: 'home'
-      # - entity_id: 'device_tracker.galaxynote8'
-      #   prob_given_true: 0.7
-      #   prob_given_false: 0.3
-      #   platform: 'state'
-      #   to_state: 'home'
-      - entity_id: 'sensor.ryan_occupancy'
-        prob_given_true: 1
-        prob_given_false: 0.3
-        platform: 'state'
-        to_state: 'home'
-  - platform: bayesian
+  # - platform: bayesian
+  #   prior: 0.5
+  #   name: 'Ryan Presence'
+  #   probability_threshold: 0.85
+  #   observations:
+  #     - entity_id: 'device_tracker.ryan_note8'
+  #       prob_given_true: 0.9
+  #       prob_given_false: 0.1
+  #       platform: 'state'
+  #       to_state: 'home'
+  #     # - entity_id: 'device_tracker.galaxynote8'
+  #     #   prob_given_true: 0.7
+  #     #   prob_given_false: 0.3
+  #     #   platform: 'state'
+  #     #   to_state: 'home'
+  #     - entity_id: 'sensor.ryan_occupancy'
+  #       prob_given_true: 1
+  #       prob_given_false: 0.3
+  #       platform: 'state'
+  #       to_state: 'home'
+  # - platform: bayesian
 #RING BINARY
   - platform: ring
     monitored_conditions:
