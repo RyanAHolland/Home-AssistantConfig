@@ -340,3 +340,5 @@ device_tracker.google_maps_114680120030307638360:
   friendly_name: Kristi Location
 device_tracker.google_maps_118314383764095593834:
   friendly_name: Ryan Location
+binary_sensor.garage_entry_door_sensor:
+  device_class: door

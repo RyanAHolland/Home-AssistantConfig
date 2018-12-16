@@ -746,7 +746,7 @@ views:
         show_header_toggle: true
         entities:
           - light.bedroom_overhead
-          - light.bedroom_fan
+          - fan.bedroom
           - light.kristi_lamp
           - light.kristis_bloom
           - light.ryan_lamp
@@ -1116,7 +1116,7 @@ views:
           - light.reading_lamp
           - light.bathroom_light
           - light.bedroom
-          - light.bedroom_fan
+          - fan.bedroom
           - light.bedroom_overhead
           - light.book_nook
           - light.christmas_tree
