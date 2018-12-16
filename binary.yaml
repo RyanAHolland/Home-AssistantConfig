@@ -562,42 +562,42 @@
 ##Virtual Binary from Zwave Sensors 
   - platform: template
     sensors:
-      dryer_active:
+      front_door_sensor:
         friendly_name: "Front Door Sensor"
         device_class: opening
         value_template: "{% if is_state('sensor.vision_zd2105us5_recessed_doorwindow_sensor_door_alarm_3','255')  %}Off{% else %}On{% endif %}"
 
   - platform: template
     sensors:
-      dryer_active:
+      back_door_sensor:
         friendly_name: "Back Door Sensor"
         device_class: opening
         value_template: "{% if is_state('sensor.vision_zd2105us5_recessed_doorwindow_sensor_alarm_level_2','0')  %}Off{% else %}On{% endif %}"
 
-  - platform: template
-    sensors:
-      dryer_active:
-        friendly_name: "Garage Entry Door Sensor"
-        device_class: opening
-        value_template: "{% if is_state('sensor.vision_zd2102_au_doorwindow_sensor_alarm_level_2','0')  %}Off{% else %}On{% endif %}"
+#  - platform: template
+#    sensors:
+#      garage_entry_door:
+#        friendly_name: "Garage Entry Door Sensor"
+#        device_class: opening
+#        value_template: "{% if is_state('sensor.vision_zd2102_au_doorwindow_sensor_alarm_level_2','0')  %}Off{% else %}On{% endif %}"
 
   - platform: template
     sensors:
-      dryer_active:
+      first_floor_entry_motion:
         friendly_name: "First Floor Entry Motion"
         device_class: motion
-        value_template: "{% if is_state('sensor.vision_zp3111_multisensor_4in1_alarm_level_2','0')  %}Off{% else %}On{% endif %}"
+        value_template: "{% if is_state('sensor.vision_zp3111_multisensor_4in1_alarm_level_3','0')  %}Off{% else %}On{% endif %}"
         
   - platform: template
     sensors:
-      dryer_active:
+      kitchen_motion:
         friendly_name: "Kitchen Motion"
         device_class: motion
         value_template: "{% if is_state('sensor.vision_zp3102_pir_motion_sensor_alarm_level_3','0')  %}Off{% else %}On{% endif %}"
         
   - platform: template
     sensors:
-      dryer_active:
+      upstairs_motion:
         friendly_name: "Upstairs Motion"
         device_class: motion
         value_template: "{% if is_state('sensor.vision_zp3102_pir_motion_sensor_alarm_level','0')  %}Off{% else %}On{% endif %}"
