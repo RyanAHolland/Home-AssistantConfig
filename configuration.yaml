@@ -27,10 +27,9 @@ cloud:
        - group.decorative
        - group.fireplace_lights
        - group.color
-       - group.christmas_lights
-       - fan.bedroom
       exclude_domains:
        - group
+       - light
        - switch
        - input_boolean
        - script
@@ -39,17 +38,6 @@ cloud:
        - climate
        - media_player
        - cover
-      exclude_entities:
-       - light.left_lamp
-       - light.right_lamp
-       - light.floor_lamp
-       - light.liam_lamp
-       - light.ryan_bloom
-       - light.kristi_bloom
-       - light.ryan_reading_lamp
-       - light.kristi_reading_lamp
-       - light.office_lamp
-       - light.spare_lamp
 #  entity_config:
 #        group.color:
 #          name: Color Lights
@@ -213,10 +201,6 @@ wemo:
 #Python Scripting
 python_script:
 
-##ZWAVE
-# zwave:
-#   usb_path: /dev/ttyAMA0
-
 #Add Input Select
 input_select:
   home_status:
@@ -226,7 +210,6 @@ input_select:
     - Away
     - Vacation
     - Sleep
-    initial: Home
     icon: mdi:House
 
   washing_machine_status:
@@ -269,30 +252,6 @@ input_select:
     initial: On Battery
     icon: mdi:cellphone-android
 
-  gmusic_playlists:
-    name: Google Music Playlist
-    options:
-    - Thumbs Up
-    - Yoga
-    - Deep Beats
-    - Worship
-    - Morning Flow
-    - Meditate Nature
-    - TransAtlantic Lullaby
-    - SPA Treatment
-
-  media_speakers:
-    name: Media Speakers
-    options:
-    - Home Group
-    - Bedroom Suite
-    - Bedroom Home
-    - Bathroom Home
-    - Office Home
-    - Office Speakers
-    - Kitchen Home
-    - Soundbar
-
 ifttt:
   key: !secret ifttt_key
 
@@ -313,12 +272,6 @@ mqtt:
   protocol: 3.1.1
   discovery: true 
   discovery_prefix: homeassistant
-  birth_message:
-    topic: 'hass/status'
-    payload: 'online'
-  will_message:
-    topic: 'hass/status'
-    payload: 'offline'
 
 
 media_player:
@@ -366,21 +319,23 @@ tts:
 #  access_token: !secret ga_token
 
 shell_command:
-  get_latest_config: 'python3 /config/python_scripts/git_pull_wrapper.py'
+  get_latest_config: bash /home/homeassistant/.homeassistant/bin/update_config_from_github.sh
+  restart_mqtt: docker restart mqtt_bridge
 
 climate:
   platform: nest
 
 device_tracker:
   - platform: unifi
-    host: !secret server_ip
-    port: 8443
     username: !secret email
     password: !secret unifi_pass
+    host: !secret hostname
+    port: 8443
     verify_ssl: false
     new_device_defaults:
       track_new_devices: true
       hide_if_away: False
+  - platform: owntracks_http
   - platform: ping
     hosts:
       mom: !secret mom_ip
@@ -388,8 +343,6 @@ device_tracker:
     username: !secret google_user
     password: !secret google_pass
     max_gps_accuracy: 500
-
-# owntracks:
 
 #Cameras
 camera:
@@ -408,25 +361,16 @@ camera:
   - platform: mjpeg
     mjpeg_url: !secret basement_cam_url
     name: Basement
-  - platform: generic 
+  - platform: ffmpeg 
     name: Living Room
-    username: !secret cam_user
-    password: !secret cam_pass
-    authentication: basic
-    still_image_url: !secret lr_cam_url
-    verify_ssl: false
-    scan_interval: 5
-  - platform: generic 
+    input: !secret lr_cam_url
+  - platform: ffmpeg 
     name: Garage Camera
-    username: !secret cam_user
-    password: !secret cam_pass
-    authentication: basic
-    still_image_url: !secret garage_cam_url
-    verify_ssl: false
-    scan_interval: 5
+    input: !secret garage_cam_url
   - platform: ring
   - platform: usps
     scan_interval: 5
+#  - platform: zoneminder
 
 ffmpeg:
 
@@ -468,14 +412,8 @@ hue:
   bridges:
     - host: !secret hue_ip
       allow_unreachable: true
+      allow_hue_groups: false
 
-# insteon:
-#   host: !secret insteon_ip
-#   ip_port: !secret insteon_port
-#   username:  !secret insteon_user
-#   password: !secret insteon_pass
-#   hub_version: 2
-    
 variable:  
   last_motion:
     value: 'Unknown'
@@ -483,12 +421,6 @@ variable:
     attributes:
       icon: mdi:map-marker
       name: "Last Motion"
-  last_door:
-    value: 'Unknown'
-    restore: true
-    attributes:
-      icon: mdi:door-open
-      name: "Last Door"
       
 # panel_custom:
 #   - name: floorplan
@@ -512,10 +444,6 @@ panel_iframe:
     title: Terminal
     icon: mdi:console
     url: "https://hollandhaus.duckdns.org:7681"
-
-weather:
-  - platform: darksky
-    api_key: !secret dark_sky_api
 
 ####################################################
 #                                                  #
