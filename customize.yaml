@@ -342,3 +342,7 @@ device_tracker.google_maps_118314383764095593834:
   friendly_name: Ryan Location
 binary_sensor.garage_entry_door_sensor:
   device_class: door
+binary_sensor.large_garage_door_contact:
+  device_class: garage_door
+binary_sensor.small_garage_door_contact:
+  device_class: garage_door
