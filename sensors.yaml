@@ -598,16 +598,16 @@
  #  include_archived: false
 
  #Roomba Sensors
-  - platform: mqtt
-    name: "EVA Status"
-    state_topic: "EVA/currentStatus"
-  - platform: mqtt
-    name: "EVA Battery"
-    state_topic: "EVA/battery"
+ - platform: mqtt
+   name: "EVA Status"
+   state_topic: "EVA/currentStatus"
+ - platform: mqtt
+   name: "EVA Battery"
+   state_topic: "EVA/battery"
 
-  - platform: mqtt
-    name: "WALL-E Status"
-    state_topic: "WALL-E/currentStatus"
-  - platform: mqtt
-    name: "WALL-E Battery"
-    state_topic: "WALL-E/battery"
+ - platform: mqtt
+   name: "WALL-E Status"
+   state_topic: "WALL-E/currentStatus"
+ - platform: mqtt
+   name: "WALL-E Battery"
+   state_topic: "WALL-E/battery"
