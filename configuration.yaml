@@ -212,6 +212,10 @@ ios:
 #Add WeMo
 wemo:
 
+#Config for Zwave (added via interface)
+zwave:
+  polling_interval: 30000
+  
 #Python Scripting
 python_script:
 
