@@ -312,6 +312,25 @@ DoorSensors:
       - binary_sensor.back_door_sensor
       - binary_sensor.garage_entry_door_sensor
 
+WindowSensors:
+    name: Window Sensors
+    entities:
+      - binary_sensor.basement_north_window
+      - binary_sensor.basement_south_window_1
+      - binary_sensor.basement_south_window_2
+      - binary_sensor.front_window_1
+      - binary_sensor.front_window_2
+      - binary_sensor.window_over_sink
+    #   - binary_sensor.playroom_window
+
+SecurityMotion:
+    name: Security Motion
+    entities:
+      - binary_basement_motion
+      - binary_sensor.first_floor_entry_motion
+      - binary_sensor.kitchen_motion
+      - binary_sensor.upstairs_motion
+
 SecuritySensors:
     name: Security Sensors
     entities:

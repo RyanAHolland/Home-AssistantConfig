@@ -1314,56 +1314,56 @@
   #         entity_id: input_select.home_status
   #         option: Home
 
-##ALARM NOTIFICATION
-  - alias: "Trigger Alarm"
-    hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.smartalarm_triggered
-        to: 'on'
-    condition:
-      condition: or
-      conditions:
-        - condition: state
-          entity_id: switch.st_awayhome_switch
-          state: 'on'
-        - condition: state
-          entity_id: switch.st_good_morningnight_switch
-          state: 'on'
-        - condition: state
-          entity_id: switch.st_vacationhome_switch
-          state: 'on'
-    action:
-      - service: notify.pushover
-        data:
-          message: "Smart Alarm Has Been Triggered."
-          title: "ALERT"
-          priority: 1
-          sound: alien
-      - service: notify.pushover
-        data:
-          title: "ALERT"
-          priority: 1
-          sound: alien
-          message: >-
-            {%- for item in states.group.securitysensors.attributes.entity_id -%}
-            {%- if states(item) == "on" -%}
-            {{ (item) | replace ("binary_sensor.","") | replace ("_"," ") | capitalize() }} is {{ states(item) }}
-            {% endif %}
-            {%- endfor -%}
-      - service: tts.google_say
-        entity_id: media_player.kitchen_home
-        data:
-          message: 'ALERT ALERT ALERT Alarm Has Been Triggered. Authorities have been contacted'
-      - service: tts.google_say
-        entity_id: media_player.kitchen_home
-        data:
-          message: >-
-            {%- for item in states.group.securitysensors.attributes.entity_id -%}
-            {%- if states(item) == "on" -%}
-            {{ (item) | replace ("binary_sensor.","") | replace ("_"," ") | capitalize() }} is {{ states(item) }}
-            {% endif %}
-            {%- endfor -%}
+# ##ALARM NOTIFICATION
+#   - alias: "Trigger Alarm"
+#     hide_entity: False
+#     trigger:
+#       - platform: state
+#         entity_id: binary_sensor.smartalarm_triggered
+#         to: 'on'
+#     condition:
+#       condition: or
+#       conditions:
+#         - condition: state
+#           entity_id: switch.st_awayhome_switch
+#           state: 'on'
+#         - condition: state
+#           entity_id: switch.st_good_morningnight_switch
+#           state: 'on'
+#         - condition: state
+#           entity_id: switch.st_vacationhome_switch
+#           state: 'on'
+#     action:
+#       - service: notify.pushover
+#         data:
+#           message: "Smart Alarm Has Been Triggered."
+#           title: "ALERT"
+#           priority: 1
+#           sound: alien
+#       - service: notify.pushover
+#         data:
+#           title: "ALERT"
+#           priority: 1
+#           sound: alien
+#           message: >-
+#             {%- for item in states.group.securitysensors.attributes.entity_id -%}
+#             {%- if states(item) == "on" -%}
+#             {{ (item) | replace ("binary_sensor.","") | replace ("_"," ") | capitalize() }} is {{ states(item) }}
+#             {% endif %}
+#             {%- endfor -%}
+#       - service: tts.google_say
+#         entity_id: media_player.kitchen_home
+#         data:
+#           message: 'ALERT ALERT ALERT Alarm Has Been Triggered. The authorities have been contacted'
+#       - service: tts.google_say
+#         entity_id: media_player.kitchen_home
+#         data:
+#           message: >-
+#             {%- for item in states.group.securitysensors.attributes.entity_id -%}
+#             {%- if states(item) == "on" -%}
+#             {{ (item) | replace ("binary_sensor.","") | replace ("_"," ") | capitalize() }} is {{ states(item) }}
+#             {% endif %}
+#             {%- endfor -%}
 #Have it read out what sensor has been triggered
 #Build script to repeat this and Flash Lamps
 
@@ -1575,3 +1575,97 @@
             }
       data_template:
         value: "{{ trigger.to_state.attributes.friendly_name }}"
+
+##ALARM SYSTEM
+
+  - alias: 'Trigger alarm while armed away'
+    trigger:
+      - platform: state
+        entity_id: group.WindowSensors
+        to: 'on'
+      - platform: state
+        entity_id: group.DoorSensors
+        to: 'on'
+      - platform: state
+        entity_id: group.SecurityMotion
+        to: 'open'
+      - platform: state
+        entity_id: binary_sensor.downstairs_glass_break
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.shm
+        state: armed_away
+    action:
+      service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.shm
+
+  - alias: 'Trigger alarm while armed home'
+    trigger:
+      - platform: state
+        entity_id: group.WindowSensors
+        to: 'on'
+      - platform: state
+        entity_id: group.DoorSensors
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.downstairs_glass_break
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.shm
+        state: armed_home
+    action:
+      service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.shm
+  # - alias: 'Disarm alarm when door unlocked by keypad'
+  #   trigger:
+  #     - platform: state
+  #       entity_id: sensor.front_door_lock_alarm_type
+  #       to: '19'
+  #       # many z-wave locks use Alarm Type 19 for 'Unlocked by Keypad'
+  #   action:
+  #     - service: alarm_control_panel.alarm_disarm
+  #       entity_id: alarm_control_panel.shm
+
+    - alias: 'Send notification when alarm triggered'
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.ha_alarm
+        to: 'triggered'
+    action:
+      - service: notify.ryanhangout
+        data:
+          title: "SHM"
+          message: "ALARM! The alarm has been triggered"
+      - service: notify.pushover
+        data:
+          title: "SHM"
+          message: "ALARM! The alarm has been triggered"
+          data:
+            sound: siren
+            priority: 2
+      - service: notify.pushover
+        data:
+          title: "ALERT"
+          priority: 1
+          sound: alien
+          message: >-
+            {%- for item in states.group.securitysensors.attributes.entity_id -%}
+            {%- if states(item) == "on" -%}
+            {{ (item) | replace ("binary_sensor.","") | replace ("_"," ") | capitalize() }} is {{ states(item) }}
+            {% endif %}
+            {%- endfor -%}
+      - service: tts.google_say
+        entity_id: media_player.kitchen_home
+        data:
+          message: 'ALERT ALERT ALERT Alarm Has Been Triggered. The authorities have been contacted'
+      - service: tts.google_say
+        entity_id: media_player.kitchen_home
+        data:
+          message: >-
+            {%- for item in states.group.securitysensors.attributes.entity_id -%}
+            {%- if states(item) == "on" -%}
+            {{ (item) | replace ("binary_sensor.","") | replace ("_"," ") | capitalize() }} is {{ states(item) }}
+            {% endif %}
+            {%- endfor -%}
