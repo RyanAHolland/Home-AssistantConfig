@@ -326,7 +326,7 @@ WindowSensors:
 SecurityMotion:
     name: Security Motion
     entities:
-      - binary_basement_motion
+      - binary_sensor.basement_motion
       - binary_sensor.first_floor_entry_motion
       - binary_sensor.kitchen_motion
       - binary_sensor.upstairs_motion
