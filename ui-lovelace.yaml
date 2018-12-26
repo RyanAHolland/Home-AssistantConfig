@@ -749,8 +749,10 @@ views:
           - fan.bedroom
           - light.kristi_lamp
           - light.kristis_bloom
+          - light.kristi_reading_lamp
           - light.ryan_lamp
           - light.ryans_bloom
+          - light.ryan_reading_lamp
       - id: 46b309f4326940778204090ef60a52cc  # Automatically created id
         type: entities
         title: Master Bathroom
@@ -765,12 +767,6 @@ views:
           - input_boolean.hue_arora
           - input_boolean.hue_mood
           - input_boolean.hue_candle
-      - id: 9271a6443225464ea14fa4fdf5661799  # Automatically created id
-        type: entities
-        title: Master Bathroom
-        show_header_toggle: true
-        entities:
-          - light.bathroom_light
       - id: 0a73c9ad01504d3d95942b0356d5c334  # Automatically created id
         type: glance
         title: Liam's Room
