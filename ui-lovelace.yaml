@@ -419,10 +419,6 @@ views:
         show_header_toggle: true
         entities:
           - alarm_control_panel.shm
-          - switch.st_vacationhome_switch
-          - switch.st_awayhome_switch
-          - switch.st_good_morningnight_switch
-          - sensor.kristi_smartthings
       - id: b2fd37180d3d4f87a4c49f54410f442a  # Automatically created id
         type: entities
         title: Basement Sensors
@@ -449,13 +445,11 @@ views:
           - binary_sensor.back_door_sensor
           - binary_sensor.front_door_sensor
           - binary_sensor.garage_entry_door_sensor
-          - binary_sensor.pantry_door
           - binary_sensor.front_window_1
           - binary_sensor.front_window_2
           - binary_sensor.window_over_sink
           - binary_sensor.play_room_window
           - binary_sensor.first_floor_entry_motion
-          - binary_sensor.kitchen_motion
           - binary_sensor.entry_keypad_motion
       - id: e17eedcd92e24266a66fc877f8210f2f  # Automatically created id
         type: entities
@@ -660,16 +654,23 @@ views:
     icon: mdi:numeric-1-box-outline
     cards:
       - id: 526ba1a83f0c46a28865ab3b98b7bea9  # Automatically created id
-        type: entities
+        type: glance
         title: Kitchen
         show_header_toggle: true
         entities:
           - light.island_lights
           - light.kitchen_lamp
           - light.kitchen_overhead
+          - binary_sensor.kitchen_motion
+      - id: 526ba1a83f0c46a28865ab3b98b7bea8  # Automatically created id
+        type: glance
+        title: Pantry
+        show_header_toggle: true
+        entities:
           - light.pantry_light
+          - binary_sensor.pantry_door
       - id: 82bbbcadafbe419b80172ad6301181db  # Automatically created id
-        type: entities
+        type: glance
         title: Living Room
         show_header_toggle: true
         entities:
@@ -678,11 +679,19 @@ views:
           - light.floor_lamp
           - light.living_room_overhead
       - id: 785f57be79024ab3ab36b0d4ea296d29  # Automatically created id
-        type: picture-glance
+        type: glance
         title: Dining Room
         show_header_toggle: true
         entities:
           - light.dining_room_lamps
+      - id: 785f57be79024ab3ab36b0d4ea296d27  # Automatically created id
+        type: picture-glance
+        title: Entry Way
+        show_header_toggle: true
+        entities:
+          - sensor.vision_zp3111_multisensor_4in1_temperature_4
+          - sensor.vision_zp3111_multisensor_4in1_luminance_3
+          - ssensor.vision_zp3111_multisensor_4in1_relative_humidity_4
         camera_image: camera.living_room
       - id: 785f57be79024ab3ab36b0d4ea296d234  # Automatically created id
         type: picture-glance
@@ -690,6 +699,7 @@ views:
         show_header_toggle: true
         entities:
           - light.play_room_lamp
+          - binary_sensor.play_room_window
         camera_image: camera.play_room_camera
       - id: f714c3da1b1c4ae59b88b77150460556  # Automatically created id
         type: entities
@@ -708,22 +718,20 @@ views:
           - binary_sensor.back_door_sensor
           - binary_sensor.front_door_sensor
           - binary_sensor.garage_entry_door_sensor
-          - binary_sensor.pantry_door
           - binary_sensor.front_window_1
           - binary_sensor.front_window_2
           - binary_sensor.window_over_sink
           - binary_sensor.play_room_window
           - binary_sensor.first_floor_entry_motion
-          - binary_sensor.kitchen_motion
           - binary_sensor.entry_keypad_motion
       - id: 32bd0ca2179e4185ad74bcba387b0342  # Automatically created id
         type: entities
         title: First Floor Environment Sensors
         show_header_toggle: true
         entities:
-          - sensor.vision_zp3111_multisensor_4in1_temperature_2
-          - sensor.vision_zp3111_multisensor_4in1_luminance
-          - ssensor.vision_zp3111_multisensor_4in1_relative_humidity_2
+          - sensor.vision_zp3111_multisensor_4in1_temperature_4
+          - sensor.vision_zp3111_multisensor_4in1_luminance_3
+          - ssensor.vision_zp3111_multisensor_4in1_relative_humidity_4
           - sensor.window_over_sink_temperature
           - sensor.front_window_1_temperature
           - sensor.front_window_2_temperature
@@ -753,20 +761,18 @@ views:
           - light.ryan_lamp
           - light.ryans_bloom
           - light.ryan_reading_lamp
+          - type: divider
+          - binary_sensor.bedroom_motion
+          - sensor.bedroom_motion_light_sensor
       - id: 46b309f4326940778204090ef60a52cc  # Automatically created id
         type: entities
         title: Master Bathroom
         show_header_toggle: true
         entities:
           - light.bathroom_light
-      - id: 0a73c9ad01504d3d95942b0356d5c3cc  # Automatically created id
-        type: entities
-        title: Bedroom Colors
-        show_header_toggle: true
-        entities:
-          - input_boolean.hue_arora
-          - input_boolean.hue_mood
-          - input_boolean.hue_candle
+          - type: divider
+          - binary_sensor.bathroom_motion
+          - sensor.bathroom_motion_light_sensor
       - id: 0a73c9ad01504d3d95942b0356d5c334  # Automatically created id
         type: glance
         title: Liam's Room
@@ -778,32 +784,34 @@ views:
           - sensor.liam_room_temp
           - binary_sensor.liam_door_sensor
       - id: 604e8e1843c548e7b55f62700729b0f7  # Automatically created id
-        type: entities
-        title: Second Floor Sensors
+        type: glance
+        title: Office / Spare Room
         show_header_toggle: true
         entities:
-          - binary_sensor.liams_room_door
-          - binary_sensor.upstairs_motion
-          - sensor.upstairs_motion_temperature
-          - sensor.upstairs_motion_battery
-          - binary_sensor.bedroom_motion
-          - binary_sensor.bathroom_motion
           - binary_sensor.office_motion
-          - sensor.bathroom_motion_light_sensor
-          - sensor.bedroom_motion_light_sensor
           - sensor.office_motion_light_sensor
-          - sensor.liam_room_temp
-          - sensor.liam_room_humidity
-          - sensor.liam_room_pressure
           - sensor.humidor_temperature
           - sensor.humidor_humidity
           - sensor.humidor_pressure
       - id: 3062287428e644f0bb68957dbdf0bb22  # Automatically created id
-        type: entities
+        type: glance
         title: Upstairs Hall
         show_header_toggle: true
         entities:
           - light.book_nook
+          - type: divider
+          - binary_sensor.upstairs_motion
+          - sensor.upstairs_motion_temperature
+          - sensor.upstairs_motion_battery
+      - id: 0a73c9ad01504d3d95942b0356d5c3cc  # Automatically created id
+        type: entities
+        title: Bedroom Colors
+        show_header_toggle: true
+        entities:
+          - input_boolean.hue_arora
+          - input_boolean.hue_mood
+          - input_boolean.hue_candle
+
   - id: 9  # Automatically created id
     title: Basement
     icon: mdi:arrow-down-drop-circle
