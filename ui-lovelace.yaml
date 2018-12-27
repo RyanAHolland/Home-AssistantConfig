@@ -757,7 +757,7 @@ views:
           - fan.bedroom
           - light.kristi_lamp
           - light.kristis_bloom
-          - light.kristi_reading_lamp
+          - light.kristi_reading_lam
           - light.ryan_lamp
           - light.ryans_bloom
           - light.ryan_reading_lamp
@@ -844,7 +844,6 @@ views:
         entities:
           - light.front_lights
           - binary_sensor.driveway_camera_motion
-          - binary_sensor.front_doorbell_motion
       - id: 2d16cf4637684c358691e07150284d85  # Automatically created id
         type: entities
         title: Garage Door Sensors
