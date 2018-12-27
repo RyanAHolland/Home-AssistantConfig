@@ -123,21 +123,21 @@
 #    name: "First Floor Entry Light"
 #    qos: 0
 #    unit_of_measurement: 'lux'
-  - platform: mqtt
-    state_topic: "smartthings/Bathroom Motion/illuminance/state"    
-    name: "Bathroom Motion Light Sensor"
-    qos: 0
-    unit_of_measurement: 'lux'
-  - platform: mqtt
-    state_topic: "smartthings/Bedroom Motion/illuminance/state"
-    name: "Bedroom Motion Light Sensor"
-    qos: 0
-    unit_of_measurement: 'lux'
-  - platform: mqtt
-    state_topic: "smartthings/Office Motion/illuminance/state"
-    name: "Office Motion Light Sensor"
-    qos: 0
-    unit_of_measurement: 'lux'
+ - platform: mqtt
+   state_topic: "smartthings/Bathroom Motion/illuminance/state"    
+   name: "Bathroom Motion Light Sensor"
+   qos: 0
+   unit_of_measurement: 'lux'
+ - platform: mqtt
+   state_topic: "smartthings/Bedroom Motion/illuminance/state"
+   name: "Bedroom Motion Light Sensor"
+   qos: 0
+   unit_of_measurement: 'lux'
+ - platform: mqtt
+   state_topic: "smartthings/Office Motion/illuminance/state"
+   name: "Office Motion Light Sensor"
+   qos: 0
+   unit_of_measurement: 'lux'
 #Humidity Sensors
 #  - platform: mqtt
 #    state_topic: "smartthings/First Floor Entry/humidity/state"
@@ -365,16 +365,16 @@
        unit_of_measurement: '%'
        friendly_name: "Kristi Phone Battery"
 ##Power Sensor
- - platform: mqtt
-   state_topic: "smartthings/Ted 5000/power/state"
-   name: "House Power Use"
-   qos: 0
-   unit_of_measurement: 'W'
- - platform: mqtt
-   state_topic: "smartthings/Ted 5000/energy/state"
-   name: "House Energy Use"
-   qos: 0
-   unit_of_measurement: 'V'
+#  - platform: mqtt
+#    state_topic: "smartthings/Ted 5000/power/state"
+#    name: "House Power Use"
+#    qos: 0
+#    unit_of_measurement: 'W'
+#  - platform: mqtt
+#    state_topic: "smartthings/Ted 5000/energy/state"
+#    name: "House Energy Use"
+#    qos: 0
+#    unit_of_measurement: 'V'
 ##FIND Location
  - platform: rest
    resource: !secret find_name
