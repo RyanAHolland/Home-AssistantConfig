@@ -271,11 +271,11 @@
    name: "Basement North Window Battery"
    qos: 0
    unit_of_measurement: '%'
-  - platform: mqtt
-    state_topic: "smartthings/Play Room Window/battery/state"
-    name: "Play Room Window Battery"
-    qos: 0
-    unit_of_measurement: '%'
+ - platform: mqtt
+   state_topic: "smartthings/Play Room Window/battery/state"
+   name: "Play Room Window Battery"
+   qos: 0
+   unit_of_measurement: '%'
  - platform: mqtt
    state_topic: "smartthings/Upstairs Keypad/battery/state"
    name: "Entry Keypad Battery"
