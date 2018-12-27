@@ -397,7 +397,7 @@ device_tracker:
   - platform: unifi
     username: !secret email
     password: !secret unifi_pass
-    host: !secret hostname
+    host: !secret server_ip
     port: 8443
     verify_ssl: false
     new_device_defaults:
