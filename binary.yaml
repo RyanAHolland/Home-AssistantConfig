@@ -146,13 +146,13 @@
   #   payload_off: "inactive"
   #   device_class: motion
   #   retain: false
-   - platform: mqtt
-     state_topic: "smartthings/Bathroom Motion/motion/state"
-     name: "Bathroom Motion"
-     qos: 0
-     payload_on: "active"
-     payload_off: "inactive"
-     device_class: motion
+  - platform: mqtt
+    state_topic: "smartthings/Bathroom Motion/motion/state"
+    name: "Bathroom Motion"
+    qos: 0
+    payload_on: "active"
+    payload_off: "inactive"
+    device_class: motion
   - platform: mqtt
     state_topic: "smartthings/Iris 3405-L Keypad/motion/state"
     name: "Entry Keypad Motion"
@@ -188,20 +188,20 @@
     payload_on: "active"
     payload_off: "inactive"
     device_class: motion
-   - platform: mqtt
-     state_topic: "smartthings/Bedroom Motion/motion/state"
-     name: "Bedroom Motion"
-     qos: 0
-     payload_on: "active"
-     payload_off: "inactive"
-     device_class: motion
-   - platform: mqtt
-     state_topic: "smartthings/Office Motion/motion/state"
-     name: "Office Motion"
-     qos: 0
-     payload_on: "active"
-     payload_off: "inactive"
-     device_class: motion
+  - platform: mqtt
+    state_topic: "smartthings/Bedroom Motion/motion/state"
+    name: "Bedroom Motion"
+    qos: 0
+    payload_on: "active"
+    payload_off: "inactive"
+    device_class: motion
+  - platform: mqtt
+    state_topic: "smartthings/Office Motion/motion/state"
+    name: "Office Motion"
+    qos: 0
+    payload_on: "active"
+    payload_off: "inactive"
+    device_class: motion
 ##SECURITY
   - platform: mqtt
     state_topic: "smartthings/Downstairs Glass Break Sensor/contact/state"
@@ -267,7 +267,7 @@
 ##Might be different value
 #washer
   - platform: mqtt
-    state_topic: "smartthings/Washer Sensor/acceleration"
+    state_topic: "smartthings/Washer Sensor/acceleration/state"
     name: "Washer Vibration"
     qos: 0
     payload_on: "active"

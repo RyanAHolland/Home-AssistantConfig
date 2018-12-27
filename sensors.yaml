@@ -123,21 +123,21 @@
 #    name: "First Floor Entry Light"
 #    qos: 0
 #    unit_of_measurement: 'lux'
- - platform: mqtt
-   state_topic: "smartthings/Bathroom Motion/illuminance/state"    
-   name: "Bathroom Motion Light Sensor"
-   qos: 0
-   unit_of_measurement: 'lux'
- - platform: mqtt
-   state_topic: "smartthings/Bedroom Motion/illuminance/state"
-   name: "Bedroom Motion Light Sensor"
-   qos: 0
-   unit_of_measurement: 'lux'
- - platform: mqtt
-   state_topic: "smartthings/Office Motion/illuminance/state"
-   name: "Office Motion Light Sensor"
-   qos: 0
-   unit_of_measurement: 'lux'
+  - platform: mqtt
+    state_topic: "smartthings/Bathroom Motion/illuminance/state"    
+    name: "Bathroom Motion Light Sensor"
+    qos: 0
+    unit_of_measurement: 'lux'
+  - platform: mqtt
+    state_topic: "smartthings/Bedroom Motion/illuminance/state"
+    name: "Bedroom Motion Light Sensor"
+    qos: 0
+    unit_of_measurement: 'lux'
+  - platform: mqtt
+    state_topic: "smartthings/Office Motion/illuminance/state"
+    name: "Office Motion Light Sensor"
+    qos: 0
+    unit_of_measurement: 'lux'
 #Humidity Sensors
 #  - platform: mqtt
 #    state_topic: "smartthings/First Floor Entry/humidity/state"
