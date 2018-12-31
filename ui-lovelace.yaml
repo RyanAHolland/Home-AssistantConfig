@@ -563,7 +563,7 @@ views:
           - switch.st_awayhome_switch
           - switch.st_good_morningnight_switch
           - sensor.kristi_smartthings
-      - id: b1c295b89fbd4cd9b996f50fee9cc553  # Automatically created id
+      - id: b1c295b89fbd4cd9b996f50fee9cc55b  # Automatically created id
         type: entities
         title: Zigbee2MQTT Entities
         show_header_toggle: true
