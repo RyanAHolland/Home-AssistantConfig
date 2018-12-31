@@ -34,6 +34,10 @@ dryer_active:
     name: Dryer Active
     initial: off
     icon: mdi:tumble-dryer
+zigbee_permit_join:
+    name: Allow devices to join
+    initial: off
+    icon: mdi:cellphone-wireless
 #ryan_occupancy:
 #    name: Ryan Occupancy
 #    icon: mdi:human-male
