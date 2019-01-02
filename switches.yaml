@@ -95,3 +95,11 @@
     command_topic: "WALL-E/commands"
     payload_on: "start"
     payload_off: "stop"
+
+#ZigBee2MQTT
+  - platform: mqtt
+    name: "Zigbee2mqtt Main join"
+    state_topic: "zigbee2mqtt/bridge/config/permit_join"
+    command_topic: "zigbee2mqtt/bridge/config/permit_join"
+    payload_on: "true"
+    payload_off: "false"

@@ -294,6 +294,15 @@ input_select:
     - Kitchen Home
     - Soundbar
 
+  zigbee2mqtt_log_level:
+    name: Zigbee2mqtt Log Level
+    options:
+     - debug
+     - info
+     - warn
+     - error
+    initial: info
+    icon: mdi:format-list-bulleted
 
 ifttt:
   key: !secret ifttt_key
@@ -511,6 +520,11 @@ panel_iframe:
     title: Terminal
     icon: mdi:console
     url: "https://hollandhaus.duckdns.org:7681"
+
+timer:
+  zigbee_permit_join:
+    name: Time remaining
+    duration: 120
 
 ####################################################
 #                                                  #

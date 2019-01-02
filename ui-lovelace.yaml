@@ -563,6 +563,20 @@ views:
           - switch.st_awayhome_switch
           - switch.st_good_morningnight_switch
           - sensor.kristi_smartthings
+      - id: b1c295b89fbd4cd9b996f50fee9cc55b  # Automatically created id
+        type: entities
+        title: Zigbee2MQTT Entities
+        show_header_toggle: true
+        entities:
+          - input_boolean.zigbee_permit_join
+          - timer.zigbee_permit_join
+          - sensor.zigbee2mqtt_bridge_state
+          - switch.zigbee2mqtt_main_join
+          - automation.enable_zigbee_joining
+          - automation.disable_zigbee_joining
+          - automation.disable_zigbee_joining_by_timer
+          - input_select.zigbee2mqtt_log_level
+          - automation.zigbee2mqtt_log_level
       - id: c339004598cb4aad9b7844db54811347  # Automatically created id
         type: entities
         title: phone state
