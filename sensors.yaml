@@ -1,5 +1,11 @@
 #HASS Version
  - platform: version
+#System Information
+ - platform: systemmonitor
+   resources:
+     - type: disk_use_percent
+       arg: /home
+     - type: memory_free
 # Weather Prediction
  - platform: darksky
    api_key: !secret dark_sky_api
