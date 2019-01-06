@@ -356,7 +356,7 @@
 
 #ST Anywhere Sensors
   - platform: mqtt
-    state_topic: "smartthings/Dryer Multi (contact1)/contact/state"
+    state_topic: "smartthings/ST Anywhere Parent (contact1)/contact/state"
     name: "Dryer Vibration"
     payload_on: "closed"
     payload_off: "open"
