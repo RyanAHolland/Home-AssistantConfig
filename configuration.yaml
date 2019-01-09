@@ -46,10 +46,11 @@ cloud:
        - light.right_lamp
        - light.floor_lamp
        - light.liam_lamp
-       - light.ryan_bloom
-       - light.kristi_bloom
+       - light.ryans_bloom
+       - light.kristis_bloom
        - light.ryan_reading_lamp
-       - light.kristi_reading_lamp
+       - light.kristi_reading_lam
+       - light.play_room_lamp
        - light.office_lamp
        - light.spare_lamp
 #  entity_config:
