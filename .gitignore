@@ -3,5 +3,6 @@
 !scenes
 !.gitignore
 !automation\*
+!archive\*
 secrets.yaml
 known_devices.yaml
