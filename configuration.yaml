@@ -376,7 +376,7 @@ alarm_control_panel:
     payload_arm_home: "armed_home"
     payload_arm_away: "armed_away"
     pending_time: 45
-    code: !secret alarm_code
+    code: !secret alarmcode
     delay_time: 30
     trigger_time: 4
     disarmed:
