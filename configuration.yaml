@@ -483,8 +483,8 @@ proximity:
       - Pivot
       - Mason
     devices:
-      - device_tracker.ryan_note8
-      - device_tracker.kristi_s7
+      - device_tracker.google_maps_118314383764095593834
+      - device_tracker.google_maps_114680120030307638360
     tolerance: 50
     unit_of_measurement: mi
 
