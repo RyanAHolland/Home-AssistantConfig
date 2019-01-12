@@ -310,6 +310,8 @@ DoorSensors:
     entities:
       - binary_sensor.front_door_sensor
       - binary_sensor.back_door_sensor
+      - binary_sensor.front_door_burgler
+      - binary_sensor.back_door_burgler
       - binary_sensor.garage_entry_door_sensor
 
 WindowSensors:
