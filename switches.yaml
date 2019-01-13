@@ -104,13 +104,3 @@
     payload_on: "true"
     payload_off: "false"
     
-#Camera Control
-#Entry Camera
-    - switch.dafang3_ir_filter
-    - switch.dafang3_ir_led
-    - switch.dafang3_night_mode
-    - switch.dafang3_night_mode_auto
-    - switch.dafang3_blue_led
-    - switch.dafang3_yellow_led
-    - switch.dafang3_motion_detection
-    - switch.dafang3_motion_tracking
