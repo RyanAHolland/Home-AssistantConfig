@@ -524,7 +524,10 @@ panel_iframe:
     title: Terminal
     icon: mdi:console
     url: "https://hollandhaus.duckdns.org:7681"
-
+  pihole:
+    title: Pi-hole
+    icon: mdi:block-helper
+    url: http://hollandhaus.duckdns.org:4865
 timer:
   zigbee_permit_join:
     name: Time remaining
