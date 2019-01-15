@@ -278,6 +278,22 @@
         device_class: motion
         value_template: "{{ is_state('sensor.vision_zp3102_pir_motion_sensor_alarm_level', '255') }}"
 
+##Phone Battery Charging
+
+  - platform: template
+    sensors:
+      ryan_phone_charging:
+        friendly_name: "Ryan's Phone Charging"
+        device_class: plug
+        value_template: "{{ states.device_tracker.google_maps_114680120030307638360.attributes.battery_charging }}"
+
+  - platform: template
+    sensors:
+      kristi_phone_charging:
+        friendly_name: "Kristi's Phone Charging"
+        device_class: plug
+        value_template: "{{ states.device_tracker.google_maps_118314383764095593834.attributes.battery_charging }}"
+
 ##Might be different value
 #washer
   - platform: mqtt
