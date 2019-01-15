@@ -441,10 +441,10 @@ camera:
   - platform: mjpeg
     mjpeg_url: !secret basement_cam_url
     name: Basement
-  - platform: ffmpeg 
+  - platform: mjpeg
     name: Living Room
     input: !secret lr_cam_url
-  - platform: ffmpeg 
+  - platform: mjpeg 
     name: Garage Camera
     input: !secret garage_cam_url
   - platform: ring
