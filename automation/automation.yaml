@@ -432,11 +432,11 @@
     action:
     - service: mqtt_publish
       data_template:
-        topic: homeassistant/sensor/last_motion/state
+        topic: 'homeassistant/sensor/last_motion/state'
         payload: "{{ trigger.to_state.attributes.name }}"
     - service: mqtt_publish
       data_template:
-        topic: homeassistant/sensor/last_motion/name
+        topic: 'homeassistant/sensor/last_motion/name'
         payload: "{{ trigger.to_state.attributes.friendly_name }}"
 
 
@@ -469,11 +469,11 @@
     action:
     - service: mqtt_publish
       data_template:
-        topic: homeassistant/sensor/last_door/state
+        topic: 'homeassistant/sensor/last_door/state'
         payload: "{{ trigger.to_state.attributes.name }}"
     - service: mqtt_publish
       data_template:
-        topic: homeassistant/sensor/last_door/name
+        topic: 'homeassistant/sensor/last_door/name'
         payload: "{{ trigger.to_state.attributes.friendly_name }}"
 
 ##ALARM SYSTEM
