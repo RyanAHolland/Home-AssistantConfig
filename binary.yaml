@@ -240,7 +240,7 @@
       back_door_sensor:
         friendly_name: "Back Door Sensor"
         device_class: opening
-        value_template: "{{ is_state('sensor.back_door_access_control', '22') }}"
+        value_template: "{{ is_state('sensor.back_door_alarm_type', '6') }}"
 
   - platform: template
     sensors:
