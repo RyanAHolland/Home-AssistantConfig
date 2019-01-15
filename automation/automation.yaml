@@ -405,25 +405,61 @@
 
 #Last Motion Automation
 # Update Last Motion variable
+  # - alias: "Update Last Motion"
+  #   trigger:
+  #   - platform: state
+  #     entity_id: binary_sensor.bedroom_motion, binary_sensor.bathroom_motion, binary_sensor.basement_motion, binary_sensor.entry_keypad_motion, binary_sensor.first_floor_entry_motion, binary_sensor.kitchen_motion, binary_sensor.upstairs_motion
+  #     to: 'on'
+  #   action:
+  #   - service: variable.set_variable
+  #     data:
+  #       variable: last_motion
+  #       attributes_template: >
+  #           {
+  #             "history_1": "{{ variable.state }}",
+  #             "history_2": "{{ variable.attributes.history_1 }}",
+  #             "history_3": "{{ variable.attributes.history_2 }}"
+  #           }
+  #     data_template:
+  #       value: "{{ trigger.to_state.attributes.friendly_name }}"
+
+# Update Last Motion variable
   - alias: "Update Last Motion"
     trigger:
     - platform: state
       entity_id: binary_sensor.bedroom_motion, binary_sensor.bathroom_motion, binary_sensor.basement_motion, binary_sensor.entry_keypad_motion, binary_sensor.first_floor_entry_motion, binary_sensor.kitchen_motion, binary_sensor.upstairs_motion
       to: 'on'
     action:
-    - service: variable.set_variable
-      data:
-        variable: last_motion
-        attributes_template: >
-            {
-              "history_1": "{{ variable.state }}",
-              "history_2": "{{ variable.attributes.history_1 }}",
-              "history_3": "{{ variable.attributes.history_2 }}"
-            }
+    - service: mqtt_publish
       data_template:
-        value: "{{ trigger.to_state.attributes.friendly_name }}"
+        topic: homeassistant/sensor/last_motion/state
+        payload: "{{ trigger.to_state.attributes.name }}"
+    - service: mqtt_publish
+      data_template:
+        topic: homeassistant/sensor/last_motion/name
+        payload: "{{ trigger.to_state.attributes.friendly_name }}"
+
 
 #Last Door Automation
+# Update Last Door variable
+  # - alias: "Update Last Door"
+  #   trigger:
+  #   - platform: state
+  #     entity_id: binary_sensor.front_door_sensor, binary_sensor.back_door_sensor, binary_sensor.garage_entry_sensor
+  #     to: 'on'
+  #   action:
+  #   - service: variable.set_variable
+  #     data:
+  #       variable: last_door
+  #       attributes_template: >
+  #           {
+  #             "history_1": "{{ variable.state }}",
+  #             "history_2": "{{ variable.attributes.history_1 }}",
+  #             "history_3": "{{ variable.attributes.history_2 }}"
+  #           }
+  #     data_template:
+  #       value: "{{ trigger.to_state.attributes.friendly_name }}"
+
 # Update Last Door variable
   - alias: "Update Last Door"
     trigger:
@@ -431,17 +467,14 @@
       entity_id: binary_sensor.front_door_sensor, binary_sensor.back_door_sensor, binary_sensor.garage_entry_sensor
       to: 'on'
     action:
-    - service: variable.set_variable
-      data:
-        variable: last_door
-        attributes_template: >
-            {
-              "history_1": "{{ variable.state }}",
-              "history_2": "{{ variable.attributes.history_1 }}",
-              "history_3": "{{ variable.attributes.history_2 }}"
-            }
+    - service: mqtt_publish
       data_template:
-        value: "{{ trigger.to_state.attributes.friendly_name }}"
+        topic: homeassistant/sensor/last_door/state
+        payload: "{{ trigger.to_state.attributes.name }}"
+    - service: mqtt_publish
+      data_template:
+        topic: homeassistant/sensor/last_door/name
+        payload: "{{ trigger.to_state.attributes.friendly_name }}"
 
 ##ALARM SYSTEM
 
