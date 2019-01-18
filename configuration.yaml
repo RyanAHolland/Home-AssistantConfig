@@ -450,7 +450,6 @@ camera:
   - platform: ring
   - platform: usps
     scan_interval: 5
-#  - platform: zoneminder
 
 ffmpeg:
 
@@ -519,7 +518,7 @@ panel_iframe:
   pihole:
     title: Pi-hole
     icon: mdi:block-helper
-    url: http://hollandhaus.duckdns.org:4865
+    url: "http://hollandhaus.duckdns.org:4865"
 timer:
   zigbee_permit_join:
     name: Time remaining
