@@ -641,3 +641,25 @@
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.zigbee_permit_join
+
+  - id: telegram_disarm
+    alias: Disarm SHM via Telegram
+    hide_entity: true
+    trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/disarm'
+#    condition:
+#      - condition: template
+#        entity_id: input_boolean.force_home
+#        state: 'off'
+    action:
+    - service: alarm_control_panel.alarm_disarm
+      data:
+        entity_id: alarm_control_panel.shm
+        code: !secret alarmcode
+    - service: notify.telegram
+      data:
+        title: "SHM"
+        message: "The alarm has be disarmed."
