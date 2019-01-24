@@ -310,6 +310,10 @@ input_select:
 ifttt:
   key: !secret ifttt_key
 
+weather:
+  - platform: darksky
+    api_key: !secret dark_sky_api
+
 #APCUPS
 #apcupsd:
 
