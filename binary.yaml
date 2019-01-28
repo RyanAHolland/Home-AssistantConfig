@@ -321,7 +321,7 @@
       dryer_active:
         friendly_name: "Dryer Active"
         device_class: moving
-        value_template: "{{ ('binary_sensor.dryer_vibration','Clear') and (as_timestamp(now()) - as_timestamp(states.binary_sensor.dryer_vibration.last_updated) > 120)}}"
+        value_template: "{{ (is_state('binary_sensor.dryer_vibration','on') and relative_time(states.binary_sensor.dryer_vibration.last_updated) < '60 minutes')  or  (is_state('binary_sensor.dryer_vibration','off') and relative_time(states.binary_sensor.dryer_vibration.last_updated) < '3 minutes') }}"
 #Alert
   - platform: template
     sensors:
