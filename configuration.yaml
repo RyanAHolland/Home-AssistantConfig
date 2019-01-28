@@ -239,7 +239,6 @@ input_select:
     - Idle
     - Running
     - Clean
-    initial: Idle
     icon: mdi:washing-machine
 
   dryer_status:
@@ -248,7 +247,6 @@ input_select:
     - Idle
     - Running
     - Clean
-    initial: Idle
     icon: mdi:washing-machine
 
   ryan_phone_status:
