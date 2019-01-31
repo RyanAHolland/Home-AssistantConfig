@@ -402,9 +402,9 @@
  - platform: ups
    username: !secret username
    password: !secret ups_pass
-##USPS Camera
- - platform: usps
-   scan_interval: 5
+# ##USPS Camera
+#  - platform: usps
+#    scan_interval: 5
 ##FedEx Packages
  - platform: fedex
    username: !secret username
