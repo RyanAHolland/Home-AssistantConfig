@@ -92,6 +92,15 @@
    username: !secret email
    password: !secret casts_pass
 
+#Glances
+ - platform: glances
+   host: !secret server_ip
+   resources:
+     - 'disk_use_percent'
+     - 'memory_use_percent'
+     - 'swap_use_percent'
+     - 'processor_load'
+
 #Basement UPS
  - platform: apcupsd
    resources:
