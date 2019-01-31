@@ -104,31 +104,31 @@
  - platform: rest
    resource: !secret glances_path_fs
    name: Video Drive Percent
-   value_template: '{{ value_json[28].percent }}'
+   value_template: '{{ value_json[27].percent }}'
    unit_of_measurement: '%'
 
  - platform: rest
    resource: !secret glances_path_fs
    name: Backup Drive Percent
-   value_template: '{{ value_json[30].percent }}'
+   value_template: '{{ value_json[29].percent }}'
    unit_of_measurement: '%'
 
  - platform: rest
    resource: !secret glances_path_fs
    name: Download Drive Percent
-   value_template: '{{ value_json[31].percent }}'
+   value_template: '{{ value_json[30].percent }}'
    unit_of_measurement: '%'
 
  - platform: rest
    resource: !secret glances_path_fs
    name: Media Drive Percent
-   value_template: '{{ value_json[32].percent }}'
+   value_template: '{{ value_json[31].percent }}'
    unit_of_measurement: '%'
 
  - platform: rest
    resource: !secret glances_path_fs
    name: TV Drive Percent
-   value_template: '{{ value_json[33].percent }}'
+   value_template: '{{ value_json[32].percent }}'
    unit_of_measurement: '%'
 
 #Basement UPS
