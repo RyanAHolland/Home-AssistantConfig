@@ -484,13 +484,46 @@
         entity_id: group.WindowSensors
         to: 'on'
       - platform: state
-        entity_id: group.DoorSensors
+        entity_id: binary_sensor.basement_north_window
         to: 'on'
       - platform: state
-        entity_id: group.SecurityMotion
-        to: 'open'
+        entity_id: binary_sensor.basement_south_window_1
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.basement_south_window_2
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.front_window_1
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.front_window_2
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.window_over_sink
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.back_door_sensor
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.front_door_sensor
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.garage_entry_door_sensor
+        to: 'on'
       - platform: state
         entity_id: binary_sensor.downstairs_glass_break
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.basement_motion
+        to: 'on'
+      - platform: state
+        entity_id:  binary_sensor.first_floor_entry_motion
+        to: 'on'
+      - platform: state
+        entity_id:  binary_sensor.kitchen_motion
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.upstairs_motion
         to: 'on'
     condition:
       - condition: state
@@ -506,7 +539,31 @@
         entity_id: group.WindowSensors
         to: 'on'
       - platform: state
-        entity_id: group.DoorSensors
+        entity_id: binary_sensor.basement_north_window
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.basement_south_window_1
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.basement_south_window_2
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.front_window_1
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.front_window_2
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.window_over_sink
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.back_door_sensor
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.front_door_sensor
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.garage_entry_door_sensor
         to: 'on'
       - platform: state
         entity_id: binary_sensor.downstairs_glass_break
