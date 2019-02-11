@@ -439,8 +439,11 @@
  - platform: template
    sensors:
      front_lock_status:
-       value_template: '{{ states.zwave.garage_entry_lock.attributes.lock_status }}'
+       value_template: '{{ states.lock.front_lock.attributes.lock_status }}'
        friendly_name: "Front Lock Status"
+
+##Invert Smoke Sensor
+
 
 ##SmartThings Pre1sence
  # - platform: mqtt
