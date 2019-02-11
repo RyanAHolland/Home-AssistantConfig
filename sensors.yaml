@@ -481,13 +481,13 @@
  - platform: template
    sensors:
      ryan_battery:
-       value_template: '{{ states.device_tracker.google_maps_114680120030307638360.attributes.battery_level }}'
+       value_template: '{{ states.device_tracker.google_maps_118314383764095593834.attributes.battery_level }}'
        unit_of_measurement: '%'
        friendly_name: "Ryan Phone Battery"
  - platform: template
    sensors:
      kristi_battery:
-       value_template: '{{ states.device_tracker.google_maps_118314383764095593834.attributes.battery_level }}'
+       value_template: '{{ states.device_tracker.google_maps_114680120030307638360.attributes.battery_level }}'
        unit_of_measurement: '%'
        friendly_name: "Kristi Phone Battery"
 ##Power Sensor
