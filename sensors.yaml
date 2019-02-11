@@ -350,19 +350,19 @@
        value_template: '{{ states.zwave.garage_entry.attributes.battery_level }}'
        unit_of_measurement: '%'
        friendly_name: "Garage Entry Sensor Battery"
-  - platform: template
+ - platform: template
    sensors:
      front_door_battery:
        value_template: '{{ states.zwave.front_door.attributes.battery_level }}'
        unit_of_measurement: '%'
        friendly_name: "Front Door Sensor Battery"
-  - platform: template
+ - platform: template
    sensors:
      liam_door_battery:
        value_template: '{{ states.zwave.liam_door.attributes.battery_level }}'
        unit_of_measurement: '%'
        friendly_name: "Liam's Door Sensor Battery"
-  - platform: template
+ - platform: template
    sensors:
      pantry_door_battery:
        value_template: '{{ states.zwave.pantry_door.attributes.battery_level }}'
@@ -381,7 +381,7 @@
        value_template: '{{ states.zwave.kitchen_motion.attributes.battery_level }}'
        unit_of_measurement: '%'
        friendly_name: "Kitchen Motion Battery"
-  - platform: template
+ - platform: template
    sensors:
      upstairs_motion_battery:
        value_template: '{{ states.zwave.upstairs_motion.attributes.battery_level }}'
@@ -394,7 +394,7 @@
        value_template: '{{ states.zwave.large_garage.attributes.battery_level }}'
        unit_of_measurement: '%'
        friendly_name: "Large Garage Sensor Battery"
-  - platform: template
+ - platform: template
    sensors:
      small_garage_battery:
        value_template: '{{ states.zwave.small_garage.attributes.battery_level }}'
@@ -407,27 +407,27 @@
        value_template: '{{ states.zwave.smoke_sensor.attributes.battery_level }}'
        unit_of_measurement: '%'
        friendly_name: "Smoke Sensor Battery"
-  - platform: template
+ - platform: template
    sensors:
      co_sensor_battery:
        value_template: '{{ states.zwave.co_sensor.attributes.battery_level }}'
        unit_of_measurement: '%'
        friendly_name: "CO Sensor Battery"
 #Security
-  - platform: template
+ - platform: template
    sensors:
      glass_break_battery:
        value_template: '{{ states.zwave.glass_break.attributes.battery_level }}'
        unit_of_measurement: '%'
        friendly_name: "Glass Break Battery"
 #Locks
-  - platform: template
+ - platform: template
    sensors:
      front_lock_battery:
        value_template: '{{ states.zwave.front_lock.attributes.battery_level }}'
        unit_of_measurement: '%'
        friendly_name: "Front Lock Battery"
-  - platform: template
+ - platform: template
    sensors:
      garage_lock_battery:
        value_template: '{{ states.zwave.garage_entry_lock.attributes.battery_level }}'
@@ -436,7 +436,7 @@
 
 
 ##Lock Information
-  - platform: template
+ - platform: template
    sensors:
      front_lock_status:
        value_template: '{{ states.zwave.garage_entry_lock.attributes.lock_status }}'
