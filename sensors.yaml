@@ -336,31 +336,112 @@
    name: "Basement Motion Battery"
    qos: 0
    unit_of_measurement: '%'
-# - platform: mqtt
-#   state_topic: "smartthings/Kitchen Motion/battery/state"
-#   name: "Kitchen Motion Battery"
-#   qos: 0
-#   unit_of_measurement: '%'
-#  - platform: mqtt
-#    state_topic: "smartthings/First Floor Entry/battery/state"
-#    name: "First Floor Entry Battery"
-#    qos: 0
-#    unit_of_measurement: '%'
-#  - platform: mqtt
-#    state_topic: "smartthings/Bathroom Motion/battery/state"
-#    name: "Bathroom Motion Battery"
-#    qos: 0
-#    unit_of_measurement: '%'
-#  - platform: mqtt
-#    state_topic: "smartthings/Bedroom Motion/battery/state"
-#    name: "Bedroom Motion Battery"
-#    qos: 0
-#    unit_of_measurement: '%'
-#  - platform: mqtt
-#    state_topic: "smartthings/Office Motion/battery/state"
-#    name: "Office Motion Battery"
-#    qos: 0
-   unit_of_measurement: '%'
+##Z-Wave Battery Sensors
+#Doors
+ - platform: template
+   sensors:
+     back_door_battery:
+       value_template: '{{ states.zwave.back_door.attributes.battery_level }}'
+       unit_of_measurement: '%'
+       friendly_name: "Back Door Sensor Battery"
+ - platform: template
+   sensors:
+     garage_entry_battery:
+       value_template: '{{ states.zwave.garage_entry.attributes.battery_level }}'
+       unit_of_measurement: '%'
+       friendly_name: "Garage Entry Sensor Battery"
+  - platform: template
+   sensors:
+     front_door_battery:
+       value_template: '{{ states.zwave.front_door.attributes.battery_level }}'
+       unit_of_measurement: '%'
+       friendly_name: "Front Door Sensor Battery"
+  - platform: template
+   sensors:
+     liam_door_battery:
+       value_template: '{{ states.zwave.liam_door.attributes.battery_level }}'
+       unit_of_measurement: '%'
+       friendly_name: "Liam's Door Sensor Battery"
+  - platform: template
+   sensors:
+     pantry_door_battery:
+       value_template: '{{ states.zwave.pantry_door.attributes.battery_level }}'
+       unit_of_measurement: '%'
+       friendly_name: "Pantry Door Sensor Battery"
+#Motion
+ - platform: template
+   sensors:
+     first_floor_battery:
+       value_template: '{{ states.zwave.first_floor_sensor.attributes.battery_level }}'
+       unit_of_measurement: '%'
+       friendly_name: "First Floor Sensor Battery"
+ - platform: template
+   sensors:
+     kitchen_motion_battery:
+       value_template: '{{ states.zwave.kitchen_motion.attributes.battery_level }}'
+       unit_of_measurement: '%'
+       friendly_name: "Kitchen Motion Battery"
+  - platform: template
+   sensors:
+     upstairs_motion_battery:
+       value_template: '{{ states.zwave.upstairs_motion.attributes.battery_level }}'
+       unit_of_measurement: '%'
+       friendly_name: "Upstairs Motion Battery"
+#Garage Door
+ - platform: template
+   sensors:
+     large_garage_battery:
+       value_template: '{{ states.zwave.large_garage.attributes.battery_level }}'
+       unit_of_measurement: '%'
+       friendly_name: "Large Garage Sensor Battery"
+  - platform: template
+   sensors:
+     small_garage_battery:
+       value_template: '{{ states.zwave.small_garage.attributes.battery_level }}'
+       unit_of_measurement: '%'
+       friendly_name: "Small Garage Sensor Battery"
+#Safety
+ - platform: template
+   sensors:
+     smoke_sensor_battery:
+       value_template: '{{ states.zwave.smoke_sensor.attributes.battery_level }}'
+       unit_of_measurement: '%'
+       friendly_name: "Smoke Sensor Battery"
+  - platform: template
+   sensors:
+     co_sensor_battery:
+       value_template: '{{ states.zwave.co_sensor.attributes.battery_level }}'
+       unit_of_measurement: '%'
+       friendly_name: "CO Sensor Battery"
+#Security
+  - platform: template
+   sensors:
+     glass_break_battery:
+       value_template: '{{ states.zwave.glass_break.attributes.battery_level }}'
+       unit_of_measurement: '%'
+       friendly_name: "Glass Break Battery"
+#Locks
+  - platform: template
+   sensors:
+     front_lock_battery:
+       value_template: '{{ states.zwave.front_lock.attributes.battery_level }}'
+       unit_of_measurement: '%'
+       friendly_name: "Front Lock Battery"
+  - platform: template
+   sensors:
+     garage_lock_battery:
+       value_template: '{{ states.zwave.garage_entry_lock.attributes.battery_level }}'
+       unit_of_measurement: '%'
+       friendly_name: "Garage Lock Battery"
+
+
+##Lock Information
+  - platform: template
+   sensors:
+     front_lock_status:
+       value_template: '{{ states.zwave.garage_entry_lock.attributes.lock_status }}'
+       friendly_name: "Front Lock Status"
+
 ##SmartThings Pre1sence
  # - platform: mqtt
    # state_topic: "smartthings/Ryan's Phone/presence"
@@ -396,7 +477,7 @@
      kristi_smartthings:
        value_template: '{% if is_state("sensor.st_kristi", "present") %}Home{% else %}Away{% endif %}'
        friendly_name: "Kristi's SmartThings"
-##OwnTracks Data
+##Google Maps Location Data
  - platform: template
    sensors:
      ryan_battery:
