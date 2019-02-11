@@ -543,6 +543,9 @@ sabnzbd:
     - month_size
     - total_size
 
+##Add System Health
+system_health:
+
 ####################################################
 #                                                  #
 #                     Includes                     #
