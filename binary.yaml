@@ -54,7 +54,7 @@
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
-    retain: false
+    # retain: false
   - platform: mqtt
     state_topic: "smartthings/Dryer Sensor/contact/state"
     name: "Dryer Door"
@@ -62,7 +62,7 @@
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
-    retain: false
+    #retain: false
 ##WINDOWS
   - platform: mqtt
     state_topic: "smartthings/Front Window 1/contact/state"
@@ -71,7 +71,7 @@
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
-    retain: false
+    #retain: false
   - platform: mqtt
     state_topic: "smartthings/Front Window 2/contact/state"
     name: "Front Window 2"
@@ -79,7 +79,7 @@
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
-    retain: false
+    #retain: false
   - platform: mqtt
     state_topic: "smartthings/Window Over Sink/contact/state"
     name: "Window Over Sink"
@@ -87,7 +87,7 @@
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
-    retain: false
+    #retain: false
   - platform: mqtt
     state_topic: "smartthings/Basement North Window/contact/state"
     name: "Basement North Window"
@@ -95,7 +95,7 @@
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
-    retain: false
+    #retain: false
   - platform: mqtt
     state_topic: "smartthings/Basement South Window 1/contact/state"
     name: "Basement South Window 1"
@@ -103,7 +103,7 @@
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
-    retain: false
+    #retain: false
   - platform: mqtt
     state_topic: "smartthings/Basement South Window 2/contact/state"
     name: "Basement South Window 2"
@@ -111,7 +111,7 @@
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
-    retain: false
+    #retain: false
   - platform: mqtt
     state_topic: "smartthings/Play Room Window/contact/state"
     name: "Play Room Window"
@@ -119,7 +119,7 @@
     payload_on: "open"
     payload_off: "closed"
     device_class: opening
-    retain: false
+    #retain: false
 ##GARAGE DOOR
 #  - platform: mqtt
 #    state_topic: "smartthings/Large Door/contact/state"
