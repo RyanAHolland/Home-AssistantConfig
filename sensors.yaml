@@ -459,12 +459,12 @@
    state_topic: "smartthings/Washer Sensor/threeAxis/state"
    name: "Washer Movement"
    qos: 0
-#Power Sensors   
- #- platform: mqtt
-  # state_topic: "smartthings/Washer/power/state"
- # name: "Washer Power"
- #  qos: 0
- #  unit_of_measurement: 'W'
+Power Sensors   
+ - platform: mqtt
+   state_topic: "smartthings/Washer/power/state"
+   name: "Washer Power"
+   qos: 0
+   unit_of_measurement: 'W'
 #SmartThings Template Sensors
  - platform: template
    sensors:
