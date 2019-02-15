@@ -493,7 +493,7 @@ hue:
       allow_unreachable: true
       allow_hue_groups: false
 
- insteon:
+insteon:
   host: !secret insteon_ip
   ip_port: !secret insteon_port
   username: !secret insteon_user
