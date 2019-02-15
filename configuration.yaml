@@ -493,6 +493,13 @@ hue:
       allow_unreachable: true
       allow_hue_groups: false
 
+ insteon:
+  host: !secret insteon_ip
+  ip_port: !secret insteon_port
+  username: !secret insteon_user
+  password: !secret insteon_pass
+  hub_version: 2     
+
 # panel_custom:
 #   - name: floorplan
 #     sidebar_title: Floorplan
