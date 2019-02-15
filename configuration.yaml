@@ -495,10 +495,10 @@ hue:
 
 insteon:
   host: !secret insteon_ip
-  ip_port: !secret insteon_port
-  username: !secret insteon_user
-  password: !secret insteon_pass
-  hub_version: 2     
+  # ip_port: !secret insteon_port
+  # username: !secret insteon_user
+  # password: !secret insteon_pass
+  hub_version: 1     
 
 # panel_custom:
 #   - name: floorplan
