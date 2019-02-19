@@ -57,3 +57,23 @@
     skip_first: True
     notifiers:
       - RyanHangout
+
+  smoke_alarm_alert:
+    name: Smoke Has Been Detected.
+    entity_id: binary_sensor.smoke
+    state: 'on'
+    repeat: 5
+    can_acknowledge: False
+    skip_first: True
+    notifiers:
+      - telegram
+
+  co_alarm_alert:
+    name: CO2 Has Been Detected.
+    entity_id: binary_sensor.co_detector
+    state: 'on'
+    repeat: 5
+    can_acknowledge: False
+    skip_first: True
+    notifiers:
+      - telegram
