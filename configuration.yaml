@@ -450,6 +450,18 @@ system_health:
 #Speedtest
 speedtestdotnet:
 
+##Add Google Home Tracker / Alarms
+googlehome:
+  devices:
+    - host: 192.168.1.245
+      track_alarms: true
+    - host: 192.168.1.253
+      track_alarms: true
+    - host: 192.168.1.242
+      track_alarms: true
+    - host: 192.168.1.246
+      track_alarms: true
+
 ####################################################
 #                                                  #
 #                     Includes                     #
