@@ -271,6 +271,7 @@ alarm_control_panel:
     command_topic: "smartthings/alarm system status/alarmSystemStatus/set"
     payload_disarm: "disarmed"
     payload_arm_home: "armed_home"
+    payload_arm_night: "armed_home"
     payload_arm_away: "armed_away"
     pending_time: 45
     code: !secret alarmcode
