@@ -31,6 +31,8 @@ cloud:
        - fan.bedroom
       include_domains:
        - light
+       - lock
+       - cover
       exclude_domains:
        - group
        - switch
@@ -40,7 +42,6 @@ cloud:
        - scene
        - climate
        - media_player
-       - cover
       exclude_entities:
        - light.left_lamp
        - light.right_lamp
