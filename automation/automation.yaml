@@ -638,7 +638,7 @@
   - alias: 'Send notification when alarm triggered'
     trigger:
       - platform: state
-        entity_id: alarm_control_panel.ha_alarm
+        entity_id: alarm_control_panel.shm
         to: 'triggered'
     action:
       - service: notify.ryanhangout
@@ -651,7 +651,7 @@
           message: "ALARM! The alarm has been triggered"
           data:
             sound: siren
-            priority: 2
+            priority: 1
       - service: notify.pushover
         data:
           title: "ALERT"
@@ -663,6 +663,19 @@
             {{ (item) | replace ("binary_sensor.","") | replace ("_"," ") | capitalize() }} is {{ states(item) }}
             {% endif %}
             {%- endfor -%}
+      - service: notify.ryanhangout
+        data:
+          title: "ALERT"
+          message: >-
+            {%- for item in states.group.securitysensors.attributes.entity_id -%}
+            {%- if states(item) == "on" -%}
+            {{ (item) | replace ("binary_sensor.","") | replace ("_"," ") | capitalize() }} is {{ states(item) }}
+            {% endif %}
+            {%- endfor -%}
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.kitchen_home
+          volume_level: ".64"
       - service: tts.google_say
         entity_id: media_player.kitchen_home
         data:
