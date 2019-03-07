@@ -472,10 +472,10 @@ googlehome:
 person:
 
 ##Add Xiaomi Gateway
-xiaomi_aqara:
-  discovery_retry: 5
-  gateways:
-    - key: !secret xiaomi_token
+# xiaomi_aqara:
+#   discovery_retry: 5
+#   gateways:
+#     - key: !secret xiaomi_token
 
 ####################################################
 #                                                  #
