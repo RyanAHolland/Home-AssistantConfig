@@ -1,3 +1,10 @@
+##Tell Node Red HA has restarted
+  - alias: homeassistant_start
+    trigger:
+      - platform: homeassistant
+        event: start
+    action:
+      - service: shell_command.ha_start
 
 
 ##If Nest tries to go into away mode while someone is home, turn it back to normal
