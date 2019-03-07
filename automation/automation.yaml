@@ -582,6 +582,49 @@
     action:
       service: alarm_control_panel.alarm_trigger
       entity_id: alarm_control_panel.shm
+
+  - alias: 'Trigger alarm while armed night'
+    trigger:
+      - platform: state
+        entity_id: group.WindowSensors
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.basement_north_window
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.basement_south_window_1
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.basement_south_window_2
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.front_window_1
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.front_window_2
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.window_over_sink
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.back_door_sensor
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.front_door_sensor
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.garage_entry_door_sensor
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.downstairs_glass_break
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.shm
+        state: armed_night
+    action:
+      service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.shm
   # - alias: 'Disarm alarm when door unlocked by keypad'
   #   trigger:
   #     - platform: state
