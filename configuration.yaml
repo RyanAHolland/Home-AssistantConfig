@@ -326,9 +326,9 @@ device_tracker:
 
 #Cameras
 camera:
-  - platform: mjpeg
-    mjpeg_url: !secret baby_cam_url
-    name: Baby Camera
+  # - platform: mjpeg
+  #   mjpeg_url: !secret baby_cam_url
+  #   name: Baby Camera
   - platform: mjpeg
     mjpeg_url: !secret deck_cam_url
     name: Back Deck Camera
@@ -470,6 +470,12 @@ googlehome:
 
 ##Add Person
 person:
+
+##Add Xiaomi Gateway
+# xiaomi_aqara:
+#   discovery_retry: 5
+#   gateways:
+#     - key: xxxxxxxxxxxxxxxx
 
 ####################################################
 #                                                  #
