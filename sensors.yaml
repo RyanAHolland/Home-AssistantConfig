@@ -138,21 +138,21 @@
      - timeleft
      - tonbatt
 # Tracking Ryan to Home
- - platform: google_travel_time
-   name: Ryan To Home
-   api_key: !secret google_api
+ - platform: waze_travel_time
    origin: device_tracker.google_maps_118314383764095593834
+   name: Ryan To Home
    destination: zone.home
+   region: 'US'
 # Tracking Ryan to Work
- - platform: google_travel_time
+ - platform: waze_travel_time
    name: Ryan To Work
-   api_key: !secret google_api
+   region: 'US'
    origin: device_tracker.google_maps_118314383764095593834
    destination: zone.pivot
 # Tracking Kristi to Home
- - platform: google_travel_time
+ - platform: waze_travel_time
    name: Kristi To Home
-   api_key: !secret google_api
+   region: 'US'
    origin: device_tracker.google_maps_114680120030307638360
    destination: zone.home
 
