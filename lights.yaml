@@ -123,16 +123,16 @@
   #   brightness_scale: 99
 
 ##Insteon Lights
-  - platform: mqtt 
-    name: "Front Lights" 
-    state_topic: "smartthings/Front Lights/switch/state"
-    command_topic: "smartthings/Front Lights/switch/set" 
-    brightness_state_topic: "smartthings/Front Lights/level/state"
-    brightness_command_topic: "smartthings/Front Lights/level/set" 
-    payload_on: "on" 
-    payload_off: "off" 
-    retain: false
-    brightness_scale: 99
+  # - platform: mqtt 
+  #   name: "Front Lights" 
+  #   state_topic: "smartthings/Front Lights/switch/state"
+  #   command_topic: "smartthings/Front Lights/switch/set" 
+  #   brightness_state_topic: "smartthings/Front Lights/level/state"
+  #   brightness_command_topic: "smartthings/Front Lights/level/set" 
+  #   payload_on: "on" 
+  #   payload_off: "off" 
+  #   retain: false
+  #   brightness_scale: 99
 
 #CHRISTMAS LIGHTS
   # - platform: mqtt 
