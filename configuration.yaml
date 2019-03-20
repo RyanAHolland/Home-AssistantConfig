@@ -274,6 +274,7 @@ alarm_control_panel:
     payload_arm_home: "armed_home"
     payload_arm_night: "armed_home"
     payload_arm_away: "armed_away"
+    payload_arm_night: "armed_home"
     pending_time: 45
     code: !secret alarmcode
     delay_time: 30
@@ -477,6 +478,7 @@ xiaomi_aqara:
   gateways:
     - mac: !secret xiaomi_mac
       key: !secret xiaomi_token
+      host: !secret xiaomi_ip
 
 ####################################################
 #                                                  #
