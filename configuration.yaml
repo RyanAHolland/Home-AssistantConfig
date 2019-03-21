@@ -473,9 +473,9 @@ person:
 
 #Add Xiaomi Gateway
 xiaomi_aqara:
-  discovery_retry: 5
+  discovery_retry: 10
   gateways:
-    - mac: !secret xiaomi_mac
+    - mac:
       key: !secret xiaomi_token
 
 ####################################################
