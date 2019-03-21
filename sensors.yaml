@@ -748,3 +748,13 @@
      - ads_blocked_today
      - dns_queries_today
      - unique_clients
+
+ - platform: mqtt
+   name: Upstairs BT Monitor state
+   state_topic: "location/upstairs/status"
+   icon: mdi:router-wireless
+
+ - platform: mqtt
+   name: Downstairs BT Monitor state
+   state_topic: "location/downstairs/status"
+   icon: mdi:router-wireless
