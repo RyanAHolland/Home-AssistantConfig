@@ -21,7 +21,7 @@ all mobile devices:
     - group.ryan
     - group.kristi
     - group.lindabill
-#    - group.earl
+    - group.earl
 presence sensors:
    - sensor.ryan_home
    - sensor.ryan_first_floor
