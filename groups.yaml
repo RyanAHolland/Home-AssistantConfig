@@ -22,6 +22,7 @@ all mobile devices:
     - group.kristi
     - group.lindabill
     - group.earl
+#This is the one the house uses
 presence sensors:
    - sensor.ryan_home
    - sensor.ryan_first_floor
