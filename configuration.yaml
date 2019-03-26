@@ -343,14 +343,17 @@ camera:
     mjpeg_url: !secret basement_cam_url
     name: Basement
   - platform: mjpeg
-    name: Living Room
+    name: Liam's Room
     mjpeg_url: !secret lr_cam_url
   - platform: mjpeg 
     name: Garage Camera
     mjpeg_url: !secret garage_cam_url
+  - platform: mjpeg 
+    name: Twins Camera
+    mjpeg_url: !secret twins_cam_url
   - platform: ring
-  - platform: usps
-    scan_interval: 5
+  # - platform: usps
+  #   scan_interval: 5
 
 ffmpeg:
 
