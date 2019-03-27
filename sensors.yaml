@@ -437,6 +437,13 @@
        value_template: '{{ states.lock.front_lock.attributes.lock_status }}'
        friendly_name: "Front Lock Status"
 
+##Washer Power Sensor
+ - platform: template
+   sensors:
+     washer_power:
+       value_template: '{{ states.switch.washer.attributes.current_power_w }}'
+       friendly_name: "Washer Power"
+
 ##Invert Smoke Sensor
 
 
