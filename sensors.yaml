@@ -215,122 +215,122 @@
 #   name: "Kitchen Motion Temperature"
 #   qos: 0
 #   unit_of_measurement: '°F'
- - platform: mqtt
-   state_topic: "smartthings/Basement Motion/temperature/state"
-   name: "Basement Motion Temperature"
-   qos: 0
-   unit_of_measurement: '°F'
- - platform: mqtt
-   state_topic: "smartthings/Iris 3405-L Keypad/temperature/state"
-   name: "Entry Keypad Temperature"
-   qos: 0
-   unit_of_measurement: '°F'
+#  - platform: mqtt
+#    state_topic: "smartthings/Basement Motion/temperature/state"
+#    name: "Basement Motion Temperature"
+#    qos: 0
+#    unit_of_measurement: '°F'
+#  - platform: mqtt
+#    state_topic: "smartthings/Iris 3405-L Keypad/temperature/state"
+#    name: "Entry Keypad Temperature"
+#    qos: 0
+#    unit_of_measurement: '°F'
 # - platform: mqtt
 #   state_topic: "smartthings/Upstairs Motion/temperature/state"
 #   name: "Upstairs Motion Temperature"
 #   qos: 0
 #   unit_of_measurement: '°F'
- - platform: mqtt
-   state_topic: "smartthings/Basement North Window/temperature/state"
-   name: "Basement North Window Temperature"
-   qos: 0
-   unit_of_measurement: '°F'
- - platform: mqtt
-   state_topic: "smartthings/Basement South Window 1/temperature/state"
-   name: "Basement South Window 1 Temperature"
-   qos: 0
-   unit_of_measurement: '°F'
- - platform: mqtt
-   state_topic: "smartthings/Basement South Window 2/temperature/state"
-   name: "Basement South Window 2 Temperature"
-   qos: 0
-   unit_of_measurement: '°F'
- - platform: mqtt
-   state_topic: "smartthings/Front Window 1/temperature/state"
-   name: "Front Window 1 Temperature"
-   qos: 0
-   unit_of_measurement: '°F'
- - platform: mqtt
-   state_topic: "smartthings/Front Window 2/temperature/state"
-   name: "Front Window 2 Temperature"
-   qos: 0
-   unit_of_measurement: '°F'
- - platform: mqtt
-   state_topic: "smartthings/Window Over Sink/temperature/state"
-   name: "Window Over Sink Temperature"
-   qos: 0
-   unit_of_measurement: '°F'
- - platform: mqtt
-   state_topic: "smartthings/Washer Sensor/temperature/state"
-   name: "Washer Sensor Temperature"
-   qos: 0
-   unit_of_measurement: '°F'
- - platform: mqtt
-   state_topic: "smartthings/Dryer Sensor/temperature/state"
-   name: "Dryer Sensor Temperature"
-   qos: 0
-   unit_of_measurement: '°F'
+#  - platform: mqtt
+#    state_topic: "smartthings/Basement North Window/temperature/state"
+#    name: "Basement North Window Temperature"
+#    qos: 0
+#    unit_of_measurement: '°F'
+#  - platform: mqtt
+#    state_topic: "smartthings/Basement South Window 1/temperature/state"
+#    name: "Basement South Window 1 Temperature"
+#    qos: 0
+#    unit_of_measurement: '°F'
+#  - platform: mqtt
+#    state_topic: "smartthings/Basement South Window 2/temperature/state"
+#    name: "Basement South Window 2 Temperature"
+#    qos: 0
+#    unit_of_measurement: '°F'
+#  - platform: mqtt
+#    state_topic: "smartthings/Front Window 1/temperature/state"
+#    name: "Front Window 1 Temperature"
+#    qos: 0
+#    unit_of_measurement: '°F'
+#  - platform: mqtt
+#    state_topic: "smartthings/Front Window 2/temperature/state"
+#    name: "Front Window 2 Temperature"
+#    qos: 0
+#    unit_of_measurement: '°F'
+#  - platform: mqtt
+#    state_topic: "smartthings/Window Over Sink/temperature/state"
+#    name: "Window Over Sink Temperature"
+#    qos: 0
+#    unit_of_measurement: '°F'
+#  - platform: mqtt
+#    state_topic: "smartthings/Washer Sensor/temperature/state"
+#    name: "Washer Sensor Temperature"
+#    qos: 0
+#    unit_of_measurement: '°F'
+#  - platform: mqtt
+#    state_topic: "smartthings/Dryer Sensor/temperature/state"
+#    name: "Dryer Sensor Temperature"
+#    qos: 0
+#    unit_of_measurement: '°F'
 #Battery Sensors
- - platform: mqtt
-   state_topic: "smartthings/Window Over Sink/battery/state"
-   name: "Window Over Sink Battery"
-   qos: 0
-   unit_of_measurement: '%'
- - platform: mqtt
-   state_topic: "smartthings/Dryer Sensor/battery/state"
-   name: "Dryer Sensor Battery"
-   qos: 0
-   unit_of_measurement: '%'
- - platform: mqtt
-   state_topic: "smartthings/Washer Sensor/battery/state"
-   name: "Washer Sensor Battery"
-   qos: 0
-   unit_of_measurement: '%'
- - platform: mqtt
-   state_topic: "smartthings/Play Room Window/battery/state"
-   name: "Play Room Window Battery"
-   qos: 0
-   unit_of_measurement: '%'
- - platform: mqtt
-   state_topic: "smartthings/Front Window 1/battery/state"
-   name: "Front Window 1 Battery"
-   qos: 0
-   unit_of_measurement: '%'
- - platform: mqtt
-   state_topic: "smartthings/Basement South Window 2/battery/state"
-   name: "Basement South Window 2 Battery"
-   qos: 0
-   unit_of_measurement: '%'
- - platform: mqtt
-   state_topic: "smartthings/Basement South Window 1/battery/state"
-   name: "Basement South Window 1 Battery"
-   qos: 0
-   unit_of_measurement: '%'
- - platform: mqtt
-   state_topic: "smartthings/Basement North Window/battery/state"
-   name: "Basement North Window Battery"
-   qos: 0
-   unit_of_measurement: '%'
- - platform: mqtt
-   state_topic: "smartthings/Play Room Window/battery/state"
-   name: "Play Room Window Battery"
-   qos: 0
-   unit_of_measurement: '%'
- - platform: mqtt
-   state_topic: "smartthings/Upstairs Keypad/battery/state"
-   name: "Entry Keypad Battery"
-   qos: 0
-   unit_of_measurement: '%'
+#  - platform: mqtt
+#    state_topic: "smartthings/Window Over Sink/battery/state"
+#    name: "Window Over Sink Battery"
+#    qos: 0
+#    unit_of_measurement: '%'
+#  - platform: mqtt
+#    state_topic: "smartthings/Dryer Sensor/battery/state"
+#    name: "Dryer Sensor Battery"
+#    qos: 0
+#    unit_of_measurement: '%'
+#  - platform: mqtt
+#    state_topic: "smartthings/Washer Sensor/battery/state"
+#    name: "Washer Sensor Battery"
+#    qos: 0
+#    unit_of_measurement: '%'
+#  - platform: mqtt
+#    state_topic: "smartthings/Play Room Window/battery/state"
+#    name: "Play Room Window Battery"
+#    qos: 0
+#    unit_of_measurement: '%'
+#  - platform: mqtt
+#    state_topic: "smartthings/Front Window 1/battery/state"
+#    name: "Front Window 1 Battery"
+#    qos: 0
+#    unit_of_measurement: '%'
+#  - platform: mqtt
+#    state_topic: "smartthings/Basement South Window 2/battery/state"
+#    name: "Basement South Window 2 Battery"
+#    qos: 0
+#    unit_of_measurement: '%'
+#  - platform: mqtt
+#    state_topic: "smartthings/Basement South Window 1/battery/state"
+#    name: "Basement South Window 1 Battery"
+#    qos: 0
+#    unit_of_measurement: '%'
+#  - platform: mqtt
+#    state_topic: "smartthings/Basement North Window/battery/state"
+#    name: "Basement North Window Battery"
+#    qos: 0
+#    unit_of_measurement: '%'
+#  - platform: mqtt
+#    state_topic: "smartthings/Play Room Window/battery/state"
+#    name: "Play Room Window Battery"
+#    qos: 0
+#    unit_of_measurement: '%'
+#  - platform: mqtt
+#    state_topic: "smartthings/Upstairs Keypad/battery/state"
+#    name: "Entry Keypad Battery"
+#    qos: 0
+#    unit_of_measurement: '%'
 # - platform: mqtt
 #   state_topic: "smartthings/Upstairs Motion/battery/state"
 #   name: "Upstairs Motion Battery"
 #   qos: 0
 #   unit_of_measurement: '%'
- - platform: mqtt
-   state_topic: "smartthings/Basement Motion/battery/state"
-   name: "Basement Motion Battery"
-   qos: 0
-   unit_of_measurement: '%'
+#  - platform: mqtt
+#    state_topic: "smartthings/Basement Motion/battery/state"
+#    name: "Basement Motion Battery"
+#    qos: 0
+#    unit_of_measurement: '%'
 ##Z-Wave Battery Sensors
 #Doors
  - platform: template
@@ -446,35 +446,35 @@
    # name: "ST Ryan"
    # qos: 0
 #Vibration Sensors
- - platform: mqtt
-   state_topic: "smartthings/Dryer Sensor/threeAxis/state"
-   name: "Dryer Movement"
-   qos: 0
- - platform: mqtt
-   state_topic: "smartthings/Washer Sensor/threeAxis/state"
-   name: "Washer Movement"
-   qos: 0
+#  - platform: mqtt
+#    state_topic: "smartthings/Dryer Sensor/threeAxis/state"
+#    name: "Dryer Movement"
+#    qos: 0
+#  - platform: mqtt
+#    state_topic: "smartthings/Washer Sensor/threeAxis/state"
+#    name: "Washer Movement"
+#    qos: 0
 #Power Sensors   
- - platform: mqtt
-   state_topic: "smartthings/Washer/power/state"
-   name: "Washer Power"
-   qos: 0
-   unit_of_measurement: 'W'
+#  - platform: mqtt
+#    state_topic: "smartthings/Washer/power/state"
+#    name: "Washer Power"
+#    qos: 0
+#    unit_of_measurement: 'W'
 #SmartThings Template Sensors
- - platform: template
-   sensors:
-     ryan_smartthings:
-       value_template: '{% if is_state("sensor.st_ryan", "present") %}Home{% else %}Away{% endif %}'
-       friendly_name: "Ryan's SmartThings"
- - platform: mqtt
-   state_topic: "smartthings/Kristi's Phone/presence"
-   name: "ST Kristi"
-   qos: 0
- - platform: template
-   sensors:
-     kristi_smartthings:
-       value_template: '{% if is_state("sensor.st_kristi", "present") %}Home{% else %}Away{% endif %}'
-       friendly_name: "Kristi's SmartThings"
+#  - platform: template
+#    sensors:
+#      ryan_smartthings:
+#        value_template: '{% if is_state("sensor.st_ryan", "present") %}Home{% else %}Away{% endif %}'
+#        friendly_name: "Ryan's SmartThings"
+#  - platform: mqtt
+#    state_topic: "smartthings/Kristi's Phone/presence"
+#    name: "ST Kristi"
+#    qos: 0
+#  - platform: template
+#    sensors:
+#      kristi_smartthings:
+#        value_template: '{% if is_state("sensor.st_kristi", "present") %}Home{% else %}Away{% endif %}'
+#        friendly_name: "Kristi's SmartThings"
 ##Google Maps Location Data
  - platform: template
    sensors:

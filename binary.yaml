@@ -47,79 +47,79 @@
   #   device_class: opening
   #   retain: false
 ##APPLIANCE
-  - platform: mqtt
-    state_topic: "smartthings/Washer Sensor/contact/state"
-    name: "Washer Door"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-    # retain: false
-  - platform: mqtt
-    state_topic: "smartthings/Dryer Sensor/contact/state"
-    name: "Dryer Door"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-    #retain: false
+  # - platform: mqtt
+  #   state_topic: "smartthings/Washer Sensor/contact/state"
+  #   name: "Washer Door"
+  #   qos: 0
+  #   payload_on: "open"
+  #   payload_off: "closed"
+  #   device_class: opening
+  #   # retain: false
+  # - platform: mqtt
+  #   state_topic: "smartthings/Dryer Sensor/contact/state"
+  #   name: "Dryer Door"
+  #   qos: 0
+  #   payload_on: "open"
+  #   payload_off: "closed"
+  #   device_class: opening
+  #   #retain: false
 ##WINDOWS
-  - platform: mqtt
-    state_topic: "smartthings/Front Window 1/contact/state"
-    name: "Front Window 1"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-    #retain: false
-  - platform: mqtt
-    state_topic: "smartthings/Front Window 2/contact/state"
-    name: "Front Window 2"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-    #retain: false
-  - platform: mqtt
-    state_topic: "smartthings/Window Over Sink/contact/state"
-    name: "Window Over Sink"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-    #retain: false
-  - platform: mqtt
-    state_topic: "smartthings/Basement North Window/contact/state"
-    name: "Basement North Window"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-    #retain: false
-  - platform: mqtt
-    state_topic: "smartthings/Basement South Window 1/contact/state"
-    name: "Basement South Window 1"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-    #retain: false
-  - platform: mqtt
-    state_topic: "smartthings/Basement South Window 2/contact/state"
-    name: "Basement South Window 2"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-    #retain: false
-  - platform: mqtt
-    state_topic: "smartthings/Play Room Window/contact/state"
-    name: "Play Room Window"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: opening
-    #retain: false
+  # - platform: mqtt
+  #   state_topic: "smartthings/Front Window 1/contact/state"
+  #   name: "Front Window 1"
+  #   qos: 0
+  #   payload_on: "open"
+  #   payload_off: "closed"
+  #   device_class: opening
+  #   #retain: false
+  # - platform: mqtt
+  #   state_topic: "smartthings/Front Window 2/contact/state"
+  #   name: "Front Window 2"
+  #   qos: 0
+  #   payload_on: "open"
+  #   payload_off: "closed"
+  #   device_class: opening
+  #   #retain: false
+  # - platform: mqtt
+  #   state_topic: "smartthings/Window Over Sink/contact/state"
+  #   name: "Window Over Sink"
+  #   qos: 0
+  #   payload_on: "open"
+  #   payload_off: "closed"
+  #   device_class: opening
+  #   #retain: false
+  # - platform: mqtt
+  #   state_topic: "smartthings/Basement North Window/contact/state"
+  #   name: "Basement North Window"
+  #   qos: 0
+  #   payload_on: "open"
+  #   payload_off: "closed"
+  #   device_class: opening
+  #   #retain: false
+  # - platform: mqtt
+  #   state_topic: "smartthings/Basement South Window 1/contact/state"
+  #   name: "Basement South Window 1"
+  #   qos: 0
+  #   payload_on: "open"
+  #   payload_off: "closed"
+  #   device_class: opening
+  #   #retain: false
+  # - platform: mqtt
+  #   state_topic: "smartthings/Basement South Window 2/contact/state"
+  #   name: "Basement South Window 2"
+  #   qos: 0
+  #   payload_on: "open"
+  #   payload_off: "closed"
+  #   device_class: opening
+  #   #retain: false
+  # - platform: mqtt
+  #   state_topic: "smartthings/Play Room Window/contact/state"
+  #   name: "Play Room Window"
+  #   qos: 0
+  #   payload_on: "open"
+  #   payload_off: "closed"
+  #   device_class: opening
+  #   #retain: false
 ##GARAGE DOOR
 #  - platform: mqtt
 #    state_topic: "smartthings/Large Door/contact/state"
@@ -153,13 +153,13 @@
   #   payload_on: "active"
   #   payload_off: "inactive"
   #   device_class: motion
-  - platform: mqtt
-    state_topic: "smartthings/Iris 3405-L Keypad/motion/state"
-    name: "Entry Keypad Motion"
-    qos: 0
-    payload_on: "active"
-    payload_off: "inactive"
-    device_class: motion
+  # - platform: mqtt
+  #   state_topic: "smartthings/Iris 3405-L Keypad/motion/state"
+  #   name: "Entry Keypad Motion"
+  #   qos: 0
+  #   payload_on: "active"
+  #   payload_off: "inactive"
+  #   device_class: motion
  # - platform: mqtt
  #   state_topic: "smartthings/Kitchen Motion/motion/state"
 #    name: "Kitchen Motion"
@@ -174,20 +174,20 @@
 #    payload_on: "active"
 #    payload_off: "inactive"
  #   device_class: motion
-  - platform: mqtt
-    state_topic: "smartthings/Basement Motion/motion/state"
-    name: "Basement Motion"
-    qos: 0
-    payload_on: "active"
-    payload_off: "inactive"
-    device_class: motion
-  - platform: mqtt
-    state_topic: "smartthings/Front Door Cam/motion/state"
-    name: "Driveway Camera Motion"
-    qos: 0
-    payload_on: "active"
-    payload_off: "inactive"
-    device_class: motion
+  # - platform: mqtt
+  #   state_topic: "smartthings/Basement Motion/motion/state"
+  #   name: "Basement Motion"
+  #   qos: 0
+  #   payload_on: "active"
+  #   payload_off: "inactive"
+  #   device_class: motion
+  # - platform: mqtt
+  #   state_topic: "smartthings/Front Door Cam/motion/state"
+  #   name: "Driveway Camera Motion"
+  #   qos: 0
+  #   payload_on: "active"
+  #   payload_off: "inactive"
+  #   device_class: motion
   # - platform: mqtt
   #   state_topic: "smartthings/Bedroom Motion/motion/state"
   #   name: "Bedroom Motion"
@@ -203,21 +203,21 @@
   #   payload_off: "inactive"
   #   device_class: motion
 ##SECURITY
-  - platform: mqtt
-    state_topic: "smartthings/Downstairs Glass Break Sensor/contact/state"
-    name: "Downstairs Glass Break"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: sound
+  # - platform: mqtt
+  #   state_topic: "smartthings/Downstairs Glass Break Sensor/contact/state"
+  #   name: "Downstairs Glass Break"
+  #   qos: 0
+  #   payload_on: "open"
+  #   payload_off: "closed"
+  #   device_class: sound
 ##SmartAlarm Trigger Device
-  - platform: mqtt
-    state_topic: "smartthings/zzSA Trigger/contact/state"
-    name: "SmartAlarm Triggered"
-    qos: 0
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: safety
+  # - platform: mqtt
+  #   state_topic: "smartthings/zzSA Trigger/contact/state"
+  #   name: "SmartAlarm Triggered"
+  #   qos: 0
+  #   payload_on: "open"
+  #   payload_off: "closed"
+  #   device_class: safety
 
 ##Virtual Binary from Zwave
 
@@ -401,3 +401,5 @@
   - platform: ping
     host: !secret frontcam_ip
     name: "Front Camera Ping"  
+
+  ##ADD HUBS
