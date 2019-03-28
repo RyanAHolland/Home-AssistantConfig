@@ -352,7 +352,7 @@ camera:
     scan_interval: 5
   - platform: mjpeg
     name: Liam's Room
-    mjpeg_url: !secret lr_cam_url
+    mjpeg_url: !secret liam_cam_url
   - platform: mjpeg 
     name: Garage Camera
     mjpeg_url: !secret garage_cam_url
