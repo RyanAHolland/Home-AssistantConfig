@@ -278,6 +278,13 @@
         device_class: motion
         value_template: "{{ is_state('sensor.vision_zp3102_pir_motion_sensor_alarm_level', '255') }}"
 
+  - platform: template
+    sensors:
+      downstairs_glass_break:
+        friendly_name: "Downstairs Glass Break"
+        device_class: safety
+        value_template: "{{ is_state('sensor.linear_unknown_type4742_id3030_alarm_type', '255') }}"
+
 ##Phone Battery Charging
 
   - platform: template
