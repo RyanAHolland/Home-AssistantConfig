@@ -342,12 +342,10 @@ camera:
   - platform: mjpeg
     mjpeg_url: !secret basement_cam_url
     name: Basement
-  - platform: generic
+  - platform: mjpeg
     name: Liam's Camera Snapshot
-    username: !secret cam_user
-    password: !secret cam_pass
-    authentication: basic
     still_image_url: !secret liam_cam_direct
+    stream_source: !secret liam_cam_rtsp
     verify_ssl: false
     scan_interval: 5
   - platform: mjpeg
@@ -358,10 +356,9 @@ camera:
     mjpeg_url: !secret garage_cam_url
   - platform: generic
     name: Garage Camera Snapshot
-    username: !secret cam_user
-    password: !secret cam_pass
     authentication: basic
     still_image_url: !secret garage_cam_direct
+    stream_source: !secret garage_cam_rtsp
     verify_ssl: false
     scan_interval: 5
   - platform: mjpeg 
@@ -369,10 +366,9 @@ camera:
     mjpeg_url: !secret twins_cam_url
   - platform: generic
     name: Twins's Camera Snapshot
-    username: !secret cam_user
-    password: !secret cam_pass
     authentication: basic
     still_image_url: !secret twins_cam_direct
+    stream_source: !secret twins_cam_rtsp
     verify_ssl: false
     scan_interval: 5
   - platform: ring
