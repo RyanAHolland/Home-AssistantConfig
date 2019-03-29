@@ -342,7 +342,7 @@ camera:
   - platform: mjpeg
     mjpeg_url: !secret basement_cam_url
     name: Basement
-  - platform: mjpeg
+  - platform: generic
     name: Liam's Camera Snapshot
     still_image_url: !secret liam_cam_direct
     stream_source: !secret liam_cam_rstp
