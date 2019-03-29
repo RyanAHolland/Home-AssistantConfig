@@ -345,7 +345,7 @@ camera:
   - platform: mjpeg
     name: Liam's Camera Snapshot
     still_image_url: !secret liam_cam_direct
-    stream_source: !secret liam_cam_rtsp
+    stream_source: !secret liam_cam_rstp
     verify_ssl: false
     scan_interval: 5
   - platform: mjpeg
