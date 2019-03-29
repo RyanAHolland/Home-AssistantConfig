@@ -358,7 +358,7 @@ camera:
     name: Garage Camera Snapshot
     authentication: basic
     still_image_url: !secret garage_cam_direct
-    stream_source: !secret garage_cam_rtsp
+    stream_source: !secret garage_cam_rstp
     verify_ssl: false
     scan_interval: 5
   - platform: mjpeg 
@@ -368,7 +368,7 @@ camera:
     name: Twins's Camera Snapshot
     authentication: basic
     still_image_url: !secret twins_cam_direct
-    stream_source: !secret twins_cam_rtsp
+    stream_source: !secret twins_cam_rstp
     verify_ssl: false
     scan_interval: 5
   - platform: ring
