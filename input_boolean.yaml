@@ -38,6 +38,11 @@ zigbee_permit_join:
     name: Allow devices to join
     initial: off
     icon: mdi:cellphone-wireless
+wax_warmer_control:
+    name: Run wax warmer
+    initial: off
+    icon: mdi:candle
+
 #ryan_occupancy:
 #    name: Ryan Occupancy
 #    icon: mdi:human-male
