@@ -325,55 +325,7 @@ device_tracker:
     password: !secret google_pass
     max_gps_accuracy: 500
 
-#Cameras
-camera:
-  # - platform: mjpeg
-  #   mjpeg_url: !secret baby_cam_url
-  #   name: Baby Camera
-  - platform: mjpeg
-    mjpeg_url: !secret deck_cam_url
-    name: Back Deck Camera
-  - platform: mjpeg
-    mjpeg_url: !secret play_cam_url
-    name: Play Room Camera
-  - platform: mjpeg
-    mjpeg_url: !secret front_cam_url
-    name: Front House Camera
-  - platform: mjpeg
-    mjpeg_url: !secret basement_cam_url
-    name: Basement
-  - platform: generic
-    name: Liam's Camera Snapshot
-    still_image_url: !secret liam_cam_direct
-    stream_source: !secret liam_cam_rstp
-    verify_ssl: false
-    scan_interval: 5
-  - platform: mjpeg
-    name: Liam's Room
-    mjpeg_url: !secret liam_cam_url
-  - platform: mjpeg 
-    name: Garage Camera
-    mjpeg_url: !secret garage_cam_url
-  - platform: generic
-    name: Garage Camera Snapshot
-    authentication: basic
-    still_image_url: !secret garage_cam_direct
-    stream_source: !secret garage_cam_rstp
-    verify_ssl: false
-    scan_interval: 5
-  - platform: mjpeg 
-    name: Twins Camera
-    mjpeg_url: !secret twins_cam_url
-  - platform: generic
-    name: Twins's Camera Snapshot
-    authentication: basic
-    still_image_url: !secret twins_cam_direct
-    stream_source: !secret twins_cam_rstp
-    verify_ssl: false
-    scan_interval: 5
-  - platform: ring
-  # - platform: usps
-  #   scan_interval: 5
+
 
 ffmpeg:
 
@@ -553,3 +505,6 @@ frontend: !include frontend.yaml
 
 ##rest_commands
 rest_command: !include rest.yaml
+
+##cameras
+camera: !include cameras.yaml
