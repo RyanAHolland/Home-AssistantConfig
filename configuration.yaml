@@ -142,7 +142,15 @@ input_select:
     - Idle
     - Running
     - Clean
-    icon: mdi:washing-machine
+    icon: mdi:tumble-dryer
+
+  dishwaser_status:
+    name: Dishwasher
+    options:
+    - Idle
+    - Running
+    - Clean
+    icon: mdi:dishwasher
 
   ryan_phone_status:
     name: Ryans Phone Status
