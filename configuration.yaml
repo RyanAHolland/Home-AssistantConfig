@@ -29,11 +29,12 @@ cloud:
        - group.color
        - group.christmas_lights
        - fan.bedroom
-       - input_boolean.waxwarmer
+       - input_boolean.wax_warmer_control
+       - cover.large_door
+       - cover.small_door
       include_domains:
        - light
        - lock
-       - cover
       exclude_domains:
        - group
        - switch
@@ -43,6 +44,7 @@ cloud:
        - scene
        - climate
        - media_player
+       - cover
       exclude_entities:
        - light.left_lamp
        - light.right_lamp
