@@ -29,6 +29,7 @@ cloud:
        - group.color
        - group.christmas_lights
        - fan.bedroom
+       - input_boolean.wax_warmer_control
       include_domains:
        - light
        - lock
@@ -43,6 +44,9 @@ cloud:
        - climate
        - media_player
       exclude_entities:
+       - cover.entrycam_move_leftright
+       - cover.entrycam_move_updown
+       - cover.entrycam_move_updown
        - light.left_lamp
        - light.right_lamp
        - light.floor_lamp
