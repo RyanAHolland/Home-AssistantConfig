@@ -29,6 +29,7 @@ cloud:
        - group.color
        - group.christmas_lights
        - fan.bedroom
+       - input_boolean.waxwarmer
       include_domains:
        - light
        - lock
@@ -144,7 +145,7 @@ input_select:
     - Clean
     icon: mdi:tumble-dryer
 
-  dishwaser_status:
+  dishwasher_status:
     name: Dishwasher
     options:
     - Idle
@@ -414,6 +415,9 @@ timer:
   zigbee_permit_join:
     name: Time remaining
     duration: 120
+  wax_melter:
+    name: Wax Melt Time
+    duration: 1800
 
 sabnzbd:
   api_key: !secret sabnzbd_api

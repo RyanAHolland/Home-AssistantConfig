@@ -367,6 +367,13 @@
       nest_away:
         value_template: "{{ is_state_attr('climate.downstairs_thermostat', 'away_mode', 'off') }}"
         friendly_name: 'Nest Away Mode'
+
+##Devices
+  - platform: template
+    sensors:
+      wax_melt_relay:
+        device_class: heat
+        value_template: "{{ is_state('switch.waxwarmer_relay', 'on') }}"
         
 #Bayesian
   # - platform: bayesian
