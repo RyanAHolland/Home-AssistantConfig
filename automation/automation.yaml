@@ -800,7 +800,7 @@
       event_data:
         entity_id: timer.wax_melter
     condition:
-    - condition: template
+    - condition: state
       entity_id: switch.waxwarmer_relay
       state: 'on'
     action:
@@ -820,7 +820,7 @@
       event_data:
         entity_id: timer.wax_melter
     condition:
-    - condition: template
+    - condition: state
       entity_id: switch.waxwarmer_relay
       state: 'off'
     action:
