@@ -799,10 +799,10 @@
       event_type: timer.finished
       event_data:
         entity_id: timer.wax_melter
-   condition:
-     - condition: template
-       entity_id: switch.waxwarmer_relay
-       state: 'on'
+    condition:
+    - condition: template
+      entity_id: switch.waxwarmer_relay
+      state: 'on'
     action:
     - service: timer.start
       data:
