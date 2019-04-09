@@ -761,6 +761,74 @@
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.zigbee_permit_join
+#Wax Warmer Switch On
+  - id: enable_wax_warmer
+    alias: Enable Wax Warmer
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: input_boolean.wax_warmer_control
+      to: 'on'
+    action:
+    - service: timer.start
+      data:
+        entity_id: timer.wax_melter
+    - service: switch.turn_on
+      entity_id: switch.waxwarmer_relay       
+#Wax Warmer Switch Off
+  - id: disable_wax_warmer
+    alias: Disable Wax Warmer
+    hide_entity: true
+    trigger:
+    - entity_id: input_boolean.wax_warmer_control
+      platform: state
+      to: 'off'
+    action:
+    - service: timer.cancel
+      data:
+        entity_id: timer.wax_melter
+    - service: switch.turn_off
+      entity_id: switch.waxwarmer_relay
+
+##Wax Warmer Timer Expire Switch On
+  - id: disable_wax_warmer_timer_on
+    alias: Disable Wax Warmer Timer
+    hide_entity: true
+    trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.wax_melter
+   condition:
+     - condition: template
+       entity_id: switch.waxwarmer_relay
+       state: 'on'
+    action:
+    - service: timer.start
+      data:
+        entity_id: timer.wax_melter
+    - service: switch.turn_off
+      entity_id: switch.waxwarmer_relay
+
+##Wax Warmer Timer Expire Switch On
+  - id: disable_wax_warmer_timer_off
+    alias: Disable Wax Warmer Timer
+    hide_entity: true
+    trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.wax_melter
+   condition:
+     - condition: template
+       entity_id: switch.waxwarmer_relay
+       state: 'off'
+    action:
+    - service: timer.start
+      data:
+        entity_id: timer.wax_melter
+    - service: switch.turn_on
+      entity_id: switch.waxwarmer_relay
 
   - id: telegram_disarm
     alias: Disarm SHM via Telegram
