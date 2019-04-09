@@ -372,6 +372,7 @@
   - platform: template
     sensors:
       wax_melt_relay:
+        name: "Wax Warmer Status"
         device_class: heat
         value_template: "{{ is_state('switch.waxwarmer_relay', 'on') }}"
         
