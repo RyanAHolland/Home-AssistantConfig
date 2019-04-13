@@ -465,7 +465,7 @@ person:
 xiaomi_aqara:
   discovery_retry: 10
   gateways:
-    - mac:
+    - mac: !secret xiaomi_mac
       key: !secret xiaomi_token
       host: !secret xiaomi_ip
 
