@@ -42,6 +42,16 @@
     stream_source: !secret twins_cam_rstp
     verify_ssl: false
     scan_interval: 5
+  - platform: mjpeg 
+    name: Entry Camera
+    mjpeg_url: !secret entry_cam_url
+  - platform: generic
+    name: Entry Camera Snapshot
+    authentication: basic
+    still_image_url: !secret entry_cam_direct
+    stream_source: !secret entry_cam_rstp
+    verify_ssl: false
+    scan_interval: 5
   - platform: ring
   # - platform: usps
   #   scan_interval: 5
