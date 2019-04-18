@@ -36,7 +36,7 @@
          0
       {% endif %}
    headers:
-   User-Agent: Homeassistant
+      User-Agent: Homeassistant
       Accept: application/ld+json
    scan_interval: 60
         
