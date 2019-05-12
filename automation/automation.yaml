@@ -852,4 +852,25 @@
         title: "SHM"
         message: "The alarm has be disarmed."
 
-        
+##Google Home Bedroom Alarm Turn on Lights
+  - id: bedroom_home_alarm
+    alias: Google Home Alarm Light Control
+    trigger:
+    - platform: state
+      entity_id: sensor.bedroom_home_alarm
+    condition:
+      condition: template
+      value_template: "{{ trigger.from_state.state != 'unavailable' }}"
+    action:
+    - service: light.turn_on
+      data:
+        entity_id: light.ryan_lamp
+        brightness_pct: 10
+    - service: light.turn_on
+      data:
+        entity_id: light.kristi_lamp
+        brightness_pct: 10
+    - service: notify.ryanhangouts
+      data:
+        message: "HA - Nursing lights have been turned on in the bedroom."
+        title: "Nursing Lights"
