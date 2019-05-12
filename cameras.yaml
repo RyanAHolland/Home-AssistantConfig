@@ -1,9 +1,9 @@
   # - platform: mjpeg
   #   mjpeg_url: !secret baby_cam_url
   #   name: Baby Camera
-  - platform: mjpeg
-    mjpeg_url: !secret yard_cam_url
-    name: Back Yard Camera
+  # - platform: mjpeg
+  #   mjpeg_url: !secret yard_cam_url
+  #   name: Back Yard Camera
   - platform: mjpeg
     mjpeg_url: !secret play_cam_url
     name: Play Room Camera
