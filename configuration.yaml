@@ -298,7 +298,7 @@ alarm_control_panel:
       trigger_time: 15
 
 tts:
-  - platform: google
+  - platform: google_translate
     language: 'en-us'
     cache: true
     cache_dir: /tmp/tts
