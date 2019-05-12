@@ -865,11 +865,11 @@
     - service: light.turn_on
       data:
         entity_id: light.ryan_lamp
-        brightness_pct: 10
+        brightness_pct: 1
     - service: light.turn_on
       data:
         entity_id: light.kristi_lamp
-        brightness_pct: 10
+        brightness_pct: 1
     - service: notify.ryanhangouts
       data:
         message: "HA - Nursing lights have been turned on in the bedroom."
