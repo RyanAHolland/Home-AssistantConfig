@@ -2,8 +2,8 @@
   #   mjpeg_url: !secret baby_cam_url
   #   name: Baby Camera
   - platform: mjpeg
-    mjpeg_url: !secret deck_cam_url
-    name: Back Deck Camera
+    mjpeg_url: !secret yard_cam_url
+    name: Back Yard Camera
   - platform: mjpeg
     mjpeg_url: !secret play_cam_url
     name: Play Room Camera
@@ -50,6 +50,15 @@
     authentication: basic
     still_image_url: !secret entry_cam_direct
     stream_source: !secret entry_cam_rstp
+    verify_ssl: false
+    scan_interval: 5
+  - platform: mjpeg 
+    name: Back Deck Camera
+    mjpeg_url: !secret deck_cam_url
+  - platform: generic
+    name: Back Deck Camera Snapshot
+    authentication: basic
+    still_image_url: !secret deck_cam_direct
     verify_ssl: false
     scan_interval: 5
   - platform: ring
