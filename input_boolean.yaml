@@ -42,6 +42,10 @@ wax_warmer_control:
     name: Run wax warmer
     initial: off
     icon: mdi:candle
+pumping:
+    name: Pumping
+    initial: off
+    icon: mdi:gas-station
 
 #ryan_occupancy:
 #    name: Ryan Occupancy
