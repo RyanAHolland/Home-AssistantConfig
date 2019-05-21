@@ -874,3 +874,20 @@
       data:
         message: "HA - Nursing lights have been turned on in the bedroom."
         title: "Nursing Lights"
+
+##Camera Streaming Control
+#Twins Camera to Bedroom
+  - id: twin_camera_br
+    alias: Cast Twin Camera to Bedroom
+    trigger:
+    - platform: state
+      entity_id: input_boolean.cast_twins_bedroom
+    action:
+    - service: media_player.turn_on
+      entity_id: media_player.bedroom_tv
+    - delay:
+        seconds: 3
+    - service: camera.play_stream
+      data:
+        entity_id: camera.twins_s_camera_snapshot
+        media_player: media_player.bedroom_tv

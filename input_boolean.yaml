@@ -46,6 +46,10 @@ pumping:
     name: Pumping
     initial: off
     icon: mdi:gas-station
+cast_twins_bedroom:
+    name: Cast Twins Camera to Bedroom
+    initial: off
+    icon: mdi:camera-wireless
 
 #ryan_occupancy:
 #    name: Ryan Occupancy
