@@ -788,7 +788,7 @@
       data:
         entity_id: timer.wax_melter
     - service: switch.turn_off
-      entity_id: switch.waxwarmer_relay
+      entity_id: switch.wax_warmer_relay
 
 ##Wax Warmer Timer Expire Switch On
   - id: disable_wax_warmer_timer_on
@@ -801,14 +801,14 @@
         entity_id: timer.wax_melter
     condition:
     - condition: state
-      entity_id: switch.waxwarmer_relay
+      entity_id: switch.wax_warmer_relay
       state: 'on'
     action:
     - service: timer.start
       data:
         entity_id: timer.wax_melter
     - service: switch.turn_off
-      entity_id: switch.waxwarmer_relay
+      entity_id: switch.wax_warmer_relay
 
 ##Wax Warmer Timer Expire Switch On
   - id: disable_wax_warmer_timer_off
@@ -821,14 +821,14 @@
         entity_id: timer.wax_melter
     condition:
     - condition: state
-      entity_id: switch.waxwarmer_relay
+      entity_id: switch.wax_warmer_relay
       state: 'off'
     action:
     - service: timer.start
       data:
         entity_id: timer.wax_melter
     - service: switch.turn_on
-      entity_id: switch.waxwarmer_relay
+      entity_id: switch.wax_warmer_relay
 
   - id: telegram_disarm
     alias: Disarm SHM via Telegram

@@ -56,7 +56,7 @@ cloud:
        - light.kristi_reading_lam
        - light.play_room_lamp
        - light.office_lamp
-       - light.spare_lamp
+       - light.nursery_lamp
 #  entity_config:
 #        group.color:
 #          name: Color Lights
@@ -407,11 +407,11 @@ panel_iframe:
   terminal:
     title: Terminal
     icon: mdi:console
-    url: "https://hollandhaus.duckdns.org:7681"
+    url: "https://hollandhaus.duckdns.org/hassio/ingress/a0d7b954_ssh"
   pihole:
     title: Pi-hole
     icon: mdi:block-helper
-    url: "http://hollandhaus.duckdns.org:4865"
+    url: "https://hollandhaus.duckdns.org:4865/admin"
 timer:
   zigbee_permit_join:
     name: Time remaining
