@@ -112,6 +112,10 @@ ios:
 
 #Add WeMo
 wemo:
+  static:
+    - 192.168.1.65
+    - 192.168.1.66
+    - 192.168.1.67
 
 #Config for Zwave (added via interface)
 zwave:
