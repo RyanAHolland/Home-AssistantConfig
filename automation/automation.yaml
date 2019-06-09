@@ -891,3 +891,19 @@
       data:
         entity_id: camera.twins_s_camera_snapshot
         media_player: media_player.bedroom_tv
+        
+#Twins Camera to Bedroom
+  - id: front_camera_lr
+    alias: Cast Front Camera to Living Room
+    trigger:
+    - platform: state
+      entity_id: input_boolean.cast_front_lr
+    action:
+    - service: media_player.turn_on
+      entity_id: media_player.living_room_chromecast
+    - delay:
+        seconds: 3
+    - service: camera.play_stream
+      data:
+        entity_id: camera.front_door_camera
+        media_player: media_player.living_room_chromecast

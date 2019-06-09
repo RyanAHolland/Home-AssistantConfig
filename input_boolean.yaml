@@ -50,7 +50,10 @@ cast_twins_bedroom:
     name: Cast Twins Camera to Bedroom
     initial: off
     icon: mdi:camera-wireless
-
+cast_front_lr:
+    name: Cast Front Camera to Living Room
+    initial: off
+    icon: mdi:camera-wireless
 #ryan_occupancy:
 #    name: Ryan Occupancy
 #    icon: mdi:human-male
