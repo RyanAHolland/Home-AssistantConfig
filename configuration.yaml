@@ -18,45 +18,45 @@ homeassistant:
 
 ##Enable cloud
 cloud:
-  google_actions:
-    filter:
-      include_entities:
-       - group.firstfloorlights
-       - group.secondfloorlights
-       - group.bedroomlamps
-       - group.decorative
-       - group.fireplace_lights
-       - group.color
-       - group.christmas_lights
-       - fan.bedroom
-       - input_boolean.wax_warmer_control
-       - cover.large_door
-       - cover.small_door
-      include_domains:
-       - light
-       - lock
-      exclude_domains:
-       - group
-       - switch
-       - input_boolean
-       - script
-       - automation
-       - scene
-       - climate
-       - media_player
-       - cover
-      exclude_entities:
-       - light.left_lamp
-       - light.right_lamp
-       - light.floor_lamp
-       - light.liam_lamp
-       - light.ryans_bloom
-       - light.kristis_bloom
-       - light.ryan_reading_lamp
-       - light.kristi_reading_lam
-       - light.play_room_lamp
-       - light.office_lamp
-       - light.nursery_lamp
+  # google_actions:
+  #   filter:
+  #     include_entities:
+  #      - group.firstfloorlights
+  #      - group.secondfloorlights
+  #      - group.bedroomlamps
+  #      - group.decorative
+  #      - group.fireplace_lights
+  #      - group.color
+  #      - group.christmas_lights
+  #      - fan.bedroom
+  #      - input_boolean.wax_warmer_control
+  #      - cover.large_door
+  #      - cover.small_door
+  #     include_domains:
+  #      - light
+  #      - lock
+  #     exclude_domains:
+  #      - group
+  #      - switch
+  #      - input_boolean
+  #      - script
+  #      - automation
+  #      - scene
+  #      - climate
+  #      - media_player
+  #      - cover
+  #     exclude_entities:
+  #      - light.left_lamp
+  #      - light.right_lamp
+  #      - light.floor_lamp
+  #      - light.liam_lamp
+  #      - light.ryans_bloom
+  #      - light.kristis_bloom
+  #      - light.ryan_reading_lamp
+  #      - light.kristi_reading_lam
+  #      - light.play_room_lamp
+  #      - light.office_lamp
+  #      - light.nursery_lamp
 #  entity_config:
 #        group.color:
 #          name: Color Lights
@@ -257,9 +257,9 @@ media_player:
   #   device: !secret xbox_one
   #   name: Xbox One
 
-nest:
-  client_id: !secret nest_id
-  client_secret: !secret nest_secret
+# nest:
+#   client_id: !secret nest_id
+#   client_secret: !secret nest_secret
 
 google:
   client_id: !secret google_id
