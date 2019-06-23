@@ -257,9 +257,9 @@ media_player:
   #   device: !secret xbox_one
   #   name: Xbox One
 
-# nest:
-#   client_id: !secret nest_id
-#   client_secret: !secret nest_secret
+nest:
+  client_id: !secret nest_id
+  client_secret: !secret nest_secret
 
 google:
   client_id: !secret google_id
