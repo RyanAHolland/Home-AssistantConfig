@@ -322,13 +322,13 @@
 #      washer_active:
 #        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.washer_movement.last_changed) > 30 }}'
 #        friendly_name: "Washer Active"
-#        device_class: moving
-  - platform: template
-    sensors:
-      dryer_active:
-        friendly_name: "Dryer Active"
-        device_class: moving
-        value_template: "{{ (is_state('binary_sensor.dryer_vibration','on') and relative_time(states.binary_sensor.dryer_vibration.last_updated) < '60 minutes')  or  (is_state('binary_sensor.dryer_vibration','off') and relative_time(states.binary_sensor.dryer_vibration.last_updated) < '3 minutes') }}"
+# #        device_class: moving
+#   - platform: template
+#     sensors:
+#       dryer_active:
+#         friendly_name: "Dryer Active"
+#         device_class: moving
+#         value_template: "{{ (is_state('binary_sensor.dryer_vibration','on') and relative_time(states.binary_sensor.dryer_vibration.last_updated) < '60 minutes')  or  (is_state('binary_sensor.dryer_vibration','off') and relative_time(states.binary_sensor.dryer_vibration.last_updated) < '3 minutes') }}"
 #Alert
   - platform: template
     sensors:
@@ -417,4 +417,18 @@
     host: !secret frontcam_ip
     name: "Front Camera Ping"  
 
-  ##ADD HUBS
+    ##PUMPING SENSORS
+
+  - platform: template
+    sensors:
+      upstairs_pumping:
+        friendly_name: "Upstairs Pump On"
+        device_class: plug
+        value_template: "{{ states('sensor.uppump_wattage')|float > 2.5 }}"
+
+  - platform: template
+    sensors:
+      downstairs_pumping:
+        friendly_name: "Downstairs Pump On"
+        device_class: plug
+        value_template: "{{ states('sensor.uppump_wattage')|float > 2.5 }}"
