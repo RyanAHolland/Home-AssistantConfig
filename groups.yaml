@@ -1,11 +1,11 @@
 ###GROUPS###
 ryan:
-   - device_tracker.ryans_phone
+   - device_tracker.ryan_s_phone
    - sensor.ryan_occupancy
    - device_tracker.google_maps_118314383764095593834
    #- sensor.ryan_smartthings
 kristi:
-   - device_tracker.kristis_phone
+   - device_tracker.kristi_s_phone
    #- sensor.kristi_smartthings
    - sensor.kristi_occupancy
    - device_tracker.google_maps_114680120030307638360

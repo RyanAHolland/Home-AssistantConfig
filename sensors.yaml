@@ -531,12 +531,12 @@
 #    qos: 0
 #    unit_of_measurement: 'V'
 ##FIND Location
- - platform: rest
-   resource: !secret find_name
-   value_template: !secret find_template
-   method: GET
-   name: Ryan FIND Sensor
-   scan_interval: 1
+#  - platform: rest
+#    resource: !secret find_name
+#    value_template: !secret find_template
+#    method: GET
+#    name: Ryan FIND Sensor
+#    scan_interval: 1
 ####PACKAGE SENSORS
 #UPS Packages
  - platform: ups
@@ -779,6 +779,12 @@
      - ads_blocked_today
      - dns_queries_today
      - unique_clients
+ - platform: template
+   sensors:
+     home_state:
+       value_template:
+        {{ states.input_select.home_status.state }}  
+       friendly_name: Home State
 
  - platform: mqtt
    name: Upstairs BT Monitor state
