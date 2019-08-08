@@ -781,10 +781,11 @@
      - unique_clients
  - platform: template
    sensors:
-     home_state:
-       value_template:
-        {{ states.input_select.home_status.state }}  
-       friendly_name: Home State
+      home_state:
+      value_template:
+        "{{ states.input_select.home_status.state }}"
+      friendly_name: Home State
+      icon: mdi:house
 
  - platform: mqtt
    name: Upstairs BT Monitor state
