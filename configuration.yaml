@@ -63,7 +63,8 @@ cloud:
 #            aliases:
 #             - stupid lights
 
-
+influxdb:
+  host: 192.168.1.250
 
 # Show links to resources in log and frontend
 # introduction:
