@@ -159,6 +159,14 @@ input_select:
     - Clean
     icon: mdi:dishwasher
 
+  chromebook_status:
+    name: Chromebook
+    options:
+    - Unplugged
+    - Charging
+    - PluggedIn
+    icon: mdi:laptop-chromebook
+
   ryan_phone_status:
     name: Ryans Phone Status
     options:
