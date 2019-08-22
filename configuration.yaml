@@ -338,6 +338,9 @@ device_tracker:
     username: !secret google_user
     password: !secret google_pass
     max_gps_accuracy: 500
+  - platform: tile
+    username: !secret email
+    password: !secret tile_pass
 
 
 
