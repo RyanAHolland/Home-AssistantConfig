@@ -432,3 +432,74 @@
         friendly_name: "Downstairs Pump On"
         device_class: plug
         value_template: "{{ states('sensor.uppump_wattage')|float > 2.5 }}"
+
+##BlueIris Cameras
+###Playroom
+  - platform: mqtt
+    state_topic: "homeassistant/blueiris/playroom/motion"
+    name: "Playroom Camera Motion BI"
+    qos: 0
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: motion
+
+  - platform: mqtt
+    state_topic: "homeassistant/blueiris/playroom/online"
+    name: "Playroom Camera Online BI"
+    qos: 0
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: connectivity
+
+###Back Deck
+  - platform: mqtt
+    state_topic: "homeassistant/blueiris/backdeck/motion"
+    name: "Deck Camera Motion BI"
+    qos: 0
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: motion
+
+  - platform: mqtt
+    state_topic: "homeassistant/blueiris/backdeck/online"
+    name: "Deck Camera Online BI"
+    qos: 0
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: connectivity
+
+###Driveway
+  - platform: mqtt
+    state_topic: "homeassistant/blueiris/driveway/motion"
+    name: "Driveway Motion BI"
+    qos: 0
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: motion
+
+  - platform: mqtt
+    state_topic: "homeassistant/blueiris/driveway/online"
+    name: "Driveway Online BI"
+    qos: 0
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: connectivity
+
+###Liam Camera
+  - platform: mqtt
+    state_topic: "homeassistant/blueiris/liamcam/motion"
+    name: "Liam Camera Motion BI"
+    qos: 0
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: motion
+
+  - platform: mqtt
+    state_topic: "homeassistant/blueiris/liamcam/online"
+    name: "Liam Camera Online BI"
+    qos: 0
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: connectivity
+
+    
