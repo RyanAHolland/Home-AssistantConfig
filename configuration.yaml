@@ -260,9 +260,10 @@ media_player:
   - platform: plex
   - platform: cast
   - platform: roku
-    host: !secret roku_one
-    host: !secret roku_two
-    host: !secret roku_three
+    hosts: 
+      !secret roku_one
+      !secret roku_two
+      !secret roku_three
   - platform: webostv
     host: !secret play_tv_ip
   # - platform: xboxone
@@ -464,16 +465,16 @@ system_health:
 speedtestdotnet:
 
 ##Add Google Home Tracker / Alarms
-googlehome:
-  devices:
-    - host: 192.168.1.245
-      track_alarms: true
-    - host: 192.168.1.253
-      track_alarms: true
-    - host: 192.168.1.242
-      track_alarms: true
-    - host: 192.168.1.246
-      track_alarms: true
+# googlehome:
+#   devices:
+#     - host: 192.168.1.245
+#       track_alarms: true
+#     - host: 192.168.1.253
+#       track_alarms: true
+#     - host: 192.168.1.242
+#       track_alarms: true
+#     - host: 192.168.1.246
+#       track_alarms: true
 
 ##Add Person
 person:
