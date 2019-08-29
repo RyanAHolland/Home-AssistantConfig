@@ -260,10 +260,7 @@ media_player:
   - platform: plex
   - platform: cast
   - platform: roku
-    hosts: 
-      !secret roku_one
-      !secret roku_two
-      !secret roku_three
+    host: !secret roku_one
   - platform: webostv
     host: !secret play_tv_ip
   # - platform: xboxone
@@ -309,9 +306,9 @@ alarm_control_panel:
       trigger_time: 0
     triggered:
       pending_time: 0
-    arm_night:
-      pending_time: 0
-      trigger_time: 15
+    # arm_night:
+    #   pending_time: 0
+    #   trigger_time: 15
 
 tts:
   - platform: google_translate
