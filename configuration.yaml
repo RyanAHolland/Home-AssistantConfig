@@ -240,20 +240,20 @@ weather:
 #     device_id: group.join
 #     api_key: !secret join_key
 
-mqtt:
-  broker: !secret mqtt_ip
-  port: 1883
-  client_id: haas
-  keepalive: 60
-  protocol: 3.1.1
-  discovery: true 
-  discovery_prefix: homeassistant
-  birth_message:
-    topic: 'hass/status'
-    payload: 'online'
-  will_message:
-    topic: 'hass/status'
-    payload: 'offline'
+# mqtt:
+#   broker: !secret mqtt_ip
+#   port: 1883
+#   client_id: haas
+#   keepalive: 60
+#   protocol: 3.1.1
+#   discovery: true 
+#   discovery_prefix: homeassistant
+#   birth_message:
+#     topic: 'hass/status'
+#     payload: 'online'
+#   will_message:
+#     topic: 'hass/status'
+#     payload: 'offline'
 
 
 media_player:
@@ -346,6 +346,9 @@ device_tracker:
     username: !secret google_user
     password: !secret google_pass
     max_gps_accuracy: 500
+  - platform: tile
+    username: !secret email
+    password: !secret tile_pass
 
 
 
