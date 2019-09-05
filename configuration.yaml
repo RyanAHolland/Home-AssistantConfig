@@ -345,7 +345,7 @@ device_tracker:
       mom: !secret mom_ip
   - platform: google_maps
     username: !secret google_user
-    password: !secret google_pass
+    # password: !secret google_pass
     max_gps_accuracy: 500
   - platform: tile
     username: !secret email
