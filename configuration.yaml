@@ -355,20 +355,6 @@ device_tracker:
 
 ffmpeg:
 
-#zoneminder:
-#  host: !secret ZM_HOST
-#  path: /zm
-#  path_zms: /zm/cgi-bin/nph-zms
-#  ssl: False
-#  username: !secret ZM_USERNAME
-#  password: !secret ZM_PASSWORD
-
-##USPS Package Tracking
-usps:
-    username: !secret usps_user
-    password: !secret usps_pass
-    driver: chrome
-
 cover:
   - platform: myq
     username: !secret email
@@ -394,21 +380,7 @@ hue:
     - host: !secret hue_ip
       allow_unreachable: true
       allow_hue_groups: false
-
-# insteon:
-#   host: !secret insteon_ip
-#   ip_port: !secret insteon_port
-#   username: !secret insteon_user
-#   password: !secret insteon_pass
-#   hub_version: 2    
-
-# panel_custom:
-#   - name: floorplan
-#     sidebar_title: Floorplan
-#     sidebar_icon: mdi:home
-#     url_path: floorplan
-#     config: !include floorplan.yaml
-    
+   
 telegram_bot: 
   - platform: polling 
     api_key: !secret telegram_api 
@@ -416,18 +388,11 @@ telegram_bot:
       - !secret telegram_ryan
 
 panel_iframe:
-  rachio:
-    title: Rachio
-    url: "https://app.rach.io"
-    icon: mdi:water-pump
-  terminal:
-    title: Terminal
-    icon: mdi:console
-    url: "https://hollandhaus.duckdns.org/hassio/ingress/a0d7b954_ssh"
   pihole:
     title: Pi-hole
     icon: mdi:block-helper
     url: "https://hollandhaus.duckdns.org:4865/admin"
+    
 timer:
   zigbee_permit_join:
     name: Time remaining
