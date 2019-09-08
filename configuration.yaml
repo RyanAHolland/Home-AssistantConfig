@@ -188,7 +188,8 @@ weather:
     mode: daily
 
 #APCUPS
-#apcupsd:
+apcupsd:
+  host: a722577e-apcupsd
 
 media_player:
   - platform: plex
