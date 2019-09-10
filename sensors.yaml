@@ -654,12 +654,12 @@
    name: 'Test First Floor'
 ##BLE Tokens
  - platform: mqtt
-   state_topic: !secret gryankey
+   state_topic: !secret 1stryankey
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
    name: 'Ryan Keys First Floor'
  - platform: mqtt
-   state_topic: !secret gliambp
+   state_topic: !secret 1stliambp
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
    name: 'Liam Backpack First Floor'
