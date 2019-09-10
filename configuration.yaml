@@ -194,15 +194,16 @@ apcupsd:
 media_player:
   - platform: plex
   - platform: cast
-  - platform: roku
-    - host: !secret roku_one
-    - host: !secret roku_two
-    - host: !secret roku_three
   - platform: webostv
     host: !secret play_tv_ip
   # - platform: xboxone
   #   device: !secret xbox_one
   #   name: Xbox One
+
+roku:
+  - host: !secret roku_one
+  - host: !secret roku_two
+  - host: !secret roku_three
 
 nest:
   client_id: !secret nest_id
