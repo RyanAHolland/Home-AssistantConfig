@@ -195,7 +195,9 @@ media_player:
   - platform: plex
   - platform: cast
   - platform: roku
-    host: !secret roku_one
+    - host: !secret roku_one
+    - host: !secret roku_two
+    - host: !secret roku_three
   - platform: webostv
     host: !secret play_tv_ip
   # - platform: xboxone
