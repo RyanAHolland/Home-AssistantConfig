@@ -577,7 +577,7 @@
    # value_template: '{{ value_json.confidence }}'
    # unit_of_measurement: '%'
    # name: 'Ryan Basement'
-- platform: mqtt
+ - platform: mqtt
    state_topic: !secret gkristiphonebt
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
