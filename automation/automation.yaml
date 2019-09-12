@@ -921,7 +921,7 @@
       - service: device_tracker.see
         data:
           dev_id: ryans_bt
-    location_name: home
+          location_name: home
 
   - id: ryan_bt_away
     alias: Ryan BT Occupancy Off
@@ -933,4 +933,4 @@
       - service: device_tracker.see
         data:
           dev_id: ryans_bt
-    location_name: not_home
+          location_name: not_home
