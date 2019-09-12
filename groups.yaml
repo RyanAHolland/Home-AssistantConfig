@@ -21,7 +21,7 @@ all mobile devices:
     - person.ryan
     - person.kristi
     - person.linda
-    - persona.earl
+    - person.earl
 #This is the one the house uses
 presence sensors:
    - sensor.ryan_home
