@@ -935,4 +935,4 @@
       - service: device_tracker.see
         data:
           dev_id: device_tracker.ryans_bt
-	  location_name: not_home
+    location_name: not_home
