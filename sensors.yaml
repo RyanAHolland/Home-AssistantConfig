@@ -663,6 +663,14 @@
    value_template: '{{ value_json.confidence }}'
    unit_of_measurement: '%'
    name: 'Liam Backpack First Floor'
+
+##RSSI
+ - platform: mqtt
+   state_topic: !secret gryanrssi
+   name: 'Ryan Garage Signal Level'
+ - platform: mqtt
+   state_topic: !secret 1stryanrssi
+   name: 'Ryan LR Signal Level'
 ##BT presence logic
  - platform: min_max
    name: "Ryan Home Occupancy Confidence"
