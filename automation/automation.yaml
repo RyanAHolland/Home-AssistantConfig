@@ -934,3 +934,28 @@
         data:
           dev_id: ryans_bt
           location_name: not_home
+
+###For Kristi
+  - id: kristi_bt_home
+    alias: Kristi BT Occupancy On
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.kristi_home_occupancy_confidence
+        above: 10
+    action:
+      - service: device_tracker.see
+        data:
+          dev_id: kristi_bt
+          location_name: home
+
+  - id: kristi_bt_away
+    alias: Kristi BT Occupancy Off
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.kristi_home_occupancy_confidence
+        below: 10
+    action:
+      - service: device_tracker.see
+        data:
+          dev_id: kristis_bt
+          location_name: not_home
