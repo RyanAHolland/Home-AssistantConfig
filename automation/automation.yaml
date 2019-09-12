@@ -913,7 +913,7 @@
 ###For Ryan
   - id: ryan_bt_home
     alias: Ryan BT Occupancy On
-    hide_entity: False
+    hide_entity: false
     trigger:
       - platform: numeric_state
         entity_id: sensor.ryan_home_occupancy_confidence
@@ -926,7 +926,7 @@
 
   - id: ryan_bt_away
     alias: Ryan BT Occupancy Off
-    hide_entity: False
+    hide_entity: false
     trigger:
       - platform: numeric_state
         entity_id: sensor.ryan_home_occupancy_confidence

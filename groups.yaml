@@ -1,27 +1,27 @@
 ###GROUPS###
-ryan:
-   - device_tracker.ryan_s_phone
-   - sensor.ryan_occupancy
-   - device_tracker.google_maps_118314383764095593834
-   #- sensor.ryan_smartthings
-kristi:
-   - device_tracker.kristi_s_phone
-   #- sensor.kristi_smartthings
-   - sensor.kristi_occupancy
-   - device_tracker.google_maps_114680120030307638360
-lindabill:
-#   - device_tracker.mom
-   - device_tracker.lindas_s8
-   - device_tracker.bills_phone
-   - sensor.mom_occupancy
-earl:
-    - device_tracker.earls_phone
-    - sensor.dad_occupancy
+# ryan:
+#    - device_tracker.ryan_s_phone
+#    - sensor.ryan_occupancy
+#    - device_tracker.google_maps_118314383764095593834
+#    #- sensor.ryan_smartthings
+# kristi:
+#    - device_tracker.kristi_s_phone
+#    #- sensor.kristi_smartthings
+#    - sensor.kristi_occupancy
+#    - device_tracker.google_maps_114680120030307638360
+# lindabill:
+# #   - device_tracker.mom
+#    - device_tracker.lindas_s8
+#    - device_tracker.bills_phone
+#    - sensor.mom_occupancy
+# earl:
+#     - device_tracker.earls_phone
+#     - sensor.dad_occupancy
 all mobile devices:
-    - group.ryan
-    - group.kristi
-    - group.lindabill
-    - group.earl
+    - person.ryan
+    - person.kristi
+    - person.linda
+    - persona.earl
 #This is the one the house uses
 presence sensors:
    - sensor.ryan_home
