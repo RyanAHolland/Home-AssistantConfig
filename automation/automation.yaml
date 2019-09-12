@@ -907,3 +907,32 @@
       data:
         entity_id: camera.front_door_camera
         media_player: media_player.living_room_chromecast
+
+
+##Create Virtual Presence Sensors
+###For Ryan
+- id: ryan_bt_home
+  alias: Ryan BT Occupancy On
+  hide_entity: true
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ryan_home_occupancy_confidence
+      above: 10
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: device_tracker.ryans_bt
+	location_name: home
+
+- id: ryan_bt_away
+  alias: Ryan BT Occupancy Off
+  hide_entity: true
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ryan_home_occupancy_confidence
+      below: 10
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: device_tracker.ryans_bt
+	location_name: not_home
