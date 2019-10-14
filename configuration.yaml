@@ -258,8 +258,6 @@ tts:
 
 shell_command:
   get_latest_config: bash /home/homeassistant/.homeassistant/bin/update_config_from_github.sh
-  restart_mqtt: docker restart mqtt_bridge
-  ha_start: 'curl http://localhost:1880/hastart'
 
 climate:
   platform: nest
