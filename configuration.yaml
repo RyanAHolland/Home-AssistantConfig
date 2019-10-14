@@ -204,9 +204,10 @@ nest:
   client_id: !secret nest_id
   client_secret: !secret nest_secret
 
-google:
-  client_id: !secret google_id
-  client_secret: !secret google_secret
+##Google for Google Calendar
+# google:
+#   client_id: !secret google_id
+#   client_secret: !secret google_secret
 
 ring:
   username: !secret email
