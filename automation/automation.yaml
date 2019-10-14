@@ -5,10 +5,7 @@
         event: start
     action:
       - service: mqtt.publish
-        data_template: 
-        {  "topic": "homeassistant/status/ha",
-           "payload": "online"
-        }
+        data_template: {"topic": "homeassistant/status/ha", "payload": "online"}
  ##Tell Node Red HA has restarted
   - alias: homeassistant_shutdown
     trigger:
@@ -16,10 +13,7 @@
         event: shutdown 
     action:
       - service: mqtt.publish
-        data_template: 
-        {  "topic": "homeassistant/status/ha",
-           "payload": "offline"
-        }
+        data_template: {"topic": "homeassistant/status/ha", "payload": "offline"}
 
 
 ##If Nest tries to go into away mode while someone is home, turn it back to normal
