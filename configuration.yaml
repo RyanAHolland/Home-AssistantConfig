@@ -192,7 +192,6 @@ apcupsd:
   host: a722577e-apcupsd
 
 media_player:
-  - platform: plex
   - platform: roku
     host: !secret roku_one
   - platform: webostv
