@@ -6,6 +6,8 @@
      - type: disk_use_percent
        arg: /home
      - type: memory_free
+#Uptime
+ - platform: uptime
 # Weather Prediction
  - platform: darksky
    api_key: !secret dark_sky_api
