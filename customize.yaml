@@ -346,3 +346,9 @@ binary_sensor.large_garage_door_contact:
   device_class: garage_door
 binary_sensor.small_garage_door_contact:
   device_class: garage_door
+device_tracker.kristi_bt:
+  friendly_name: Kristi BT Tracker
+  source_type: bluetooth
+device_tracker.ryans_bt:
+  friendly_name: Ryan BT Tracker
+  source_type: bluetooth
