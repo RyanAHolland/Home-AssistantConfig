@@ -193,17 +193,13 @@ apcupsd:
 
 media_player:
   - platform: plex
-  - platform: cast
+  - platform: roku
+    host: !secret roku_one
   - platform: webostv
     host: !secret play_tv_ip
   # - platform: xboxone
   #   device: !secret xbox_one
   #   name: Xbox One
-
-roku:
-  - host: !secret roku_one
-  - host: !secret roku_two
-  - host: !secret roku_three
 
 nest:
   client_id: !secret nest_id
@@ -289,8 +285,7 @@ device_tracker:
     username: !secret email
     password: !secret tile_pass
 
-hacs:
-  token: !secret hacs_token
+
 
 ffmpeg:
 
@@ -313,12 +308,6 @@ proximity:
       - device_tracker.google_maps_114680120030307638360
     tolerance: 50
     unit_of_measurement: mi
-
-hue:
-  bridges:
-    - host: !secret hue_ip
-      allow_unreachable: true
-      allow_hue_groups: false
    
 telegram_bot: 
   - platform: polling 
@@ -339,25 +328,6 @@ timer:
   wax_melter:
     name: Wax Melt Time
     duration: 1800
-
-sabnzbd:
-  api_key: !secret sabnzbd_api
-  host: !secret server_ip
-  name: sab
-  port: 8085
-  ssl: false
-  sensors:
-    - current_status
-    - speed
-    - queue_size
-    - queue_remaining
-    - disk_size
-    - disk_free
-    - queue_count
-    - day_size
-    - week_size
-    - month_size
-    - total_size
 
 ##Add System Health
 system_health:
