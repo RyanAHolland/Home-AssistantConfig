@@ -82,9 +82,9 @@
    port: 80
 
 #PLEX
- - platform: plex
-   username: !secret email
-   password: !secret plex_pass
+#  - platform: plex
+#    username: !secret email
+#    password: !secret plex_pass
 #SABNZBD
  - platform: sabnzbd
    host: !secret sabnzbd_host

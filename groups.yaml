@@ -468,7 +468,7 @@ network:
 mediaSensors:
     name: Media Sensors
     entities:
-      - sensor.plex
+      # - sensor.plex
       - sensor.pocketcasts_unlistened_episodes
       - sensor.sabnzbd_status
 
