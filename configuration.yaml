@@ -40,6 +40,9 @@ updater:
 
 # Discover some devices automatically
 discovery:
+  ignore:
+    - plex_mediaserver
+    - hue
 
 # Add Config Panel
 config:
