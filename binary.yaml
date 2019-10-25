@@ -269,14 +269,14 @@
       kitchen_motion:
         friendly_name: "Kitchen Motion"
         device_class: motion
-        value_template: "{{ is_state('sensor.vision_zp3102_pir_motion_sensor_alarm_level_2', '255') }}"
+        value_template: "{{ is_state('sensor.vision_security_zp3102_pir_motion_sensor_alarm_level_2', '255') }}"
 
   - platform: template
     sensors:
       upstairs_motion:
         friendly_name: "Upstairs Motion"
         device_class: motion
-        value_template: "{{ is_state('sensor.vision_zp3102_pir_motion_sensor_alarm_level', '255') }}"
+        value_template: "{{ is_state('sensor.vision_security_zp3102_pir_motion_sensor_alarm_level', '255') }}"
 
   - platform: template
     sensors:

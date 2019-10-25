@@ -40,6 +40,9 @@ updater:
 
 # Discover some devices automatically
 discovery:
+  ignore:
+    - plex_mediaserver
+    - philips_hue
 
 # Add Config Panel
 config:
@@ -263,15 +266,15 @@ climate:
   platform: nest
 
 device_tracker:
-  - platform: unifi
-    username: !secret email
-    password: !secret unifi_pass
-    host: !secret host_ip
-    port: 8443
-    verify_ssl: false
-    new_device_defaults:
-      track_new_devices: true
-      hide_if_away: False
+  # - platform: unifi
+  #   username: !secret email
+  #   password: !secret unifi_pass
+  #   host: !secret host_ip
+  #   port: 8443
+  #   verify_ssl: false
+  #   new_device_defaults:
+  #     track_new_devices: true
+  #     hide_if_away: False
   - platform: ping
     hosts:
       mom: !secret mom_ip
