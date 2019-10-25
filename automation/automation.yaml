@@ -783,7 +783,7 @@
       data:
         entity_id: timer.wax_melter
     - service: switch.turn_on
-      entity_id: switch.waxwarmer_relay       
+      entity_id: switch.wax_warmer_relay       
 #Wax Warmer Switch Off
   - id: disable_wax_warmer
     alias: Disable Wax Warmer
