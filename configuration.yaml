@@ -69,6 +69,8 @@ sun:
 
 ios:
 
+mobile_app:
+
 #Add WeMo
 wemo:
   static:
