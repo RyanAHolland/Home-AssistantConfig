@@ -69,7 +69,7 @@ sun:
 
 ios:
 
-mobile_app:
+mobile_app: 
 
 #Add WeMo
 wemo:

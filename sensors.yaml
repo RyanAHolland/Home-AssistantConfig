@@ -539,20 +539,7 @@
 #    method: GET
 #    name: Ryan FIND Sensor
 #    scan_interval: 1
-####PACKAGE SENSORS
-#UPS Packages
- - platform: ups
-   username: !secret username
-   password: !secret ups_pass
-# ##USPS Camera
-#  - platform: usps
-#    scan_interval: 5
-##FedEx Packages
- - platform: fedex
-   username: !secret username
-   password: !secret fedex_pass
- - platform: travisci
-   api_key:  !secret travis_api
+
 ##presence server
  - platform: mqtt
    state_topic: !secret gryanphonebt
