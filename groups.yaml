@@ -163,10 +163,10 @@ fireplace lights:
 christmas lights:
     name: Christmas Lights
     entities:
-      - light.christmas_tree
-      - light.mantle_lights
+      - switch.downpump_relay
+      - switch.mantle_lights
       - switch.liams_tree
-      - light.railing_lights
+      - switch.basement_tv
 
 dining_room:
     name: Dining Room
