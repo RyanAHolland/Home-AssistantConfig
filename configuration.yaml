@@ -318,11 +318,17 @@ telegram_bot:
     allowed_chat_ids: 
       - !secret telegram_ryan
 
-panel_iframe:
-  grafana:
-    title: Grafana
-    icon: mdi:graph
-    url: "https://hollandhaus.duckdns.org:3000"
+# panel_iframe:
+#   grafana:
+#     title: Grafana
+#     icon: mdi:graph
+#     url: "https://hollandhaus.duckdns.org:3000"
+
+panel_custom:
+  - name: zwavegraph2
+    sidebar_title: ZWave Graph2
+    sidebar_icon: mdi:access-point-network
+    url_path: zwave
     
 timer:
   zigbee_permit_join:
