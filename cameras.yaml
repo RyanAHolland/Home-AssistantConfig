@@ -91,6 +91,12 @@
     username: !secret bi_user
     password: !secret bi_pass
     authentication: basic
+  - platform: mjpeg
+    mjpeg_url: http://192.168.1.185:81/mjpg/Playroom
+    name: Playroom Camera
+    username: !secret bi_user
+    password: !secret bi_pass
+    authentication: basic
   - platform: ring
   # - platform: usps
   #   scan_interval: 5
