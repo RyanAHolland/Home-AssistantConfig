@@ -816,7 +816,7 @@
 
    ##PiHole Sensors
  - platform: pi_hole
-   host: localhost:4865
+   host: !secret pihole
    monitored_conditions:
      - ads_blocked_today
      - dns_queries_today
