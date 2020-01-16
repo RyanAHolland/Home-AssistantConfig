@@ -7,12 +7,12 @@
   # - platform: mjpeg
   #   mjpeg_url: !secret play_cam_url
   #   name: Play Room Camera
-  # - platform: mjpeg
-  #   mjpeg_url: !secret front_cam_url
-  #   name: Front House Camera
-  # - platform: mjpeg
-  #   mjpeg_url: !secret basement_cam_url
-  #   name: Basement
+  - platform: mjpeg
+    mjpeg_url: !secret front_cam_url
+    name: Front House Camera
+  - platform: mjpeg
+    mjpeg_url: !secret basement_cam_url
+    name: Basement
   # - platform: generic
   #   name: Liam's Camera Snapshot
   #   still_image_url: !secret liam_cam_direct
