@@ -73,8 +73,8 @@ light.kristi_lamp:
 light.kitchen_overhead:
   icon: mdi:spotlight
 light.stair_lamp:
-  icon: mdi:stair-lamp
   friendly_name: Stair Lamp
+  icon: mdi:lamp
 light.kitchen_lamp:
   icon: mdi:lamp
   friendly_name: Kitchen Lamp

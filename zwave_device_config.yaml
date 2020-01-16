@@ -1,0 +1,75 @@
+fan.bedroom:
+  ignored: false
+  polling_intensity: 1
+light.bedroom_overhead:
+  ignored: false
+  polling_intensity: 1
+sensor.vision_zp3102_pir_motion_sensor_alarm_level:
+  ignored: false
+  polling_intensity: 10000
+light.christmas_tree:
+  ignored: false
+  polling_intensity: 2
+light.bathroom_light:
+  ignored: false
+  polling_intensity: 1
+light.book_nook:
+  ignored: false
+  polling_intensity: 2
+light.dining_room_lamps:
+  ignored: false
+  polling_intensity: 2
+light.island_lights:
+  ignored: false
+  polling_intensity: 1
+light.kitchen_overhead:
+  ignored: false
+  polling_intensity: 1
+light.kristi_lamp:
+  ignored: false
+  polling_intensity: 1
+light.living_room_overhead:
+  ignored: false
+  polling_intensity: 1
+light.ryan_lamp:
+  ignored: false
+  polling_intensity: 1
+sensor.aeotec_dsc06106_smart_energy_switch_power:
+  ignored: false
+  polling_intensity: 1
+sensor.aeotec_dsc06106_smart_energy_switch_energy:
+  ignored: false
+  polling_intensity: 1
+switch.aeotec_dsc06106_smart_energy_switch_switch:
+  ignored: false
+  polling_intensity: 1
+light.ge_12724_3way_dimmer_switch_level:
+  ignored: false
+  polling_intensity: 1
+light.kitchen_lamp:
+  ignored: false
+  polling_intensity: 1
+sensor.linear_unknown_type4742_id3030_indicator:
+  ignored: false
+  polling_intensity: 1
+light.front_lights:
+  ignored: false
+  polling_intensity: 1
+lock.front_lock:
+  ignored: false
+  polling_intensity: 1
+light.jasco_products_12724_3_way_dimmer_switch_level:
+  ignored: false
+  polling_intensity: 1
+switch.north_up_lights:
+  ignored: false
+  polling_intensity: 1
+binary_sensor.pantry_door:
+  ignored: false
+  polling_intensity: 1
+sensor.vision_security_zl7261_plug_in_power_monitor_previous_reading:
+  ignored: false
+  polling_intensity: 1
+switch.elexa_consumer_products_inc_dome_water_shut_off_valve_switch:
+  ignored: false
+  polling_intensity: 0

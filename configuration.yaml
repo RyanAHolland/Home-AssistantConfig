@@ -389,7 +389,7 @@ scene: !include scenes.yaml
 sensor: !include sensors.yaml
 
 ##Automation
-automation: !include automation.yaml
+automation: !include automations.yaml
 
 ##Switches
 switch: !include switches.yaml
