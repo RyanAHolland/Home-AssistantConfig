@@ -12,6 +12,11 @@
  - platform: darksky
    api_key: !secret dark_sky_api
    scan_interval: '00:15'
+   forecast:
+      - 0
+   hourly_forecast:
+      - 0
+      - 1
    monitored_conditions:
       - summary
       - precip_type
@@ -24,10 +29,17 @@
       - cloud_cover
       - humidity
       - daily_summary
-      - temperature_max
-      - temperature_min
+      - temperature_high
+      - temperature_low
       - precip_intensity_max
-      
+      - uv_index
+      - nearest_storm_distance
+      - nearest_storm_bearing
+      - alerts
+
+ #National Weather Alerts
+
+
  - platform: rest
    resource: https://api.weather.gov/alerts/active/count
    name: NWS Alert Count
@@ -51,37 +63,17 @@
       {% else %}
          None
       {% endif %}
-#WU
-#  - platform: wunderground
-#    api_key: !secret wu_api
-#    monitored_conditions:
-#      - alerts
-#      - temp_high_record_f
-#      - temp_high_1d_f
-#      - feelslike_f
-#      - temp_f
-#      - temp_low_1d_f
-#      - temp_low_record_f
-#      - precip_1d
-#      - precip_1d_in
-#      - wind_mph
-#      - wind_1d_mph
-#      - weather_1d
-#      - weather_1n
-#      - weather_2d
-#      - weather_2n
-#      - weather_3d
-#      - weather_3n
-#      - weather_4d
-#      - weather_4n
 
-# Roomba  Control
- - platform: thinkingcleaner
-# TED500
- - platform: ted5000
-   name: main
-   host: !secret ted_ip
-   port: 80
+ - platform: nws_alerts
+   zone_id: 'MOC095'
+
+# # Roomba  Control
+#  - platform: thinkingcleaner
+# # TED500
+#  - platform: ted5000
+#    name: main
+#    host: !secret ted_ip
+#    port: 80
 
 #PLEX
 #  - platform: plex
