@@ -968,3 +968,20 @@
         data:
           dev_id: kristi_bt
           location_name: not_home
+
+####Leak Sensor
+  - id: leak_sensor_alert
+    alias: Leak Sensor Alert
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.water_leak_sensor_158d0002112beb, binary_sensor.water_leak_sensor_158d0002130633
+        to: 'on'
+    action:
+      - service: notify.telegram
+        data:
+          title: "WATER LEAK"
+          message: "A Water Leak Has Been Detected at '{{ trigger.to_state.attributes.friendly_name }}"
+      - service: notify.ryanhangout
+        data:
+          title: "WATER LEAK"
+          message: "A Water Leak Has Been Detected at '{{ trigger.to_state.attributes.friendly_name }}"
