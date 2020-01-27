@@ -100,6 +100,10 @@
 #      - last_motion
 #      - volume
 
+#ObiHai
+ - platform: obihai
+   host: !secret obihai_host
+
 #Pocket Casts
  - platform: pocketcasts
    username: !secret email
