@@ -214,9 +214,9 @@ nest:
 #   client_id: !secret google_id
 #   client_secret: !secret google_secret
 
-ring:
-  username: !secret email
-  password: !secret ring_pass
+# ring:
+#   username: !secret email
+#   password: !secret ring_pass
 
 # alarm_control_panel:
 #   platform: mqtt

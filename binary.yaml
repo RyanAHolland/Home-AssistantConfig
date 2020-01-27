@@ -1,8 +1,8 @@
 #RING BINARY
-  - platform: ring
-    monitored_conditions:
-      - ding
-      - motion
+  # - platform: ring
+  #   monitored_conditions:
+  #     - ding
+  #     - motion
 
 #SmartThings Sensors
 ##DOOR
