@@ -838,10 +838,12 @@
    name: TED Voltage
    command: "curl -X GET http://192.168.1.234/api/LiveData.xml 2>&1 | grep -oPm1 '(?<=<VoltageNow>).*?(?=</VoltageNow>)'"
    unit_of_measurement: "V"
-   value_template: '{{ value / 10 }}'
+   value_template: '{{ value | float / 10 }}'
+   scan_interval: 10
 
  - platform: command_line
    name: TED Power
    command: "curl -X GET http://192.168.1.234/api/LiveData.xml 2>&1 | grep -oPm1 '(?<=<PowerNow>).*?(?=</PowerNow>)'"
    unit_of_measurement: "W"
    value_template: '{{ value }}'
+   scan_interval: 10
