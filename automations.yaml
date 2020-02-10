@@ -974,7 +974,7 @@
     alias: Leak Sensor Alert
     trigger:
       - platform: state
-        entity_id: binary_sensor.water_leak_sensor_158d0002112beb, binary_sensor.water_leak_sensor_158d0002130633
+        entity_id: binary_sensor.water_leak_sensor_158d0002112beb
         to: 'on'
     action:
       - service: notify.telegram
