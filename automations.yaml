@@ -980,8 +980,8 @@
       - service: notify.telegram
         data_template:
           title: "WATER LEAK"
-          message: "A Water Leak Has Been Detected at '{{ trigger.to_state.attributes.friendly_name }}"
+          message: "A Water Leak Has Been Detected at '{{ trigger.entity_id.attributes.friendly_name }}"
       - service: notify.ryanhangout
         data_template:
           title: "WATER LEAK"
-          message: "A Water Leak Has Been Detected at '{{ trigger.to_state.attributes.friendly_name }}"
+          message: "A Water Leak Has Been Detected at '{{ trigger.entity_id.attributes.friendly_name }}"
