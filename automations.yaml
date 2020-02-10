@@ -970,8 +970,8 @@
           location_name: not_home
 
 ####Leak Sensor
-  - id: leak_sensor_alert
-    alias: Leak Sensor Alert
+  - id: kitchen_leak_sensor_alert
+    alias: Leak Sensor Alert Kitchen
     trigger:
       - platform: state
         entity_id: binary_sensor.water_leak_sensor_158d0002112beb
@@ -985,3 +985,19 @@
         data_template:
           title: "WATER LEAK"
           message: "A Water Leak Has Been Detected at kitchen sink."
+
+  - id: washer_leak_sensor_alert
+    alias: Leak Sensor Alert
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.water_leak_sensor_158d0002130633
+        to: 'on'
+    action:
+      - service: notify.telegram
+        data_template:
+          title: "WATER LEAK"
+          message: "A Water Leak Has Been Detected behind the washer."
+      - service: notify.ryanhangout
+        data_template:
+          title: "WATER LEAK"
+          message: "A Water Leak Has Been Detected behind the washer."
