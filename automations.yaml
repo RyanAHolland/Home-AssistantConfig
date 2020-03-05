@@ -969,6 +969,31 @@
           dev_id: kristi_bt
           location_name: not_home
 
+###For Mom
+  - id: mom_bt_home
+    alias: Mom BT Occupancy On
+    trigger:
+      - platform: state
+        entity_id: sensor.linda_s_s8_room_presence
+        from: not_home
+    action:
+      - service: device_tracker.see
+        data:
+          dev_id: mom_bt
+          location_name: home
+
+  - id: mom_bt_away
+    alias: Mom BT Occupancy Off
+    trigger:
+      - platform: state
+        entity_id: sensor.linda_s_s8_room_presence
+        to: not_home
+    action:
+      - service: device_tracker.see
+        data:
+          dev_id: mom_bt
+          location_name: not_home
+
 ####Leak Sensor
   - id: kitchen_leak_sensor_alert
     alias: Leak Sensor Alert Kitchen
