@@ -923,9 +923,9 @@
   - id: ryan_bt_home
     alias: Ryan BT Occupancy On
     trigger:
-      - platform: numeric_state
-        entity_id: sensor.ryan_home_occupancy_confidence
-        above: 10
+      - platform: state
+        entity_id: sensor.galaxy_note8_room_presence
+        from: not_home
     action:
       - service: device_tracker.see
         data:
@@ -935,9 +935,9 @@
   - id: ryan_bt_away
     alias: Ryan BT Occupancy Off
     trigger:
-      - platform: numeric_state
-        entity_id: sensor.ryan_home_occupancy_confidence
-        below: 10
+      - platform: state
+        entity_id: sensor.galaxy_note8_room_presence
+        to: not_home
     action:
       - service: device_tracker.see
         data:
@@ -948,9 +948,9 @@
   - id: kristi_bt_home
     alias: Kristi BT Occupancy On
     trigger:
-      - platform: numeric_state
-        entity_id: sensor.kristi_home_occupancy_confidence
-        above: 10
+      - platform: state
+        entity_id: sensor.14_1f_78_a8_05_1c_room_presence
+        from: not_home
     action:
       - service: device_tracker.see
         data:
@@ -960,9 +960,9 @@
   - id: kristi_bt_away
     alias: Kristi BT Occupancy Off
     trigger:
-      - platform: numeric_state
-        entity_id: sensor.kristi_home_occupancy_confidence
-        below: 10
+      - platform: state
+        entity_id: sensor.14_1f_78_a8_05_1c_room_presence
+        to: not_home
     action:
       - service: device_tracker.see
         data:
