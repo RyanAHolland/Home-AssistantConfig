@@ -729,20 +729,20 @@
    sensors:
      ryan_home:
        value_template:
-         "{% if is_state('binary_sensor.ryan_presence', 'on') %}
-         Home
-         {% else %}
+         "{% if is_state('sensor.galaxy_note8_room_presence', 'not_home') %}
          not_home
+         {% else %}
+         home
          {% endif %}"
        friendly_name: Ryan Home
  - platform: template
    sensors:
      kristi_home:
        value_template:
-         "{% if is_state('binary_sensor.kristi_presence', 'on') %}
-         Home
-         {% else %}
+         "{% if is_state('sensor.14_1f_78_a8_05_1c_room_presence', 'not_home') %}
          not_home
+         {% else %}
+         home
          {% endif %}"
        friendly_name: Kristi Home
  - platform: template
