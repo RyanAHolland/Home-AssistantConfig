@@ -197,13 +197,22 @@ apcupsd:
   host: a722577e-apcupsd
 
 media_player:
-  - platform: roku
-    host: !secret roku_one
-  - platform: webostv
-    host: !secret play_tv_ip
+# - platform: roku
+#  host: !secret roku_one
+# - platform: webostv
+#  host: !secret play_tv_ip
   # - platform: xboxone
   #   device: !secret xbox_one
   #   name: Xbox One
+  
+roku:
+  - host: !secret roku_one
+  - host: !secret roku_two
+  - host: !secret roku_three
+
+webostv:
+  host: !secret play_tv_ip
+  name: Play Room TV
 
 nest:
   client_id: !secret nest_id
