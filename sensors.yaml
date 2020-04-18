@@ -739,7 +739,7 @@
    sensors:
      kristi_home:
        value_template:
-         "{% if is_state('sensor.14_1f_78_a8_05_1c_room_presence', 'not_home') %}
+         "{% if is_state('sensor.70_ce_8c_a1_b6_8d_room_presence', 'not_home') %}
          not_home
          {% else %}
          home
