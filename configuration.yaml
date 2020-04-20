@@ -184,6 +184,16 @@ input_select:
     initial: info
     icon: mdi:format-list-bulleted
 
+input_datetime:
+  liam_wake:
+    name: Liam's Wake Up Time
+    has_date: false
+    has_time: true
+  liam_night_light:
+    name: Liam's Night Light
+    has_date: false
+    has_time: true
+
 ifttt:
   key: !secret ifttt_key
 
