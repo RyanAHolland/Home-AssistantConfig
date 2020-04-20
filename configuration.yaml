@@ -41,7 +41,6 @@ updater:
 # Discover some devices automatically
 discovery:
   ignore:
-    - plex_mediaserver
     - philips_hue
 
 # Add Config Panel
