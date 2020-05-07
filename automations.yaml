@@ -399,22 +399,20 @@
 ##THEMES
   - action:
     - data:
-        name: midnight
+        name: slate
       service: frontend.set_theme
     alias: Interface Night Mode
     condition: []
-    id: '1507314400026'
     trigger:
     - event: sunset
       platform: sun
   ##Set theme back to default on Sunrise    
   - action:
     - data:
-        name: default
+        name: clear
       service: frontend.set_theme
     alias: Interface Default
     condition: []
-    id: '1507314400027'
     trigger:
     - event: sunrise
       platform: sun
