@@ -873,3 +873,7 @@
        friendly_name: "Dryer Power Usage"
        entity_id: sensor.dryer_sensor_temperature
        value_template: '{% if states("sensor.dryer_sensor_temperature") | float > 80 %}5300{% else %}0.5{%endif %}'
+
+ - platform: time_date
+   display_options:
+     - 'date_time'
