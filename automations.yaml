@@ -18,7 +18,7 @@
 
 ##If Nest tries to go into away mode while someone is home, turn it back to normal
   - alias: Fix Nest Away
-    hide_entity: True
+    #hide_entity: true
     trigger:
       platform: template
       value_template: '{{ states.climate.downstairs_thermostat.attributes.away_mode == "on" }}'
@@ -88,7 +88,7 @@
 
 
   - alias: Prox Near
-    hide_entity: True
+    #hide_entity: true
     trigger:
       - platform: numeric_state
         entity_id: proximity.home
@@ -117,7 +117,7 @@
         title: "Nest"
 
   - alias: 'Downstairs Motion Night Light'
-    hide_entity: True
+    #hide_entity: true
     trigger:
       - platform: state
         entity_id: binary_sensor.first_floor_entry_motion
@@ -326,7 +326,7 @@
 
   ##Trigger when night
   - alias: "Trigger with Night Mode"
-    hide_entity: True
+    #hide_entity: true
     trigger:
       - platform: state
         entity_id: input_select.home_status
@@ -338,7 +338,7 @@
 
   ##Trigger from night
   - alias: "Trigger from Night Mode"
-    hide_entity: True
+    #hide_entity: true
     trigger:
       - platform: state
         entity_id: input_select.home_status
@@ -722,7 +722,7 @@
 
   - id: enable_zigbee_join
     alias: Enable Zigbee joining
-    hide_entity: true
+    #hide_entity: true
     trigger:
       platform: state
       entity_id: input_boolean.zigbee_permit_join
@@ -738,7 +738,7 @@
 
   - id: disable_zigbee_join
     alias: Disable Zigbee joining
-    hide_entity: true
+    #hide_entity: true
     trigger:
     - entity_id: input_boolean.zigbee_permit_join
       platform: state
@@ -754,7 +754,7 @@
 
   - id: disable_zigbee_join_timer
     alias: Disable Zigbee joining by timer
-    hide_entity: true
+    #hide_entity: true
     trigger:
     - platform: event
       event_type: timer.finished
@@ -771,7 +771,7 @@
 #Wax Warmer Switch On
   - id: enable_wax_warmer
     alias: Enable Wax Warmer
-    hide_entity: true
+    #hide_entity: true
     trigger:
       platform: state
       entity_id: input_boolean.wax_warmer_control
@@ -785,7 +785,7 @@
 #Wax Warmer Switch Off
   - id: disable_wax_warmer
     alias: Disable Wax Warmer
-    hide_entity: true
+    #hide_entity: true
     trigger:
     - entity_id: input_boolean.wax_warmer_control
       platform: state
@@ -800,7 +800,7 @@
 ##Wax Warmer Timer Expire Switch On
   - id: disable_wax_warmer_timer_on
     alias: Disable Wax Warmer Timer
-    hide_entity: true
+    #hide_entity: true
     trigger:
     - platform: event
       event_type: timer.finished
@@ -820,7 +820,7 @@
 ##Wax Warmer Timer Expire Switch On
   - id: disable_wax_warmer_timer_off
     alias: Disable Wax Warmer Timer
-    hide_entity: true
+    #hide_entity: true
     trigger:
     - platform: event
       event_type: timer.finished
@@ -839,7 +839,7 @@
 
   - id: telegram_disarm
     alias: Disarm SHM via Telegram
-    hide_entity: true
+    #hide_entity: true
     trigger:
     - platform: event
       event_type: telegram_command
