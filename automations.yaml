@@ -146,7 +146,7 @@
       entity_id: script.downstairs_night
 
   - alias: 'Downstairs Morning Light'
-    hide_entity: False
+    #hide_entity: False
     trigger:
       - platform: state
         entity_id: binary_sensor.first_floor_entry_motion
@@ -174,7 +174,7 @@
 
 ##UPS ON BATTERY
   - alias: 'UPS on Battery Notify'
-    hide_entity: False
+    #hide_entity: False
     trigger:
       - platform: state
         entity_id: sensor.ups_status
@@ -184,7 +184,7 @@
       entity_id: script.upsnotify
 ##UPS ON MAINS
   - alias: 'UPS back on line Notify'
-    hide_entity: False
+    #hide_entity: False
     trigger:
       - platform: state
         entity_id: sensor.ups_status
@@ -351,7 +351,7 @@
 
 ##Guest Mode
   - alias: "Guest Mode Check"
-    hide_entity: False
+    #hide_entity: False
     trigger:
       - platform: state
         entity_id: group.motionsensors
@@ -374,7 +374,7 @@
 
 ##Guest Mode Rest - If motion is detected during the 5 minute delay in guest_mode_away, then stop
   - alias: "Guest Mode Reset"
-    hide_entity: False
+    #hide_entity: False
     trigger:
       - platform: state
         entity_id: group.motionsensors
