@@ -498,3 +498,105 @@
     sequence:
       - service: shell_command.restart_mqtt
       - service: homeassistant.restart
+'1591738935826':
+  alias: Fade Up Living Room Lights
+  sequence:
+  - brightness_pct: 1
+    device_id: b0db5f920e0b48138cc17390f20364a7
+    domain: light
+    entity_id: light.left_lamp
+    type: turn_on
+  - brightness_pct: 1
+    device_id: 4e93e6ed17154c789c0ef81571d26c5a
+    domain: light
+    entity_id: light.right_lamp
+    type: turn_on
+  - brightness_pct: 1
+    device_id: a823476b216c4c1b98d168803ea9fe62
+    domain: light
+    entity_id: light.floor_lamp
+    type: turn_on
+#10%
+  - delay: '60'
+  - device_id: b0db5f920e0b48138cc17390f20364a7
+    domain: light
+    entity_id: light.left_lamp
+    type: brightness_increase
+  - device_id: 4e93e6ed17154c789c0ef81571d26c5a
+    domain: light
+    entity_id: light.right_lamp
+    type: brightness_increase
+  - device_id: a823476b216c4c1b98d168803ea9fe62
+    domain: light
+    entity_id: light.floor_lamp
+    type: brightness_increase
+#20%
+  - delay: '60'
+  - device_id: b0db5f920e0b48138cc17390f20364a7
+    domain: light
+    entity_id: light.left_lamp
+    type: brightness_increase
+  - device_id: 4e93e6ed17154c789c0ef81571d26c5a
+    domain: light
+    entity_id: light.right_lamp
+    type: brightness_increase
+  - device_id: a823476b216c4c1b98d168803ea9fe62
+    domain: light
+    entity_id: light.floor_lamp
+    type: brightness_increase
+#30%
+  - delay: '60'
+  - device_id: b0db5f920e0b48138cc17390f20364a7
+    domain: light
+    entity_id: light.left_lamp
+    type: brightness_increase
+  - device_id: 4e93e6ed17154c789c0ef81571d26c5a
+    domain: light
+    entity_id: light.right_lamp
+    type: brightness_increase
+  - device_id: a823476b216c4c1b98d168803ea9fe62
+    domain: light
+    entity_id: light.floor_lamp
+    type: brightness_increase
+#40%
+  - delay: '60'
+  - device_id: b0db5f920e0b48138cc17390f20364a7
+    domain: light
+    entity_id: light.left_lamp
+    type: brightness_increase
+  - device_id: 4e93e6ed17154c789c0ef81571d26c5a
+    domain: light
+    entity_id: light.right_lamp
+    type: brightness_increase
+  - device_id: a823476b216c4c1b98d168803ea9fe62
+    domain: light
+    entity_id: light.floor_lamp
+    type: brightness_increase
+#50%
+  - delay: '60'
+  - device_id: b0db5f920e0b48138cc17390f20364a7
+    domain: light
+    entity_id: light.left_lamp
+    type: brightness_increase
+  - device_id: 4e93e6ed17154c789c0ef81571d26c5a
+    domain: light
+    entity_id: light.right_lamp
+    type: brightness_increase
+  - device_id: a823476b216c4c1b98d168803ea9fe62
+    domain: light
+    entity_id: light.floor_lamp
+    type: brightness_increase
+#60%
+  - delay: '60'
+  - device_id: b0db5f920e0b48138cc17390f20364a7
+    domain: light
+    entity_id: light.left_lamp
+    type: brightness_increase
+  - device_id: 4e93e6ed17154c789c0ef81571d26c5a
+    domain: light
+    entity_id: light.right_lamp
+    type: brightness_increase
+  - device_id: a823476b216c4c1b98d168803ea9fe62
+    domain: light
+    entity_id: light.floor_lamp
+    type: brightness_increases
