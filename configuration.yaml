@@ -80,6 +80,7 @@ wemo:
 #Config for Zwave (added via interface)
 zwave:
   polling_interval: 30000
+  config_path: config/zwave/config
   
 #Python Scripting
 python_script:
@@ -214,10 +215,10 @@ media_player:
   #   device: !secret xbox_one
   #   name: Xbox One
   
-roku:
-  - host: !secret roku_one
-  - host: !secret roku_two
-  - host: !secret roku_three
+# roku:
+#   - host: !secret roku_one
+#   - host: !secret roku_two
+#   - host: !secret roku_three
 
 webostv:
   host: !secret play_tv_ip
