@@ -1,1027 +1,908 @@
-##Tell Node Red HA has restarted
-  - alias: homeassistant_start
-    trigger:
-      - platform: homeassistant
-        event: start
-    action:
-      - service: mqtt.publish
-        data_template: {"topic": "homeassistant/status/ha", "payload": "online"}
- ##Tell Node Red HA has restarted
-  - alias: homeassistant_shutdown
-    trigger:
-      - platform: homeassistant
-        event: shutdown 
-    action:
-      - service: mqtt.publish
-        data_template: {"topic": "homeassistant/status/ha", "payload": "offline"}
-
-
-##If Nest tries to go into away mode while someone is home, turn it back to normal
-  - alias: Fix Nest Away
-    #hide_entity: true
-    trigger:
-      platform: template
-      value_template: '{{ states.climate.downstairs_thermostat.attributes.away_mode == "on" }}'
-    condition:
-      condition: or
-      conditions:
-      - condition: state
-        entity_id: input_boolean.force_home
-        state: 'on'
-      - condition: state
-        entity_id: input_select.home_status
-        state: 'Home'
-    action:
-    - service: climate.set_away_mode
-      data:
-        away_mode: false
-        
-        
-          ###SCENE###
-
-
-###SENSORS#####
-  - alias: "Welcome Home Door Sensor"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.garage_entry_door_sensor
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.front_door_sensor
-        from: 'off'
-        to: 'on'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: sun.sun
-          state: 'below_horizon'
-        - condition: state
-          entity_id: group.decorative
-          state: 'off'
-        - condition: template
-          value_template: '{{ relative_time(states.group.all_mobile_devices.last_changed) > "10 min" }}'
-##ADD ALL FIRST FLOOR LIGHTS
-    action:
-      - service: scene.turn_on
-        entity_id: scene.decorative_on
-      - service: homeassistant.turn_on
-        entity_id: group.christmas_lights
-      - service: light.turn_on
-        data:
-          entity_id: light.kitchen_overhead
-          brightness: 128
-##ADD LIVING ROOM LG
-      - service: media_player.volume_set
-        data:
-          entity_id: media_player.kitchen_home
-          volume_level: ".55"
-      - service: tts.google_say
-        entity_id: media_player.kitchen_home
-        data:
-          message: 'Welcome Home, I have turned on some lights for you.  Have a great night.'
-      - service: notify.ryanhangouts
-        data:
-          message: "HA - I have turned on the lights for you."
-          title: "Welcome Home"
-
-
-  - alias: Prox Near
-    #hide_entity: true
-    trigger:
-      - platform: numeric_state
-        entity_id: proximity.home
-        below: 3
-        above: 1
-    condition:
-      condition: and
-      conditions:
-        # Heading home
-      - condition: template
-        value_template: '{{ states.proximity.home.attributes.dir_of_travel == "towards" }}'
-        #Not in Away Mode
-      - condition: template
-        value_template: '{{ states.climate.downstairs_thermostat.attributes.away_mode == "on" }}'
-        #No one
-      - condition: state
-        entity_id: input_select.home_status
-        state: 'Away'
-    action:
-    - service: climate.set_away_mode
-      data:
-          away_mode: false
-    - service: notify.pushover
-      data:
-        message: "I see you are getting close to home. Leaving Eco Mode."
-        title: "Nest"
-
-  - alias: 'Downstairs Motion Night Light'
-    #hide_entity: true
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.first_floor_entry_motion
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.kitchen_motion
-        from: 'off'
-        to: 'on'
-    condition:
-      condition: and
-      conditions:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-      - condition: time
-        after: '20:30:00'
-        before: '04:30:00'
-      - condition: state
-        entity_id: group.firstfloorlights
-        state: 'off'
-        for:
-          minutes: 3
-    action:
-      service: homeassistant.turn_on
-      entity_id: script.downstairs_night
-
-  - alias: 'Downstairs Morning Light'
-    #hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.first_floor_entry_motion
-        from: 'off'
-        to: 'on'
-    condition:
-      condition: and
-      conditions:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-      - condition: time
-        after: '04:30:00'
-      - condition: time
-        before: '07:30:00'
-      - condition: state
-        entity_id: group.firstfloorlights
-        state: 'off'
-        for:
-          minutes: 3
-    action:
-      service: homeassistant.turn_on
-      entity_id: scene.decorative_dim
-
-
-##UPS ON BATTERY
-  - alias: 'UPS on Battery Notify'
-    #hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: sensor.ups_status
-        from: 'ONLINE'
-    action:
-      service: homeassistant.turn_on
-      entity_id: script.upsnotify
-##UPS ON MAINS
-  - alias: 'UPS back on line Notify'
-    #hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: sensor.ups_status
-        to: 'ONLINE'
-    action:
-      - service: homeassistant.turn_off
-        entity_id: script.upsnotify
-      - service: homeassistant.turn_off
-        entity_id: script.upsnotifyloop
-      - service: notify.pushover
-        data:
-          message: "NOTE: House has returned to mains power. UPS runtime left {{ states.sensor.ups_time_left.state }} minutes and remaining power is {{ states.sensor.ups_battery.state }}%."
-          title: "HASS"
-
-
-##SAFTEY MODE##
-  - alias: "Front Door Notify"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.front_door_sensor
-        from: 'off'
-        to: 'on'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_boolean.door_notify_mode
-          state: 'on'
-##ADD ALL FIRST FLOOR LIGHTS
-    action:
-      - service: media_player.volume_set
-        data:
-          entity_id: media_player.kitchen_home
-          volume_level: ".55"
-      - service: tts.google_say
-        entity_id: media_player.kitchen_home
-        data:
-          message: 'Front Door Opened.'
-      - service: media_player.volume_set
-        data:
-          entity_id: media_player.bedroom_home
-          volume_level: ".55"
-      - service: tts.google_say
-        entity_id: media_player.bedroom_home
-        data:
-          message: 'Front Door Opened.'
-
-  - alias: "Back Door Notify"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.back_door_sensor
-        from: 'off'
-        to: 'on'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_boolean.door_notify_mode
-          state: 'on'
-##ADD ALL FIRST FLOOR LIGHTS
-    action:
-      - service: media_player.volume_set
-        data:
-          entity_id: media_player.kitchen_home
-          volume_level: ".63"
-      - service: tts.google_say
-        entity_id: media_player.kitchen_home
-        data:
-          message: 'Back Door Opened.'
-      - service: media_player.volume_set
-        data:
-          entity_id: media_player.bedroom_home
-          volume_level: ".63"
-      - service: tts.google_say
-        entity_id: media_player.bedroom_home
-        data:
-          message: 'Back Door Opened.'
-
-  - alias: "Garage Door Notify"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.garage_entry_sensor
-        from: 'off'
-        to: 'on'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_boolean.door_notify_mode
-          state: 'on'
-    action:
-      - service: media_player.volume_set
-        data:
-          entity_id: media_player.kitchen_home
-          volume_level: ".63"
-      - service: tts.google_say
-        entity_id: media_player.kitchen_home
-        data:
-          message: 'Garage Entry Door Opened.'
-      - service: media_player.volume_set
-        data:
-          entity_id: media_player.bedroom_home
-          volume_level: ".63"
-      - service: tts.google_say
-        entity_id: media_player.bedroom_home
-        data:
-          message: 'Garage Entry Door Opened.'
-
-  - alias: "Liam's Door Notify"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.liams_room_door
-        from: 'off'
-        to: 'on'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_boolean.door_notify_mode
-          state: 'on'
-    action:
-      - service: media_player.volume_set
-        data:
-          entity_id: media_player.kitchen_home
-          volume_level: ".63"
-      - service: tts.google_say
-        entity_id: media_player.kitchen_home
-        data:
-          message: 'Liams Door Opened.'
-      - service: media_player.volume_set
-        data:
-          entity_id: media_player.bedroom_home
-          volume_level: ".63"
-      - service: tts.google_say
-        entity_id: media_player.bedroom_home
-        data:
-          message: 'Liams Door Opened.'
-
-
-  ##Trigger when night
-  - alias: "Trigger with Night Mode"
-    #hide_entity: true
-    trigger:
-      - platform: state
-        entity_id: input_select.home_status
-        from: 'Home'
-        to: 'Sleep'
-    action:
-      - service: switch.turn_on
-        entity_id: input_boolean.door_notify_mode
-
-  ##Trigger from night
-  - alias: "Trigger from Night Mode"
-    #hide_entity: true
-    trigger:
-      - platform: state
-        entity_id: input_select.home_status
-        from: 'Sleep'
-        to: 'Home'
-    action:
-      - service: switch.turn_off
-        entity_id: input_boolean.door_notify_mode
-
-
-##Guest Mode
-  - alias: "Guest Mode Check"
-    #hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: group.motionsensors
-        to: 'off'
-        for:
-          hours: 2
-    condition:
-      - condition: time
-        after: '7:00:00'
-        before: '21:00:00'
-      - condition: state
-        entity_id: input_boolean.force_home
-        state: 'off'
-      - condition: state
-        entity_id: switch.guest_mode
-        state: 'on'
-    action:
-      service: homeassistant.turn_on
-      entity_id: script.guestmodeaway
-
-##Guest Mode Rest - If motion is detected during the 5 minute delay in guest_mode_away, then stop
-  - alias: "Guest Mode Reset"
-    #hide_entity: False
-    trigger:
-      - platform: state
-        entity_id: group.motionsensors
-        to: 'on'
-    condition:
-      - condition: time
-        after: '7:00:00'
-        before: '21:00:00'
-      - condition: state
-        entity_id: input_boolean.force_home
-        state: 'off'
-      - condition: state
-        entity_id: switch.guest_mode
-        state: 'on'
-      - condition: state
-        entity_id: script.guestmodeaway
-        state: 'on'
-    action:
-      service: homeassistant.turn_off
-      entity_id: script.guestmodeaway
-
-##THEMES
-  - action:
-    - data:
-        name: slate
-      service: frontend.set_theme
-    alias: Interface Night Mode
-    condition: []
-    trigger:
-    - event: sunset
-      platform: sun
-  ##Set theme back to default on Sunrise    
-  - action:
-    - data:
-        name: clear
-      service: frontend.set_theme
-    alias: Interface Default
-    condition: []
-    trigger:
-    - event: sunrise
-      platform: sun
-
-#Last Motion Automation
-# Update Last Motion variable
-  # - alias: "Update Last Motion"
-  #   trigger:
-  #   - platform: state
-  #     entity_id: binary_sensor.bedroom_motion, binary_sensor.bathroom_motion, binary_sensor.basement_motion, binary_sensor.entry_keypad_motion, binary_sensor.first_floor_entry_motion, binary_sensor.kitchen_motion, binary_sensor.upstairs_motion
-  #     to: 'on'
-  #   action:
-  #   - service: variable.set_variable
-  #     data:
-  #       variable: last_motion
-  #       attributes_template: >
-  #           {
-  #             "history_1": "{{ variable.state }}",
-  #             "history_2": "{{ variable.attributes.history_1 }}",
-  #             "history_3": "{{ variable.attributes.history_2 }}"
-  #           }
-  #     data_template:
-  #       value: "{{ trigger.to_state.attributes.friendly_name }}"
-
-# Update Last Motion variable
-  - alias: "Update Last Motion"
-    trigger:
-    - platform: state
-      entity_id: binary_sensor.bedroom_motion, binary_sensor.bathroom_motion, binary_sensor.basement_motion, binary_sensor.entry_keypad_motion, binary_sensor.first_floor_entry_motion, binary_sensor.kitchen_motion, binary_sensor.upstairs_motion
-      to: 'on'
-    action:
-    - service: mqtt.publish
-      data_template:
-        topic: 'homeassistant/sensor/last_motion/state'
-        payload: "{{ trigger.to_state.attributes.name }}"
-    - service: mqtt.publish
-      data_template:
-        topic: 'homeassistant/sensor/last_motion/name'
-        payload: "{{ trigger.to_state.attributes.friendly_name }}"
-
-
-#Last Door Automation
-# Update Last Door variable
-  # - alias: "Update Last Door"
-  #   trigger:
-  #   - platform: state
-  #     entity_id: binary_sensor.front_door_sensor, binary_sensor.back_door_sensor, binary_sensor.garage_entry_sensor
-  #     to: 'on'
-  #   action:
-  #   - service: variable.set_variable
-  #     data:
-  #       variable: last_door
-  #       attributes_template: >
-  #           {
-  #             "history_1": "{{ variable.state }}",
-  #             "history_2": "{{ variable.attributes.history_1 }}",
-  #             "history_3": "{{ variable.attributes.history_2 }}"
-  #           }
-  #     data_template:
-  #       value: "{{ trigger.to_state.attributes.friendly_name }}"
-
-# Update Last Door variable
-  - alias: "Update Last Door"
-    trigger:
-    - platform: state
-      entity_id: binary_sensor.front_door_sensor, binary_sensor.back_door_sensor, binary_sensor.garage_entry_sensor
-      to: 'on'
-    action:
-    - service: mqtt.publish
-      data_template:
-        topic: 'homeassistant/sensor/last_door/state'
-        payload: "{{ trigger.to_state.attributes.name }}"
-    - service: mqtt.publish
-      data_template:
-        topic: 'homeassistant/sensor/last_door/name'
-        payload: "{{ trigger.to_state.attributes.friendly_name }}"
-
-##ALARM SYSTEM
-
-  - alias: 'Trigger alarm while armed away'
-    trigger:
-      - platform: state
-        entity_id: group.WindowSensors
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.basement_north_window
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.basement_south_window_1
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.basement_south_window_2
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.front_window_1
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.front_window_2
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.window_over_sink
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.back_door_sensor
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.front_door_sensor
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.garage_entry_door_sensor
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.downstairs_glass_break
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.basement_motion
-        to: 'on'
-      - platform: state
-        entity_id:  binary_sensor.first_floor_entry_motion
-        to: 'on'
-      - platform: state
-        entity_id:  binary_sensor.kitchen_motion
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.upstairs_motion
-        to: 'on'
-    condition:
-      - condition: state
-        entity_id: alarm_control_panel.shm
-        state: armed_away
-    action:
-      service: alarm_control_panel.alarm_trigger
-      entity_id: alarm_control_panel.shm
-
-  - alias: 'Trigger alarm while armed home'
-    trigger:
-      - platform: state
-        entity_id: group.WindowSensors
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.basement_north_window
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.basement_south_window_1
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.basement_south_window_2
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.front_window_1
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.front_window_2
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.window_over_sink
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.back_door_sensor
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.front_door_sensor
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.garage_entry_door_sensor
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.downstairs_glass_break
-        to: 'on'
-    condition:
-      - condition: state
-        entity_id: alarm_control_panel.shm
-        state: armed_home
-    action:
-      service: alarm_control_panel.alarm_trigger
-      entity_id: alarm_control_panel.shm
-
-  - alias: 'Trigger alarm while armed night'
-    trigger:
-      - platform: state
-        entity_id: group.WindowSensors
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.basement_north_window
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.basement_south_window_1
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.basement_south_window_2
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.front_window_1
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.front_window_2
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.window_over_sink
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.back_door_sensor
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.front_door_sensor
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.garage_entry_door_sensor
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.downstairs_glass_break
-        to: 'on'
-    condition:
-      - condition: state
-        entity_id: alarm_control_panel.shm
-        state: armed_night
-    action:
-      service: alarm_control_panel.alarm_trigger
-      entity_id: alarm_control_panel.shm
-  # - alias: 'Disarm alarm when door unlocked by keypad'
-  #   trigger:
-  #     - platform: state
-  #       entity_id: sensor.front_door_lock_alarm_type
-  #       to: '19'
-  #       # many z-wave locks use Alarm Type 19 for 'Unlocked by Keypad'
-  #   action:
-  #     - service: alarm_control_panel.alarm_disarm
-  #       entity_id: alarm_control_panel.shm
-
-  - alias: 'Send notification when alarm triggered'
-    trigger:
-      - platform: state
-        entity_id: alarm_control_panel.shm
-        to: 'triggered'
-    action:
-      - service: notify.ryanhangout
-        data:
-          title: "SHM"
-          message: "ALARM! The alarm has been triggered"
-      - service: notify.pushover
-        data:
-          title: "SHM"
-          message: "ALARM! The alarm has been triggered"
-          data:
-            sound: siren
-            priority: 1
-      - service: notify.pushover
-        data:
-          title: "ALERT"
-          priority: 1
-          sound: alien
-          message: >-
-            {%- for item in states.group.securitysensors.attributes.entity_id -%}
-            {%- if states(item) == "on" -%}
-            {{ (item) | replace ("binary_sensor.","") | replace ("_"," ") | capitalize() }} is {{ states(item) }}
-            {% endif %}
-            {%- endfor -%}
-      - service: notify.ryanhangout
-        data:
-          title: "ALERT"
-          message: >-
-            {%- for item in states.group.securitysensors.attributes.entity_id -%}
-            {%- if states(item) == "on" -%}
-            {{ (item) | replace ("binary_sensor.","") | replace ("_"," ") | capitalize() }} is {{ states(item) }}
-            {% endif %}
-            {%- endfor -%}
-      - service: media_player.volume_set
-        data:
-          entity_id: media_player.kitchen_home
-          volume_level: ".64"
-      - service: tts.google_say
-        entity_id: media_player.kitchen_home
-        data:
-          message: 'ALERT ALERT ALERT Alarm Has Been Triggered. The authorities have been contacted'
-      - service: tts.google_say
-        entity_id: media_player.kitchen_home
-        data:
-          message: >-
-            {%- for item in states.group.securitysensors.attributes.entity_id -%}
-            {%- if states(item) == "on" -%}
-            {{ (item) | replace ("binary_sensor.","") | replace ("_"," ") | capitalize() }} is {{ states(item) }}
-            {% endif %}
-            {%- endfor -%}
-
-##ZigBee2MQTT
-
-  - alias: Zigbee2mqtt Log Level
-    initial_state: 'on'
-    trigger:
-      - platform: state
-        entity_id: input_select.zigbee2mqtt_log_level
-        to: debug
-      - platform: state
-        entity_id: input_select.zigbee2mqtt_log_level
-        to: warn
-      - platform: state
-        entity_id: input_select.zigbee2mqtt_log_level
-        to: error
-      - platform: state
-        entity_id: input_select.zigbee2mqtt_log_level
-        to: info
-    action:
-      - service: mqtt.publish
-        data:
-          payload_template: '{{ states(''input_select.zigbee2mqtt_log_level'') }}'
-          topic: zigbee2mqtt/bridge/config/log_level
-
-  - id: enable_zigbee_join
-    alias: Enable Zigbee joining
-    #hide_entity: true
-    trigger:
-      platform: state
-      entity_id: input_boolean.zigbee_permit_join
-      to: 'on'
-    action:
-    - service: mqtt.publish
-      data:
-        topic: zigbee2mqtt/bridge/config/permit_join
-        payload: 'true'
-    - service: timer.start
-      data:
-        entity_id: timer.zigbee_permit_join
-
-  - id: disable_zigbee_join
-    alias: Disable Zigbee joining
-    #hide_entity: true
-    trigger:
-    - entity_id: input_boolean.zigbee_permit_join
-      platform: state
-      to: 'off'
-    action:
-    - data:
-        payload: 'false'
-        topic: zigbee2mqtt/bridge/config/permit_join
-      service: mqtt.publish
-    - data:
-        entity_id: timer.zigbee_permit_join
-      service: timer.cancel
-
-  - id: disable_zigbee_join_timer
-    alias: Disable Zigbee joining by timer
-    #hide_entity: true
-    trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.zigbee_permit_join
-    action:
-    - service: mqtt.publish
-      data:
-        topic: zigbee2mqtt/bridge/config/permit_join
-        payload: 'false'
-    - service: input_boolean.turn_off
-      data:
-        entity_id: input_boolean.zigbee_permit_join
-#Wax Warmer Switch On
-  - id: enable_wax_warmer
-    alias: Enable Wax Warmer
-    #hide_entity: true
-    trigger:
-      platform: state
-      entity_id: input_boolean.wax_warmer_control
-      to: 'on'
-    action:
-    - service: timer.start
-      data:
-        entity_id: timer.wax_melter
-    - service: switch.turn_on
-      entity_id: switch.wax_warmer_relay       
-#Wax Warmer Switch Off
-  - id: disable_wax_warmer
-    alias: Disable Wax Warmer
-    #hide_entity: true
-    trigger:
-    - entity_id: input_boolean.wax_warmer_control
-      platform: state
-      to: 'off'
-    action:
-    - service: timer.cancel
-      data:
-        entity_id: timer.wax_melter
-    - service: switch.turn_off
-      entity_id: switch.wax_warmer_relay
-
-##Wax Warmer Timer Expire Switch On
-  - id: disable_wax_warmer_timer_on
-    alias: Disable Wax Warmer Timer
-    #hide_entity: true
-    trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.wax_melter
-    condition:
+- alias: homeassistant_start
+  trigger:
+  - platform: homeassistant
+    event: start
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: homeassistant/status/ha
+      payload: online
+  id: 6e165ca652974f20b089530a350be663
+- alias: homeassistant_shutdown
+  trigger:
+  - platform: homeassistant
+    event: shutdown
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: homeassistant/status/ha
+      payload: offline
+  id: d184a2562abc44b1937f5c0176dee6db
+- alias: Fix Nest Away
+  trigger:
+    platform: template
+    value_template: '{{ states.climate.downstairs_thermostat.attributes.away_mode
+      == "on" }}'
+  condition:
+    condition: or
+    conditions:
     - condition: state
-      entity_id: switch.wax_warmer_relay
+      entity_id: input_boolean.force_home
       state: 'on'
-    action:
-    - service: timer.start
-      data:
-        entity_id: timer.wax_melter
-    - service: switch.turn_off
-      entity_id: switch.wax_warmer_relay
-
-##Wax Warmer Timer Expire Switch On
-  - id: disable_wax_warmer_timer_off
-    alias: Disable Wax Warmer Timer
-    #hide_entity: true
-    trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.wax_melter
-    condition:
     - condition: state
-      entity_id: switch.wax_warmer_relay
+      entity_id: input_select.home_status
+      state: Home
+  action:
+  - service: climate.set_away_mode
+    data:
+      away_mode: false
+  id: a1315122fc33458ba3bce0f232cb4838
+- alias: Welcome Home Door Sensor
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.garage_entry_door_sensor
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.front_door_sensor
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: sun.sun
+      state: below_horizon
+    - condition: state
+      entity_id: group.decorative
       state: 'off'
-    action:
-    - service: timer.start
+    - condition: template
+      value_template: '{{ relative_time(states.group.all_mobile_devices.last_changed)
+        > "10 min" }}'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.decorative_on
+  - service: homeassistant.turn_on
+    entity_id: group.christmas_lights
+  - service: light.turn_on
+    data:
+      entity_id: light.kitchen_overhead
+      brightness: 128
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.kitchen_home
+      volume_level: '.55'
+  - service: tts.google_say
+    entity_id: media_player.kitchen_home
+    data:
+      message: Welcome Home, I have turned on some lights for you.  Have a great night.
+  - service: notify.ryanhangouts
+    data:
+      message: HA - I have turned on the lights for you.
+      title: Welcome Home
+  id: d9ef713bc2f943a892d8854e25a0a5ee
+- alias: Prox Near
+  trigger:
+  - platform: numeric_state
+    entity_id: proximity.home
+    below: 3
+    above: 1
+  condition:
+    condition: and
+    conditions:
+    - condition: template
+      value_template: '{{ states.proximity.home.attributes.dir_of_travel == "towards"
+        }}'
+    - condition: template
+      value_template: '{{ states.climate.downstairs_thermostat.attributes.away_mode
+        == "on" }}'
+    - condition: state
+      entity_id: input_select.home_status
+      state: Away
+  action:
+  - service: climate.set_away_mode
+    data:
+      away_mode: false
+  - service: notify.pushover
+    data:
+      message: I see you are getting close to home. Leaving Eco Mode.
+      title: Nest
+  id: fa81eca73e6e4d558119cfab4906b17e
+- alias: Downstairs Motion Night Light
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.first_floor_entry_motion
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.kitchen_motion
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: sun.sun
+      state: below_horizon
+    - condition: time
+      after: '20:30:00'
+      before: 04:30:00
+    - condition: state
+      entity_id: group.firstfloorlights
+      state: 'off'
+      for:
+        minutes: 3
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.downstairs_night
+  id: f4bdc840fc394d988d96a17d0b68490c
+- alias: Downstairs Morning Light
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.first_floor_entry_motion
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: sun.sun
+      state: below_horizon
+    - condition: time
+      after: 04:30:00
+    - condition: time
+      before: 07:30:00
+    - condition: state
+      entity_id: group.firstfloorlights
+      state: 'off'
+      for:
+        minutes: 3
+  action:
+    service: homeassistant.turn_on
+    entity_id: scene.decorative_dim
+  id: b77bd31acd084c1b877a9e549763b77a
+- alias: UPS on Battery Notify
+  trigger:
+  - platform: state
+    entity_id: sensor.ups_status
+    from: ONLINE
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.upsnotify
+  id: 18cb09c4b1a5429e99271d1ee6c65e07
+- alias: UPS back on line Notify
+  trigger:
+  - platform: state
+    entity_id: sensor.ups_status
+    to: ONLINE
+  action:
+  - service: homeassistant.turn_off
+    entity_id: script.upsnotify
+  - service: homeassistant.turn_off
+    entity_id: script.upsnotifyloop
+  - service: notify.pushover
+    data:
+      message: 'NOTE: House has returned to mains power. UPS runtime left {{ states.sensor.ups_time_left.state
+        }} minutes and remaining power is {{ states.sensor.ups_battery.state }}%.'
+      title: HASS
+  id: 4d8a0d8f5387433f970c781a3f8165ef
+- alias: Front Door Notify
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door_sensor
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.door_notify_mode
+      state: 'on'
+  action:
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.kitchen_home
+      volume_level: '.55'
+  - service: tts.google_say
+    entity_id: media_player.kitchen_home
+    data:
+      message: Front Door Opened.
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.bedroom_home
+      volume_level: '.55'
+  - service: tts.google_say
+    entity_id: media_player.bedroom_home
+    data:
+      message: Front Door Opened.
+  id: a54a16d899db47c590e712dd64089443
+- alias: Back Door Notify
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.back_door_sensor
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.door_notify_mode
+      state: 'on'
+  action:
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.kitchen_home
+      volume_level: '.63'
+  - service: tts.google_say
+    entity_id: media_player.kitchen_home
+    data:
+      message: Back Door Opened.
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.bedroom_home
+      volume_level: '.63'
+  - service: tts.google_say
+    entity_id: media_player.bedroom_home
+    data:
+      message: Back Door Opened.
+  id: 7872d809ff9c47a19aacf8cd947a6c5a
+- alias: Garage Door Notify
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.garage_entry_sensor
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.door_notify_mode
+      state: 'on'
+  action:
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.kitchen_home
+      volume_level: '.63'
+  - service: tts.google_say
+    entity_id: media_player.kitchen_home
+    data:
+      message: Garage Entry Door Opened.
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.bedroom_home
+      volume_level: '.63'
+  - service: tts.google_say
+    entity_id: media_player.bedroom_home
+    data:
+      message: Garage Entry Door Opened.
+  id: a50aad33af6341bdb384b2b332441c1c
+- alias: Liam's Door Notify
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.liams_room_door
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.door_notify_mode
+      state: 'on'
+  action:
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.kitchen_home
+      volume_level: '.63'
+  - service: tts.google_say
+    entity_id: media_player.kitchen_home
+    data:
+      message: Liams Door Opened.
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.bedroom_home
+      volume_level: '.63'
+  - service: tts.google_say
+    entity_id: media_player.bedroom_home
+    data:
+      message: Liams Door Opened.
+  id: 6d03447009594ccfbedb947b9a6104e3
+- alias: Trigger with Night Mode
+  trigger:
+  - platform: state
+    entity_id: input_select.home_status
+    from: Home
+    to: Sleep
+  action:
+  - service: switch.turn_on
+    entity_id: input_boolean.door_notify_mode
+  id: 30f76ee72be24644ac8d4a9da3b7c97a
+- alias: Trigger from Night Mode
+  trigger:
+  - platform: state
+    entity_id: input_select.home_status
+    from: Sleep
+    to: Home
+  action:
+  - service: switch.turn_off
+    entity_id: input_boolean.door_notify_mode
+  id: ca0c9f5bd50544c8b4c6a78c1fed6d53
+- alias: Guest Mode Check
+  trigger:
+  - platform: state
+    entity_id: group.motionsensors
+    to: 'off'
+    for:
+      hours: 2
+  condition:
+  - condition: time
+    after: '7:00:00'
+    before: '21:00:00'
+  - condition: state
+    entity_id: input_boolean.force_home
+    state: 'off'
+  - condition: state
+    entity_id: switch.guest_mode
+    state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.guestmodeaway
+  id: 0255a64639484d87a56027e6b02b3eed
+- alias: Guest Mode Reset
+  trigger:
+  - platform: state
+    entity_id: group.motionsensors
+    to: 'on'
+  condition:
+  - condition: time
+    after: '7:00:00'
+    before: '21:00:00'
+  - condition: state
+    entity_id: input_boolean.force_home
+    state: 'off'
+  - condition: state
+    entity_id: switch.guest_mode
+    state: 'on'
+  - condition: state
+    entity_id: script.guestmodeaway
+    state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: script.guestmodeaway
+  id: 27d7d2a91eaa49f9a11690e3606bbf43
+- action:
+  - data:
+      name: slate
+    service: frontend.set_theme
+  alias: Interface Night Mode
+  condition: []
+  trigger:
+  - event: sunset
+    platform: sun
+  id: 6954d572deee4e438667c88c5aba0c4d
+- action:
+  - data:
+      name: clear
+    service: frontend.set_theme
+  alias: Interface Default
+  condition: []
+  trigger:
+  - event: sunrise
+    platform: sun
+  id: cea1720367be42679a6a3b94f7f8778c
+- alias: Update Last Motion
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.bedroom_motion, binary_sensor.bathroom_motion, binary_sensor.basement_motion,
+      binary_sensor.entry_keypad_motion, binary_sensor.first_floor_entry_motion, binary_sensor.kitchen_motion,
+      binary_sensor.upstairs_motion
+    to: 'on'
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: homeassistant/sensor/last_motion/state
+      payload: '{{ trigger.to_state.attributes.name }}'
+  - service: mqtt.publish
+    data_template:
+      topic: homeassistant/sensor/last_motion/name
+      payload: '{{ trigger.to_state.attributes.friendly_name }}'
+  id: 2334b3a0b5484a468b59df6c6b739327
+- alias: Update Last Door
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door_sensor, binary_sensor.back_door_sensor, binary_sensor.garage_entry_sensor
+    to: 'on'
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: homeassistant/sensor/last_door/state
+      payload: '{{ trigger.to_state.attributes.name }}'
+  - service: mqtt.publish
+    data_template:
+      topic: homeassistant/sensor/last_door/name
+      payload: '{{ trigger.to_state.attributes.friendly_name }}'
+  id: 14ae3df930204b7db39cfcf856af1690
+- alias: Trigger alarm while armed away
+  trigger:
+  - platform: state
+    entity_id: group.WindowSensors
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.basement_north_window
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.basement_south_window_1
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.basement_south_window_2
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.front_window_1
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.front_window_2
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.window_over_sink
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.back_door_sensor
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.front_door_sensor
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.garage_entry_door_sensor
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.downstairs_glass_break
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.basement_motion
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.first_floor_entry_motion
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.kitchen_motion
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.upstairs_motion
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.shm
+    state: armed_away
+  action:
+    service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.shm
+  id: c9fee7c3ed8a403cb2e2fc9a541fea79
+- alias: Trigger alarm while armed home
+  trigger:
+  - platform: state
+    entity_id: group.WindowSensors
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.basement_north_window
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.basement_south_window_1
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.basement_south_window_2
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.front_window_1
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.front_window_2
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.window_over_sink
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.back_door_sensor
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.front_door_sensor
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.garage_entry_door_sensor
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.downstairs_glass_break
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.shm
+    state: armed_home
+  action:
+    service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.shm
+  id: 4f767608c3304561825d6f7907f7f0e6
+- alias: Trigger alarm while armed night
+  trigger:
+  - platform: state
+    entity_id: group.WindowSensors
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.basement_north_window
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.basement_south_window_1
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.basement_south_window_2
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.front_window_1
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.front_window_2
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.window_over_sink
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.back_door_sensor
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.front_door_sensor
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.garage_entry_door_sensor
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.downstairs_glass_break
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.shm
+    state: armed_night
+  action:
+    service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.shm
+  id: a349126466af438cb1c734832a662722
+- alias: Send notification when alarm triggered
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.shm
+    to: triggered
+  action:
+  - service: notify.ryanhangout
+    data:
+      title: SHM
+      message: ALARM! The alarm has been triggered
+  - service: notify.pushover
+    data:
+      title: SHM
+      message: ALARM! The alarm has been triggered
       data:
-        entity_id: timer.wax_melter
-    - service: switch.turn_on
-      entity_id: switch.wax_warmer_relay
-
-  - id: telegram_disarm
-    alias: Disarm SHM via Telegram
-    #hide_entity: true
-    trigger:
-    - platform: event
-      event_type: telegram_command
-      event_data:
-        command: '/disarm'
-#    condition:
-#      - condition: template
-#        entity_id: input_boolean.force_home
-#        state: 'off'
-    action:
-    - service: alarm_control_panel.alarm_disarm
-      data:
-        entity_id: alarm_control_panel.shm
-        code: !secret alarmcode
-    - service: notify.telegram
-      data:
-        title: "SHM"
-        message: "The alarm has be disarmed."
-
-##Google Home Bedroom Alarm Turn on Lights
-  - id: bedroom_home_alarm
-    alias: Google Home Alarm Light Control
-    trigger:
-    - platform: state
-      entity_id: sensor.bedroom_home_alarm
-    condition:
-      condition: template
-      value_template: "{{ trigger.from_state.state != 'unavailable' }}"
-    action:
-    - service: light.turn_on
-      data:
-        entity_id: light.ryan_lamp
-        brightness_pct: 1
-    - service: light.turn_on
-      data:
-        entity_id: light.kristi_lamp
-        brightness_pct: 1
-    - service: notify.ryanhangouts
-      data:
-        message: "HA - Nursing lights have been turned on in the bedroom."
-        title: "Nursing Lights"
-
-##Camera Streaming Control
-#Twins Camera to Bedroom
-  - id: twin_camera_br
-    alias: Cast Twin Camera to Bedroom
-    trigger:
-    - platform: state
-      entity_id: input_boolean.cast_twins_bedroom
-    action:
-    - service: media_player.turn_on
-      entity_id: media_player.bedroom_tv
-    - delay:
-        seconds: 3
-    - service: camera.play_stream
-      data:
-        entity_id: camera.twins_s_camera_snapshot
-        media_player: media_player.bedroom_tv
-        
-#Twins Camera to Bedroom
-  - id: front_camera_lr
-    alias: Cast Front Camera to Living Room
-    trigger:
-    - platform: state
-      entity_id: input_boolean.cast_front_lr
-    action:
-    - service: media_player.turn_on
-      entity_id: media_player.living_room_chromecast
-    - delay:
-        seconds: 3
-    - service: camera.play_stream
-      data:
-        entity_id: camera.front_door_camera
-        media_player: media_player.living_room_chromecast
-
-
-##Create Virtual Presence Sensors
-###For Ryan
-  - id: ryan_bt_home
-    alias: Ryan BT Occupancy On
-    trigger:
-      - platform: state
-        entity_id: sensor.galaxy_note8_room_presence
-        from: not_home
-    action:
-      - service: device_tracker.see
-        data:
-          dev_id: ryans_bt
-          location_name: home
-
-  - id: ryan_bt_away
-    alias: Ryan BT Occupancy Off
-    trigger:
-      - platform: state
-        entity_id: sensor.galaxy_note8_room_presence
-        to: not_home
-    action:
-      - service: device_tracker.see
-        data:
-          dev_id: ryans_bt
-          location_name: not_home
-
-###For Kristi
-  - id: kristi_bt_home
-    alias: Kristi BT Occupancy On
-    trigger:
-      - platform: state
-        entity_id: sensor.14_1f_78_a8_05_1c_room_presence
-        from: not_home
-    action:
-      - service: device_tracker.see
-        data:
-          dev_id: kristi_bt
-          location_name: home
-
-  - id: kristi_bt_away
-    alias: Kristi BT Occupancy Off
-    trigger:
-      - platform: state
-        entity_id: sensor.14_1f_78_a8_05_1c_room_presence
-        to: not_home
-    action:
-      - service: device_tracker.see
-        data:
-          dev_id: kristi_bt
-          location_name: not_home
-
-###For Mom
-  - id: mom_bt_home
-    alias: Mom BT Occupancy On
-    trigger:
-      - platform: state
-        entity_id: sensor.linda_s_s8_room_presence
-        from: not_home
-    action:
-      - service: device_tracker.see
-        data:
-          dev_id: mom_bt
-          location_name: home
-
-  - id: mom_bt_away
-    alias: Mom BT Occupancy Off
-    trigger:
-      - platform: state
-        entity_id: sensor.linda_s_s8_room_presence
-        to: not_home
-    action:
-      - service: device_tracker.see
-        data:
-          dev_id: mom_bt
-          location_name: not_home
-
-####Leak Sensor
-  - id: kitchen_leak_sensor_alert
-    alias: Leak Sensor Alert Kitchen
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.water_leak_sensor_158d0002112beb
-        to: 'on'
-    action:
-      - service: notify.telegram
-        data_template:
-          title: "WATER LEAK"
-          message: "A Water Leak Has Been Detected at Kitchen sink."
-      - service: notify.ryanhangout
-        data_template:
-          title: "WATER LEAK"
-          message: "A Water Leak Has Been Detected at kitchen sink."
-
-  - id: washer_leak_sensor_alert
-    alias: Leak Sensor Alert
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.water_leak_sensor_158d0002130633
-        to: 'on'
-    action:
-      - service: notify.telegram
-        data_template:
-          title: "WATER LEAK"
-          message: "A Water Leak Has Been Detected behind the washer."
-      - service: notify.ryanhangout
-        data_template:
-          title: "WATER LEAK"
-          message: "A Water Leak Has Been Detected behind the washer."
-
+        sound: siren
+        priority: 1
+  - service: notify.pushover
+    data:
+      title: ALERT
+      priority: 1
+      sound: alien
+      message: '{%- for item in states.group.securitysensors.attributes.entity_id
+        -%} {%- if states(item) == "on" -%} {{ (item) | replace ("binary_sensor.","")
+        | replace ("_"," ") | capitalize() }} is {{ states(item) }} {% endif %} {%-
+        endfor -%}'
+  - service: notify.ryanhangout
+    data:
+      title: ALERT
+      message: '{%- for item in states.group.securitysensors.attributes.entity_id
+        -%} {%- if states(item) == "on" -%} {{ (item) | replace ("binary_sensor.","")
+        | replace ("_"," ") | capitalize() }} is {{ states(item) }} {% endif %} {%-
+        endfor -%}'
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.kitchen_home
+      volume_level: '.64'
+  - service: tts.google_say
+    entity_id: media_player.kitchen_home
+    data:
+      message: ALERT ALERT ALERT Alarm Has Been Triggered. The authorities have been
+        contacted
+  - service: tts.google_say
+    entity_id: media_player.kitchen_home
+    data:
+      message: '{%- for item in states.group.securitysensors.attributes.entity_id
+        -%} {%- if states(item) == "on" -%} {{ (item) | replace ("binary_sensor.","")
+        | replace ("_"," ") | capitalize() }} is {{ states(item) }} {% endif %} {%-
+        endfor -%}'
+  id: ddce1a837fd24f0eb5fcd2fa264f9ca9
+- alias: Zigbee2mqtt Log Level
+  initial_state: 'on'
+  trigger:
+  - platform: state
+    entity_id: input_select.zigbee2mqtt_log_level
+    to: debug
+  - platform: state
+    entity_id: input_select.zigbee2mqtt_log_level
+    to: warn
+  - platform: state
+    entity_id: input_select.zigbee2mqtt_log_level
+    to: error
+  - platform: state
+    entity_id: input_select.zigbee2mqtt_log_level
+    to: info
+  action:
+  - service: mqtt.publish
+    data:
+      payload_template: '{{ states(''input_select.zigbee2mqtt_log_level'') }}'
+      topic: zigbee2mqtt/bridge/config/log_level
+  id: 829f107a8ec6469793faf26dfebece3b
+- id: enable_zigbee_join
+  alias: Enable Zigbee joining
+  trigger:
+    platform: state
+    entity_id: input_boolean.zigbee_permit_join
+    to: 'on'
+  action:
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/bridge/config/permit_join
+      payload: 'true'
+  - service: timer.start
+    data:
+      entity_id: timer.zigbee_permit_join
+- id: disable_zigbee_join
+  alias: Disable Zigbee joining
+  trigger:
+  - entity_id: input_boolean.zigbee_permit_join
+    platform: state
+    to: 'off'
+  action:
+  - data:
+      payload: 'false'
+      topic: zigbee2mqtt/bridge/config/permit_join
+    service: mqtt.publish
+  - data:
+      entity_id: timer.zigbee_permit_join
+    service: timer.cancel
+- id: disable_zigbee_join_timer
+  alias: Disable Zigbee joining by timer
+  trigger:
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.zigbee_permit_join
+  action:
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/bridge/config/permit_join
+      payload: 'false'
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.zigbee_permit_join
+- id: enable_wax_warmer
+  alias: Enable Wax Warmer
+  trigger:
+    platform: state
+    entity_id: input_boolean.wax_warmer_control
+    to: 'on'
+  action:
+  - service: timer.start
+    data:
+      entity_id: timer.wax_melter
+  - service: switch.turn_on
+    entity_id: switch.wax_warmer_relay
+- id: disable_wax_warmer
+  alias: Disable Wax Warmer
+  trigger:
+  - entity_id: input_boolean.wax_warmer_control
+    platform: state
+    to: 'off'
+  action:
+  - service: timer.cancel
+    data:
+      entity_id: timer.wax_melter
+  - service: switch.turn_off
+    entity_id: switch.wax_warmer_relay
+- id: disable_wax_warmer_timer_on
+  alias: Disable Wax Warmer Timer
+  trigger:
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.wax_melter
+  condition:
+  - condition: state
+    entity_id: switch.wax_warmer_relay
+    state: 'on'
+  action:
+  - service: timer.start
+    data:
+      entity_id: timer.wax_melter
+  - service: switch.turn_off
+    entity_id: switch.wax_warmer_relay
+- id: disable_wax_warmer_timer_off
+  alias: Disable Wax Warmer Timer
+  trigger:
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.wax_melter
+  condition:
+  - condition: state
+    entity_id: switch.wax_warmer_relay
+    state: 'off'
+  action:
+  - service: timer.start
+    data:
+      entity_id: timer.wax_melter
+  - service: switch.turn_on
+    entity_id: switch.wax_warmer_relay
+- id: telegram_disarm
+  alias: Disarm SHM via Telegram
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /disarm
+  action:
+  - service: alarm_control_panel.alarm_disarm
+    data:
+      entity_id: alarm_control_panel.shm
+      code: 0319
+  - service: notify.telegram
+    data:
+      title: SHM
+      message: The alarm has be disarmed.
+- id: bedroom_home_alarm
+  alias: Google Home Alarm Light Control
+  trigger:
+  - platform: state
+    entity_id: sensor.bedroom_home_alarm
+  condition:
+    condition: template
+    value_template: '{{ trigger.from_state.state != ''unavailable'' }}'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.ryan_lamp
+      brightness_pct: 1
+  - service: light.turn_on
+    data:
+      entity_id: light.kristi_lamp
+      brightness_pct: 1
+  - service: notify.ryanhangouts
+    data:
+      message: HA - Nursing lights have been turned on in the bedroom.
+      title: Nursing Lights
+- id: twin_camera_br
+  alias: Cast Twin Camera to Bedroom
+  trigger:
+  - platform: state
+    entity_id: input_boolean.cast_twins_bedroom
+  action:
+  - service: media_player.turn_on
+    entity_id: media_player.bedroom_tv
+  - delay:
+      seconds: 3
+  - service: camera.play_stream
+    data:
+      entity_id: camera.twins_s_camera_snapshot
+      media_player: media_player.bedroom_tv
+- id: front_camera_lr
+  alias: Cast Front Camera to Living Room
+  trigger:
+  - platform: state
+    entity_id: input_boolean.cast_front_lr
+  action:
+  - service: media_player.turn_on
+    entity_id: media_player.living_room_chromecast
+  - delay:
+      seconds: 3
+  - service: camera.play_stream
+    data:
+      entity_id: camera.front_door_camera
+      media_player: media_player.living_room_chromecast
+- id: ryan_bt_home
+  alias: Ryan BT Occupancy On
+  trigger:
+  - platform: state
+    entity_id: sensor.galaxy_note8_room_presence
+    from: not_home
+  action:
+  - service: device_tracker.see
+    data:
+      dev_id: ryans_bt
+      location_name: home
+- id: ryan_bt_away
+  alias: Ryan BT Occupancy Off
+  trigger:
+  - platform: state
+    entity_id: sensor.galaxy_note8_room_presence
+    to: not_home
+  action:
+  - service: device_tracker.see
+    data:
+      dev_id: ryans_bt
+      location_name: not_home
+- id: kristi_bt_home
+  alias: Kristi BT Occupancy On
+  trigger:
+  - platform: state
+    entity_id: sensor.14_1f_78_a8_05_1c_room_presence
+    from: not_home
+  action:
+  - service: device_tracker.see
+    data:
+      dev_id: kristi_bt
+      location_name: home
+- id: kristi_bt_away
+  alias: Kristi BT Occupancy Off
+  trigger:
+  - platform: state
+    entity_id: sensor.14_1f_78_a8_05_1c_room_presence
+    to: not_home
+  action:
+  - service: device_tracker.see
+    data:
+      dev_id: kristi_bt
+      location_name: not_home
+- id: mom_bt_home
+  alias: Mom BT Occupancy On
+  trigger:
+  - platform: state
+    entity_id: sensor.linda_s_s8_room_presence
+    from: not_home
+  action:
+  - service: device_tracker.see
+    data:
+      dev_id: mom_bt
+      location_name: home
+- id: mom_bt_away
+  alias: Mom BT Occupancy Off
+  trigger:
+  - platform: state
+    entity_id: sensor.linda_s_s8_room_presence
+    to: not_home
+  action:
+  - service: device_tracker.see
+    data:
+      dev_id: mom_bt
+      location_name: not_home
+- id: kitchen_leak_sensor_alert
+  alias: Leak Sensor Alert Kitchen
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.water_leak_sensor_158d0002112beb
+    to: 'on'
+  action:
+  - service: notify.telegram
+    data_template:
+      title: WATER LEAK
+      message: A Water Leak Has Been Detected at Kitchen sink.
+  - service: notify.ryanhangout
+    data_template:
+      title: WATER LEAK
+      message: A Water Leak Has Been Detected at kitchen sink.
+- id: washer_leak_sensor_alert
+  alias: Leak Sensor Alert
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.water_leak_sensor_158d0002130633
+    to: 'on'
+  action:
+  - service: notify.telegram
+    data_template:
+      title: WATER LEAK
+      message: A Water Leak Has Been Detected behind the washer.
+  - service: notify.ryanhangout
+    data_template:
+      title: WATER LEAK
+      message: A Water Leak Has Been Detected behind the washer.
+- id: '1591738791644'
+  alias: Fade up living room lights
+  description: ''
+  trigger: []
+  condition: []
+  action:
+  - data:
+      brightness_pct: 60
+      entity_id: light.liam_lamp
+      transition: 15
+    service: python_script.fade_in_light_2
