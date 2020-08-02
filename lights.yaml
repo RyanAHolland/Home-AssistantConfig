@@ -161,3 +161,13 @@
   #   payload_on: "on" 
   #   payload_off: "off" 
   #   retain: false
+  
+  - platform: template
+  lights:
+      cir_light:
+        friendly_name: "Circadian Lights"
+        level_template:
+        value_template:
+        temperature_template:
+        turn_on:
+        turn_off:
