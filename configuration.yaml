@@ -387,6 +387,8 @@ xiaomi_aqara:
     - mac: !secret xiaomi_mac
       key: !secret xiaomi_token
       host: !secret xiaomi_ip
+      
+circadian_lighting:
 
 ####################################################
 #                                                  #
