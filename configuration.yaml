@@ -80,7 +80,7 @@ wemo:
 #Config for Zwave (added via interface)
 zwave:
   polling_interval: 30000
-  config_path: config/zwave/config
+  config_path: /config/zwave/config
   
 #Python Scripting
 python_script:
