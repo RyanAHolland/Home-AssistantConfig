@@ -165,8 +165,6 @@
     lights:
       cir_light:
         friendly_name: "Circadian Lights"
-        level_template:
-        value_template:
-        temperature_template:
         turn_on:
         turn_off:
+        set_level:
