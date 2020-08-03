@@ -153,7 +153,7 @@
   #   payload_on: "on" 
   #   payload_off: "off" 
   #   retain: false
- - platform: mqtt 
+ #- platform: mqtt 
   #   name: "Railing Lights" 
   #   state_topic: "smartthings/Railing Lights/switch/state"
   #   command_topic: "smartthings/Railing Lights/switch/set"
