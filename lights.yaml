@@ -168,3 +168,4 @@
         turn_on:
         turn_off:
         set_level:
+        set_white_value:

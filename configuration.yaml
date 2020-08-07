@@ -40,8 +40,7 @@ updater:
 
 # Discover some devices automatically
 discovery:
-  ignore:
-    - philips_hue
+
 
 # Add Config Panel
 config:
