@@ -388,6 +388,8 @@ xiaomi_aqara:
       host: !secret xiaomi_ip
       
 circadian_lighting:
+  sunrise_offset: -01:00:00
+  sunset_offset: -01:00:00
 
 ####################################################
 #                                                  #
