@@ -802,47 +802,51 @@
 - id: ryan_bt_home
   alias: Ryan BT Occupancy On
   trigger:
-  - platform: state
-    entity_id: sensor.galaxy_note8_room_presence
+  - entity_id: sensor.bc_7a_bf_35_96_f5_room_presence
     from: not_home
+    platform: state
   action:
-  - service: device_tracker.see
-    data:
+  - data:
       dev_id: ryans_bt
       location_name: home
+    service: device_tracker.see
+  mode: single
 - id: ryan_bt_away
   alias: Ryan BT Occupancy Off
   trigger:
-  - platform: state
-    entity_id: sensor.galaxy_note8_room_presence
+  - entity_id: sensor.bc_7a_bf_35_96_f5_room_presence
+    platform: state
     to: not_home
   action:
-  - service: device_tracker.see
-    data:
+  - data:
       dev_id: ryans_bt
       location_name: not_home
+    service: device_tracker.see
+  mode: single
 - id: kristi_bt_home
   alias: Kristi BT Occupancy On
   trigger:
-  - platform: state
-    entity_id: sensor.14_1f_78_a8_05_1c_room_presence
+  - entity_id: sensor.70_ce_8c_a1_b6_8d_room_presence
     from: not_home
+    platform: state
   action:
-  - service: device_tracker.see
-    data:
+  - data:
       dev_id: kristi_bt
       location_name: home
+    service: device_tracker.see
+  mode: single
 - id: kristi_bt_away
   alias: Kristi BT Occupancy Off
   trigger:
-  - platform: state
-    entity_id: sensor.14_1f_78_a8_05_1c_room_presence
+  - entity_id: sensor.70_ce_8c_a1_b6_8d_room_presence
+    platform: state
     to: not_home
   action:
-  - service: device_tracker.see
-    data:
+  - data:
       dev_id: kristi_bt
       location_name: not_home
+    service: device_tracker.see
+  mode: single
 - id: mom_bt_home
   alias: Mom BT Occupancy On
   trigger:
