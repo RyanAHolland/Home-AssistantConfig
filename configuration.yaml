@@ -223,9 +223,14 @@ webostv:
   host: !secret play_tv_ip
   name: Play Room TV
 
-nest:
-  client_id: !secret nest_id
-  client_secret: !secret nest_secret
+# nest:
+#  client_id: !secret nest_id
+#  client_secret: !secret nest_secret
+
+badnest:
+  issue_token: !secret new_nest_token
+  cookie: !secret new_nest_cookie
+  region: us
 
 ##Google for Google Calendar
 # google:
@@ -286,6 +291,8 @@ shell_command:
 
 climate:
   platform: nest
+  platform: badnest
+    scan_interval: 10
 
 device_tracker:
   # - platform: unifi
