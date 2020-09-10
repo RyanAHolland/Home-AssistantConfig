@@ -290,8 +290,8 @@ shell_command:
   get_latest_config: bash /home/homeassistant/.homeassistant/bin/update_config_from_github.sh
 
 climate:
-  platform: nest
-  platform: badnest
+  - platform: nest
+  - platform: badnest
     scan_interval: 10
 
 device_tracker:
