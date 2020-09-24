@@ -307,6 +307,12 @@ device_tracker:
   - platform: ping
     hosts:
       mom: !secret mom_ip
+      officepi: !secret officepi
+      livingroompi: !secret lrpi
+      garagepi: !secret garagepi
+      bedroompi: !secret bedroompi
+      mediavault: !secret mediavault
+      jet: !secret jet
   - platform: google_maps
     username: !secret google_user
     # password: !secret google_pass
