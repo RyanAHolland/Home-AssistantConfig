@@ -54,6 +54,9 @@ cast_front_lr:
     name: Cast Front Camera to Living Room
     initial: off
     icon: mdi:camera-wireless
+Notification_Mode:
+    initial: off
+    icon: mdi:surround-sound
 #ryan_occupancy:
 #    name: Ryan Occupancy
 #    icon: mdi:human-male
