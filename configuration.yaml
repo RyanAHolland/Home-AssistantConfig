@@ -40,8 +40,7 @@ updater:
 
 # Discover some devices automatically
 discovery:
-  ignore:
-    - philips_hue
+
 
 # Add Config Panel
 config:
@@ -80,7 +79,7 @@ wemo:
 #Config for Zwave (added via interface)
 zwave:
   polling_interval: 30000
-  config_path: config/zwave/config
+  config_path: /config/zwave/config
   
 #Python Scripting
 python_script:
@@ -224,9 +223,14 @@ webostv:
   host: !secret play_tv_ip
   name: Play Room TV
 
-nest:
-  client_id: !secret nest_id
-  client_secret: !secret nest_secret
+# nest:
+#  client_id: !secret nest_id
+#  client_secret: !secret nest_secret
+
+badnest:
+  issue_token: !secret new_nest_token
+  cookie: !secret new_nest_cookie
+  region: us
 
 ##Google for Google Calendar
 # google:
@@ -274,7 +278,7 @@ tts:
     cache: true
     cache_dir: /tmp/tts
     time_memory: 300
-    base_url: http://hollandhaus.duckdns.org:8123
+    base_url: http://192.168.1.5:8123
     service_name: google_say
 
 #google_assistant:
@@ -286,7 +290,9 @@ shell_command:
   get_latest_config: bash /home/homeassistant/.homeassistant/bin/update_config_from_github.sh
 
 climate:
-  platform: nest
+  - platform: nest
+  - platform: badnest
+    scan_interval: 10
 
 device_tracker:
   # - platform: unifi
@@ -301,6 +307,12 @@ device_tracker:
   - platform: ping
     hosts:
       mom: !secret mom_ip
+      officepi: !secret officepi
+      livingroompi: !secret lrpi
+      garagepi: !secret garagepi
+      bedroompi: !secret bedroompi
+      mediavault: !secret mediavault
+      jet: !secret jet
   - platform: google_maps
     username: !secret google_user
     # password: !secret google_pass
@@ -389,6 +401,12 @@ xiaomi_aqara:
       host: !secret xiaomi_ip
       
 circadian_lighting:
+  sunrise_offset: +01:00:00
+  sunset_offset: -01:00:00
+
+wyzeapi:
+  username: !secret email
+  password: !secret wyze_pass
 
 ####################################################
 #                                                  #

@@ -104,3 +104,7 @@
     payload_on: "true"
     payload_off: "false"
     
+
+  - platform: circadian_lighting
+    lights_ct:
+    - light.cir_light

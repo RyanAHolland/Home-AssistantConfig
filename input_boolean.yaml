@@ -57,6 +57,18 @@ cast_front_lr:
 Notification_Mode:
     initial: off
     icon: mdi:surround-sound
+cir_office_lights:
+    name: Circadian Office Lights
+    initial: off
+    icon: mdi:theme-light-dark
+cir_lr_lights:
+    name: Circadian Living Room Lights
+    initial: off
+    icon: mdi:theme-light-dark
+cir_bedroom_lights:
+    name: Circadian Bedroom Lights
+    initial: off
+    icon: mdi:theme-light-dark
 #ryan_occupancy:
 #    name: Ryan Occupancy
 #    icon: mdi:human-male
