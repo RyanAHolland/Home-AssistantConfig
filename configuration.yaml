@@ -278,7 +278,7 @@ tts:
     cache: true
     cache_dir: /tmp/tts
     time_memory: 300
-    base_url: http://hollandhaus.duckdns.org:8123
+    base_url: http://192.168.1.5:8123
     service_name: google_say
 
 #google_assistant:
@@ -307,6 +307,12 @@ device_tracker:
   - platform: ping
     hosts:
       mom: !secret mom_ip
+      officepi: !secret officepi
+      livingroompi: !secret lrpi
+      garagepi: !secret garagepi
+      bedroompi: !secret bedroompi
+      mediavault: !secret mediavault
+      jet: !secret jet
   - platform: google_maps
     username: !secret google_user
     # password: !secret google_pass
@@ -395,8 +401,12 @@ xiaomi_aqara:
       host: !secret xiaomi_ip
       
 circadian_lighting:
-  sunrise_offset: -01:00:00
+  sunrise_offset: +01:00:00
   sunset_offset: -01:00:00
+
+wyzeapi:
+  username: !secret email
+  password: !secret wyze_pass
 
 ####################################################
 #                                                  #
