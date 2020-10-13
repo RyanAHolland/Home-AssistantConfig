@@ -55,6 +55,7 @@ cast_front_lr:
     initial: off
     icon: mdi:camera-wireless
 notification_Mode:
+    name: Notification Mode
     initial: off
     icon: mdi:surround-sound
 cir_office_lights:
