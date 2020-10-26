@@ -406,6 +406,11 @@ wyzeapi:
   username: !secret email
   password: !secret wyze_pass
 
+  vacuum:
+    platform: xiaomi_miio
+    host: 192.168.3.157
+    token: !secret roborock
+
 ####################################################
 #                                                  #
 #                     Includes                     #
