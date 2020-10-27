@@ -105,7 +105,7 @@
     name: KC
 ##Xiaomi Vacuum Map Extractor
   - platform: xiaomi_cloud_map_extractor
-    host: !secret xiaomi_vacuum_host
+    host: !secret max_ip
     token: !secret roborock
     username: !secret xiaomi_cloud_username
     password: !secret xiaomi_cloud_password
