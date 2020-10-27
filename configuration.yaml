@@ -408,7 +408,7 @@ wyzeapi:
 
   vacuum:
     platform: xiaomi_miio
-    host: 192.168.3.157
+    host: !secret max_ip
     token: !secret roborock
 
 ####################################################
