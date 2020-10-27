@@ -406,10 +406,10 @@ wyzeapi:
   username: !secret email
   password: !secret wyze_pass
 
-  vacuum:
-    platform: xiaomi_miio
-    host: !secret max_ip
-    token: !secret roborock
+vacuum:
+  platform: xiaomi_miio
+  host: !secret max_ip
+  token: !secret roborock
 
 ####################################################
 #                                                  #
