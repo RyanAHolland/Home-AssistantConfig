@@ -279,8 +279,6 @@ tts:
     cache_dir: /tmp/tts
     time_memory: 300
     base_url: http://192.168.1.5:8123
-    service_name: google_say
-
 #google_assistant:
 #  project_id: !secret ga_project
 #  client_id: !secret ga_id
@@ -407,6 +405,11 @@ circadian_lighting:
 wyzeapi:
   username: !secret email
   password: !secret wyze_pass
+
+vacuum:
+  platform: xiaomi_miio
+  host: !secret max_ip
+  token: !secret roborock
 
 ####################################################
 #                                                  #
