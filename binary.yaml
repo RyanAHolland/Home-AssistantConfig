@@ -196,26 +196,26 @@
     host: !secret frontcam_ip
     name: "Front Camera Ping"
   - platform: ping
-    mom: !secret mom_ip
+  host: !secret mom_ip
     name: "Mom Phone Ping"
   - platform: ping
     officepi: !secret officepi
-    name: "OfficePi Ping"
+    host: "OfficePi Ping"
   - platform: ping
     livingroompi: !secret lrpi
-    name: "LivingRoomPi Ping"
+    host: "LivingRoomPi Ping"
   - platform: ping
     garagepi: !secret garagepi
-    name: "GaragePi Ping"
+    host: "GaragePi Ping"
   - platform: ping
     bedroompi: !secret bedroompi
-    name: "BedroomPi Ping"
+    host: "BedroomPi Ping"
   - platform: ping
     mediavault: !secret mediavault
-    name: "MediaVault Ping"
+    host: "MediaVault Ping"
   - platform: ping
     mediavault: !secret jet
-    name: "Jet Ping"
+    host: "Jet Ping"
 
     ##PUMPING SENSORS
 
