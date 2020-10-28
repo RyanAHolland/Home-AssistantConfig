@@ -199,23 +199,23 @@
     host: !secret mom_ip
     name: "Mom Phone Ping"
   - platform: ping
-    officepi: !secret officepi
-    host: "OfficePi Ping"
+    host: !secret officepi
+    name: "OfficePi Ping"
   - platform: ping
-    livingroompi: !secret lrpi
-    host: "LivingRoomPi Ping"
+    host: !secret lrpi
+    name: "LivingRoomPi Ping"
   - platform: ping
-    garagepi: !secret garagepi
-    host: "GaragePi Ping"
+    host: !secret garagepi
+    name: "GaragePi Ping"
   - platform: ping
-    bedroompi: !secret bedroompi
-    host: "BedroomPi Ping"
+    host: !secret bedroompi
+    name: "BedroomPi Ping"
   - platform: ping
-    mediavault: !secret mediavault
-    host: "MediaVault Ping"
+    host: !secret mediavault
+    name: "MediaVault Ping"
   - platform: ping
-    mediavault: !secret jet
-    host: "Jet Ping"
+    host: !secret jet
+    name: "Jet Ping"
 
     ##PUMPING SENSORS
 
