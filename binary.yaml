@@ -196,7 +196,7 @@
     host: !secret frontcam_ip
     name: "Front Camera Ping"
   - platform: ping
-  host: !secret mom_ip
+    host: !secret mom_ip
     name: "Mom Phone Ping"
   - platform: ping
     officepi: !secret officepi
