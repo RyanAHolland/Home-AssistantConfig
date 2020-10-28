@@ -293,24 +293,6 @@ climate:
     scan_interval: 10
 
 device_tracker:
-  # - platform: unifi
-  #   username: !secret email
-  #   password: !secret unifi_pass
-  #   host: !secret host_ip
-  #   port: 8443
-  #   verify_ssl: false
-  #   new_device_defaults:
-  #     track_new_devices: true
-  #     hide_if_away: False
-  - platform: ping
-    hosts:
-      mom: !secret mom_ip
-      officepi: !secret officepi
-      livingroompi: !secret lrpi
-      garagepi: !secret garagepi
-      bedroompi: !secret bedroompi
-      mediavault: !secret mediavault
-      jet: !secret jet
   - platform: google_maps
     username: !secret google_user
     # password: !secret google_pass
@@ -318,8 +300,6 @@ device_tracker:
   - platform: tile
     username: !secret email
     password: !secret tile_pass
-
-
 
 ffmpeg:
 
