@@ -186,96 +186,111 @@
         }} minutes and remaining power is {{ states.sensor.ups_battery.state }}%.'
       title: HASS
   id: 4d8a0d8f5387433f970c781a3f8165ef
-- alias: Front Door Notify
+- id: a54a16d899db47c590e712dd64089443
+  alias: Front Door Notify
   trigger:
   - platform: state
     entity_id: binary_sensor.front_door_sensor
     from: 'off'
     to: 'on'
   condition:
-    condition: and
+  - condition: and
     conditions:
     - condition: state
-      entity_id: input_boolean.door_notify_mode
+      entity_id: input_boolean.notification_mode
       state: 'on'
   action:
   - service: media_player.volume_set
     data:
-      entity_id: media_player.kitchen_home
-      volume_level: '.55'
-  - service: tts.google_say
-    entity_id: media_player.kitchen_home
+      entity_id: media_player.kitchen_display
+      volume_level: '.63'
+    entity_id: media_player.kitchen_display
+  - service: media_player.play_media
+    entity_id: media_player.kitchen_display
     data:
-      message: Front Door Opened.
+      media_content_id: http://ryanaholland.com/wp-content/ha/02-front-door-open.mp3
+      media_content_type: music
   - service: media_player.volume_set
     data:
       entity_id: media_player.bedroom_home
-      volume_level: '.55'
-  - service: tts.google_say
+      volume_level: '.63'
+    entity_id: media_player.bedroom_home
+  - service: media_player.play_media
     entity_id: media_player.bedroom_home
     data:
-      message: Front Door Opened.
-  id: a54a16d899db47c590e712dd64089443
-- alias: Back Door Notify
+      media_content_id: http://ryanaholland.com/wp-content/ha/02-front-door-open.mp3
+      media_content_type: music
+  mode: single
+- id: 7872d809ff9c47a19aacf8cd947a6c5a
+  alias: Back Door Notify
   trigger:
   - platform: state
     entity_id: binary_sensor.back_door_sensor
     from: 'off'
     to: 'on'
   condition:
-    condition: and
+  - condition: and
     conditions:
     - condition: state
-      entity_id: input_boolean.door_notify_mode
+      entity_id: input_boolean.notification_mode
       state: 'on'
   action:
   - service: media_player.volume_set
     data:
       entity_id: media_player.kitchen_home
       volume_level: '.63'
-  - service: tts.google_say
-    entity_id: media_player.kitchen_home
+    entity_id: media_player.kitchen_display
+  - service: media_player.play_media
+    entity_id: media_player.kitchen_display
     data:
-      message: Back Door Opened.
+      media_content_id: http://ryanaholland.com/wp-content/ha/03-back-door-open.mp3
+      media_content_type: music
   - service: media_player.volume_set
     data:
       entity_id: media_player.bedroom_home
       volume_level: '.63'
-  - service: tts.google_say
+    entity_id: media_player.bedroom_home
+  - service: media_player.play_media
     entity_id: media_player.bedroom_home
     data:
-      message: Back Door Opened.
-  id: 7872d809ff9c47a19aacf8cd947a6c5a
-- alias: Garage Door Notify
+      media_content_id: http://ryanaholland.com/wp-content/ha/03-back-door-open.mp3
+      media_content_type: music
+  mode: single
+- id: a50aad33af6341bdb384b2b332441c1c
+  alias: Garage Door Notify
   trigger:
   - platform: state
     entity_id: binary_sensor.garage_entry_sensor
     from: 'off'
     to: 'on'
   condition:
-    condition: and
+  - condition: and
     conditions:
     - condition: state
-      entity_id: input_boolean.door_notify_mode
+      entity_id: input_boolean.notification_mode
       state: 'on'
   action:
   - service: media_player.volume_set
     data:
       entity_id: media_player.kitchen_home
       volume_level: '.63'
-  - service: tts.google_say
-    entity_id: media_player.kitchen_home
+    entity_id: media_player.kitchen_display
+  - service: media_player.play_media
+    entity_id: media_player.kitchen_display
     data:
-      message: Garage Entry Door Opened.
+      media_content_id: http://ryanaholland.com/wp-content/ha/garage-door-open.mp3
+      media_content_type: music
   - service: media_player.volume_set
     data:
       entity_id: media_player.bedroom_home
       volume_level: '.63'
-  - service: tts.google_say
+    entity_id: media_player.bedroom_home
+  - service: media_player.play_media
     entity_id: media_player.bedroom_home
     data:
-      message: Garage Entry Door Opened.
-  id: a50aad33af6341bdb384b2b332441c1c
+      media_content_id: http://ryanaholland.com/wp-content/ha/garage-door-open.mp3
+      media_content_type: music
+  mode: single
 - alias: Liam's Door Notify
   trigger:
   - platform: state
