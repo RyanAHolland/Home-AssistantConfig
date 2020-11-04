@@ -324,9 +324,8 @@ proximity:
     unit_of_measurement: mi
    
 telegram_bot: 
-  - platform: webhooks 
+  - platform: polling 
     api_key: !secret telegram_api
-    url: https://hollandhaus.duckdns.org
     allowed_chat_ids: 
       - !secret telegram_ryan
 
@@ -392,7 +391,7 @@ vacuum:
   host: !secret max_ip
   token: !secret roborock
 
-text_input:
+input_text:
   last_telegram:
     name: "Last Telegram Message ID"
     initial: ""
