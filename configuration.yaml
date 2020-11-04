@@ -391,7 +391,7 @@ vacuum:
   host: !secret max_ip
   token: !secret roborock
 
-text_input:
+input_text:
   last_telegram:
     name: "Last Telegram Message ID"
     initial: ""
