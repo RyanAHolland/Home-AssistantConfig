@@ -187,7 +187,7 @@
       title: HASS
   id: 4d8a0d8f5387433f970c781a3f8165ef
 - id: a54a16d899db47c590e712dd64089443
-  alias: Front Door Notify
+  alias: Notify - Audio - Front Door
   trigger:
   - platform: state
     entity_id: binary_sensor.front_door_sensor
@@ -222,7 +222,7 @@
       media_content_type: music
   mode: single
 - id: 7872d809ff9c47a19aacf8cd947a6c5a
-  alias: Back Door Notify
+  alias: Notify - Audio - Back Door
   trigger:
   - platform: state
     entity_id: binary_sensor.back_door_sensor
@@ -257,7 +257,7 @@
       media_content_type: music
   mode: single
 - id: a50aad33af6341bdb384b2b332441c1c
-  alias: Garage Door Notify
+  alias: Notify - Audio - Garage Door
   trigger:
   - platform: state
     entity_id: binary_sensor.garage_entry_sensor
@@ -384,26 +384,28 @@
     service: homeassistant.turn_off
     entity_id: script.guestmodeaway
   id: 27d7d2a91eaa49f9a11690e3606bbf43
-- action:
-  - data:
-      name: slate
-    service: frontend.set_theme
-  alias: Interface Night Mode
-  condition: []
+- id: 6954d572deee4e438667c88c5aba0c4d
+  alias: Time - Theme - Interface Night Mode
   trigger:
   - event: sunset
     platform: sun
-  id: 6954d572deee4e438667c88c5aba0c4d
-- action:
-  - data:
-      name: clear
-    service: frontend.set_theme
-  alias: Interface Default
   condition: []
+  action:
+  - data:
+      name: slate
+    service: frontend.set_theme
+  mode: single
+- id: cea1720367be42679a6a3b94f7f8778c
+  alias: Time - Theme - Interface Default
   trigger:
   - event: sunrise
     platform: sun
-  id: cea1720367be42679a6a3b94f7f8778c
+  condition: []
+  action:
+  - data:
+      name: clear
+    service: frontend.set_theme
+  mode: single
 - alias: Update Last Motion
   trigger:
   - platform: state
@@ -764,7 +766,8 @@
   - service: notify.telegram
     data:
       title: SHM
-      message: The alarm has be disarmed.
+      message: The alarm has been disarmed.
+  mode: single
 - id: bedroom_home_alarm
   alias: Google Home Alarm Light Control
   trigger:
@@ -786,34 +789,6 @@
     data:
       message: HA - Nursing lights have been turned on in the bedroom.
       title: Nursing Lights
-- id: twin_camera_br
-  alias: Cast Twin Camera to Bedroom
-  trigger:
-  - platform: state
-    entity_id: input_boolean.cast_twins_bedroom
-  action:
-  - service: media_player.turn_on
-    entity_id: media_player.bedroom_tv
-  - delay:
-      seconds: 3
-  - service: camera.play_stream
-    data:
-      entity_id: camera.twins_s_camera_snapshot
-      media_player: media_player.bedroom_tv
-- id: front_camera_lr
-  alias: Cast Front Camera to Living Room
-  trigger:
-  - platform: state
-    entity_id: input_boolean.cast_front_lr
-  action:
-  - service: media_player.turn_on
-    entity_id: media_player.living_room_chromecast
-  - delay:
-      seconds: 3
-  - service: camera.play_stream
-    data:
-      entity_id: camera.front_door_camera
-      media_player: media_player.living_room_chromecast
 - id: ryan_bt_home
   alias: Ryan BT Occupancy On
   trigger:
@@ -925,3 +900,19 @@
       entity_id: light.liam_lamp
       transition: 15
     service: python_script.fade_in_light_2
+- id: '1604491986352'
+  alias: Event - Telegram - Test
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /ping
+      user_id:
+      ommand: /ping
+  condition: []
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: pong
+  mode: single
