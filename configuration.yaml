@@ -324,7 +324,7 @@ proximity:
     unit_of_measurement: mi
    
 telegram_bot: 
-  - platform: polling 
+  - platform: webhooks 
     api_key: !secret telegram_api 
     allowed_chat_ids: 
       - !secret telegram_ryan
