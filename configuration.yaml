@@ -326,7 +326,7 @@ proximity:
 telegram_bot: 
   - platform: webhooks 
     api_key: !secret telegram_api
-    url: https://hollandhaus.duckdns.org:8123
+    url: https://hollandhaus.duckdns.org
     allowed_chat_ids: 
       - !secret telegram_ryan
 
@@ -391,6 +391,11 @@ vacuum:
   platform: xiaomi_miio
   host: !secret max_ip
   token: !secret roborock
+
+text_input:
+  last_telegram:
+    name: "Last Telegram Message ID"
+    initial: ""
 
 ####################################################
 #                                                  #
