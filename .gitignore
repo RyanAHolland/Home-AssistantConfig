@@ -4,6 +4,7 @@
 !.gitignore
 !automation\*
 !archive\*
+automation.yaml
 secrets.yaml
 known_devices.yaml
 README.md
