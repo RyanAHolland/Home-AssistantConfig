@@ -325,7 +325,8 @@ proximity:
    
 telegram_bot: 
   - platform: webhooks 
-    api_key: !secret telegram_api 
+    api_key: !secret telegram_api
+    url: https://hollandhaus.duckdns.org:8123
     allowed_chat_ids: 
       - !secret telegram_ryan
 
