@@ -400,16 +400,13 @@ input_text:
 var:
   last_door:
     friendly_name: 'Last Door Opened'
-    inital_value: ''
     icon: mdi:door
   last_motion:
     friendly_name: 'Last Motion Tripped'
-    inital_value: ''
     icon: mdi:motion-sensor
   last_window:
-      friendly_name: 'Last Window Opened'
-      inital_value: ''
-      icon: mdi:window
+    friendly_name: 'Last Window Opened'
+    icon: mdi:window
 
 ####################################################
 #                                                  #
