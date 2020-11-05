@@ -396,6 +396,21 @@ input_text:
     name: "Last Telegram Message ID"
     initial: ""
 
+#Variable Custom Component
+var:
+  last_door:
+    friendly_name: 'Last Door Opened'
+    inital_value: ''
+    icon: mdi:door
+  last_motion:
+    friendly_name: 'Last Motion Tripped'
+    inital_value: ''
+    icon: mdi:motion-sensor
+  last_window:
+      friendly_name: 'Last Window Opened'
+      inital_value: ''
+      icon: mdi:window
+
 ####################################################
 #                                                  #
 #                     Includes                     #
