@@ -220,8 +220,10 @@ media_player:
 #   - host: !secret roku_three
 
 webostv:
-  host: !secret play_tv_ip
-  name: Play Room TV
+  - host: !secret play_tv_ip
+    name: Play Room TV
+  - host: !secret lr_tv_ip
+    name: Living Room TV
 
 # nest:
 #  client_id: !secret nest_id
@@ -400,16 +402,13 @@ input_text:
 var:
   last_door:
     friendly_name: 'Last Door Opened'
-    inital_value: ''
     icon: mdi:door
   last_motion:
     friendly_name: 'Last Motion Tripped'
-    inital_value: ''
     icon: mdi:motion-sensor
   last_window:
-      friendly_name: 'Last Window Opened'
-      inital_value: ''
-      icon: mdi:window
+    friendly_name: 'Last Window Opened'
+    icon: mdi:window
 
 ####################################################
 #                                                  #
