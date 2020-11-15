@@ -194,7 +194,28 @@
     name: "Rachio Ping"
   - platform: ping
     host: !secret frontcam_ip
-    name: "Front Camera Ping"  
+    name: "Front Camera Ping"
+  - platform: ping
+    host: !secret mom_ip
+    name: "Mom Phone Ping"
+  - platform: ping
+    host: !secret officepi
+    name: "OfficePi Ping"
+  - platform: ping
+    host: !secret lrpi
+    name: "LivingRoomPi Ping"
+  - platform: ping
+    host: !secret garagepi
+    name: "GaragePi Ping"
+  - platform: ping
+    host: !secret bedroompi
+    name: "BedroomPi Ping"
+  - platform: ping
+    host: !secret mediavault
+    name: "MediaVault Ping"
+  - platform: ping
+    host: !secret jet
+    name: "Jet Ping"
 
     ##PUMPING SENSORS
 

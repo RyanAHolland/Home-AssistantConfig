@@ -281,8 +281,6 @@ tts:
     cache_dir: /tmp/tts
     time_memory: 300
     base_url: http://192.168.1.5:8123
-    service_name: google_say
-
 #google_assistant:
 #  project_id: !secret ga_project
 #  client_id: !secret ga_id
@@ -297,24 +295,6 @@ climate:
     scan_interval: 10
 
 device_tracker:
-  # - platform: unifi
-  #   username: !secret email
-  #   password: !secret unifi_pass
-  #   host: !secret host_ip
-  #   port: 8443
-  #   verify_ssl: false
-  #   new_device_defaults:
-  #     track_new_devices: true
-  #     hide_if_away: False
-  - platform: ping
-    hosts:
-      mom: !secret mom_ip
-      officepi: !secret officepi
-      livingroompi: !secret lrpi
-      garagepi: !secret garagepi
-      bedroompi: !secret bedroompi
-      mediavault: !secret mediavault
-      jet: !secret jet
   - platform: google_maps
     username: !secret google_user
     # password: !secret google_pass
@@ -322,8 +302,6 @@ device_tracker:
   - platform: tile
     username: !secret email
     password: !secret tile_pass
-
-
 
 ffmpeg:
 
@@ -349,7 +327,7 @@ proximity:
    
 telegram_bot: 
   - platform: polling 
-    api_key: !secret telegram_api 
+    api_key: !secret telegram_api
     allowed_chat_ids: 
       - !secret telegram_ryan
 
@@ -409,6 +387,28 @@ circadian_lighting:
 wyzeapi:
   username: !secret email
   password: !secret wyze_pass
+
+vacuum:
+  platform: xiaomi_miio
+  host: !secret max_ip
+  token: !secret roborock
+
+input_text:
+  last_telegram:
+    name: "Last Telegram Message ID"
+    initial: ""
+
+#Variable Custom Component
+var:
+  last_door:
+    friendly_name: 'Last Door Opened'
+    icon: mdi:door
+  last_motion:
+    friendly_name: 'Last Motion Tripped'
+    icon: mdi:motion-sensor
+  last_window:
+    friendly_name: 'Last Window Opened'
+    icon: mdi:window
 
 ####################################################
 #                                                  #

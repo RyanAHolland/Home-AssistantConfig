@@ -54,7 +54,8 @@ cast_front_lr:
     name: Cast Front Camera to Living Room
     initial: off
     icon: mdi:camera-wireless
-Notification_Mode:
+notification_mode:
+    name: Notification Mode
     initial: off
     icon: mdi:surround-sound
 cir_office_lights:
