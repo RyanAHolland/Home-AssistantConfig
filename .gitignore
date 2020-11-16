@@ -5,6 +5,7 @@
 !automation\*
 !archive\*
 automation.yaml
+customize.yaml
 secrets.yaml
 known_devices.yaml
 README.md

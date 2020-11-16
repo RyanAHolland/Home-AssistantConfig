@@ -163,7 +163,7 @@
      - tonbatt
 # Tracking Ryan to Home
  - platform: waze_travel_time
-   origin: device_tracker.google_maps_118314383764095593834
+   origin: device_tracker.google_maps_thehollandhaus_gmail_com
    name: Ryan To Home
    destination: zone.home
    region: 'US'
@@ -171,7 +171,7 @@
  - platform: waze_travel_time
    name: Ryan To Work
    region: 'US'
-   origin: device_tracker.google_maps_118314383764095593834
+   origin: device_tracker.google_maps_thehollandhaus_gmail_com
    destination: zone.pivot
 # Tracking Kristi to Home
  - platform: waze_travel_time
