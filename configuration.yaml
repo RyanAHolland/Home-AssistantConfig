@@ -14,6 +14,7 @@ homeassistant:
   # metric for Metric, imperial for Imperial
   unit_system: imperial
   time_zone: America/Chicago
+  customize: !include customize.yaml
 
 ##Enable cloud
 cloud:
@@ -463,6 +464,3 @@ rest_command: !include rest.yaml
 
 ##cameras
 camera: !include cameras.yaml
-
-##Customize
-customize: !include customize.yaml
