@@ -164,9 +164,9 @@ christmas lights:
     name: Christmas Lights
     entities:
       - switch.downpump_relay
-      - switch.mantle_lights
-      - switch.liams_tree
-      - switch.basement_tv
+      - switch.wemo_1
+      - light.stair_lamp
+      - switch.living_room_plug_switch
 
 dining_room:
     name: Dining Room
