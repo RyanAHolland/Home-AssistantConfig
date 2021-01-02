@@ -409,6 +409,20 @@ var:
   last_window:
     friendly_name: 'Last Window Opened'
     icon: mdi:window
+    
+calendar:
+  - platform: todoist
+    token: !secret todoist_api
+    custom_projects:
+      - name: 'Overdue'
+        due_date_days: -7
+      - name: 'Due Today'
+        due_date_days: 0
+      - name: 'Due This Week'
+        due_date_days: 7
+      - name: 'Calls'
+        labels:
+          - call
 
 ####################################################
 #                                                  #
