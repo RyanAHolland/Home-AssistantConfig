@@ -40,7 +40,8 @@
       - alerts
 
  #National Weather Alerts
-
+ - platform: socialblade
+   channel_id: !secret yt_tsh
 
  - platform: rest
    resource: https://api.weather.gov/alerts/active/count
