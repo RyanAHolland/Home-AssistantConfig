@@ -43,6 +43,14 @@
  - platform: socialblade
    channel_id: !secret yt_tsh
 
+ - platform: yahoofinance
+   symbols:
+     - LLNW
+     - PFE
+     - CNK
+     - VTRS
+     - VBILX
+
  - platform: rest
    resource: https://api.weather.gov/alerts/active/count
    name: NWS Alert Count
