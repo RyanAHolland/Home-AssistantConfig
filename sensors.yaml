@@ -50,6 +50,7 @@
      - CNK
      - VTRS
      - VBILX
+   show_trending_icon: true
 
  - platform: rest
    resource: https://api.weather.gov/alerts/active/count
