@@ -130,6 +130,16 @@
      - 'swap_use_percent'
      - 'processor_load'
 
+ - platform: mqtt
+   state_topic: "homeassistant/sensor/log_onenote/url"
+   name: "Daily Log Onenote URL"
+   qos: 0
+
+ - platform: mqtt
+   state_topic: "homeassistant/sensor/log_notion/url"
+   name: "Daily Log Notion URL"
+   qos: 0
+
 #  - platform: rest
 #    resource: !secret glances_path_fs
 #    name: Video Drive Percent
