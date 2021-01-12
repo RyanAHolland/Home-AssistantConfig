@@ -397,6 +397,9 @@ input_text:
   last_telegram:
     name: "Last Telegram Message ID"
     initial: ""
+  ryan_steps:
+    name: "Ryans's Steps"
+    initial: ""
 
 #Variable Custom Component
 var:
