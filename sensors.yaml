@@ -140,6 +140,16 @@
    name: "Daily Log Notion URL"
    qos: 0
 
+ - platform: mqtt
+   state_topic: "homeassistant/binary_sensor/log_notion/complete"
+   name: "Daily Log Notion Complete"
+   qos: 0
+
+ - platform: mqtt
+   state_topic: "homeassistant/binary_sensor/log_onenote/complete"
+   name: "Daily Log OneNote Complete"
+   qos: 0
+
  - platform: google_fit
    name: Google Fit
    client_id: !secret google_id
