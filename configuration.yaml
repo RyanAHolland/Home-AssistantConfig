@@ -20,7 +20,13 @@ homeassistant:
 cloud:
 
 influxdb:
-  host: 192.168.1.250
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: hassio
+  max_retries: 3
+  default_measurement: state
 
 # Show links to resources in log and frontend
 # introduction:
@@ -59,7 +65,7 @@ logbook:
 
 ##Enable Recorder for Persistant input_select
 recorder:
-  purge_interval: 2
+  purge_interval: 1
   purge_keep_days: 5
 
 # Track the sun
@@ -384,9 +390,9 @@ circadian_lighting:
   sunrise_offset: +01:00:00
   sunset_offset: -01:00:00
 
-wyzeapi:
-  username: !secret email
-  password: !secret wyze_pass
+#wyzeapi:
+#  username: !secret email
+#  password: !secret wyze_pass
 
 vacuum:
   platform: xiaomi_miio
