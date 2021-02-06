@@ -83,9 +83,9 @@ wemo:
     - 192.168.1.67
 
 #Config for Zwave (added via interface)
-zwave:
-  polling_interval: 30000
-  config_path: /config/zwave/config
+#zwave:
+#  polling_interval: 30000
+#  config_path: /config/zwave/config
   
 #Python Scripting
 python_script:
