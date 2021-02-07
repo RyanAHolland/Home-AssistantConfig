@@ -14,7 +14,8 @@ homeassistant:
   # metric for Metric, imperial for Imperial
   unit_system: imperial
   time_zone: America/Chicago
-  customize: !include customize.yaml
+  auth_mfa_modules:
+    - type: totp
 
 ##Enable cloud
 cloud:
@@ -83,9 +84,9 @@ wemo:
     - 192.168.1.67
 
 #Config for Zwave (added via interface)
-zwave:
-  polling_interval: 30000
-  config_path: /config/zwave/config
+#zwave:
+#  polling_interval: 30000
+#  config_path: /config/zwave/config
   
 #Python Scripting
 python_script:
@@ -438,6 +439,8 @@ calendar:
 #                     Includes                     #
 #                                                  #
 ####################################################
+##Customize
+customize: !include customize.yaml
 
 ##Zones
 zone: !include zones.yaml
