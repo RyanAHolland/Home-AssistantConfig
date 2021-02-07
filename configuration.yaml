@@ -14,6 +14,8 @@ homeassistant:
   # metric for Metric, imperial for Imperial
   unit_system: imperial
   time_zone: America/Chicago
+  ##Customize
+  customize: !include customize.yaml
   auth_mfa_modules:
     - type: totp
 
@@ -439,8 +441,7 @@ calendar:
 #                     Includes                     #
 #                                                  #
 ####################################################
-##Customize
-customize: !include customize.yaml
+
 
 ##Zones
 zone: !include zones.yaml
