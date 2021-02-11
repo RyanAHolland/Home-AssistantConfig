@@ -201,6 +201,10 @@ input_datetime:
     name: Liam's Night Light
     has_date: false
     has_time: true
+  nursery_night_light:
+    name: Nursery Night Light
+    has_date: false
+    has_time: true
 
 ifttt:
   key: !secret ifttt_key
@@ -346,11 +350,11 @@ telegram_bot:
 #     icon: mdi:graph
 #     url: "https://hollandhaus.duckdns.org:3000"
 
-panel_custom:
-  - name: zwavegraph2
-    sidebar_title: ZWave Graph2
-    sidebar_icon: mdi:access-point-network
-    url_path: zwave
+#panel_custom:
+#  - name: zwavegraph2
+#    sidebar_title: ZWave Graph2
+#    sidebar_icon: mdi:access-point-network
+#    url_path: zwave
     
 timer:
   zigbee_permit_join:
