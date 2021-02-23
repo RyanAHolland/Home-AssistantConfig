@@ -239,13 +239,17 @@ webostv:
     name: Living Room TV
 
 # nest:
-#  client_id: !secret nest_id
-#  client_secret: !secret nest_secret
-
-badnest:
-  issue_token: !secret new_nest_token
-  cookie: !secret new_nest_cookie
-  region: us
+  client_id: !secret o_nest_client_id
+  client_secret: !secret o_nest_client_secret
+  # "Project ID" in the Device Access Console
+  project_id: !secret o_nest_project_id
+  # Provide the full path exactly as shown under "Subscription name" in Google Cloud Console
+  subscriber_id: !secret o_nest_sub_id
+  
+#badnest:
+  #issue_token: !secret new_nest_token
+  #cookie: !secret new_nest_cookie
+  #region: us
 
 ##Google for Google Calendar
 # google:
