@@ -243,8 +243,8 @@ webostv:
 #  client_secret: !secret nest_secret
 
 badnest:
-  user_id: !secret new_nest_token
-  access_token: !secret new_nest_cookie
+  issue_token: !secret new_nest_token
+  cookie: !secret new_nest_cookie
   region: us
 
 ##Google for Google Calendar
