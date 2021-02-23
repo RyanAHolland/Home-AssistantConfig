@@ -238,7 +238,7 @@ webostv:
   - host: !secret lr_tv_ip
     name: Living Room TV
 
-# nest:
+nest:
   client_id: !secret o_nest_client_id
   client_secret: !secret o_nest_client_secret
   # "Project ID" in the Device Access Console
