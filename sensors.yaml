@@ -154,6 +154,13 @@
    name: Google Fit
    client_id: !secret google_id
    client_secret: !secret google_secret
+   
+ - platform: template
+   sensors:
+     google_fit_weight_lbs:
+       value_template: '{{ states("sensor.google_fit_weight") | multiply(2.205) | round(1, "half")'
+       unit_of_measurement: 'lb'
+       friendly_name: "Google Fit Weight (ft)"   
 
 #  - platform: rest
 #    resource: !secret glances_path_fs
