@@ -304,7 +304,7 @@ tts:
 #  access_token: !secret ga_token
 
 shell_command:
-  get_latest_config: bash /home/homeassistant/.homeassistant/bin/update_config_from_github.sh
+  notioninbox: 'curl http://192.168.1.250:5000/notioninbox?title=\"{{title}}\"'
 
 climate:
 #  - platform: nest
