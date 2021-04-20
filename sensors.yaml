@@ -50,6 +50,7 @@
      - CNK
      - VTRS
      - VBILX
+     - DOGE-USD
    show_trending_icon: true
 
  - platform: rest
