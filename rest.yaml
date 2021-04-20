@@ -25,3 +25,8 @@ daily_bujo:
   url: 'http://192.168.1.250:5000/newbujo'
   method: POST
   
+notioninbox:
+  url: 'http://192.168.1.250:5000/notioninbox'
+  method: POST
+  content_type:  'application/json'
+  payload: '{"title": "{{ title }}"}'

@@ -352,3 +352,5 @@ device_tracker.kristi_bt:
 device_tracker.ryans_bt:
   friendly_name: Ryan BT Tracker
   source_type: bluetooth
+binary_sensor.garage_entry_door:
+  device_class: door

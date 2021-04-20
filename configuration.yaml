@@ -38,7 +38,7 @@ http:
   # api_password: !secret api_password
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
-  base_url: !secret base_url
+#  base_url: !secret base_url
 #  trusted_networks:
 #    - 192.168.1.0/24
 
@@ -297,15 +297,15 @@ tts:
     cache: true
     cache_dir: /tmp/tts
     time_memory: 300
-    base_url: http://192.168.1.5:8123
+    base_url: !secret base_url
 #google_assistant:
 #  project_id: !secret ga_project
 #  client_id: !secret ga_id
 #  access_token: !secret ga_token
 
 shell_command:
-  get_latest_config: bash /home/homeassistant/.homeassistant/bin/update_config_from_github.sh
-
+  notioninbox: 'curl http://192.168.1.250:5000/notioninbox?title={{sensor.notion_inbox_title}}'
+  
 climate:
 #  - platform: nest
   - platform: badnest

@@ -916,3 +916,216 @@
     data:
       message: pong
   mode: single
+- id: '1610647516392'
+  alias: Incoming from Flow
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: onenote_flow
+  condition: []
+  action:
+  - service: mqtt.publish
+    data:
+      payload: '{{ trigger.json.url }}'
+      topic: homeassistant/sensor/log_onenote/url
+      retain: 'true'
+  mode: single
+- id: '1610662387811'
+  alias: Catch Daily Notion
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: notion_log
+  condition: []
+  action:
+  - service: mqtt.publish
+    data:
+      payload: '{{ trigger.json.url }}'
+      topic: homeassistant/sensor/log_notion/url
+      retain: 'true'
+  - service: mqtt.publish
+    data:
+      payload: '1'
+      topic: homeassistant/binary_sensor/log_notion/complete
+      retain: 'true'
+  mode: single
+- id: '1610811531934'
+  alias: Activate Notion Daily
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: ''
+  condition: []
+  action:
+  - service: rest_command.daily_bujo
+    data: {}
+  mode: single
+- id: '1610901632834'
+  alias: Clear Vars
+  description: ''
+  trigger:
+  - platform: time
+    at: 00:00
+  condition: []
+  action:
+  - service: mqtt.publish
+    data:
+      topic: homeassistant/binary_sensor/log_notion/complete
+      payload: 0
+  - service: mqtt.publish
+    data:
+      topic: homeassistant/binary_sensor/log_onenote/complete
+      payload: 0
+  mode: single
+- id: '1611629016455'
+  alias: Daily Host Reboot
+  description: ''
+  trigger:
+  - platform: time
+    at: '15:00'
+  condition: []
+  action:
+  - service: hassio.host_reboot
+    data: {}
+  mode: single
+- id: '1615221849382'
+  alias: Catch Notion Inbox from API
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: notioninbox
+  condition: []
+  action:
+  - service: shell_command.notioninbox
+    data:
+      json_value: '{{ trigger.json.title }}'
+  mode: single
+- id: '1616374518506'
+  alias: Time - Nursery Light On
+  description: ''
+  trigger:
+  - platform: time
+    at: input_datetime.nursery_night_light
+  condition: []
+  action:
+  - service: light.turn_on
+    data: {}
+    entity_id: light.nursery_lamp
+  mode: single
+- id: '1616374610362'
+  alias: Time - Nursery Light Off
+  description: ''
+  trigger:
+  - platform: time
+    at: 08:00
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    entity_id: light.nursery_lamp
+  mode: single
+- id: '1617981339843'
+  alias: Trigger - Office Recording Mode
+  description: ''
+  trigger: []
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: https://thissmart.house/wp-content/uploads/2021/04/VideoLogo.jpg
+      media_content_type: image
+    target:
+      entity_id: media_player.living_room_chromecast
+  mode: single
+- id: '1618011810314'
+  alias: Time - Playroom TV M-T 7:30
+  description: ''
+  trigger:
+  - platform: time
+    at: '7:40'
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  - condition: state
+    entity_id: media_player.play_room_tv_2
+    state: 'on'
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_type: music
+      media_content_id: https://ryanaholland.com/wp-content/uploads/2021/04/LiamTV5Min.mp3
+    target:
+      entity_id: media_player.playroom_home
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - service: media_player.play_media
+    data:
+      media_content_type: music
+      media_content_id: https://ryanaholland.com/wp-content/uploads/2021/04/TVTimeOver.mp3
+    target:
+      entity_id: media_player.playroom_home
+  - service: media_player.turn_off
+    target:
+      entity_id: media_player.play_room_tv_2
+  - service: notify.telegram
+    data:
+      message: 📺Liam's TV has been turned off as requested📺
+  mode: single
+- id: '1618074911650'
+  alias: Trigger - Decorative Remote On
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.decorative_remote_action
+    to: 'on'
+  condition: []
+  action:
+  - service: homeassistant.turn_on
+    target:
+      entity_id: group.decorative
+  mode: single
+- id: '1618075016488'
+  alias: Trigger - Decorative Remote Off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.decorative_remote_action
+    to: 'off'
+  condition: []
+  action:
+  - service: homeassistant.turn_off
+    target:
+      entity_id: group.decorative
+  mode: single
+- id: '1618714203964'
+  alias: Test Light Colors
+  description: ''
+  trigger: []
+  condition: []
+  action:
+  - service: light.turn_on
+    target:
+      entity_id: light.ryan_bloom
+    data:
+      transition: 29
+      color_name: aquamarine
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  - service: light.turn_on
+    target:
+      entity_id: light.ryan_bloom
+    data:
+      color_name: blue
+      transition: 31
+  mode: single
