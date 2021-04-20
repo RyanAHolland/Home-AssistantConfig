@@ -60,7 +60,44 @@
      value_doge:
        value_template: '{{ "{:,.2f}".format(states.sensor.shares_doge.state|float * states.yahoofinance.doge_usd.state|float) }}'
        unit_of_measurement: '$'
-       friendly_name: "Value of DOGE Holdings"   
+       friendly_name: "Value of DOGE Holdings"
+ - platform: template
+   sensors:
+     value_cnk:
+       value_template: '{{ "{:,.2f}".format(states.sensor.shares_cnk.state|float * states.yahoofinance.cnk.state|float) }}'
+       unit_of_measurement: '$'
+       friendly_name: "Value of CNK Holdings"   
+ - platform: template
+   sensors:
+     value_llnw:
+       value_template: '{{ "{:,.2f}".format(states.sensor.shares_llnw.state|float * states.yahoofinance.llnw.state|float) }}'
+       unit_of_measurement: '$'
+       friendly_name: "Value of LLNW Holdings"
+ - platform: template
+   sensors:
+     value_pfe:
+       value_template: '{{ "{:,.2f}".format(states.sensor.shares_pfe.state|float * states.yahoofinance.pfe.state|float) }}'
+       unit_of_measurement: '$'
+       friendly_name: "Value of PFE Holdings"
+ - platform: template
+   sensors:
+     value_tsla:
+       value_template: '{{ "{:,.2f}".format(states.sensor.shares_tsla.state|float * states.yahoofinance.tsla.state|float) }}'
+       unit_of_measurement: '$'
+       friendly_name: "Value of TSLA Holdings"
+ - platform: template
+   sensors:
+     value_vtrs:
+       value_template: '{{ "{:,.2f}".format(states.sensor.shares_vtrs.state|float * states.yahoofinance.vtrs.state|float) }}'
+       unit_of_measurement: '$'
+       friendly_name: "Value of VTRS Holdings"
+ - platform: template
+   sensors:
+     value_total:
+       value_template: '{{ "{:,.2f}".format(states.sensor.value_cnk.state|float + states.sensor.value_doge.state|float + states.sensor.value_llnw.state|float + states.sensor.value_pfe.state|float + states.sensor.value_tsla.state|float + states.sensor.value_vtrs.state|float) }}'
+       unit_of_measurement: '$'
+       friendly_name: "Value of All Stocks"   
+
 
  - platform: rest
    resource: https://api.weather.gov/alerts/active/count
