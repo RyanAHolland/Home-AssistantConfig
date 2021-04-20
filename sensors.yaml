@@ -57,7 +57,7 @@
 ##Math Sensors for Stocks
  - platform: template
    sensors:
-     value_DOGE:
+     value_doge:
        value_template: '{{ "{:,.2f}".format(states.sensor.shares_doge.state|float * states.yahoofinance.doge_usd.state|float) }}'
        unit_of_measurement: '$'
        friendly_name: "Value of DOGE Holdings"   
