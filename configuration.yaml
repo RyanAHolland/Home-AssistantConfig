@@ -367,6 +367,9 @@ timer:
   wax_melter:
     name: Wax Melt Time
     duration: 1800
+  alarm_time:
+    name: Alarm Timer
+    duration: 45
 
 ##Add System Health
 system_health:
