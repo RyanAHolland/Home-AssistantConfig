@@ -229,12 +229,12 @@
      unit_of_measurement: 'cdm/min'
      friendly_name: "Average Current Gas Consumption (10 min)"
      
-  - platform: statistics
-    name: gas_stats
-    entity_id: sensor.gas_meter_reading
-    max_age:
-      minutes: 10
-    friendly_name: "Gas Stats"
+ - platform: statistics
+   name: gas_stats
+   entity_id: sensor.gas_meter_reading
+   max_age:
+     minutes: 10
+   friendly_name: "Gas Stats"
 
 #  - platform: rest
 #    resource: !secret glances_path_fs
