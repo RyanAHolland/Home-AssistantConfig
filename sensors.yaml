@@ -215,6 +215,7 @@
    state_topic: "readings/66154761/meter_reading"
    name: "Gas Meter Reading"
    qos: 0
+   unit_of_measurement: M3
 
 #  - platform: rest
 #    resource: !secret glances_path_fs
