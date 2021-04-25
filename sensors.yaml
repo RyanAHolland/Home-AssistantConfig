@@ -209,6 +209,13 @@
        unit_of_measurement: 'lb'
        friendly_name: "Google Fit Weight (ft)"   
 
+# SDR Meters
+
+ - platform: mqtt
+   state_topic: "readings/66154761/meter_reading"
+   name: "Gas Meter Reading"
+   qos: 0
+
 #  - platform: rest
 #    resource: !secret glances_path_fs
 #    name: Video Drive Percent
