@@ -235,7 +235,6 @@
    entity_id: sensor.gas_meter_reading
    max_age:
      minutes: 10
-   friendly_name: "Gas Stats"
 
 #  - platform: rest
 #    resource: !secret glances_path_fs
