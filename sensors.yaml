@@ -211,6 +211,7 @@
 
 # SDR Meters
 
+##GAS METER
  - platform: mqtt
    state_topic: "readings/66154761/meter_reading"
    name: "Gas Meter Reading"
@@ -219,15 +220,15 @@
    
  - platform: template
    sensors:
-   current_gas_consumption:
-     value_template: >
-       {% if states.sensor.sensor.gas_meter_reading.attributes.min_value | float == 0 %}0
-       {% elif states.sensor.gas_meter_reading.state | float <= states.sensor.gas_stats_mean.attributes.min_value | float %}0
-       {% else %}
-       {{((states.sensor.gas_meter_reading.state | float) - (states.sensor.gas_stats_mean.attributes.min_value | float)) * 1000 / 10 | max (0) | round(2) }}
-       {% endif %}
-     unit_of_measurement: 'cdm/min'
-     friendly_name: "Average Current Gas Consumption (10 min)"
+     current_gas_consumption:
+       value_template: >
+         {% if states.sensor.sensor.gas_meter_reading.attributes.min_value | float == 0 %}0
+         {% elif states.sensor.gas_meter_reading.state | float <= states.sensor.gas_stats_mean.attributes.min_value | float %}0
+         {% else %}
+         {{((states.sensor.gas_meter_reading.state | float) - (states.sensor.gas_stats_mean.attributes.min_value | float)) * 1000 / 10 | max (0) | round(2) }}
+         {% endif %}
+       unit_of_measurement: 'cdm/min'
+       friendly_name: "Average Current Gas Consumption (10 min)"
      
  - platform: statistics
    name: gas_stats
