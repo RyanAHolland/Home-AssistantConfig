@@ -1010,6 +1010,15 @@
  - platform: rest
    resource: https://youtube.googleapis.com/youtube/v3/channels?part=statistics&id=UCGaAf70zQAa01a_r_k1XJ1Q&k
    value_template: "{{ value_json.items.statistics.subscriberCount }}"
+   name: YouTube Subscribers
+   headers:
+     Authorization: Bearer !secret yt_api
+     Accept: application/json
+
+ - platform: rest
+   resource: https://youtube.googleapis.com/youtube/v3/channels?part=statistics&id=UCGaAf70zQAa01a_r_k1XJ1Q&k
+   value_template: "{{ value_json.items.statistics.viewCount }}"
+   name: YouTube Views
    headers:
      Authorization: Bearer !secret yt_api
      Accept: application/json
