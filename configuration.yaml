@@ -66,6 +66,10 @@ map:
 # View all events in a logbook
 logbook:
 
+logs:
+  homeassistant.components.rest_command: debug
+  homeassistant.components.rest_sensor: debug
+
 ##Enable Recorder for Persistant input_select
 recorder:
   purge_interval: 1
