@@ -1008,20 +1008,15 @@
 ##YouTube Information
 
  - platform: rest
-   resource: https://youtube.googleapis.com/youtube/v3/channels?part=statistics&id=UCGaAf70zQAa01a_r_k1XJ1Q&k
+   resource: !secret yt_api
    method: GET
-   name: "YouTube Subscribers"
-   headers:
-     Authorization: !secret yt_api
-     Content-Type: application/json
-   #value_template: '{{ (value_json["items"][0].statistics.subscriberCount | int) }}'
-   scan_interval: 300
+   name: "TSH YouTube Subscribers"
+   value_template: '{{ (value_json["items"][0].statistics.subscriberCount | int) }}'
+   scan_interval: 900
 
  - platform: rest
-   resource: https://youtube.googleapis.com/youtube/v3/channels?part=statistics&id=UCGaAf70zQAa01a_r_k1XJ1Q&k
+   resource: !secret yt_api
    method: GET
-   #value_template: '{{ (value_json["items"][0].statistics.viewCount | int) }}'
-   name: "YouTube Views"
-   headers:
-     Authorization: !secret yt_api
-     Content-Type: application/json
+   value_template: '{{ (value_json["items"][0].statistics.viewCount | int) }}'
+   name: "TSH YouTube Views"
+   scan_interval: 900
