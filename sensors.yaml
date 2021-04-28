@@ -1009,7 +1009,7 @@
 
  - platform: rest
    resource: https://youtube.googleapis.com/youtube/v3/channels?part=statistics&id=UCGaAf70zQAa01a_r_k1XJ1Q&k
-   value_template: "{{ (value_json["items"][0].statistics.subscriberCount | int) }}"
+   value_template: '{{ (value_json["items"][0].statistics.subscriberCount | int) }}'
    name: "YouTube Subscribers"
    headers:
      Authorization: Bearer !secret yt_api
@@ -1017,7 +1017,7 @@
 
  - platform: rest
    resource: https://youtube.googleapis.com/youtube/v3/channels?part=statistics&id=UCGaAf70zQAa01a_r_k1XJ1Q&k
-   value_template: "{{ (value_json["items"][0].statistics.viewCount | int) }}"
+   value_template: '{{ (value_json["items"][0].statistics.viewCount | int) }}'
    name: "YouTube Views"
    headers:
      Authorization: Bearer !secret yt_api
