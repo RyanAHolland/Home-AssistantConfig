@@ -1012,7 +1012,7 @@
    value_template: '{{ (value_json["items"][0].statistics.subscriberCount | int) }}'
    name: "YouTube Subscribers"
    headers:
-     Authorization: Bearer !secret yt_api
+     Authorization: !secret yt_api
      Accept: application/json
 
  - platform: rest
@@ -1020,5 +1020,5 @@
    value_template: '{{ (value_json["items"][0].statistics.viewCount | int) }}'
    name: "YouTube Views"
    headers:
-     Authorization: Bearer !secret yt_api
+     Authorization: !secret yt_api
      Accept: application/json
