@@ -977,3 +977,12 @@
      {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
    # again, if you change base_topic of Zigbee2mqtt, change json_attributes_topic accordingly
    json_attributes_topic: zigbee2mqtt/bridge/networkmap/raw
+
+##YouTube Information
+
+ - platform: rest
+   resource: https://youtube.googleapis.com/youtube/v3/channels?part=statistics&id=UCGaAf70zQAa01a_r_k1XJ1Q&k
+   value_template: "{{ value_json.items.statistics.subscriberCount }}"
+   headers:
+     Authorization: Bearer !secret yt_api
+     Accept: application/json

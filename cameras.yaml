@@ -7,12 +7,9 @@
   # - platform: mjpeg
   #   mjpeg_url: !secret play_cam_url
   #   name: Play Room Camera
-  - platform: mjpeg
-    mjpeg_url: !secret front_cam_url
-    name: Front House Camera
-  - platform: mjpeg
-    mjpeg_url: !secret basement_cam_url
-    name: Basement
+  # - platform: mjpeg
+    # mjpeg_url: !secret basement_cam_url
+    # name: Basement
   # - platform: generic
   #   name: Liam's Camera Snapshot
   #   still_image_url: !secret liam_cam_direct
@@ -55,48 +52,48 @@
   # - platform: mjpeg 
   #   name: Back Deck Camera
   #   mjpeg_url: !secret deck_cam_url
-  - platform: generic
-    name: Back Deck Camera Snapshot
-    authentication: basic
-    still_image_url: !secret deck_cam_direct
-    verify_ssl: false
-    scan_interval: 5
-  - platform: mjpeg
-    mjpeg_url: http://192.168.1.185:81/mjpg/Twins
-    name: Twins Camera
-    username: !secret bi_user
-    password: !secret bi_pass
-    authentication: basic
-  - platform: mjpeg
-    mjpeg_url: http://192.168.1.185:81/mjpg/Entry
-    name: Entry Camera
-    username: !secret bi_user
-    password: !secret bi_pass
-    authentication: basic
-  - platform: mjpeg
-    mjpeg_url: http://192.168.1.185:81/mjpg/Garage
-    name: Garage Camera
-    username: !secret bi_user
-    password: !secret bi_pass
-    authentication: basic
-  - platform: mjpeg
-    mjpeg_url: http://192.168.1.185:81/mjpg/Deck
-    name: Back Deck Camera
-    username: !secret bi_user
-    password: !secret bi_pass
-    authentication: basic
-  - platform: mjpeg
-    mjpeg_url: http://192.168.1.185:81/mjpg/Liam
-    name: Liam's Camera
-    username: !secret bi_user
-    password: !secret bi_pass
-    authentication: basic
-  - platform: mjpeg
-    mjpeg_url: http://192.168.1.185:81/mjpg/Playroom
-    name: Playroom Camera
-    username: !secret bi_user
-    password: !secret bi_pass
-    authentication: basic
+  # - platform: generic
+    # name: Back Deck Camera Snapshot
+    # authentication: basic
+    # still_image_url: !secret deck_cam_direct
+    # verify_ssl: false
+    # scan_interval: 5
+  # - platform: mjpeg
+    # mjpeg_url: http://192.168.1.185:81/mjpg/Twins
+    # name: Twins Camera
+    # username: !secret bi_user
+    # password: !secret bi_pass
+    # authentication: basic
+  # - platform: mjpeg
+    # mjpeg_url: http://192.168.1.185:81/mjpg/Entry
+    # name: Entry Camera
+    # username: !secret bi_user
+    # password: !secret bi_pass
+    # authentication: basic
+  # - platform: mjpeg
+    # mjpeg_url: http://192.168.1.185:81/mjpg/Garage
+    # name: Garage Camera
+    # username: !secret bi_user
+    # password: !secret bi_pass
+    # authentication: basic
+  # - platform: mjpeg
+    # mjpeg_url: http://192.168.1.185:81/mjpg/Deck
+    # name: Back Deck Camera
+    # username: !secret bi_user
+    # password: !secret bi_pass
+    # authentication: basic
+  # - platform: mjpeg
+    # mjpeg_url: http://192.168.1.185:81/mjpg/Liam
+    # name: Liam's Camera
+    # username: !secret bi_user
+    # password: !secret bi_pass
+    # authentication: basic
+  # - platform: mjpeg
+    # mjpeg_url: http://192.168.1.185:81/mjpg/Playroom
+    # name: Playroom Camera
+    # username: !secret bi_user
+    # password: !secret bi_pass
+    # authentication: basic
   # - platform: ring
   # - platform: usps
   #   scan_interval: 5
@@ -112,3 +109,35 @@
     draw: ['all']
     attributes:
       - calibration_points   
+##Tiny Cam 
+  - platform: mjpeg
+    mjpeg_url: !secret twin_cam_url
+    name: Twin's Camera
+    
+  - platform: mjpeg
+    mjpeg_url: !secret driveway_cam_url
+    name: Driveway Camera
+    
+  - platform: mjpeg
+    mjpeg_url: !secret liam_cam_url
+    name: Liam's Camera
+    
+  - platform: mjpeg
+    mjpeg_url: !secret garage_cam_url
+    name: Garage Camera
+    
+  - platform: mjpeg
+    mjpeg_url: !secret back_deck_cam_url
+    name: Back Deck Camera
+    
+  - platform: mjpeg
+    mjpeg_url: !secret entry_cam_url
+    name: Entry Way Camera
+    
+  - platform: mjpeg
+    mjpeg_url: !secret playroom_cam_url
+    name: Playroom Camera
+    
+  - platform: mjpeg
+    mjpeg_url: !secret front_basement_cam_url
+    name: Front Basement Camera
