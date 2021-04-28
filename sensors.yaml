@@ -1014,13 +1014,13 @@
    headers:
      Authorization: !secret yt_api
      Content-Type: application/json
-   value_template: '{{ (value_json["items"][0].statistics.subscriberCount | int) }}'
+   #value_template: '{{ (value_json["items"][0].statistics.subscriberCount | int) }}'
    scan_interval: 300
 
  - platform: rest
    resource: https://youtube.googleapis.com/youtube/v3/channels?part=statistics&id=UCGaAf70zQAa01a_r_k1XJ1Q&k
    method: GET
-   value_template: '{{ (value_json["items"][0].statistics.viewCount | int) }}'
+   #value_template: '{{ (value_json["items"][0].statistics.viewCount | int) }}'
    name: "YouTube Views"
    headers:
      Authorization: !secret yt_api
