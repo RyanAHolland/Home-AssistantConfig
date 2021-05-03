@@ -563,3 +563,51 @@ trigger_cast_in_office:
   alias: Trigger Cast in Office
   sequence: []
   mode: single
+office_lights_on:
+  alias: Office Lights On
+  sequence:
+  - type: turn_on
+    device_id: a823476b216c4c1b98d168803ea9fe62
+    entity_id: light.office_lamp
+    domain: light
+  - type: turn_on
+    device_id: f7e05225909d433abf95f1f0fac2969b
+    entity_id: light.spare_bedroom_1
+    domain: light
+  - type: turn_on
+    device_id: 08a32ba1388b4fdba9ad6d6b7927341a
+    entity_id: light.spare_bedroom_2
+    domain: light
+  - service: light.turn_on
+    target:
+      entity_id: light.office_wall_wash
+    data:
+      brightness_pct: 100
+      transition: 13
+      effect: random
+  - service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.cir_office_lights
+  mode: single
+office_lights_off:
+  alias: Office Lights Off
+  sequence:
+  - type: turn_off
+    device_id: a823476b216c4c1b98d168803ea9fe62
+    entity_id: light.office_lamp
+    domain: light
+  - type: turn_off
+    device_id: f7e05225909d433abf95f1f0fac2969b
+    entity_id: light.spare_bedroom_1
+    domain: light
+  - type: turn_off
+    device_id: 08a32ba1388b4fdba9ad6d6b7927341a
+    entity_id: light.spare_bedroom_2
+    domain: light
+  - service: light.turn_off
+    data:
+      transition: 10
+    target:
+      entity_id: light.office_wall_wash
+  - service: input_boolean.turn_off
+  mode: single
