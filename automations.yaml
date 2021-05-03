@@ -1129,3 +1129,23 @@
       color_name: blue
       transition: 31
   mode: single
+- id: '1619643784536'
+  alias: Webhook - Run Office On Script
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: officeon
+  condition: []
+  action:
+  - service: script.office_lights_on
+  mode: single
+- id: '1619644000599'
+  alias: Webhook - Run Office Off Script
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: officeoff
+  condition: []
+  action:
+  - service: script.office_lights_off
+  mode: single

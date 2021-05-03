@@ -1,7 +1,5 @@
 ### CONFIGURATION ###
 
-
-
 ## GENERAL ##
 homeassistant:
   # Name of the location where Home Assistant is running
@@ -23,7 +21,7 @@ homeassistant:
 cloud:
 
 influxdb:
-  host: a0d7b954-influxdb
+  host: a0d7b954_influxdb
   port: 8086
   database: homeassistant
   username: homeassistant
@@ -42,14 +40,11 @@ http:
 #  trusted_networks:
 #    - 192.168.1.0/24
 
-
-
 # Checks for available updates
 updater:
 
 # Discover some devices automatically
 discovery:
-
 
 # Add Config Panel
 config:
@@ -76,7 +71,7 @@ sun:
 
 ios:
 
-mobile_app: 
+mobile_app:
 
 #Add WeMo
 wemo:
@@ -89,7 +84,7 @@ wemo:
 #zwave:
 #  polling_interval: 30000
 #  config_path: /config/zwave/config
-  
+
 #Python Scripting
 python_script:
 
@@ -98,97 +93,97 @@ input_select:
   home_status:
     name: Status of House
     options:
-    - Home
-    - Away
-    - Vacation
-    - Sleep
+      - Home
+      - Away
+      - Vacation
+      - Sleep
     icon: mdi:House
 
   washing_machine_status:
     name: Washing Machine
     options:
-    - Idle
-    - Running
-    - Clean
+      - Idle
+      - Running
+      - Clean
     icon: mdi:washing-machine
 
   dryer_status:
     name: Dryer
     options:
-    - Idle
-    - Running
-    - Clean
+      - Idle
+      - Running
+      - Clean
     icon: mdi:tumble-dryer
 
   dishwasher_status:
     name: Dishwasher
     options:
-    - Idle
-    - Running
-    - Clean
+      - Idle
+      - Running
+      - Clean
     icon: mdi:dishwasher
 
   chromebook_status:
     name: Chromebook
     options:
-    - Unplugged
-    - Charging
-    - PluggedIn
+      - Unplugged
+      - Charging
+      - PluggedIn
     icon: mdi:laptop-chromebook
 
   ryan_phone_status:
     name: Ryans Phone Status
     options:
-    - On Battery
-    - Charging
-    - Low Battery
-    - In Car
-    - Sleep
+      - On Battery
+      - Charging
+      - Low Battery
+      - In Car
+      - Sleep
     initial: On Battery
     icon: mdi:cellphone-android
 
   kristi_phone_status:
     name: Kristis Phone Status
     options:
-    - On Battery
-    - Charging
-    - Low Battery
-    - In Car
-    - Sleep
+      - On Battery
+      - Charging
+      - Low Battery
+      - In Car
+      - Sleep
     initial: On Battery
     icon: mdi:cellphone-android
 
   gmusic_playlists:
     name: Google Music Playlist
     options:
-    - Thumbs Up
-    - Yoga
-    - Deep Beats
-    - Worship
-    - Morning Flow
-    - Meditate Nature
-    - TransAtlantic Lullaby
-    - SPA Treatment
+      - Thumbs Up
+      - Yoga
+      - Deep Beats
+      - Worship
+      - Morning Flow
+      - Meditate Nature
+      - TransAtlantic Lullaby
+      - SPA Treatment
 
   media_speakers:
     name: Media Speakers
     options:
-    - Home Group
-    - Bedroom Suite
-    - Bedroom Home
-    - Bathroom Home
-    - Office Home
-    - Office Speakers
-    - Kitchen Home
-    - Soundbar
+      - Home Group
+      - Bedroom Suite
+      - Bedroom Home
+      - Bathroom Home
+      - Office Home
+      - Office Speakers
+      - Kitchen Home
+      - Soundbar
 
   zigbee2mqtt_log_level:
     name: Zigbee2mqtt Log Level
     options:
-     - debug
-     - info
-     - warn
-     - error
+      - debug
+      - info
+      - warn
+      - error
     initial: info
     icon: mdi:format-list-bulleted
 
@@ -223,10 +218,10 @@ media_player:
 #  host: !secret roku_one
 # - platform: webostv
 #  host: !secret play_tv_ip
-  # - platform: xboxone
-  #   device: !secret xbox_one
-  #   name: Xbox One
-  
+# - platform: xboxone
+#   device: !secret xbox_one
+#   name: Xbox One
+
 # roku:
 #   - host: !secret roku_one
 #   - host: !secret roku_two
@@ -245,11 +240,11 @@ nest:
   project_id: !secret o_nest_project_id
   # Provide the full path exactly as shown under "Subscription name" in Google Cloud Console
   subscriber_id: !secret o_nest_sub_id
-  
+
 #badnest:
-  #issue_token: !secret new_nest_token
-  #cookie: !secret new_nest_cookie
-  #region: us
+#issue_token: !secret new_nest_token
+#cookie: !secret new_nest_cookie
+#region: us
 
 ##Google for Google Calendar
 # google:
@@ -293,7 +288,7 @@ alarm_control_panel:
 
 tts:
   - platform: google_translate
-    language: 'en-us'
+    language: "en-us"
     cache: true
     cache_dir: /tmp/tts
     time_memory: 300
@@ -307,7 +302,7 @@ shell_command:
   notioninbox: 'curl http://192.168.1.250:5000/notioninbox?title=\"{{title}}\"'
 
 climate:
-#  - platform: nest
+  #  - platform: nest
   - platform: badnest
     scan_interval: 10
 
@@ -341,11 +336,11 @@ proximity:
       - device_tracker.google_maps_114680120030307638360
     tolerance: 50
     unit_of_measurement: mi
-   
-telegram_bot: 
-  - platform: polling 
+
+telegram_bot:
+  - platform: polling
     api_key: !secret telegram_api
-    allowed_chat_ids: 
+    allowed_chat_ids:
       - !secret telegram_ryan
 
 # panel_iframe:
@@ -359,7 +354,7 @@ telegram_bot:
 #    sidebar_title: ZWave Graph2
 #    sidebar_icon: mdi:access-point-network
 #    url_path: zwave
-    
+
 timer:
   zigbee_permit_join:
     name: Time remaining
@@ -399,7 +394,7 @@ xiaomi_aqara:
     - mac: !secret xiaomi_mac
       key: !secret xiaomi_token
       host: !secret xiaomi_ip
-      
+
 circadian_lighting:
   sunrise_offset: +01:00:00
   sunset_offset: -01:00:00
@@ -424,26 +419,26 @@ input_text:
 #Variable Custom Component
 var:
   last_door:
-    friendly_name: 'Last Door Opened'
+    friendly_name: "Last Door Opened"
     icon: mdi:door
   last_motion:
-    friendly_name: 'Last Motion Tripped'
+    friendly_name: "Last Motion Tripped"
     icon: mdi:motion-sensor
   last_window:
-    friendly_name: 'Last Window Opened'
+    friendly_name: "Last Window Opened"
     icon: mdi:window
-    
+
 calendar:
   - platform: todoist
     token: !secret todoist_api
     custom_projects:
-      - name: 'Overdue'
+      - name: "Overdue"
         due_date_days: -7
-      - name: 'Due Today'
+      - name: "Due Today"
         due_date_days: 0
-      - name: 'Due This Week'
+      - name: "Due This Week"
         due_date_days: 7
-      - name: 'Calls'
+      - name: "Calls"
         labels:
           - call
 
@@ -452,7 +447,6 @@ calendar:
 #                     Includes                     #
 #                                                  #
 ####################################################
-
 
 ##Zones
 zone: !include zones.yaml
