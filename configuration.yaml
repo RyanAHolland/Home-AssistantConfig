@@ -21,7 +21,7 @@ homeassistant:
 cloud:
 
 influxdb:
-  host: a0d7b954_influxdb
+  host: 192.168.1.5
   port: 8086
   database: homeassistant
   username: homeassistant
@@ -63,8 +63,8 @@ logbook:
 
 ##Enable Recorder for Persistant input_select
 recorder:
-  purge_interval: 1
-  purge_keep_days: 5
+#  purge_interval: 1
+#  purge_keep_days: 5
 
 # Track the sun
 sun:
