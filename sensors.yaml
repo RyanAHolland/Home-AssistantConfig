@@ -1,130 +1,131 @@
 #HASS Version
- - platform: version
+- platform: version
 #BadNest
- - platform: badnest
+- platform: badnest
 #System Information
- - platform: systemmonitor
-   resources:
-     - type: disk_use_percent
-       arg: /home
-     - type: memory_free
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /home
+    - type: memory_free
 #Uptime
- - platform: uptime
+- platform: uptime
 # Weather Prediction
- - platform: darksky
-   api_key: !secret dark_sky_api
-   scan_interval: '00:15'
-   forecast:
-      - 0
-   hourly_forecast:
-      - 0
-      - 1
-   monitored_conditions:
-      - summary
-      - precip_type
-      - precip_intensity
-      - precip_probability
-      - temperature
-      - apparent_temperature
-      - wind_speed
-      - wind_bearing
-      - cloud_cover
-      - humidity
-      - daily_summary
-      - temperature_high
-      - temperature_low
-      - precip_intensity_max
-      - uv_index
-      - nearest_storm_distance
-      - nearest_storm_bearing
-      - alerts
+- platform: darksky
+  api_key: !secret dark_sky_api
+  scan_interval: "00:15"
+  forecast:
+    - 0
+  hourly_forecast:
+    - 0
+    - 1
+  monitored_conditions:
+    - summary
+    - precip_type
+    - precip_intensity
+    - precip_probability
+    - temperature
+    - apparent_temperature
+    - wind_speed
+    - wind_bearing
+    - cloud_cover
+    - humidity
+    - daily_summary
+    - temperature_high
+    - temperature_low
+    - precip_intensity_max
+    - uv_index
+    - nearest_storm_distance
+    - nearest_storm_bearing
+    - alerts
 
- #Social Blade
- - platform: socialblade
-   channel_id: UCGaAf70zQAa01a_r_k1XJ1Q
+#Social Blade
+- platform: socialblade
+  channel_id: UCGaAf70zQAa01a_r_k1XJ1Q
 
- - platform: yahoofinance
-   symbols:
-     - LLNW
-     - PFE
-     - CNK
-     - VTRS
-     - TSLA
-     - VBILX
-     - DOGE-USD
-   show_trending_icon: true
+- platform: yahoofinance
+  symbols:
+    - LLNW
+    - PFE
+    - CNK
+    - VTRS
+    - TSLA
+    - VBILX
+    - DOGE-USD
+  show_trending_icon: true
+  scan_interval:
+    minutes: 30
 
 ##Math Sensors for Stocks
- - platform: template
-   sensors:
-     value_doge:
-       value_template: '{{ "{:,.2f}".format(states.sensor.shares_doge.state|float * states.yahoofinance.doge_usd.state|float) }}'
-       unit_of_measurement: '$'
-       friendly_name: "Value of DOGE Holdings"
- - platform: template
-   sensors:
-     value_cnk:
-       value_template: '{{ "{:,.2f}".format(states.sensor.shares_cnk.state|float * states.yahoofinance.cnk.state|float) }}'
-       unit_of_measurement: '$'
-       friendly_name: "Value of CNK Holdings"   
- - platform: template
-   sensors:
-     value_llnw:
-       value_template: '{{ "{:,.2f}".format(states.sensor.shares_llnw.state|float * states.yahoofinance.llnw.state|float) }}'
-       unit_of_measurement: '$'
-       friendly_name: "Value of LLNW Holdings"
- - platform: template
-   sensors:
-     value_pfe:
-       value_template: '{{ "{:,.2f}".format(states.sensor.shares_pfe.state|float * states.yahoofinance.pfe.state|float) }}'
-       unit_of_measurement: '$'
-       friendly_name: "Value of PFE Holdings"
- - platform: template
-   sensors:
-     value_tsla:
-       value_template: '{{ "{:,.2f}".format(states.sensor.shares_tsla.state|float * states.yahoofinance.tsla.state|float) }}'
-       unit_of_measurement: '$'
-       friendly_name: "Value of TSLA Holdings"
- - platform: template
-   sensors:
-     value_vtrs:
-       value_template: '{{ "{:,.2f}".format(states.sensor.shares_vtrs.state|float * states.yahoofinance.vtrs.state|float) }}'
-       unit_of_measurement: '$'
-       friendly_name: "Value of VTRS Holdings"
- - platform: template
-   sensors:
-     value_total:
-       value_template: '{{ "{:,.2f}".format(states.sensor.value_cnk.state|float + states.sensor.value_doge.state|float + states.sensor.value_llnw.state|float + states.sensor.value_pfe.state|float + states.sensor.value_tsla.state|float + states.sensor.value_vtrs.state|float) }}'
-       unit_of_measurement: '$'
-       friendly_name: "Value of All Stocks"   
+- platform: template
+  sensors:
+    value_doge:
+      value_template: '{{ "{:,.2f}".format(states.sensor.shares_doge.state|float * states.yahoofinance.doge_usd.state|float) }}'
+      unit_of_measurement: "$"
+      friendly_name: "Value of DOGE Holdings"
+- platform: template
+  sensors:
+    value_cnk:
+      value_template: '{{ "{:,.2f}".format(states.sensor.shares_cnk.state|float * states.yahoofinance.cnk.state|float) }}'
+      unit_of_measurement: "$"
+      friendly_name: "Value of CNK Holdings"
+- platform: template
+  sensors:
+    value_llnw:
+      value_template: '{{ "{:,.2f}".format(states.sensor.shares_llnw.state|float * states.yahoofinance.llnw.state|float) }}'
+      unit_of_measurement: "$"
+      friendly_name: "Value of LLNW Holdings"
+- platform: template
+  sensors:
+    value_pfe:
+      value_template: '{{ "{:,.2f}".format(states.sensor.shares_pfe.state|float * states.yahoofinance.pfe.state|float) }}'
+      unit_of_measurement: "$"
+      friendly_name: "Value of PFE Holdings"
+- platform: template
+  sensors:
+    value_tsla:
+      value_template: '{{ "{:,.2f}".format(states.sensor.shares_tsla.state|float * states.yahoofinance.tsla.state|float) }}'
+      unit_of_measurement: "$"
+      friendly_name: "Value of TSLA Holdings"
+- platform: template
+  sensors:
+    value_vtrs:
+      value_template: '{{ "{:,.2f}".format(states.sensor.shares_vtrs.state|float * states.yahoofinance.vtrs.state|float) }}'
+      unit_of_measurement: "$"
+      friendly_name: "Value of VTRS Holdings"
+- platform: template
+  sensors:
+    value_total:
+      value_template: '{{ "{:,.2f}".format(states.sensor.value_cnk.state|float + states.sensor.value_doge.state|float + states.sensor.value_llnw.state|float + states.sensor.value_pfe.state|float + states.sensor.value_tsla.state|float + states.sensor.value_vtrs.state|float) }}'
+      unit_of_measurement: "$"
+      friendly_name: "Value of All Stocks"
 
+- platform: rest
+  resource: https://api.weather.gov/alerts/active/count
+  name: NWS Alert Count
+  value_template: >
+    {% if value_json.zones.MOC095 is defined %}
+       {{ value_json.zones.MOC095 }}
+    {% else %}
+       0
+    {% endif %}
+  headers:
+    User-Agent: Homeassistant
+    Accept: application/ld+json
+  scan_interval: 60
 
- - platform: rest
-   resource: https://api.weather.gov/alerts/active/count
-   name: NWS Alert Count
-   value_template: >
-      {% if value_json.zones.MOC095 is defined %}
-         {{ value_json.zones.MOC095 }}
-      {% else %}
-         0
-      {% endif %}
-   headers:
-      User-Agent: Homeassistant
-      Accept: application/ld+json
-   scan_interval: 60
-        
- - platform: rest
-   resource: https://api.weather.gov/alerts/active?zone=MOC095
-   name: NWS Alert Event
-   value_template: >
-      {% if value_json.features[0] is defined %}
-         {{ value_json['features'][0]['properties'].event }}
-      {% else %}
-         None
-      {% endif %}
+- platform: rest
+  resource: https://api.weather.gov/alerts/active?zone=MOC095
+  name: NWS Alert Event
+  value_template: >
+    {% if value_json.features[0] is defined %}
+       {{ value_json['features'][0]['properties'].event }}
+    {% else %}
+       None
+    {% endif %}
 
- - platform: nws_alerts
-   zone_id: 'MOC095'
+- platform: nws_alerts
+  zone_id: "MOC095"
 
 # # Roomba  Control
 #  - platform: thinkingcleaner
@@ -139,17 +140,17 @@
 #    username: !secret email
 #    password: !secret plex_pass
 #SABNZBD
- - platform: sabnzbd
-   host: !secret sabnzbd_host
-   api_key: !secret sabnzbd_api
-   monitored_variables:
-     - 'current_status'
-     - 'speed'
-     - 'queue_size'
-     - 'queue_remaining'
-     - 'disk_size'
-     - 'disk_free'
-     - 'queue_count'
+- platform: sabnzbd
+  host: !secret sabnzbd_host
+  api_key: !secret sabnzbd_api
+  monitored_variables:
+    - "current_status"
+    - "speed"
+    - "queue_size"
+    - "queue_remaining"
+    - "disk_size"
+    - "disk_free"
+    - "queue_count"
 #RING
 #  - platform: ring
 #    monitored_conditions:
@@ -160,81 +161,81 @@
 #      - volume
 
 #ObiHai
- - platform: obihai
-   host: !secret obihai_host
+- platform: obihai
+  host: !secret obihai_host
 
 #Pocket Casts
- - platform: pocketcasts
-   username: !secret email
-   password: !secret casts_pass
+- platform: pocketcasts
+  username: !secret email
+  password: !secret casts_pass
 
 #Glances
- - platform: glances
-   host: !secret server_ip
-   resources:
-     - 'disk_use_percent'
-     - 'memory_use_percent'
-     - 'swap_use_percent'
-     - 'processor_load'
+- platform: glances
+  host: !secret server_ip
+  resources:
+    - "disk_use_percent"
+    - "memory_use_percent"
+    - "swap_use_percent"
+    - "processor_load"
 
- - platform: mqtt
-   state_topic: "homeassistant/sensor/log_onenote/url"
-   name: "Daily Log Onenote URL"
-   qos: 0
+- platform: mqtt
+  state_topic: "homeassistant/sensor/log_onenote/url"
+  name: "Daily Log Onenote URL"
+  qos: 0
 
- - platform: mqtt
-   state_topic: "homeassistant/sensor/log_notion/url"
-   name: "Daily Log Notion URL"
-   qos: 0
+- platform: mqtt
+  state_topic: "homeassistant/sensor/log_notion/url"
+  name: "Daily Log Notion URL"
+  qos: 0
 
- - platform: mqtt
-   state_topic: "homeassistant/binary_sensor/log_notion/complete"
-   name: "Daily Log Notion Complete"
-   qos: 0
+- platform: mqtt
+  state_topic: "homeassistant/binary_sensor/log_notion/complete"
+  name: "Daily Log Notion Complete"
+  qos: 0
 
- - platform: mqtt
-   state_topic: "homeassistant/binary_sensor/log_onenote/complete"
-   name: "Daily Log OneNote Complete"
-   qos: 0
+- platform: mqtt
+  state_topic: "homeassistant/binary_sensor/log_onenote/complete"
+  name: "Daily Log OneNote Complete"
+  qos: 0
 
- - platform: google_fit
-   name: Google Fit
-   client_id: !secret google_id
-   client_secret: !secret google_secret
-   
- - platform: template
-   sensors:
-     google_fit_weight_lbs:
-       value_template: '{{ states("sensor.google_fit_weight") | multiply(2.205) | round(1, "half") }}'
-       unit_of_measurement: 'lb'
-       friendly_name: "Google Fit Weight (ft)"   
+- platform: google_fit
+  name: Google Fit
+  client_id: !secret google_id
+  client_secret: !secret google_secret
+
+- platform: template
+  sensors:
+    google_fit_weight_lbs:
+      value_template: '{{ states("sensor.google_fit_weight") | multiply(2.205) | round(1, "half") }}'
+      unit_of_measurement: "lb"
+      friendly_name: "Google Fit Weight (ft)"
 
 # SDR Meters
 
 ##GAS METER
- - platform: mqtt
-   state_topic: "readings/66154761/meter_reading"
-   name: "Gas Meter Reading"
-   qos: 0
-   unit_of_measurement: M3
-   
- - platform: template
-   sensors:
-     current_gas_consumption:
-       value_template: >
-         {% if states.sensor.sensor.gas_meter_reading.attributes.min_value | float == 0 %}0
-         {% elif states.sensor.gas_meter_reading.state | float <= states.sensor.gas_stats_mean.attributes.min_value | float %}0
-         {% else %}
-         {{((states.sensor.gas_meter_reading.state | float) - (states.sensor.gas_stats_mean.attributes.min_value | float)) * 1000 / 10 | max (0) | round(2) }}
-         {% endif %}
-       unit_of_measurement: 'cdm/min'
-       friendly_name: "Average Current Gas Consumption (10 min)"
-     
- - platform: statistics
-   name: gas_stats
-   entity_id: sensor.gas_meter_reading
-   max_age:
-     minutes: 10
+- platform: mqtt
+  state_topic: "readings/66154761/meter_reading"
+  name: "Gas Meter Reading"
+  qos: 0
+  unit_of_measurement: M3
+
+- platform: template
+  sensors:
+    current_gas_consumption:
+      value_template: >
+        {% if states.sensor.sensor.gas_meter_reading.attributes.min_value | float == 0 %}0
+        {% elif states.sensor.gas_meter_reading.state | float <= states.sensor.gas_stats_mean.attributes.min_value | float %}0
+        {% else %}
+        {{((states.sensor.gas_meter_reading.state | float) - (states.sensor.gas_stats_mean.attributes.min_value | float)) * 1000 / 10 | max (0) | round(2) }}
+        {% endif %}
+      unit_of_measurement: "cdm/min"
+      friendly_name: "Average Current Gas Consumption (10 min)"
+
+- platform: statistics
+  name: gas_stats
+  entity_id: sensor.gas_meter_reading
+  max_age:
+    minutes: 10
 
 #  - platform: rest
 #    resource: !secret glances_path_fs
@@ -267,34 +268,34 @@
 #    unit_of_measurement: '%'
 
 #Basement UPS
- - platform: apcupsd
-   resources:
-     - bcharge
-     - linev
-     - loadpct
-     - nominv
-     - numxfers
-     - status
-     - timeleft
-     - tonbatt
+- platform: apcupsd
+  resources:
+    - bcharge
+    - linev
+    - loadpct
+    - nominv
+    - numxfers
+    - status
+    - timeleft
+    - tonbatt
 # Tracking Ryan to Home
- - platform: waze_travel_time
-   origin: device_tracker.google_maps_thehollandhaus_gmail_com
-   name: Ryan To Home
-   destination: zone.home
-   region: 'US'
+- platform: waze_travel_time
+  origin: device_tracker.google_maps_thehollandhaus_gmail_com
+  name: Ryan To Home
+  destination: zone.home
+  region: "US"
 # Tracking Ryan to Work
- - platform: waze_travel_time
-   name: Ryan To Work
-   region: 'US'
-   origin: device_tracker.google_maps_thehollandhaus_gmail_com
-   destination: zone.pivot
+- platform: waze_travel_time
+  name: Ryan To Work
+  region: "US"
+  origin: device_tracker.google_maps_thehollandhaus_gmail_com
+  destination: zone.pivot
 # Tracking Kristi to Home
- - platform: waze_travel_time
-   name: Kristi To Home
-   region: 'US'
-   origin: device_tracker.google_maps_114680120030307638360
-   destination: zone.home
+- platform: waze_travel_time
+  name: Kristi To Home
+  region: "US"
+  origin: device_tracker.google_maps_114680120030307638360
+  destination: zone.home
 
 ### Sensors from SmartThings
 ##Light Sensors
@@ -304,7 +305,7 @@
 #    qos: 0
 #    unit_of_measurement: 'lux'
 #  - platform: mqtt
-#    state_topic: "smartthings/Bathroom Motion/illuminance/state"    
+#    state_topic: "smartthings/Bathroom Motion/illuminance/state"
 #    name: "Bathroom Motion Light Sensor"
 #    qos: 0
 #    unit_of_measurement: 'lux'
@@ -473,125 +474,123 @@
 #    unit_of_measurement: '%'
 ##Z-Wave Battery Sensors
 #Doors
- - platform: template
-   sensors:
-     back_door_battery:
-       value_template: '{{ states.zwave.back_door.attributes.battery_level }}'
-       unit_of_measurement: '%'
-       friendly_name: "Back Door Sensor Battery"
- - platform: template
-   sensors:
-     garage_entry_battery:
-       value_template: '{{ states.zwave.garage_entry.attributes.battery_level }}'
-       unit_of_measurement: '%'
-       friendly_name: "Garage Entry Sensor Battery"
- - platform: template
-   sensors:
-     front_door_battery:
-       value_template: '{{ states.zwave.front_door.attributes.battery_level }}'
-       unit_of_measurement: '%'
-       friendly_name: "Front Door Sensor Battery"
- - platform: template
-   sensors:
-     liam_door_battery:
-       value_template: '{{ states.zwave.liam_door.attributes.battery_level }}'
-       unit_of_measurement: '%'
-       friendly_name: "Liam's Door Sensor Battery"
- - platform: template
-   sensors:
-     pantry_door_battery:
-       value_template: '{{ states.zwave.pantry_door.attributes.battery_level }}'
-       unit_of_measurement: '%'
-       friendly_name: "Pantry Door Sensor Battery"
+- platform: template
+  sensors:
+    back_door_battery:
+      value_template: "{{ states.zwave.back_door.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      friendly_name: "Back Door Sensor Battery"
+- platform: template
+  sensors:
+    garage_entry_battery:
+      value_template: "{{ states.zwave.garage_entry.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      friendly_name: "Garage Entry Sensor Battery"
+- platform: template
+  sensors:
+    front_door_battery:
+      value_template: "{{ states.zwave.front_door.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      friendly_name: "Front Door Sensor Battery"
+- platform: template
+  sensors:
+    liam_door_battery:
+      value_template: "{{ states.zwave.liam_door.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      friendly_name: "Liam's Door Sensor Battery"
+- platform: template
+  sensors:
+    pantry_door_battery:
+      value_template: "{{ states.zwave.pantry_door.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      friendly_name: "Pantry Door Sensor Battery"
 #Motion
- - platform: template
-   sensors:
-     first_floor_battery:
-       value_template: '{{ states.zwave.first_floor_sensor.attributes.battery_level }}'
-       unit_of_measurement: '%'
-       friendly_name: "First Floor Sensor Battery"
- - platform: template
-   sensors:
-     kitchen_motion_battery:
-       value_template: '{{ states.zwave.kitchen_motion.attributes.battery_level }}'
-       unit_of_measurement: '%'
-       friendly_name: "Kitchen Motion Battery"
- - platform: template
-   sensors:
-     upstairs_motion_battery:
-       value_template: '{{ states.zwave.upstairs_motion.attributes.battery_level }}'
-       unit_of_measurement: '%'
-       friendly_name: "Upstairs Motion Battery"
+- platform: template
+  sensors:
+    first_floor_battery:
+      value_template: "{{ states.zwave.first_floor_sensor.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      friendly_name: "First Floor Sensor Battery"
+- platform: template
+  sensors:
+    kitchen_motion_battery:
+      value_template: "{{ states.zwave.kitchen_motion.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      friendly_name: "Kitchen Motion Battery"
+- platform: template
+  sensors:
+    upstairs_motion_battery:
+      value_template: "{{ states.zwave.upstairs_motion.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      friendly_name: "Upstairs Motion Battery"
 #Garage Door
- - platform: template
-   sensors:
-     large_garage_battery:
-       value_template: '{{ states.zwave.large_garage.attributes.battery_level }}'
-       unit_of_measurement: '%'
-       friendly_name: "Large Garage Sensor Battery"
- - platform: template
-   sensors:
-     small_garage_battery:
-       value_template: '{{ states.zwave.small_garage.attributes.battery_level }}'
-       unit_of_measurement: '%'
-       friendly_name: "Small Garage Sensor Battery"
+- platform: template
+  sensors:
+    large_garage_battery:
+      value_template: "{{ states.zwave.large_garage.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      friendly_name: "Large Garage Sensor Battery"
+- platform: template
+  sensors:
+    small_garage_battery:
+      value_template: "{{ states.zwave.small_garage.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      friendly_name: "Small Garage Sensor Battery"
 #Safety
- - platform: template
-   sensors:
-     smoke_sensor_battery:
-       value_template: '{{ states.zwave.smoke_sensor.attributes.battery_level }}'
-       unit_of_measurement: '%'
-       friendly_name: "Smoke Sensor Battery"
- - platform: template
-   sensors:
-     co_sensor_battery:
-       value_template: '{{ states.zwave.co_sensor.attributes.battery_level }}'
-       unit_of_measurement: '%'
-       friendly_name: "CO Sensor Battery"
+- platform: template
+  sensors:
+    smoke_sensor_battery:
+      value_template: "{{ states.zwave.smoke_sensor.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      friendly_name: "Smoke Sensor Battery"
+- platform: template
+  sensors:
+    co_sensor_battery:
+      value_template: "{{ states.zwave.co_sensor.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      friendly_name: "CO Sensor Battery"
 #Security
- - platform: template
-   sensors:
-     glass_break_battery:
-       value_template: '{{ states.zwave.glass_break.attributes.battery_level }}'
-       unit_of_measurement: '%'
-       friendly_name: "Glass Break Battery"
+- platform: template
+  sensors:
+    glass_break_battery:
+      value_template: "{{ states.zwave.glass_break.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      friendly_name: "Glass Break Battery"
 #Locks
- - platform: template
-   sensors:
-     front_lock_battery:
-       value_template: '{{ states.zwave.front_lock.attributes.battery_level }}'
-       unit_of_measurement: '%'
-       friendly_name: "Front Lock Battery"
- - platform: template
-   sensors:
-     garage_lock_battery:
-       value_template: '{{ states.zwave.garage_entry_lock.attributes.battery_level }}'
-       unit_of_measurement: '%'
-       friendly_name: "Garage Lock Battery"
-
+- platform: template
+  sensors:
+    front_lock_battery:
+      value_template: "{{ states.zwave.front_lock.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      friendly_name: "Front Lock Battery"
+- platform: template
+  sensors:
+    garage_lock_battery:
+      value_template: "{{ states.zwave.garage_entry_lock.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      friendly_name: "Garage Lock Battery"
 
 ##Lock Information
- - platform: template
-   sensors:
-     front_lock_status:
-       value_template: '{{ states.lock.front_lock.attributes.lock_status }}'
-       friendly_name: "Front Lock Status"
+- platform: template
+  sensors:
+    front_lock_status:
+      value_template: "{{ states.lock.front_lock.attributes.lock_status }}"
+      friendly_name: "Front Lock Status"
 
 ##Washer Power Sensor
- - platform: template
-   sensors:
-     washer_power:
-       value_template: '{{ states.switch.washer.attributes.current_power_w }}'
-       friendly_name: "Washer Power"
+- platform: template
+  sensors:
+    washer_power:
+      value_template: "{{ states.switch.washer.attributes.current_power_w }}"
+      friendly_name: "Washer Power"
 
 ##Invert Smoke Sensor
 
-
 ##SmartThings Pre1sence
- # - platform: mqtt
-   # state_topic: "smartthings/Ryan's Phone/presence"
-   # name: "ST Ryan"
-   # qos: 0
+# - platform: mqtt
+# state_topic: "smartthings/Ryan's Phone/presence"
+# name: "ST Ryan"
+# qos: 0
 #Vibration Sensors
 #  - platform: mqtt
 #    state_topic: "smartthings/Dryer Sensor/threeAxis/state"
@@ -601,7 +600,7 @@
 #    state_topic: "smartthings/Washer Sensor/threeAxis/state"
 #    name: "Washer Movement"
 #    qos: 0
-#Power Sensors   
+#Power Sensors
 #  - platform: mqtt
 #    state_topic: "smartthings/Washer/power/state"
 #    name: "Washer Power"
@@ -623,18 +622,18 @@
 #        value_template: '{% if is_state("sensor.st_kristi", "present") %}Home{% else %}Away{% endif %}'
 #        friendly_name: "Kristi's SmartThings"
 ##Google Maps Location Data
- - platform: template
-   sensors:
-     ryan_battery:
-       value_template: '{{ states.device_tracker.google_maps_118314383764095593834.attributes.battery_level }}'
-       unit_of_measurement: '%'
-       friendly_name: "Ryan Phone Battery"
- - platform: template
-   sensors:
-     kristi_battery:
-       value_template: '{{ states.device_tracker.google_maps_114680120030307638360.attributes.battery_level }}'
-       unit_of_measurement: '%'
-       friendly_name: "Kristi Phone Battery"
+- platform: template
+  sensors:
+    ryan_battery:
+      value_template: "{{ states.device_tracker.google_maps_118314383764095593834.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      friendly_name: "Ryan Phone Battery"
+- platform: template
+  sensors:
+    kristi_battery:
+      value_template: "{{ states.device_tracker.google_maps_114680120030307638360.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      friendly_name: "Kristi Phone Battery"
 ##Power Sensor
 #  - platform: mqtt
 #    state_topic: "smartthings/Ted 5000/power/state"
@@ -655,248 +654,246 @@
 #    scan_interval: 1
 
 ##presence server
- - platform: mqtt
-   state_topic: !secret gryanphonebt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Ryan Garage'
- - platform: mqtt
-   state_topic: !secret 1stryanphonebt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Ryan First Floor'
- - platform: mqtt
-   state_topic: !secret 2ndryanphonebt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Ryan Second Floor'
- - platform: mqtt
-   state_topic: !secret brryanphonebt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Ryan Bedroom'
- # - platform: mqtt
-   # state_topic: !secret baseryanphonebt
-   # value_template: '{{ value_json.confidence }}'
-   # unit_of_measurement: '%'
-   # name: 'Ryan Basement'
- - platform: mqtt
-   state_topic: !secret gkristiphonebt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Kristi Garage'
- - platform: mqtt
-   state_topic: !secret 1stkristiphonebt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Kristi First Floor'
- - platform: mqtt
-   state_topic: !secret 2ndkristiphonebt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Kristi Second Floor'
- - platform: mqtt
-   state_topic: !secret brkristiphonebt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Kristi Bedroom'
- # - platform: mqtt
-   # state_topic: !secret basekristiphonebt
-   # value_template: '{{ value_json.confidence }}'
-   # unit_of_measurement: '%'
-   # name: 'Kristi Basement'
- - platform: mqtt
-   state_topic: !secret gmomphonebt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Mom Garage'
- - platform: mqtt
-   state_topic: !secret 1stmomphonebt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Mom First Floor'
- - platform: mqtt
-   state_topic: !secret 2ndmomphonebt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Mom Second Floor'
- # - platform: mqtt
-   # state_topic: !secret basemomphonebt
-   # value_template: '{{ value_json.confidence }}'
-   # unit_of_measurement: '%'
-   # name: 'Mom Basement'
- - platform: mqtt
-   state_topic: !secret gdadphonebt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Dad Garage'
- - platform: mqtt
-   state_topic: !secret 1stdadphonebt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Dad First Floor'
- - platform: mqtt
-   state_topic: !secret 2nddadphonebt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Dad Second Floor'
- - platform: mqtt
-   state_topic: !secret gpacificabt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Pacifica Garage'
- - platform: mqtt
-   state_topic: !secret gvolvobt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Volvo Garage'
- - platform: mqtt
-   state_topic: !secret 1sttestbt
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Test First Floor'
+- platform: mqtt
+  state_topic: !secret gryanphonebt
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Ryan Garage"
+- platform: mqtt
+  state_topic: !secret 1stryanphonebt
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Ryan First Floor"
+- platform: mqtt
+  state_topic: !secret 2ndryanphonebt
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Ryan Second Floor"
+- platform: mqtt
+  state_topic: !secret brryanphonebt
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Ryan Bedroom"
+# - platform: mqtt
+# state_topic: !secret baseryanphonebt
+# value_template: '{{ value_json.confidence }}'
+# unit_of_measurement: '%'
+# name: 'Ryan Basement'
+- platform: mqtt
+  state_topic: !secret gkristiphonebt
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Kristi Garage"
+- platform: mqtt
+  state_topic: !secret 1stkristiphonebt
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Kristi First Floor"
+- platform: mqtt
+  state_topic: !secret 2ndkristiphonebt
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Kristi Second Floor"
+- platform: mqtt
+  state_topic: !secret brkristiphonebt
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Kristi Bedroom"
+# - platform: mqtt
+# state_topic: !secret basekristiphonebt
+# value_template: '{{ value_json.confidence }}'
+# unit_of_measurement: '%'
+# name: 'Kristi Basement'
+- platform: mqtt
+  state_topic: !secret gmomphonebt
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Mom Garage"
+- platform: mqtt
+  state_topic: !secret 1stmomphonebt
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Mom First Floor"
+- platform: mqtt
+  state_topic: !secret 2ndmomphonebt
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Mom Second Floor"
+# - platform: mqtt
+# state_topic: !secret basemomphonebt
+# value_template: '{{ value_json.confidence }}'
+# unit_of_measurement: '%'
+# name: 'Mom Basement'
+- platform: mqtt
+  state_topic: !secret gdadphonebt
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Dad Garage"
+- platform: mqtt
+  state_topic: !secret 1stdadphonebt
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Dad First Floor"
+- platform: mqtt
+  state_topic: !secret 2nddadphonebt
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Dad Second Floor"
+- platform: mqtt
+  state_topic: !secret gpacificabt
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Pacifica Garage"
+- platform: mqtt
+  state_topic: !secret gvolvobt
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Volvo Garage"
+- platform: mqtt
+  state_topic: !secret 1sttestbt
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Test First Floor"
 ##BLE Tokens
- - platform: mqtt
-   state_topic: !secret 1stryankey
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Ryan Keys First Floor'
- - platform: mqtt
-   state_topic: !secret 1stliambp
-   value_template: '{{ value_json.confidence }}'
-   unit_of_measurement: '%'
-   name: 'Liam Backpack First Floor'
+- platform: mqtt
+  state_topic: !secret 1stryankey
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Ryan Keys First Floor"
+- platform: mqtt
+  state_topic: !secret 1stliambp
+  value_template: "{{ value_json.confidence }}"
+  unit_of_measurement: "%"
+  name: "Liam Backpack First Floor"
 
 ##RSSI
- - platform: mqtt
-   state_topic: !secret gryanrssi
-   name: 'Ryan Garage Signal Level'
- - platform: mqtt
-   state_topic: !secret 1stryanrssi
-   name: 'Ryan LR Signal Level'
+- platform: mqtt
+  state_topic: !secret gryanrssi
+  name: "Ryan Garage Signal Level"
+- platform: mqtt
+  state_topic: !secret 1stryanrssi
+  name: "Ryan LR Signal Level"
 ##BT presence logic
- - platform: min_max
-   name: "Ryan Home Occupancy Confidence"
-   type: mean
-   round_digits: 0
-   entity_ids:
-     - sensor.ryan_garage
-     - sensor.ryan_first_floor
-     - sensor.ryan_second_floor
-     - sensor.ryan_bedroom
+- platform: min_max
+  name: "Ryan Home Occupancy Confidence"
+  type: mean
+  round_digits: 0
+  entity_ids:
+    - sensor.ryan_garage
+    - sensor.ryan_first_floor
+    - sensor.ryan_second_floor
+    - sensor.ryan_bedroom
     #  - sensor.ryan_basement
- - platform: min_max
-   name: "Kristi Home Occupancy Confidence"
-   type: mean
-   round_digits: 0
-   entity_ids:
-     - sensor.kristi_garage
-     - sensor.kristi_first_floor
-     - sensor.kristi_second_floor
-     - sensor.kristi_bedroom
+- platform: min_max
+  name: "Kristi Home Occupancy Confidence"
+  type: mean
+  round_digits: 0
+  entity_ids:
+    - sensor.kristi_garage
+    - sensor.kristi_first_floor
+    - sensor.kristi_second_floor
+    - sensor.kristi_bedroom
     #  - sensor.kristi_basement
- - platform: min_max
-   name: "Mom Home Occupancy Confidence"
-   type: mean
-   round_digits: 0
-   entity_ids:
-     - sensor.mom_first_floor
-     - sensor.mom_second_floor
+- platform: min_max
+  name: "Mom Home Occupancy Confidence"
+  type: mean
+  round_digits: 0
+  entity_ids:
+    - sensor.mom_first_floor
+    - sensor.mom_second_floor
     #  - sensor.mom_basement
- - platform: min_max
-   name: "Dad Home Occupancy Confidence"
-   type: mean
-   round_digits: 0
-   entity_ids:
-     - sensor.dad_first_floor
-     - sensor.dad_second_floor
+- platform: min_max
+  name: "Dad Home Occupancy Confidence"
+  type: mean
+  round_digits: 0
+  entity_ids:
+    - sensor.dad_first_floor
+    - sensor.dad_second_floor
     #  - sensor.mom_basement
 ##BT Occupancy Sensors
- - platform: template
-   sensors:
-     ryan_occupancy:
-       value_template: '{% if states("sensor.ryan_home_occupancy_confidence") | float > 10 %}home{% else %}not_home{%endif %}'
-       friendly_name: "Ryan's BT Occupancy"
- - platform: template
-   sensors:
-     kristi_occupancy:
-       value_template: '{% if states("sensor.kristi_home_occupancy_confidence") | float > 10 %}home{% else %}not_home{%endif %}'
-       friendly_name: "Kristi's BT Occupancy"
- - platform: template
-   sensors:
-     mom_occupancy:
-       value_template: '{% if states("sensor.mom_home_occupancy_confidence") | float > 10 %}home{% else %}not_home{%endif %}'
-       friendly_name: "Mom's BT Occupancy"
- - platform: template
-   sensors:
-     dad_occupancy:
-       value_template: '{% if states("sensor.dad_home_occupancy_confidence") | float > 10 %}home{% else %}not_home{%endif %}'
-       friendly_name: "Dad's BT Occupancy"
- - platform: template
-   sensors:
-     outlander:
-       value_template: '{% if states("sensor.outlander_first_floor") | float > 10 %}home{% else %}not_home{%endif %}'
-       friendly_name: "Outlander Garage"
- - platform: template
-   sensors:
-     volvo:
-       value_template: '{% if states("sensor.volvo_first_floor") | float > 10 %}home{% else %}not_home{%endif %}'
-       friendly_name: "Volvo Garage"
+- platform: template
+  sensors:
+    ryan_occupancy:
+      value_template: '{% if states("sensor.ryan_home_occupancy_confidence") | float > 10 %}home{% else %}not_home{%endif %}'
+      friendly_name: "Ryan's BT Occupancy"
+- platform: template
+  sensors:
+    kristi_occupancy:
+      value_template: '{% if states("sensor.kristi_home_occupancy_confidence") | float > 10 %}home{% else %}not_home{%endif %}'
+      friendly_name: "Kristi's BT Occupancy"
+- platform: template
+  sensors:
+    mom_occupancy:
+      value_template: '{% if states("sensor.mom_home_occupancy_confidence") | float > 10 %}home{% else %}not_home{%endif %}'
+      friendly_name: "Mom's BT Occupancy"
+- platform: template
+  sensors:
+    dad_occupancy:
+      value_template: '{% if states("sensor.dad_home_occupancy_confidence") | float > 10 %}home{% else %}not_home{%endif %}'
+      friendly_name: "Dad's BT Occupancy"
+- platform: template
+  sensors:
+    outlander:
+      value_template: '{% if states("sensor.outlander_first_floor") | float > 10 %}home{% else %}not_home{%endif %}'
+      friendly_name: "Outlander Garage"
+- platform: template
+  sensors:
+    volvo:
+      value_template: '{% if states("sensor.volvo_first_floor") | float > 10 %}home{% else %}not_home{%endif %}'
+      friendly_name: "Volvo Garage"
 ##Bayesian Device Tracker
- - platform: template
-   sensors:
-     ryan_home:
-       value_template:
-         "{% if is_state('sensor.galaxy_note8_room_presence', 'not_home') %}
-         not_home
-         {% else %}
-         home
-         {% endif %}"
-       friendly_name: Ryan Home
- - platform: template
-   sensors:
-     kristi_home:
-       value_template:
-         "{% if is_state('sensor.70_ce_8c_a1_b6_8d_room_presence', 'not_home') %}
-         not_home
-         {% else %}
-         home
-         {% endif %}"
-       friendly_name: Kristi Home
- - platform: template
-   sensors:
-     mom_home:
-       value_template:
-         "{% if is_state('binary_sensor.mom_presence', 'on') %}
-         Home
-         {% else %}
-         not_home
-         {% endif %}"
-       friendly_name: Mom Home
- - platform: template
-   sensors:
-     dad_home:
-       value_template:
-         "{% if is_state('binary_sensor.dad_presence', 'on') %}
-         Home
-         {% else %}
-         not_home
-         {% endif %}"
-       friendly_name: Dad Home
+- platform: template
+  sensors:
+    ryan_home:
+      value_template:
+        "{% if is_state('sensor.galaxy_note8_room_presence', 'not_home') %}
+        not_home
+        {% else %}
+        home
+        {% endif %}"
+      friendly_name: Ryan Home
+- platform: template
+  sensors:
+    kristi_home:
+      value_template:
+        "{% if is_state('sensor.70_ce_8c_a1_b6_8d_room_presence', 'not_home') %}
+        not_home
+        {% else %}
+        home
+        {% endif %}"
+      friendly_name: Kristi Home
+- platform: template
+  sensors:
+    mom_home:
+      value_template: "{% if is_state('binary_sensor.mom_presence', 'on') %}
+        Home
+        {% else %}
+        not_home
+        {% endif %}"
+      friendly_name: Mom Home
+- platform: template
+  sensors:
+    dad_home:
+      value_template: "{% if is_state('binary_sensor.dad_presence', 'on') %}
+        Home
+        {% else %}
+        not_home
+        {% endif %}"
+      friendly_name: Dad Home
 
- - platform: template
-   sensors:
-     weather_alert:
-       value_template:
-         "{% if states.sensor.pws_alerts|regex_search('_TOR') %}Tornado Warning
-         {% elif states.sensor.pws_alerts.attributes|regex_search('_TOW') %}Tornado Watch
-         {% elif states.sensor.pws_alerts.attributes|regex_search('_WRN') %}Severe Thunderstorm Warning
-         {% elif states.sensor.pws_alerts.attributes|regex_search('_FLO') %}Flood Warning
-         {% elif states.sensor.pws_alerts.attributes|regex_search('_WIN') %}Winter Storm Advisory
-         {% else %}
-         No Alert
-         {% endif %}"
-       friendly_name: Weather Alert
+- platform: template
+  sensors:
+    weather_alert:
+      value_template:
+        "{% if states.sensor.pws_alerts|regex_search('_TOR') %}Tornado Warning
+        {% elif states.sensor.pws_alerts.attributes|regex_search('_TOW') %}Tornado Watch
+        {% elif states.sensor.pws_alerts.attributes|regex_search('_WRN') %}Severe Thunderstorm Warning
+        {% elif states.sensor.pws_alerts.attributes|regex_search('_FLO') %}Flood Warning
+        {% elif states.sensor.pws_alerts.attributes|regex_search('_WIN') %}Winter Storm Advisory
+        {% else %}
+        No Alert
+        {% endif %}"
+      friendly_name: Weather Alert
 
 #  - platform: rest
 #    sensors:
@@ -904,119 +901,118 @@
 #      method: GET
 #      name: Back Deck Motion Record
 #      value_template: '{{ value }}'
-       
- #- platform: zoneminder
- #  include_archived: false
 
- #Roomba Sensors
- - platform: mqtt
-   name: "EVA Status"
-   state_topic: "EVA/currentStatus"
- - platform: mqtt
-   name: "EVA Battery"
-   state_topic: "EVA/battery"
+#- platform: zoneminder
+#  include_archived: false
 
- - platform: mqtt
-   name: "WALL-E Status"
-   state_topic: "WALL-E/currentStatus"
- - platform: mqtt
-   name: "WALL-E Battery"
-   state_topic: "WALL-E/battery"
+#Roomba Sensors
+- platform: mqtt
+  name: "EVA Status"
+  state_topic: "EVA/currentStatus"
+- platform: mqtt
+  name: "EVA Battery"
+  state_topic: "EVA/battery"
 
- - platform: mqtt
-   name: Zigbee2mqtt Bridge state
-   state_topic: "zigbee2mqtt/bridge/state"
-   icon: mdi:router-wireless
+- platform: mqtt
+  name: "WALL-E Status"
+  state_topic: "WALL-E/currentStatus"
+- platform: mqtt
+  name: "WALL-E Battery"
+  state_topic: "WALL-E/battery"
 
-   ##PiHole Sensors
- - platform: pi_hole
-   host: !secret pihole
-   monitored_conditions:
-     - ads_blocked_today
-     - dns_queries_today
-     - unique_clients
- - platform: template
-   sensors:
-     home_state:
-       value_template:
-        "{{ states.input_select.home_status.state }}"
+- platform: mqtt
+  name: Zigbee2mqtt Bridge state
+  state_topic: "zigbee2mqtt/bridge/state"
+  icon: mdi:router-wireless
 
- - platform: mqtt
-   name: Upstairs BT Monitor state
-   state_topic: "location/upstairs/status"
-   icon: mdi:router-wireless
+  ##PiHole Sensors
+- platform: pi_hole
+  host: !secret pihole
+  monitored_conditions:
+    - ads_blocked_today
+    - dns_queries_today
+    - unique_clients
+- platform: template
+  sensors:
+    home_state:
+      value_template: "{{ states.input_select.home_status.state }}"
 
- - platform: mqtt
-   name: Downstairs BT Monitor state
-   state_topic: "location/downstairs/status"
-   icon: mdi:router-wireless
+- platform: mqtt
+  name: Upstairs BT Monitor state
+  state_topic: "location/upstairs/status"
+  icon: mdi:router-wireless
 
-   ##TED5000 Command Line Sensors
- - platform: command_line
-   name: TED Voltage
-   command: "curl -X GET http://192.168.1.234/api/LiveData.xml 2>&1 | grep -oPm1 '(?<=<VoltageNow>).*?(?=</VoltageNow>)'"
-   unit_of_measurement: "V"
-   value_template: '{{ value | float / 10 }}'
-   scan_interval: 10
+- platform: mqtt
+  name: Downstairs BT Monitor state
+  state_topic: "location/downstairs/status"
+  icon: mdi:router-wireless
 
- - platform: command_line
-   name: TED Power
-   command: "curl -X GET http://192.168.1.234/api/LiveData.xml 2>&1 | grep -oPm1 '(?<=<PowerNow>).*?(?=</PowerNow>)'"
-   unit_of_measurement: "W"
-   value_template: '{{ value }}'
-   scan_interval: 10
+  ##TED5000 Command Line Sensors
+- platform: command_line
+  name: TED Voltage
+  command: "curl -X GET http://192.168.1.234/api/LiveData.xml 2>&1 | grep -oPm1 '(?<=<VoltageNow>).*?(?=</VoltageNow>)'"
+  unit_of_measurement: "V"
+  value_template: "{{ value | float / 10 }}"
+  scan_interval: 10
+
+- platform: command_line
+  name: TED Power
+  command: "curl -X GET http://192.168.1.234/api/LiveData.xml 2>&1 | grep -oPm1 '(?<=<PowerNow>).*?(?=</PowerNow>)'"
+  unit_of_measurement: "W"
+  value_template: "{{ value }}"
+  scan_interval: 10
 
 ##Estimated Energy Usage
- - platform: template
-   sensors:
-     hvac_energy:
-       unit_of_measurement: "W"
-       friendly_name: "HVAC Power Usage"
-       entity_id: sensor.downstairs_thermostat_thermostat_hvac_state
-       value_template: >-
-         {% if is_state('sensor.downstairs_thermostat_thermostat_hvac_state', 'cool') %}
-           3500
-         {% elif is_state('sensor.downstairs_thermostat_thermostat_hvac_state', 'heat')  %}
-           550
-         {% elif is_state('sensor.downstairs_thermostat_thermostat_hvac_state', 'off') and is_state('binary_sensor.downstairs_thermostat_thermostat_fan', 'on' )  %}
-           500
-         {% elif is_state('sensor.downstairs_thermostat_thermostat_hvac_state', 'off') and is_state('binary_sensor.downstairs_thermostat_thermostat_fan', 'off' )  %}
-           0
-         {% endif %}
+- platform: template
+  sensors:
+    hvac_energy:
+      unit_of_measurement: "W"
+      friendly_name: "HVAC Power Usage"
+      entity_id: sensor.downstairs_thermostat_thermostat_hvac_state
+      value_template: >-
+        {% if is_state('sensor.downstairs_thermostat_thermostat_hvac_state', 'cool') %}
+          3500
+        {% elif is_state('sensor.downstairs_thermostat_thermostat_hvac_state', 'heat')  %}
+          550
+        {% elif is_state('sensor.downstairs_thermostat_thermostat_hvac_state', 'off') and is_state('binary_sensor.downstairs_thermostat_thermostat_fan', 'on' )  %}
+          500
+        {% elif is_state('sensor.downstairs_thermostat_thermostat_hvac_state', 'off') and is_state('binary_sensor.downstairs_thermostat_thermostat_fan', 'off' )  %}
+          0
+        {% endif %}
 
- - platform: template
-   sensors:
-     dryer_energy:
-       unit_of_measurement: "W"
-       friendly_name: "Dryer Power Usage"
-       entity_id: sensor.dryer_sensor_temperature
-       value_template: '{% if states("sensor.dryer_sensor_temperature") | float > 80 %}5300{% else %}0.5{%endif %}'
+- platform: template
+  sensors:
+    dryer_energy:
+      unit_of_measurement: "W"
+      friendly_name: "Dryer Power Usage"
+      entity_id: sensor.dryer_sensor_temperature
+      value_template: '{% if states("sensor.dryer_sensor_temperature") | float > 80 %}5300{% else %}0.5{%endif %}'
 
- - platform: time_date
-   display_options:
-     - 'date_time'
+- platform: time_date
+  display_options:
+    - "date_time"
 
- - platform: mqtt
-   name: Zigbee2mqtt Networkmap
-   # if you change base_topic of Zigbee2mqtt, change state_topic accordingly
-   state_topic: zigbee2mqtt/bridge/networkmap/raw
-   value_template: >-
-     {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
-   # again, if you change base_topic of Zigbee2mqtt, change json_attributes_topic accordingly
-   json_attributes_topic: zigbee2mqtt/bridge/networkmap/raw
+- platform: mqtt
+  name: Zigbee2mqtt Networkmap
+  # if you change base_topic of Zigbee2mqtt, change state_topic accordingly
+  state_topic: zigbee2mqtt/bridge/networkmap/raw
+  value_template: >-
+    {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
+  # again, if you change base_topic of Zigbee2mqtt, change json_attributes_topic accordingly
+  json_attributes_topic: zigbee2mqtt/bridge/networkmap/raw
 
 ##YouTube Information
 
- - platform: rest
-   resource: !secret yt_api
-   method: GET
-   name: "TSH YouTube Subscribers"
-   value_template: '{{ (value_json["items"][0].statistics.subscriberCount | int) }}'
-   scan_interval: 900
+- platform: rest
+  resource: !secret yt_api
+  method: GET
+  name: "TSH YouTube Subscribers"
+  value_template: '{{ (value_json["items"][0].statistics.subscriberCount | int) }}'
+  scan_interval: 900
 
- - platform: rest
-   resource: !secret yt_api
-   method: GET
-   value_template: '{{ (value_json["items"][0].statistics.viewCount | int) }}'
-   name: "TSH YouTube Views"
-   scan_interval: 900
+- platform: rest
+  resource: !secret yt_api
+  method: GET
+  value_template: '{{ (value_json["items"][0].statistics.viewCount | int) }}'
+  name: "TSH YouTube Views"
+  scan_interval: 900
