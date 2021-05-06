@@ -1,4 +1,4 @@
-  - platform: thinkingcleaner
+#  - platform: thinkingcleaner
 #  - platform: wake_on_lan
 #    mac_address: "e0-69-95-8d-54-74"
 #    host: spike
@@ -84,17 +84,17 @@
 #    command_off: Monitor
 
 #Roomba Switches
-  - platform: mqtt
-    name: "EVA"
-    command_topic: "EVA/commands"
-    payload_on: "start"
-    payload_off: "stop"
+  # - platform: mqtt
+  #   name: "EVA"
+  #   command_topic: "EVA/commands"
+  #   payload_on: "start"
+  #   payload_off: "stop"
 
-  - platform: mqtt
-    name: "WALL-E"
-    command_topic: "WALL-E/commands"
-    payload_on: "start"
-    payload_off: "stop"
+  # - platform: mqtt
+  #   name: "WALL-E"
+  #   command_topic: "WALL-E/commands"
+  #   payload_on: "start"
+  #   payload_off: "stop"
 
 #ZigBee2MQTT
   - platform: mqtt
