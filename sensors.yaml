@@ -973,9 +973,11 @@
           3500
         {% elif is_state('{{ states.climate.thermostat.attributes.hvac_action }}', 'heat')  %}
           550
-        {% elif is_state('{{ states.climate.thermostat.attributes.hvac_action }}', 'off') and is_state({{ states.climate.thermostat.attributes.fan_mode }}, 'on' )  %}
+        {% elif is_state('{{ states.climate.thermostat.attributes.hvac_action }}', 'off') and is_state('{{ states.climate.thermostat.attributes.fan_mode }}', 'on' )  %}
           500
-        {% elif is_state('{{ states.climate.thermostat.attributes.hvac_action }}', 'off') and is_state({{ states.climate.thermostat.attributes.fan_mode }}, 'off' )  %}
+        {% elif is_state('{{ states.climate.thermostat.attributes.hvac_action }}', 'off') and is_state('{{ states.climate.thermostat.attributes.fan_mode }}', 'off' )  %}
+          0
+        {% else %}
           0
         {% endif %}
 
@@ -984,7 +986,6 @@
     dryer_energy:
       unit_of_measurement: "W"
       friendly_name: "Dryer Power Usage"
-      entity_id: sensor.dryer_sensor_temperature
       value_template: '{% if states("sensor.dryer_sensor_temperature") | float > 80 %}5300{% else %}0.5{%endif %}'
 
 - platform: time_date
