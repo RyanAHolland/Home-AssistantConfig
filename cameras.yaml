@@ -142,6 +142,6 @@
     mjpeg_url: !secret front_basement_cam_url
     name: Front Basement Camera
 
-  - platform: mjpeg
-    mjpeg_url: http://localhost:3000/api/hassio_ingress/3W3jNyfPbU_YnS2SD-Ry-FRK-n-cNqkgK2Lo_z7-YlM/dashboard/snapshot/zXVY5bUCVvu2CILcHidMYBPVctDWOKTI
+  - platform: generic
+    still_image_url: http://localhost:3000/api/hassio_ingress/3W3jNyfPbU_YnS2SD-Ry-FRK-n-cNqkgK2Lo_z7-YlM/dashboard/snapshot/zXVY5bUCVvu2CILcHidMYBPVctDWOKTI
     name: Stock Values
