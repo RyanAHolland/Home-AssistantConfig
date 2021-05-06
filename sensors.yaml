@@ -96,7 +96,7 @@
 - platform: template
   sensors:
     value_total:
-      value_template: '{{ "{:,.2f}".format(states.sensor.value_cnk.state|float + states.sensor.value_doge.state|float + states.sensor.value_llnw.state|float + states.sensor.value_pfe.state|float + states.sensor.value_tsla.state|float + states.sensor.value_vtrs.state|float) }}'
+      value_template: "{{ (states.sensor.value_cnk.state|float + states.sensor.value_doge.state|float + states.sensor.value_llnw.state|float + states.sensor.value_pfe.state|float + states.sensor.value_tsla.state|float + states.sensor.value_vtrs.state|float) }}"
       unit_of_measurement: "$"
       friendly_name: "Value of All Stocks"
 
@@ -1016,3 +1016,17 @@
   value_template: '{{ (value_json["items"][0].statistics.viewCount | int) }}'
   name: "TSH YouTube Views"
   scan_interval: 900
+
+- platform: rest
+  resource: !secret yt_search
+  method: GET
+  value_template: '{{ (value_json["items"][0].id.videoId) }}'
+  name: "Latest Peter McKinnen Video"
+  scan_interval: 14400
+
+- platform: rest
+  resource: !secret yt_search_title
+  method: GET
+  value_template: '{{ (value_json["items"][0].snippet.title) }}'
+  name: "Latest Peter McKinnen Video Title"
+  scan_interval: 14400
