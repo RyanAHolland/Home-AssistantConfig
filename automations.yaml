@@ -1149,3 +1149,18 @@
   action:
   - service: script.office_lights_off
   mode: single
+- id: '1620160072085'
+  alias: Group - Home Disable Alarm
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: group.all_mobile_devices
+    to: home
+  condition: []
+  action:
+  - service: alarm_control_panel.alarm_disarm
+    target:
+      entity_id: alarm_control_panel.shm
+    data:
+      code: 0319
+  mode: single
