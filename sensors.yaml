@@ -968,15 +968,14 @@
     hvac_energy:
       unit_of_measurement: "W"
       friendly_name: "HVAC Power Usage"
-      entity_id: sensor.downstairs_thermostat_thermostat_hvac_state
       value_template: >-
-        {% if is_state('sensor.downstairs_thermostat_thermostat_hvac_state', 'cool') %}
+        {% if is_state('{{ states.climate.thermostat.attributes.hvac_action }}', 'cool') %}
           3500
-        {% elif is_state('sensor.downstairs_thermostat_thermostat_hvac_state', 'heat')  %}
+        {% elif is_state('{{ states.climate.thermostat.attributes.hvac_action }}', 'heat')  %}
           550
-        {% elif is_state('sensor.downstairs_thermostat_thermostat_hvac_state', 'off') and is_state('binary_sensor.downstairs_thermostat_thermostat_fan', 'on' )  %}
+        {% elif is_state('{{ states.climate.thermostat.attributes.hvac_action }}', 'off') and is_state({{ states.climate.thermostat.attributes.fan_mode }}, 'on' )  %}
           500
-        {% elif is_state('sensor.downstairs_thermostat_thermostat_hvac_state', 'off') and is_state('binary_sensor.downstairs_thermostat_thermostat_fan', 'off' )  %}
+        {% elif is_state('{{ states.climate.thermostat.attributes.hvac_action }}', 'off') and is_state({{ states.climate.thermostat.attributes.fan_mode }}, 'off' )  %}
           0
         {% endif %}
 
