@@ -1,100 +1,99 @@
 ##Virtual Binary from Zwave
 
-  # - platform: template
-  #   sensors:
-  #     front_door_sensor:
-  #       friendly_name: "Front Door Sensor"
-  #       device_class: door
-  #       value_template: "{{ is_state('sensor.front_door_access_control', '22') }}"
+# - platform: template
+#   sensors:
+#     front_door_sensor:
+#       friendly_name: "Front Door Sensor"
+#       device_class: door
+#       value_template: "{{ is_state('sensor.front_door_access_control', '22') }}"
 
-  # - platform: template
-  #   sensors:
-  #     front_door_tamper:
-  #       friendly_name: "Front Door Tamper"
-  #       device_class: safety
-  #       value_template: "{{ is_state('sensor.front_door_tamper', '0') }}"
+# - platform: template
+#   sensors:
+#     front_door_tamper:
+#       friendly_name: "Front Door Tamper"
+#       device_class: safety
+#       value_template: "{{ is_state('sensor.front_door_tamper', '0') }}"
 
-  # - platform: template
-  #   sensors:
-  #     back_door_sensor:
-  #       friendly_name: "Back Door Sensor"
-  #       device_class: door
-  #       value_template: "{{ is_state('sensor.back_door_alarm_type', '22') }}"
+# - platform: template
+#   sensors:
+#     back_door_sensor:
+#       friendly_name: "Back Door Sensor"
+#       device_class: door
+#       value_template: "{{ is_state('sensor.back_door_alarm_type', '22') }}"
 
-  # - platform: template
-  #   sensors:
-  #     back_door_tamper:
-  #       friendly_name: "Back Door Tamper"
-  #       device_class: safety
-  #       value_template: "{{ is_state('sensor.back_door_tamper', '0') }}"
+# - platform: template
+#   sensors:
+#     back_door_tamper:
+#       friendly_name: "Back Door Tamper"
+#       device_class: safety
+#       value_template: "{{ is_state('sensor.back_door_tamper', '0') }}"
 
-  # - platform: template
-  #   sensors:
-  #     liam_door_sensor:
-  #       friendly_name: "Liam Door Sensor"
-  #       device_class: door
-  #       value_template: "{{ is_state('sensor.hank_hkzwdws01_doorwindow_sensor_access_control', '22') }}"
+# - platform: template
+#   sensors:
+#     liam_door_sensor:
+#       friendly_name: "Liam Door Sensor"
+#       device_class: door
+#       value_template: "{{ is_state('sensor.hank_hkzwdws01_doorwindow_sensor_access_control', '22') }}"
 
+# - platform: template
+#   sensors:
+#     first_floor_entry_motion:
+#       friendly_name: "First Floor Entry Motion"
+#       device_class: motion
+#       value_template: "{{ is_state('sensor.vision_zp3111_multisensor_4in1_alarm_level_3', '255') }}"
 
-  # - platform: template
-  #   sensors:
-  #     first_floor_entry_motion:
-  #       friendly_name: "First Floor Entry Motion"
-  #       device_class: motion
-  #       value_template: "{{ is_state('sensor.vision_zp3111_multisensor_4in1_alarm_level_3', '255') }}"
-        
-  # - platform: template
-  #   sensors:
-  #     kitchen_motion:
-  #       friendly_name: "Kitchen Motion"
-  #       device_class: motion
-  #       value_template: "{{ is_state('sensor.vision_security_zp3102_pir_motion_sensor_alarm_level_2', '255') }}"
+# - platform: template
+#   sensors:
+#     kitchen_motion:
+#       friendly_name: "Kitchen Motion"
+#       device_class: motion
+#       value_template: "{{ is_state('sensor.vision_security_zp3102_pir_motion_sensor_alarm_level_2', '255') }}"
 
-  # - platform: template
-  #   sensors:
-  #     upstairs_motion:
-  #       friendly_name: "Upstairs Motion"
-  #       device_class: motion
-  #       value_template: "{{ is_state('sensor.vision_security_zp3102_pir_motion_sensor_alarm_level', '255') }}"
+# - platform: template
+#   sensors:
+#     upstairs_motion:
+#       friendly_name: "Upstairs Motion"
+#       device_class: motion
+#       value_template: "{{ is_state('sensor.vision_security_zp3102_pir_motion_sensor_alarm_level', '255') }}"
 
-  # - platform: template
-  #   sensors:
-  #     downstairs_glass_break:
-  #       friendly_name: "Downstairs Glass Break"
-  #       device_class: safety
-  #       value_template: "{{ is_state('sensor.linear_unknown_type4742_id3030_alarm_type', '255') }}"
+# - platform: template
+#   sensors:
+#     downstairs_glass_break:
+#       friendly_name: "Downstairs Glass Break"
+#       device_class: safety
+#       value_template: "{{ is_state('sensor.linear_unknown_type4742_id3030_alarm_type', '255') }}"
 
 ##Phone Battery Charging
 
-  - platform: template
-    sensors:
-      ryan_phone_charging:
-        friendly_name: "Ryan's Phone Charging"
-        device_class: plug
-        value_template: "{{ states.device_tracker.google_maps_114680120030307638360.attributes.battery_charging }}"
+- platform: template
+  sensors:
+    ryan_phone_charging:
+      friendly_name: "Ryan's Phone Charging"
+      device_class: plug
+      value_template: "{{ states.device_tracker.google_maps_114680120030307638360.attributes.battery_charging }}"
 
-  - platform: template
-    sensors:
-      kristi_phone_charging:
-        friendly_name: "Kristi's Phone Charging"
-        device_class: plug
-        value_template: "{{ states.device_tracker.google_maps_118314383764095593834.attributes.battery_charging }}"
+- platform: template
+  sensors:
+    kristi_phone_charging:
+      friendly_name: "Kristi's Phone Charging"
+      device_class: plug
+      value_template: "{{ states.device_tracker.google_maps_118314383764095593834.attributes.battery_charging }}"
 
 ##Might be different value
 #washer
-  - platform: mqtt
-    state_topic: "smartthings/Washer Sensor/acceleration/state"
-    name: "Washer Vibration"
-    qos: 0
-    payload_on: "active"
-    payload_off: "inactive"
-    device_class: vibration
-  - platform: mqtt
-    state_topic: "smartthings/Liam's Button/button"
-    name: "Liam's Button"
-    qos: 0
-    payload_on: "pushed"
-    payload_off: "released"
+- platform: mqtt
+  state_topic: "smartthings/Washer Sensor/acceleration/state"
+  name: "Washer Vibration"
+  qos: 0
+  payload_on: "active"
+  payload_off: "inactive"
+  device_class: vibration
+- platform: mqtt
+  state_topic: "smartthings/Liam's Button/button"
+  name: "Liam's Button"
+  qos: 0
+  payload_on: "pushed"
+  payload_off: "released"
 #Dryer
 #  - platform: template
 #    sensors:
@@ -109,197 +108,204 @@
 #         device_class: moving
 #         value_template: "{{ (is_state('binary_sensor.dryer_vibration','on') and relative_time(states.binary_sensor.dryer_vibration.last_updated) < '60 minutes')  or  (is_state('binary_sensor.dryer_vibration','off') and relative_time(states.binary_sensor.dryer_vibration.last_updated) < '3 minutes') }}"
 #Alert
-  - platform: template
-    sensors:
-      lg_garage_night:
-        value_template: "{{ is_state('sun.sun', 'below_horizon') and is_state('states.binary_sensor.large_garage_door_contact.state', 'on') }}"
-        friendly_name: 'Large Garage Open @ Night'
-  - platform: template
-    sensors:
-      sm_garage_night:
-        value_template: "{{ is_state('sun.sun', 'below_horizon') and is_state('states.binary_sensor.small_garage_door_contact.state', 'on') }}"
-        friendly_name: 'Small Garage Open @ Night'
-  - platform: template
-    sensors:
-      lg_garage_day:
-        value_template: "{{ is_state('sun.sun', 'above_horizon') and is_state('states.binary_sensor.large_garage_door_contact.state', 'on') }}"
-        friendly_name: 'Large Garage Open during Day'
-  - platform: template
-    sensors:
-      sm_garage_day:
-        value_template: "{{ is_state('sun.sun', 'above_horizon') and is_state('states.binary_sensor.small_garage_door_contact.state', 'on') }}"
-        friendly_name: 'Small Garage Open during Day'
-  - platform: template
-    sensors:
-      garage_lock_open:
-        value_template: "{{ is_state('states.lock.garage_lock.state', 'locked') }}"
-        friendly_name: 'Garage Lock Unlocked'
-  - platform: template
-    sensors:
-      front_lock_open:
-        value_template: "{{ is_state('states.lock.front_lock.state', 'locked') }}"
-        friendly_name: 'Front Lock Unlocked'
+- platform: template
+  sensors:
+    lg_garage_night:
+      value_template: "{{ is_state('sun.sun', 'below_horizon') and is_state('states.binary_sensor.large_garage_door_contact.state', 'on') }}"
+      friendly_name: "Large Garage Open @ Night"
+- platform: template
+  sensors:
+    sm_garage_night:
+      value_template: "{{ is_state('sun.sun', 'below_horizon') and is_state('states.binary_sensor.small_garage_door_contact.state', 'on') }}"
+      friendly_name: "Small Garage Open @ Night"
+- platform: template
+  sensors:
+    lg_garage_day:
+      value_template: "{{ is_state('sun.sun', 'above_horizon') and is_state('states.binary_sensor.large_garage_door_contact.state', 'on') }}"
+      friendly_name: "Large Garage Open during Day"
+- platform: template
+  sensors:
+    sm_garage_day:
+      value_template: "{{ is_state('sun.sun', 'above_horizon') and is_state('states.binary_sensor.small_garage_door_contact.state', 'on') }}"
+      friendly_name: "Small Garage Open during Day"
+- platform: template
+  sensors:
+    garage_lock_open:
+      value_template: "{{ is_state('states.lock.garage_lock.state', 'locked') }}"
+      friendly_name: "Garage Lock Unlocked"
+- platform: template
+  sensors:
+    front_lock_open:
+      value_template: "{{ is_state('states.lock.front_lock.state', 'locked') }}"
+      friendly_name: "Front Lock Unlocked"
 
 ##Nest Climate
-  - platform: template
-    sensors:
-      nest_away:
-        value_template: "{{ is_state_attr('climate.downstairs_thermostat', 'away_mode', 'off') }}"
-        friendly_name: 'Nest Away Mode'
+- platform: template
+  sensors:
+    nest_away:
+      value_template: "{{ is_state_attr('climate.downstairs_thermostat', 'away_mode', 'off') }}"
+      friendly_name: "Nest Away Mode"
 
 ##Devices
-  - platform: template
-    sensors:
-      wax_melt_relay:
-        friendly_name: "Wax Warmer Status"
-        device_class: heat
-        value_template: "{{ is_state('switch.waxwarmer_relay', 'on') }}"
-        
+- platform: template
+  sensors:
+    wax_melt_relay:
+      friendly_name: "Wax Warmer Status"
+      device_class: heat
+      value_template: "{{ is_state('switch.waxwarmer_relay', 'on') }}"
+
 #Bayesian
-  # - platform: bayesian
-  #   prior: 0.5
-  #   name: 'Ryan Presence'
-  #   probability_threshold: 0.85
-  #   observations:
-  #     - entity_id: 'device_tracker.ryan_note8'
-  #       prob_given_true: 0.9
-  #       prob_given_false: 0.1
-  #       platform: 'state'
-  #       to_state: 'home'
-  #     # - entity_id: 'device_tracker.galaxynote8'
-  #     #   prob_given_true: 0.7
-  #     #   prob_given_false: 0.3
-  #     #   platform: 'state'
-  #     #   to_state: 'home'
-  #     - entity_id: 'sensor.ryan_occupancy'
-  #       prob_given_true: 1
-  #       prob_given_false: 0.3
-  #       platform: 'state'
-  #       to_state: 'home'
-  # - platform: bayesian
+# - platform: bayesian
+#   prior: 0.5
+#   name: 'Ryan Presence'
+#   probability_threshold: 0.85
+#   observations:
+#     - entity_id: 'device_tracker.ryan_note8'
+#       prob_given_true: 0.9
+#       prob_given_false: 0.1
+#       platform: 'state'
+#       to_state: 'home'
+#     # - entity_id: 'device_tracker.galaxynote8'
+#     #   prob_given_true: 0.7
+#     #   prob_given_false: 0.3
+#     #   platform: 'state'
+#     #   to_state: 'home'
+#     - entity_id: 'sensor.ryan_occupancy'
+#       prob_given_true: 1
+#       prob_given_false: 0.3
+#       platform: 'state'
+#       to_state: 'home'
+# - platform: bayesian
 
 #ST Anywhere Sensors
-  - platform: mqtt
-    state_topic: "smartthings/ST Anywhere Parent (contact1)/contact/state"
-    name: "Dryer Vibration"
-    payload_on: "closed"
-    payload_off: "open"
-    device_class: vibration
+- platform: mqtt
+  state_topic: "smartthings/ST Anywhere Parent (contact1)/contact/state"
+  name: "Dryer Vibration"
+  payload_on: "closed"
+  payload_off: "open"
+  device_class: vibration
 #Ping Sensors
-  - platform: ping 
-    host: !secret walle_ip
-    name: "Wall-E Ping"
-  - platform: ping
-    host: !secret rachio_ip
-    name: "Rachio Ping"
-  - platform: ping
-    host: !secret frontcam_ip
-    name: "Front Camera Ping"
-  - platform: ping
-    host: !secret mom_ip
-    name: "Mom Phone Ping"
-  - platform: ping
-    host: !secret officepi
-    name: "OfficePi Ping"
-  - platform: ping
-    host: !secret lrpi
-    name: "LivingRoomPi Ping"
-  - platform: ping
-    host: !secret garagepi
-    name: "GaragePi Ping"
-  - platform: ping
-    host: !secret bedroompi
-    name: "BedroomPi Ping"
-  - platform: ping
-    host: !secret mediavault
-    name: "MediaVault Ping"
-  - platform: ping
-    host: !secret jet
-    name: "Jet Ping"
+- platform: ping
+  host: !secret walle_ip
+  name: "Wall-E Ping"
+- platform: ping
+  host: !secret rachio_ip
+  name: "Rachio Ping"
+- platform: ping
+  host: !secret frontcam_ip
+  name: "Front Camera Ping"
+- platform: ping
+  host: !secret mom_ip
+  name: "Mom Phone Ping"
+- platform: ping
+  host: !secret officepi
+  name: "OfficePi Ping"
+- platform: ping
+  host: !secret lrpi
+  name: "LivingRoomPi Ping"
+- platform: ping
+  host: !secret garagepi
+  name: "GaragePi Ping"
+- platform: ping
+  host: !secret bedroompi
+  name: "BedroomPi Ping"
+- platform: ping
+  host: !secret mediavault
+  name: "MediaVault Ping"
+- platform: ping
+  host: !secret jet
+  name: "Jet Ping"
 
-    ##PUMPING SENSORS
+  ##PUMPING SENSORS
 
-  - platform: template
-    sensors:
-      upstairs_pumping:
-        friendly_name: "Upstairs Pump On"
-        device_class: plug
-        value_template: "{{ states('sensor.uppump_wattage')|float > 2.5 }}"
+- platform: template
+  sensors:
+    upstairs_pumping:
+      friendly_name: "Upstairs Pump On"
+      device_class: plug
+      value_template: "{{ states('sensor.uppump_wattage')|float > 2.5 }}"
 
-  - platform: template
-    sensors:
-      downstairs_pumping:
-        friendly_name: "Downstairs Pump On"
-        device_class: plug
-        value_template: "{{ states('sensor.uppump_wattage')|float > 2.5 }}"
+- platform: template
+  sensors:
+    downstairs_pumping:
+      friendly_name: "Downstairs Pump On"
+      device_class: plug
+      value_template: "{{ states('sensor.uppump_wattage')|float > 2.5 }}"
 
 ##BlueIris Cameras
 ###Playroom
-  - platform: mqtt
-    state_topic: "homeassistant/blueiris/playroom/motion"
-    name: "Playroom Camera Motion BI"
-    qos: 0
-    payload_on: "ON"
-    payload_off: "OFF"
-    device_class: motion
+- platform: mqtt
+  state_topic: "homeassistant/blueiris/playroom/motion"
+  name: "Playroom Camera Motion BI"
+  qos: 0
+  payload_on: "ON"
+  payload_off: "OFF"
+  device_class: motion
 
-  - platform: mqtt
-    state_topic: "homeassistant/blueiris/playroom/online"
-    name: "Playroom Camera Online BI"
-    qos: 0
-    payload_on: "ON"
-    payload_off: "OFF"
-    device_class: connectivity
+- platform: mqtt
+  state_topic: "homeassistant/blueiris/playroom/online"
+  name: "Playroom Camera Online BI"
+  qos: 0
+  payload_on: "ON"
+  payload_off: "OFF"
+  device_class: connectivity
 
 ###Back Deck
-  - platform: mqtt
-    state_topic: "homeassistant/blueiris/backdeck/motion"
-    name: "Deck Camera Motion BI"
-    qos: 0
-    payload_on: "ON"
-    payload_off: "OFF"
-    device_class: motion
+- platform: mqtt
+  state_topic: "homeassistant/blueiris/backdeck/motion"
+  name: "Deck Camera Motion BI"
+  qos: 0
+  payload_on: "ON"
+  payload_off: "OFF"
+  device_class: motion
 
-  - platform: mqtt
-    state_topic: "homeassistant/blueiris/backdeck/online"
-    name: "Deck Camera Online BI"
-    qos: 0
-    payload_on: "ON"
-    payload_off: "OFF"
-    device_class: connectivity
+- platform: mqtt
+  state_topic: "homeassistant/blueiris/backdeck/online"
+  name: "Deck Camera Online BI"
+  qos: 0
+  payload_on: "ON"
+  payload_off: "OFF"
+  device_class: connectivity
 
 ###Driveway
-  - platform: mqtt
-    state_topic: "homeassistant/blueiris/driveway/motion"
-    name: "Driveway Motion BI"
-    qos: 0
-    payload_on: "ON"
-    payload_off: "OFF"
-    device_class: motion
+- platform: mqtt
+  state_topic: "homeassistant/blueiris/driveway/motion"
+  name: "Driveway Motion BI"
+  qos: 0
+  payload_on: "ON"
+  payload_off: "OFF"
+  device_class: motion
 
-  - platform: mqtt
-    state_topic: "homeassistant/blueiris/driveway/online"
-    name: "Driveway Online BI"
-    qos: 0
-    payload_on: "ON"
-    payload_off: "OFF"
-    device_class: connectivity
+- platform: mqtt
+  state_topic: "homeassistant/blueiris/driveway/online"
+  name: "Driveway Online BI"
+  qos: 0
+  payload_on: "ON"
+  payload_off: "OFF"
+  device_class: connectivity
 
 ###Liam Camera
-  - platform: mqtt
-    state_topic: "homeassistant/blueiris/liamcam/motion"
-    name: "Liam Camera Motion BI"
-    qos: 0
-    payload_on: "ON"
-    payload_off: "OFF"
-    device_class: motion
+- platform: mqtt
+  state_topic: "homeassistant/blueiris/liamcam/motion"
+  name: "Liam Camera Motion BI"
+  qos: 0
+  payload_on: "ON"
+  payload_off: "OFF"
+  device_class: motion
 
-  - platform: mqtt
-    state_topic: "homeassistant/blueiris/liamcam/online"
-    name: "Liam Camera Online BI"
-    qos: 0
-    payload_on: "ON"
-    payload_off: "OFF"
-    device_class: connectivity
+- platform: mqtt
+  state_topic: "homeassistant/blueiris/liamcam/online"
+  name: "Liam Camera Online BI"
+  qos: 0
+  payload_on: "ON"
+  payload_off: "OFF"
+  device_class: connectivity
 
-    
+#Curl Sensor to Check Internal Services
+
+- platform: command_line
+  name: Duplicati
+  command: 'curl -s -o /dev/null -w "%{http_code}" 192.168.1.250:8200'
+  device_class: connectivity
+  payload_on: "200"
+  payload_off: "404"
