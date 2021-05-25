@@ -146,10 +146,9 @@
   name: Front Basement Camera
 
 - platform: generic
-  still_image_url: http://192.168.1.5:3000/api/hassio_ingress/3W3jNyfPbU_YnS2SD-Ry-FRK-n-cNqkgK2Lo_z7-YlM/dashboard/snapshot/zXVY5bUCVvu2CILcHidMYBPVctDWOKTI
+  still_image_url: http://192.168.1.5:3333/api/hassio_ingress/3W3jNyfPbU_YnS2SD-Ry-FRK-n-cNqkgK2Lo_z7-YlM/dashboard/snapshot/zXVY5bUCVvu2CILcHidMYBPVctDWOKTI
   name: Stock Values
 
 - platform: generic
-  still_image_url: http://192.168.1.5:3000/api/hassio_ingress/3W3jNyfPbU_YnS2SD-Ry-FRK-n-cNqkgK2Lo_z7-YlM/dashboard/snapshot/NB2frfx1i1ed7T9nvf5oF1cimpSnubJP
+  still_image_url: http://192.168.1.5:3333/api/hassio_ingress/3W3jNyfPbU_YnS2SD-Ry-FRK-n-cNqkgK2Lo_z7-YlM/dashboard/snapshot/NB2frfx1i1ed7T9nvf5oF1cimpSnubJP
   name: YouTube Subs
-  
