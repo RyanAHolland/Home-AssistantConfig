@@ -1,147 +1,155 @@
-  # - platform: mjpeg
-  #   mjpeg_url: !secret baby_cam_url
-  #   name: Baby Camera
-  # - platform: mjpeg
-  #   mjpeg_url: !secret yard_cam_url
-  #   name: Back Yard Camera
-  # - platform: mjpeg
-  #   mjpeg_url: !secret play_cam_url
-  #   name: Play Room Camera
-  # - platform: mjpeg
-    # mjpeg_url: !secret basement_cam_url
-    # name: Basement
-  # - platform: generic
-  #   name: Liam's Camera Snapshot
-  #   still_image_url: !secret liam_cam_direct
-  #   stream_source: !secret liam_cam_rstp
-  #   verify_ssl: false
-  #   scan_interval: 5
-  # - platform: mjpeg
-  #   name: Liam's Room
-  #   mjpeg_url: !secret liam_cam_url
-  # - platform: mjpeg 
-  #   name: Garage Camera
-  #   mjpeg_url: !secret garage_cam_url
-  # - platform: generic
-  #   name: Garage Camera Snapshot
-  #   authentication: basic
-  #   still_image_url: !secret garage_cam_direct
-  #   stream_source: !secret garage_cam_rstp
-  #   verify_ssl: false
-  #   scan_interval: 5
-  # - platform: ffmpeg
-  #   name: Twins Camera
-  #   input: !secret twins_cam_rstp
-  # - platform: generic
-  #   name: Twins's Camera Snapshot
-  #   authentication: basic
-  #   still_image_url: !secret twins_cam_direct
-  #   stream_source: !secret twins_cam_rstp
-  #   verify_ssl: false
-  #   scan_interval: 5
-  # - platform: mjpeg 
-  #   name: Entry Camera
-  #   mjpeg_url: !secret entry_cam_url
-  # - platform: generic
-  #   name: Entry Camera Snapshot
-  #   authentication: basic
-  #   still_image_url: !secret entry_cam_direct
-  #   stream_source: !secret entry_cam_rstp
-  #   verify_ssl: false
-  #   scan_interval: 5
-  # - platform: mjpeg 
-  #   name: Back Deck Camera
-  #   mjpeg_url: !secret deck_cam_url
-  # - platform: generic
-    # name: Back Deck Camera Snapshot
-    # authentication: basic
-    # still_image_url: !secret deck_cam_direct
-    # verify_ssl: false
-    # scan_interval: 5
-  # - platform: mjpeg
-    # mjpeg_url: http://192.168.1.185:81/mjpg/Twins
-    # name: Twins Camera
-    # username: !secret bi_user
-    # password: !secret bi_pass
-    # authentication: basic
-  # - platform: mjpeg
-    # mjpeg_url: http://192.168.1.185:81/mjpg/Entry
-    # name: Entry Camera
-    # username: !secret bi_user
-    # password: !secret bi_pass
-    # authentication: basic
-  # - platform: mjpeg
-    # mjpeg_url: http://192.168.1.185:81/mjpg/Garage
-    # name: Garage Camera
-    # username: !secret bi_user
-    # password: !secret bi_pass
-    # authentication: basic
-  # - platform: mjpeg
-    # mjpeg_url: http://192.168.1.185:81/mjpg/Deck
-    # name: Back Deck Camera
-    # username: !secret bi_user
-    # password: !secret bi_pass
-    # authentication: basic
-  # - platform: mjpeg
-    # mjpeg_url: http://192.168.1.185:81/mjpg/Liam
-    # name: Liam's Camera
-    # username: !secret bi_user
-    # password: !secret bi_pass
-    # authentication: basic
-  # - platform: mjpeg
-    # mjpeg_url: http://192.168.1.185:81/mjpg/Playroom
-    # name: Playroom Camera
-    # username: !secret bi_user
-    # password: !secret bi_pass
-    # authentication: basic
-  # - platform: ring
-  # - platform: usps
-  #   scan_interval: 5
-  - platform: generic
-    still_image_url: https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?num=12&type=N0R&mapx=400&mapy=240&brand=horse&delay=15&frame=0&scale=1&transx=0&transy=0&severe=1&smooth=1&centerx=400&centery=240&station=EAX&rainsnow=1&lightning=0&noclutter=1&showlabels=1&showstorms=5&rand=26727881
-    name: KC
+# - platform: mjpeg
+#   mjpeg_url: !secret baby_cam_url
+#   name: Baby Camera
+# - platform: mjpeg
+#   mjpeg_url: !secret yard_cam_url
+#   name: Back Yard Camera
+# - platform: mjpeg
+#   mjpeg_url: !secret play_cam_url
+#   name: Play Room Camera
+# - platform: mjpeg
+# mjpeg_url: !secret basement_cam_url
+# name: Basement
+# - platform: generic
+#   name: Liam's Camera Snapshot
+#   still_image_url: !secret liam_cam_direct
+#   stream_source: !secret liam_cam_rstp
+#   verify_ssl: false
+#   scan_interval: 5
+# - platform: mjpeg
+#   name: Liam's Room
+#   mjpeg_url: !secret liam_cam_url
+# - platform: mjpeg
+#   name: Garage Camera
+#   mjpeg_url: !secret garage_cam_url
+# - platform: generic
+#   name: Garage Camera Snapshot
+#   authentication: basic
+#   still_image_url: !secret garage_cam_direct
+#   stream_source: !secret garage_cam_rstp
+#   verify_ssl: false
+#   scan_interval: 5
+# - platform: ffmpeg
+#   name: Twins Camera
+#   input: !secret twins_cam_rstp
+# - platform: generic
+#   name: Twins's Camera Snapshot
+#   authentication: basic
+#   still_image_url: !secret twins_cam_direct
+#   stream_source: !secret twins_cam_rstp
+#   verify_ssl: false
+#   scan_interval: 5
+# - platform: mjpeg
+#   name: Entry Camera
+#   mjpeg_url: !secret entry_cam_url
+# - platform: generic
+#   name: Entry Camera Snapshot
+#   authentication: basic
+#   still_image_url: !secret entry_cam_direct
+#   stream_source: !secret entry_cam_rstp
+#   verify_ssl: false
+#   scan_interval: 5
+# - platform: mjpeg
+#   name: Back Deck Camera
+#   mjpeg_url: !secret deck_cam_url
+# - platform: generic
+# name: Back Deck Camera Snapshot
+# authentication: basic
+# still_image_url: !secret deck_cam_direct
+# verify_ssl: false
+# scan_interval: 5
+# - platform: mjpeg
+# mjpeg_url: http://192.168.1.185:81/mjpg/Twins
+# name: Twins Camera
+# username: !secret bi_user
+# password: !secret bi_pass
+# authentication: basic
+# - platform: mjpeg
+# mjpeg_url: http://192.168.1.185:81/mjpg/Entry
+# name: Entry Camera
+# username: !secret bi_user
+# password: !secret bi_pass
+# authentication: basic
+# - platform: mjpeg
+# mjpeg_url: http://192.168.1.185:81/mjpg/Garage
+# name: Garage Camera
+# username: !secret bi_user
+# password: !secret bi_pass
+# authentication: basic
+# - platform: mjpeg
+# mjpeg_url: http://192.168.1.185:81/mjpg/Deck
+# name: Back Deck Camera
+# username: !secret bi_user
+# password: !secret bi_pass
+# authentication: basic
+# - platform: mjpeg
+# mjpeg_url: http://192.168.1.185:81/mjpg/Liam
+# name: Liam's Camera
+# username: !secret bi_user
+# password: !secret bi_pass
+# authentication: basic
+# - platform: mjpeg
+# mjpeg_url: http://192.168.1.185:81/mjpg/Playroom
+# name: Playroom Camera
+# username: !secret bi_user
+# password: !secret bi_pass
+# authentication: basic
+# - platform: ring
+# - platform: usps
+#   scan_interval: 5
+- platform: generic
+  still_image_url: https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?num=40&type=N0R&mapx=400&mapy=240&brand=wui&delay=25&frame=0&scale=1&transx=0&transy=0&severe=1&smooth=0&centerx=400&centery=240&station=EAX&rainsnow=0&lightning=0&noclutter=0&showlabels=1&showstorms=5&rand=27026247
+  name: KC (Old)
+- platform: generic
+  still_image_url: https://s.w-x.co/staticmaps/wu/wxtype/county_loc/jef/animate.png
+  name: KC
 ##Xiaomi Vacuum Map Extractor
-  - platform: xiaomi_cloud_map_extractor
-    host: !secret max_ip
-    token: !secret roborock
-    username: !secret xiaomi_cloud_username
-    password: !secret xiaomi_cloud_password
-    draw: ['all']
-    attributes:
-      - calibration_points   
-##Tiny Cam 
-  - platform: mjpeg
-    mjpeg_url: !secret twin_cam_url
-    name: Twin's Camera
-    
-  - platform: mjpeg
-    mjpeg_url: !secret driveway_cam_url
-    name: Driveway Camera
-    
-  - platform: mjpeg
-    mjpeg_url: !secret liam_cam_url
-    name: Liam's Camera
-    
-  - platform: mjpeg
-    mjpeg_url: !secret garage_cam_url
-    name: Garage Camera
-    
-  - platform: mjpeg
-    mjpeg_url: !secret back_deck_cam_url
-    name: Back Deck Camera
-    
-  - platform: mjpeg
-    mjpeg_url: !secret entry_cam_url
-    name: Entry Way Camera
-    
-  - platform: mjpeg
-    mjpeg_url: !secret playroom_cam_url
-    name: Playroom Camera
-    
-  - platform: mjpeg
-    mjpeg_url: !secret front_basement_cam_url
-    name: Front Basement Camera
+- platform: xiaomi_cloud_map_extractor
+  host: !secret max_ip
+  token: !secret roborock
+  username: !secret xiaomi_cloud_username
+  password: !secret xiaomi_cloud_password
+  draw: ["all"]
+  attributes:
+    - calibration_points
+##Tiny Cam
+- platform: mjpeg
+  mjpeg_url: !secret twin_cam_url
+  name: Twin's Camera
 
-  - platform: generic
-    still_image_url: http://localhost:3000/api/hassio_ingress/3W3jNyfPbU_YnS2SD-Ry-FRK-n-cNqkgK2Lo_z7-YlM/dashboard/snapshot/zXVY5bUCVvu2CILcHidMYBPVctDWOKTI
-    name: Stock Values
+- platform: mjpeg
+  mjpeg_url: !secret driveway_cam_url
+  name: Driveway Camera
+
+- platform: mjpeg
+  mjpeg_url: !secret liam_cam_url
+  name: Liam's Camera
+
+- platform: mjpeg
+  mjpeg_url: !secret garage_cam_url
+  name: Garage Camera
+
+- platform: mjpeg
+  mjpeg_url: !secret back_deck_cam_url
+  name: Back Deck Camera
+
+- platform: mjpeg
+  mjpeg_url: !secret entry_cam_url
+  name: Entry Way Camera
+
+- platform: mjpeg
+  mjpeg_url: !secret playroom_cam_url
+  name: Playroom Camera
+
+- platform: mjpeg
+  mjpeg_url: !secret front_basement_cam_url
+  name: Front Basement Camera
+
+- platform: generic
+  still_image_url: http://192.168.1.5:3000/api/hassio_ingress/3W3jNyfPbU_YnS2SD-Ry-FRK-n-cNqkgK2Lo_z7-YlM/dashboard/snapshot/zXVY5bUCVvu2CILcHidMYBPVctDWOKTI
+  name: Stock Values
+
+- platform: generic
+  still_image_url: http://192.168.1.5:3000/api/hassio_ingress/3W3jNyfPbU_YnS2SD-Ry-FRK-n-cNqkgK2Lo_z7-YlM/dashboard/snapshot/NB2frfx1i1ed7T9nvf5oF1cimpSnubJP
+  name: YouTube Subs
+  
