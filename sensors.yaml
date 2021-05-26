@@ -1030,3 +1030,8 @@
   value_template: '{{ (value_json["items"][0].snippet.title) }}'
   name: "Latest Peter McKinnen Video Title"
   scan_interval: 14400
+# - platform: imap
+#   server: imap.gmail.com
+#   port: 993
+#   username: !secret email
+#   password: !secret gmail_key
