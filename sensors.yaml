@@ -39,10 +39,6 @@
     - nearest_storm_bearing
     - alerts
 
-#Social Blade
-- platform: socialblade
-  channel_id: UCGaAf70zQAa01a_r_k1XJ1Q
-
 - platform: yahoofinance
   symbols:
     - LLNW
