@@ -4,111 +4,106 @@
 #    host: spike
 #    name: Wake Spike
 #  - platform: insteon_local
-  # - platform: mqtt
-  #   name: "ST Vacation/Home Switch"
-  #   state_topic: "smartthings/zzVacationHomeSwitch/switch/state"
-  #   command_topic: "smartthings/zzVacationHomeSwitch/switch/set"
-  #   payload_on: "on"
-  #   payload_off: "off"
-  #   optimistic: false
-  #   qos: 0
-  #   retain: false
-  # - platform: mqtt
-  #   name: "ST Good Morning/Night Switch"
-  #   state_topic: "smartthings/zzGoodMorningNight/switch/state"
-  #   command_topic: "smartthings/zzGoodMorningNight/switch/set"
-  #   payload_on: "on"
-  #   payload_off: "off"
-  #   qos: 0
-  #   retain: false
-  # - platform: mqtt
-  #   name: "ST Away/Home Switch"
-  #   state_topic: "smartthings/zzHomeAwaySwitch/switch/state"
-  #   command_topic: "smartthings/zzHomeAwaySwitch/switch/set"
-  #   payload_on: "on"
-  #   payload_off: "off"
-  #   qos: 0
-  #   retain: false
-  # - platform: mqtt
-  #   name: "Guest Mode"
-  #   state_topic: "smartthings/zzGuestMode/switch"
-  #   command_topic: "smartthings/zzGuestMode/switch/set"
-  #   payload_on: "on"
-  #   payload_off: "off"
-  #   qos: 0
-  #   retain: false
-  # - platform: mqtt
-  #   name: "Railing Lights"
-  #   state_topic: "smartthings/Railing Lights/switch"
-  #   command_topic: "smartthings/Railing Lights/switch/set"
-  #   payload_on: "on"
-  #   payload_off: "off"
-  #   qos: 0
-  #   retain: false
-  # - platform: mqtt
-  #   name: "Living Room Fan"
-  #   state_topic: "smartthings/Living Room Fan/switch"
-  #   command_topic: "smartthings/Living Room Fan/switch/set"
-  #   payload_on: "on"
-  #   payload_off: "off"
-  #   qos: 0
-  #   retain: false
-  # - platform: mqtt
-  #   name: "North Up Lights"
-  #   state_topic: "smartthings/North Up Lights/switch"
-  #   command_topic: "smartthings/North Up Lights/switch/set"
-  #   payload_on: "on"
-  #   payload_off: "off"
-  #   qos: 0
-  #   retain: false
-  # - platform: mqtt
-  #   name: "Driveway Camera Switch"
-  #   state_topic: "smartthings/Driveway Camera Switch/switch"
-  #   command_topic: "smartthings/Driveway Camera Switch/switch/set"
-  #   payload_on: "on"
-  #   payload_off: "off"
-  #   qos: 0
-  #   retain: false
+# - platform: mqtt
+#   name: "ST Vacation/Home Switch"
+#   state_topic: "smartthings/zzVacationHomeSwitch/switch/state"
+#   command_topic: "smartthings/zzVacationHomeSwitch/switch/set"
+#   payload_on: "on"
+#   payload_off: "off"
+#   optimistic: false
+#   qos: 0
+#   retain: false
+# - platform: mqtt
+#   name: "ST Good Morning/Night Switch"
+#   state_topic: "smartthings/zzGoodMorningNight/switch/state"
+#   command_topic: "smartthings/zzGoodMorningNight/switch/set"
+#   payload_on: "on"
+#   payload_off: "off"
+#   qos: 0
+#   retain: false
+# - platform: mqtt
+#   name: "ST Away/Home Switch"
+#   state_topic: "smartthings/zzHomeAwaySwitch/switch/state"
+#   command_topic: "smartthings/zzHomeAwaySwitch/switch/set"
+#   payload_on: "on"
+#   payload_off: "off"
+#   qos: 0
+#   retain: false
+# - platform: mqtt
+#   name: "Guest Mode"
+#   state_topic: "smartthings/zzGuestMode/switch"
+#   command_topic: "smartthings/zzGuestMode/switch/set"
+#   payload_on: "on"
+#   payload_off: "off"
+#   qos: 0
+#   retain: false
+# - platform: mqtt
+#   name: "Railing Lights"
+#   state_topic: "smartthings/Railing Lights/switch"
+#   command_topic: "smartthings/Railing Lights/switch/set"
+#   payload_on: "on"
+#   payload_off: "off"
+#   qos: 0
+#   retain: false
+# - platform: mqtt
+#   name: "Living Room Fan"
+#   state_topic: "smartthings/Living Room Fan/switch"
+#   command_topic: "smartthings/Living Room Fan/switch/set"
+#   payload_on: "on"
+#   payload_off: "off"
+#   qos: 0
+#   retain: false
+# - platform: mqtt
+#   name: "North Up Lights"
+#   state_topic: "smartthings/North Up Lights/switch"
+#   command_topic: "smartthings/North Up Lights/switch/set"
+#   payload_on: "on"
+#   payload_off: "off"
+#   qos: 0
+#   retain: false
+# - platform: mqtt
+#   name: "Driveway Camera Switch"
+#   state_topic: "smartthings/Driveway Camera Switch/switch"
+#   command_topic: "smartthings/Driveway Camera Switch/switch/set"
+#   payload_on: "on"
+#   payload_off: "off"
+#   qos: 0
+#   retain: false
 ##Insteon Switches
-  # - platform: mqtt
-  #   name: "Front Lights"
-  #   state_topic: "smartthings/Front Lights/switch"
-  #   command_topic: "smartthings/Front Lights/switch/set"
-  #   payload_on: "on"
-  #   payload_off: "off"
-  #   qos: 0
-  #   retain: false
+# - platform: mqtt
+#   name: "Front Lights"
+#   state_topic: "smartthings/Front Lights/switch"
+#   command_topic: "smartthings/Front Lights/switch/set"
+#   payload_on: "on"
+#   payload_off: "off"
+#   qos: 0
+#   retain: false
 ##ZoneMinder
 #  - platform: zoneminder
 #    command_on: Modect
 #    command_off: Monitor
 
 #Roomba Switches
-  # - platform: mqtt
-  #   name: "EVA"
-  #   command_topic: "EVA/commands"
-  #   payload_on: "start"
-  #   payload_off: "stop"
+# - platform: mqtt
+#   name: "EVA"
+#   command_topic: "EVA/commands"
+#   payload_on: "start"
+#   payload_off: "stop"
 
-  # - platform: mqtt
-  #   name: "WALL-E"
-  #   command_topic: "WALL-E/commands"
-  #   payload_on: "start"
-  #   payload_off: "stop"
+# - platform: mqtt
+#   name: "WALL-E"
+#   command_topic: "WALL-E/commands"
+#   payload_on: "start"
+#   payload_off: "stop"
 
 #ZigBee2MQTT
-  - platform: mqtt
-    name: "Zigbee2mqtt Main join"
-    state_topic: "zigbee2mqtt/bridge/config/permit_join"
-    command_topic: "zigbee2mqtt/bridge/config/permit_join"
-    payload_on: "true"
-    payload_off: "false"
-    
+- platform: mqtt
+  name: "Zigbee2mqtt Main join"
+  state_topic: "zigbee2mqtt/bridge/config/permit_join"
+  command_topic: "zigbee2mqtt/bridge/config/permit_join"
+  payload_on: "true"
+  payload_off: "false"
 
-  - platform: circadian_lighting
-    lights_ct:
-    - light.cir_light
-    
-  - platform: wake_on_lan
-    mac: !secret big_laptop_mac
-    host: !secret big_laptop_host
+- platform: wake_on_lan
+  mac: !secret big_laptop_mac
+  host: !secret big_laptop_host
