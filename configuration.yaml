@@ -20,6 +20,9 @@ homeassistant:
 ##Enable cloud
 cloud:
 
+#my home assistant
+my:
+
 influxdb:
   host: 192.168.1.5
   port: 8086
