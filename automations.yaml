@@ -1189,3 +1189,13 @@
     target:
       entity_id: switch.wake_on_lan
   mode: single
+- id: '1621994438691'
+  alias: Motion - Bathroom Lights (Day)
+  description: ''
+  use_blueprint:
+    path: homeassistant/motion_light.yaml
+    input:
+      motion_entity: binary_sensor.motion_sensor_158d0002042044
+      light_target:
+        entity_id: light.bathroom_light
+      no_motion_wait: 120
