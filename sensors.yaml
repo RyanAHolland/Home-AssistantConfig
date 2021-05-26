@@ -1,7 +1,7 @@
 #HASS Version
 - platform: version
 #BadNest
-- platform: badnest
+# - platform: badnest
 #System Information
 - platform: systemmonitor
   resources:

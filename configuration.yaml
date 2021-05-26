@@ -306,8 +306,8 @@ shell_command:
 
 climate:
   #  - platform: nest
-  - platform: badnest
-    scan_interval: 10
+  # - platform: badnest
+  #   scan_interval: 10
 
 device_tracker:
   - platform: google_maps
