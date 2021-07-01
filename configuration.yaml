@@ -415,6 +415,10 @@ input_text:
     name: "Ryans's Steps"
     initial: ""
 
+input_number:
+
+counter:
+
 #Variable Custom Component
 var:
   last_door:
@@ -427,19 +431,32 @@ var:
     friendly_name: "Last Window Opened"
     icon: mdi:window
 
-calendar:
-  - platform: todoist
-    token: !secret todoist_api
-    custom_projects:
-      - name: "Overdue"
-        due_date_days: -7
-      - name: "Due Today"
-        due_date_days: 0
-      - name: "Due This Week"
-        due_date_days: 7
-      - name: "Calls"
-        labels:
-          - call
+platform: yahoofinance
+  symbols:
+    - LLNW
+    - PFE
+    - CNK
+    - VTRS
+    - TSLA
+    - VBILX
+    - DOGE-USD
+  show_trending_icon: true
+  scan_interval:
+    minutes: 15
+
+# calendar:
+#   - platform: todoist
+#     token: !secret todoist_api
+#     custom_projects:
+#       - name: "Overdue"
+#         due_date_days: -7
+#       - name: "Due Today"
+#         due_date_days: 0
+#       - name: "Due This Week"
+#         due_date_days: 7
+#       - name: "Calls"
+#         labels:
+#           - call
 
 ####################################################
 #                                                  #
