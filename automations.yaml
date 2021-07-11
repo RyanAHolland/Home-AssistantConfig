@@ -161,20 +161,22 @@
     service: homeassistant.turn_on
     entity_id: scene.decorative_dim
   id: b77bd31acd084c1b877a9e549763b77a
-- alias: UPS on Battery Notify
+- id: 18cb09c4b1a5429e99271d1ee6c65e07
+  alias: UPS on Battery Notify
   trigger:
   - platform: state
-    entity_id: sensor.ups_status
-    from: ONLINE
+    entity_id: sensor.basement_status
+    from: Online
   action:
-    service: homeassistant.turn_on
+  - service: homeassistant.turn_on
     entity_id: script.upsnotify
-  id: 18cb09c4b1a5429e99271d1ee6c65e07
-- alias: UPS back on line Notify
+  mode: single
+- id: 4d8a0d8f5387433f970c781a3f8165ef
+  alias: UPS back on line Notify
   trigger:
   - platform: state
-    entity_id: sensor.ups_status
-    to: ONLINE
+    entity_id: sensor.basement_status
+    to: Online
   action:
   - service: homeassistant.turn_off
     entity_id: script.upsnotify
@@ -185,7 +187,7 @@
       message: 'NOTE: House has returned to mains power. UPS runtime left {{ states.sensor.ups_time_left.state
         }} minutes and remaining power is {{ states.sensor.ups_battery.state }}%.'
       title: HASS
-  id: 4d8a0d8f5387433f970c781a3f8165ef
+  mode: single
 - id: a54a16d899db47c590e712dd64089443
   alias: Notify - Audio - Front Door
   trigger:
@@ -260,7 +262,7 @@
   alias: Notify - Audio - Garage Door
   trigger:
   - platform: state
-    entity_id: binary_sensor.garage_entry_sensor
+    entity_id: binary_sensor.garage_entry_door
     from: 'off'
     to: 'on'
   condition:
@@ -282,9 +284,9 @@
       media_content_type: music
   - service: media_player.volume_set
     data:
+      volume_level: 0.63
+    target:
       entity_id: media_player.bedroom_home
-      volume_level: '.63'
-    entity_id: media_player.bedroom_home
   - service: media_player.play_media
     entity_id: media_player.bedroom_home
     data:
@@ -1199,3 +1201,476 @@
       light_target:
         entity_id: light.bathroom_light
       no_motion_wait: 120
+- id: '1622063550069'
+  alias: Motion - Bathroom Light v2
+  description: ''
+  use_blueprint:
+    path: networkingcat/yet_another_motion_automation.yaml
+    input:
+      time_scene_night: '22:00:00'
+      motion_entity: binary_sensor.motion_sensor_158d0002042044
+      light_target:
+        entity_id: light.bathroom_light
+      automation_blocker: input_boolean.auto_lights
+      automation_blocker_boolean: true
+      scene_day: scene.master_bathroom_bright
+      time_scene_day: '9:00:00'
+      scene_evening: scene.master_bathroom_slightly_dim
+      time_scene_evening: '19:30:00'
+      scene_night: scene.master_bathroom_dim
+      time_scene_morning: '6:00:00'
+      scene_morning: scene.master_bathroom_slightly_dim
+- id: '1622064199787'
+  alias: Low battery level detection & notification for all battery sensors
+  description: ''
+  use_blueprint:
+    path: sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
+    input:
+      time: '18:00:00'
+      actions:
+      - service: notify.telegram
+        data:
+          title: low battery
+- id: '1622064201826'
+  alias: Low battery level
+  description: ''
+  use_blueprint:
+    path: sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
+    input:
+      time: '18:00:00'
+      actions:
+      - service: notify.telegram
+        data:
+          title: low battery
+          message: 'Low battery warning for: {{sensors|replace("_"," ")}}'
+- id: '1622230589852'
+  alias: Door - Turn on Basement Lights
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: ebfc1720202846fa9bb1afa61a17b62a
+    entity_id: binary_sensor.door_window_sensor_158d00023b0271
+    domain: binary_sensor
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 99654b16c95e0c93c0626d4f753b1add
+    entity_id: light.basement_lights
+    domain: light
+    brightness_pct: 100
+  mode: single
+- id: '1622231277587'
+  alias: Door - Pantry Lights
+  description: ''
+  use_blueprint:
+    path: networkingcat/yet_another_motion_automation.yaml
+    input:
+      time_scene_night: '21:00:00'
+      motion_entity: binary_sensor.pantry_door
+      light_target:
+        entity_id: light.pantry_light
+      no_motion_wait: 0
+      automation_blocker: input_boolean.auto_lights
+      automation_blocker_boolean: true
+      scene_day: scene.pantry_bright
+      time_scene_day: '7:00:00'
+      scene_night: scene.pantry_dim
+- id: '1622376138129'
+  alias: Vacation Mode - Main Lights On
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+  condition:
+  - condition: state
+    entity_id: input_select.home_status
+    state: Vacation
+  action:
+  - delay: '{{ range(0, 20*60+1)|random }}'
+  - type: turn_on
+    device_id: b0db5f920e0b48138cc17390f20364a7
+    entity_id: light.left_lamp
+    domain: light
+    brightness_pct: 60
+  - type: turn_on
+    device_id: 4e93e6ed17154c789c0ef81571d26c5a
+    entity_id: light.right_lamp
+    domain: light
+    brightness_pct: 60
+  - type: turn_on
+    device_id: 159df69324518a22acb22a1c17b47846
+    entity_id: light.dining_room_lamps
+    domain: light
+    brightness_pct: 60
+  - type: turn_on
+    device_id: 56a95d13b9452f9d60e50c59b9835517
+    entity_id: light.ryan_lamp
+    domain: light
+    brightness_pct: 80
+  - delay: ''
+  mode: single
+- id: '1622376286403'
+  alias: Vacation Lights - Secondary Light On
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: 01:00:00
+  condition:
+  - condition: state
+    entity_id: input_select.home_status
+    state: Vacation
+  action:
+  - type: turn_on
+    device_id: a823476b216c4c1b98d168803ea9fe62
+    entity_id: light.office_lamp
+    domain: light
+    brightness_pct: 80
+  mode: single
+- id: '1622376604219'
+  alias: Vacation Mode - Off
+  description: ''
+  trigger:
+  - platform: time
+    at: '22:15:00'
+  condition:
+  - condition: state
+    entity_id: input_select.home_status
+    state: Vacation
+  action:
+  - delay: ''
+  - type: turn_off
+    device_id: b0db5f920e0b48138cc17390f20364a7
+    entity_id: light.left_lamp
+    domain: light
+  - type: turn_off
+    device_id: 4e93e6ed17154c789c0ef81571d26c5a
+    entity_id: light.right_lamp
+    domain: light
+  - type: turn_off
+    device_id: 159df69324518a22acb22a1c17b47846
+    entity_id: light.dining_room_lamps
+    domain: light
+  - type: turn_off
+    device_id: a823476b216c4c1b98d168803ea9fe62
+    entity_id: light.office_lamp
+    domain: light
+  - service: homeassistant.turn_off
+    target:
+      entity_id:
+      - group.firstfloorlights
+      - light.nursery_lamp
+      - light.liam_lamp
+  mode: single
+- id: '1623555453155'
+  alias: Manual - Shutdown Office
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: officeoff
+  condition: []
+  action:
+  - service: light.turn_off
+    target:
+      entity_id:
+      - light.office_lamp
+      - light.office_wall_wash
+      - light.spare_bedroom_1
+      - light.spare_bedroom_2
+    data:
+      transition: 15
+  - service: switch.turn_off
+    target:
+      entity_id: switch.office_monitor_switch
+  mode: single
+- id: '1623699736616'
+  alias: Test - Send Notification Random
+  description: ''
+  trigger: []
+  condition: []
+  action:
+  - delay: '{{ range(0, 2*60+1)|random }}'
+  - service: notify.telegram
+    data:
+      message: Sent a notification at a random interval.
+  mode: single
+- id: '1623712148711'
+  alias: Vacation Mode - Notify Door Open
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: 55dde54c1f9019807a99478341b1a3e5
+    entity_id: binary_sensor.front_door_sensor
+    domain: binary_sensor
+  - type: opened
+    platform: device
+    device_id: 1fdb77350962397b53c8cd8f2722288d
+    entity_id: binary_sensor.back_door_sensor
+    domain: binary_sensor
+  condition:
+  - condition: state
+    entity_id: input_select.home_status
+    state: Home
+  action:
+  - service: notify.telegram
+    data_template:
+      title: Vacation Mode Alert
+      message: '"It looks like the {{ trigger.entity_id.attributes.friendly_name }}  {{
+        trigger.to_state.attributes.friendly_name }} was opened while you are on vacation."'
+  mode: single
+- id: '1624031124074'
+  alias: Water Main Shutoff - Notification
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: d38f7830770b7d914654f682883bae76
+    entity_id: switch.water_main_shutoff
+    domain: switch
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  condition: []
+  action:
+  - service: notify.telegram
+    data:
+      message: The water main has been shut-off, please investigate.
+      title: Alert
+  mode: single
+- id: '1624031239543'
+  alias: Sensor - Turn Basement Lights Off
+  description: ''
+  trigger:
+  - type: not_opened
+    platform: device
+    device_id: ebfc1720202846fa9bb1afa61a17b62a
+    entity_id: binary_sensor.door_window_sensor_158d00023b0271
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+      milliseconds: 0
+  condition:
+  - type: is_no_motion
+    condition: device
+    device_id: 479fc6322dbc11eb83d62768e313250e
+    entity_id: binary_sensor.basement_motion_occupancy
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+      milliseconds: 0
+  action:
+  - type: turn_off
+    device_id: 99654b16c95e0c93c0626d4f753b1add
+    entity_id: light.basement_lights
+    domain: light
+  - type: turn_on
+    device_id: 99654b16c95e0c93c0626d4f753b1add
+    entity_id: light.basement_lights
+    domain: light
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: 99654b16c95e0c93c0626d4f753b1add
+    entity_id: light.basement_lights
+    domain: light
+  mode: single
+- id: '1624491029028'
+  alias: Webhook - Turn off Office Monitors
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: Toggle_Monitors
+  condition: []
+  action:
+  - type: toggle
+    device_id: 3135473da604a857bdde34f7992b17c8
+    entity_id: switch.office_monitor_switch
+    domain: switch
+  mode: single
+- id: '1624882533815'
+  alias: Garage Door Code - Last Entered
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.garage_entry_alarmtype
+  condition: []
+  action:
+  - service: input_datetime.set_datetime
+    target:
+      entity_id: input_datetime.garage_entry_lock_last_code
+    data:
+      datetime: '{{ states.sensor.garage_entry_alarmlevel.last_changed }}'
+  mode: single
+- id: '1624913445465'
+  alias: Time - Refresh Z-wave Devices
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: /10
+  condition: []
+  action:
+  - service: zwave_js.refresh_value
+    data:
+      entity_id: light.basement_lights
+  - service: zwave_js.refresh_value
+    data:
+      entity_id: light.bathroom_light
+  - service: zwave_js.refresh_value
+    data:
+      entity_id: switch.bathroom_fan
+  - service: zwave_js.refresh_value
+    data:
+      entity_id: fan.bedroom
+  - service: zwave_js.refresh_value
+    data:
+      entity_id: light.bedroom_overhead
+  - service: zwave_js.refresh_value
+    data:
+      entity_id: light.front_lights
+  - service: zwave_js.refresh_value
+    data:
+      entity_id: light.island_lights
+  - service: zwave_js.refresh_value
+    data:
+      entity_id: light.kitchen_overhead
+  - service: zwave_js.refresh_value
+    data:
+      entity_id: light.kristi_lamp
+  - service: zwave_js.refresh_value
+    data:
+      entity_id: light.living_room_overhead
+  - service: zwave_js.refresh_value
+    data:
+      entity_id: switch.north_up_lights
+  - service: zwave_js.refresh_value
+    data:
+      entity_id: light.pantry_light
+  - service: zwave_js.refresh_value
+    data:
+      entity_id: light.ryan_lamp
+  - service: zwave_js.refresh_value
+    data:
+      entity_id: fan.twins
+  mode: single
+- id: '1625241330299'
+  alias: Timer - Pantry Light Off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.pantry_door
+    to: 'on'
+    for: 15 minutes
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 6e5f70a39b68719dc7001a67c293f019
+    entity_id: light.pantry_light
+    domain: light
+  mode: single
+- id: '1625415233731'
+  alias: Front Lock - Lock Status
+  description: ''
+  trigger:
+  - platform: event
+    event_type: zwave_js_notification
+  condition: []
+  action:
+  - service: notify.telegram
+    data:
+      title: HA Debug
+      message: '{{trigger.event.data.event_label}}'
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.front_lock_status
+    data:
+      value: '{{trigger.event.data.event_label}}'
+  mode: single
+- id: '1625439482810'
+  alias: Front Lock - Lock Code
+  description: ''
+  trigger:
+  - platform: event
+    event_type: zwave_js_notification
+  condition:
+  - condition: template
+    value_template: '{{ trigger.event.data.device_id == ''445eaa0e224212106f75062e28800af3''
+      }}'
+  - condition: template
+    value_template: '{{ trigger.event.data.event == 6 }}'
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.last_front_door_code
+      value: '{{trigger.event.data.parameters.userId | int}}'
+  - service: input_text.set_value
+    data_template:
+      entity_id: input_text.front_lock_user
+      value: '        {% if states(''input_number.last_front_door_code'') | int ==
+        1 %}           Ryan         {% elif states(''input_number.last_front_door_code'')
+        | int == 2 %}           Kristi         {% elif states(''input_number.last_front_door_code'')
+        | int == 3 %}           Linda         {% elif states(''input_number.last_front_door_code'')
+        | int == 4 %}           Earl         {% elif states(''input_number.last_front_door_code'')
+        | int == 5 %}           Code5         {% elif states(''input_number.last_front_door_code'')
+        | int == 6 %}           Code6         {% elif states(''input_number.last_front_door_code'')
+        | int == 7 %}           Code7         {% elif states(''input_number.last_front_door_code'')
+        | int == 8 %}           Code8         {% elif states(''input_number.last_front_door_code'')
+        | int == 9 %}           Cleaners         {% else %}           Error         {%
+        endif %}'
+  mode: single
+- id: '1625514272975'
+  alias: Front Lock - Disarm Alarm
+  description: ''
+  trigger:
+  - platform: event
+    event_type: zwave_js_notification
+  condition:
+  - condition: template
+    value_template: '{{ trigger.event.data.device_id == ''445eaa0e224212106f75062e28800af3''
+      }}'
+  - condition: template
+    value_template: '{{ trigger.event.data.event == 6 }}'
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: alarm_control_panel.shm
+      state: Disarmed
+  action:
+  - service: alarm_control_panel.alarm_disarm
+    target:
+      entity_id: alarm_control_panel.shm
+    data:
+      code: 0319
+  - service: notify.telegram
+    data:
+      title: HA Alarm Status
+      message: The alarm has been disarmed by user code {{trigger.event.data.parameters.userId}}
+  mode: single
+- id: '1625974246374'
+  alias: Test Weather Dump
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.nws_alerts
+    above: '0'
+  condition: []
+  action:
+  - service: notify.telegram
+    data:
+      title: Weather Title
+      message: '{{ states.sensor.nws_alerts.attributes.title }}'
+  - service: notify.telegram
+    data:
+      title: Weather Spoken
+      message: '{{ states.sensor.nws_alerts.attributes.spoken_desc }}'
+  mode: single

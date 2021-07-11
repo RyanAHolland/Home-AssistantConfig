@@ -354,3 +354,9 @@ device_tracker.ryans_bt:
   source_type: bluetooth
 binary_sensor.garage_entry_door:
   device_class: door
+binary_sensor.small_garage_door_sensor:
+  device_class: garage_door
+binary_sensor.co_sensor:
+  device_class: gas
+binary_sensor.smoke_detector_sensor:
+  device_class: smoke

@@ -338,15 +338,16 @@ kristisunrise:
 upsnotify:
   alias: UPS on Battery Notify
   sequence:
-  - service: notify.pushover
+  - service: notify.telegram
     data:
-      message: 'WARNING: Loss of power detected. Current UPS runtime is {{ states.sensor.ups_time_left.state
-        }} and remaining power is {{ states.sensor.ups_battery.state }}%.'
+      message: 'WARNING: Loss of power detected. Current UPS runtime is {{ states.sensor.basement_battery_runtime.state
+        }} and remaining power is {{ states.sensor.basement_status_data.state }}%.'
       title: HASS
   - delay:
       minutes: 5
   - service: script.turn_on
     entity_id: script.upsnotifyloop
+  mode: single
 upsnotifyloop:
   alias: UPS on Battery Loop
   sequence:

@@ -16,6 +16,8 @@ homeassistant:
   customize: !include customize.yaml
   auth_mfa_modules:
     - type: totp
+  ##Add packages for better yaml organization
+  packages: !include_dir_named packages
 
 ##Enable cloud
 cloud:
@@ -431,18 +433,7 @@ var:
     friendly_name: "Last Window Opened"
     icon: mdi:window
 
-platform: yahoofinance
-  symbols:
-    - LLNW
-    - PFE
-    - CNK
-    - VTRS
-    - TSLA
-    - VBILX
-    - DOGE-USD
-  show_trending_icon: true
-  scan_interval:
-    minutes: 15
+
 
 # calendar:
 #   - platform: todoist

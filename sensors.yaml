@@ -43,37 +43,37 @@
 - platform: template
   sensors:
     value_doge:
-      value_template: "{{ (states.sensor.shares_doge.state|float * states.yahoofinance.doge_usd.state|float)|round(2) }}"
+      value_template: "{{ (states.sensor.shares_doge.state|float * states.sensor.yahoofinance_doge_usd.state|float)|round(2) }}"
       unit_of_measurement: "$"
       friendly_name: "Value of DOGE Holdings"
 - platform: template
   sensors:
     value_cnk:
-      value_template: "{{ (states.sensor.shares_cnk.state|float * states.yahoofinance.cnk.state|float)|round(2) }}"
+      value_template: "{{ (states.sensor.shares_cnk.state|float * states.sensor.yahoofinance_cnk.state|float)|round(2) }}"
       unit_of_measurement: "$"
       friendly_name: "Value of CNK Holdings"
 - platform: template
   sensors:
     value_llnw:
-      value_template: "{{ (states.sensor.shares_llnw.state|float * states.yahoofinance.llnw.state|float)|round(2) }}"
+      value_template: "{{ (states.sensor.shares_llnw.state|float * states.sensor.yahoofinance_llnw.state|float)|round(2) }}"
       unit_of_measurement: "$"
       friendly_name: "Value of LLNW Holdings"
 - platform: template
   sensors:
     value_pfe:
-      value_template: "{{ (states.sensor.shares_pfe.state|float * states.yahoofinance.pfe.state|float)|round(2) }}"
+      value_template: "{{ (states.sensor.shares_pfe.state|float * states.sensor.yahoofinance_pfe.state|float)|round(2) }}"
       unit_of_measurement: "$"
       friendly_name: "Value of PFE Holdings"
 - platform: template
   sensors:
     value_tsla:
-      value_template: "{{ (states.sensor.shares_tsla.state|float * states.yahoofinance.tsla.state|float)|round(2) }}"
+      value_template: "{{ (states.sensor.shares_tsla.state|float * states.sensor.yahoofinance_tsla.state|float)|round(2) }}"
       unit_of_measurement: "$"
       friendly_name: "Value of TSLA Holdings"
 - platform: template
   sensors:
     value_vtrs:
-      value_template: "{{ (states.sensor.shares_vtrs.state|float * states.yahoofinance.vtrs.state|float)|round(2) }}"
+      value_template: "{{ (states.sensor.shares_vtrs.state|float * states.sensor.yahoofinance_vtrs.state|float)|round(2) }}"
       unit_of_measurement: "$"
       friendly_name: "Value of VTRS Holdings"
 - platform: template
@@ -107,8 +107,8 @@
 #        None
 #     {% endif %}
 
-- platform: nws_alerts
-  zone_id: "MOC095"
+# - platform: nws_alerts
+#   zone_id: "MOC095"
 
 # # Roomba  Control
 #  - platform: thinkingcleaner
