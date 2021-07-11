@@ -1018,3 +1018,10 @@
 #   port: 993
 #   username: !secret email
 #   password: !secret gmail_key
+
+- platform: template
+  sensors:
+    weather_alert_title:
+      value_template: '{% if states("sensor.nws_alerts") | float > 1 %}{{states.sensor.nws_alerts.attributes.title.split(" - ")[0]}}{% elif states("sensor.nws_alerts") | float >0%}{{states.sensor.nws_alerts.attributes.title}}{% else %}No Alert{%endif %}'
+      friendly_name: "NWS Alert Title"
+      
