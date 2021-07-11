@@ -1032,4 +1032,15 @@
       value_template: '{% if states("sensor.nws_alerts") | float > 1 %}{{states.sensor.nws_alerts.attributes.display_desc.split("Description: ")[1].split(">")[0]}}{% elif states("sensor.nws_alerts") | float >0%}{{states.sensor.nws_alerts.attributes.display_desc.split("Description: ")[1].split(">")[0]}}{% else %}No Alert{%endif %}'
       friendly_name: "NWS Alert Description"
       
+- platform: template
+  sensors:
+    test_alert_title:
+      value_template: '{% if states("sensor.test_alerts") | float > 1 %}{{states.sensor.test_alerts.attributes.title.split(" - ")[0]}}{% elif states("sensor.test_alerts") | float >0%}{{states.sensor.test_alerts.attributes.title}}{% else %}No Alert{%endif %}'
+      friendly_name: "NWS Test Alert Title"
       
+      
+- platform: template
+  sensors:
+    test_alert_desc:
+      value_template: '{% if states("sensor.test_alerts") | float > 1 %}{{states.sensor.test_alerts.attributes.display_desc.split("Description: ")[1].split(">")[0]}}{% elif states("sensor.test_alerts") | float >0%}{{states.sensor.test_alerts.attributes.display_desc.split("Description: ")[1].split(">")[0]}}{% else %}No Alert{%endif %}'
+      friendly_name: "NWS Test Alert Description"
