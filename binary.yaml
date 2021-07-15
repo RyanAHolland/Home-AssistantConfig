@@ -309,3 +309,27 @@
   device_class: connectivity
   payload_on: "200"
   payload_off: "404"
+
+
+#Curl Sensor for SABNZBD
+
+- platform: command_line
+  name: SABNZBD
+  command: 'curl -s -o /dev/null -w "%{http_code}" 192.168.1.250:8085'
+  device_class: connectivity
+  payload_on: "200"
+  payload_off: "404"
+
+- platform: command_line
+  name: Sonarr
+  command: 'curl -s -o /dev/null -w "%{http_code}" 192.168.1.250:8989'
+  device_class: connectivity
+  payload_on: "200"
+  payload_off: "404"
+
+- platform: command_line
+  name: Radarr
+  command: 'curl -s -o /dev/null -w "%{http_code}" 192.168.1.250:7878'
+  device_class: connectivity
+  payload_on: "200"
+  payload_off: "404"
