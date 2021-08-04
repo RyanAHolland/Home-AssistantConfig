@@ -107,3 +107,9 @@
 - platform: wake_on_lan
   mac: !secret big_laptop_mac
   host: !secret big_laptop_host
+
+- platform: command_line
+  switches:
+    led_weather:
+      command_on: ssh pi@192.168.1.219 'cd /home/pi/led-matrix-weatherstation.py && sudo python weatherstation.py &’
+      command_off: ssh pi@192.168.1.219 'sudo pkill -f weatherstation.py'
