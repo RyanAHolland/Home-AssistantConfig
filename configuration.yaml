@@ -38,6 +38,10 @@ influxdb:
 # introduction:
 
 http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 10.0.0.200
+    - 172.30.33.0/24
   # api_password: !secret api_password
   # ssl_certificate: !secret ssl_certificate
   # ssl_key: !secret ssl_key
@@ -433,7 +437,10 @@ var:
     friendly_name: "Last Window Opened"
     icon: mdi:window
 
-
+utility_meter:
+  energy:
+    source: sensor.gas_meter_reading
+    cycle: monthly
 
 # calendar:
 #   - platform: todoist
