@@ -438,10 +438,22 @@ var:
     icon: mdi:window
 
 utility_meter:
-  energy:
+  gasmonth:
     source: sensor.gas_meter_reading
     cycle: monthly
-
+    name: Gas Meter Monthly
+  watermonth:
+    source: sensor.water_meter_reading
+    cycle: monthly
+    name: Water Meter Monthly
+  gasday:
+    source: sensor.gas_meter_reading
+    cycle: monthly
+    name: Gas Meter Daily
+  waterday:
+    source: sensor.water_meter_reading
+    cycle: monthly
+    name: Water Meter Daily
 # calendar:
 #   - platform: todoist
 #     token: !secret todoist_api

@@ -197,10 +197,11 @@
 
 ##GAS METER
 - platform: mqtt
-  state_topic: "readings/66154761/meter_reading"
+  state_topic: "metermon/66154761"
   name: "Gas Meter Reading"
   qos: 0
-  unit_of_measurement: M3
+  value_template: "{{ value_json.Consumption }}"
+  unit_of_measurement: ft^3
 
 - platform: template
   sensors:
@@ -1024,21 +1025,19 @@
     weather_alert_title:
       value_template: '{% if states("sensor.nws_alerts") | float > 1 %}{{states.sensor.nws_alerts.attributes.title.split(" - ")[0]}}{% elif states("sensor.nws_alerts") | float >0%}{{states.sensor.nws_alerts.attributes.title}}{% else %}No Alert{%endif %}'
       friendly_name: "NWS Alert Title"
-      
-      
+
 - platform: template
   sensors:
     weather_alert_desc:
       value_template: '{% if states("sensor.nws_alerts") | float > 1 %}{{states.sensor.nws_alerts.attributes.display_desc.split("Description: ")[1].split(">")[0]}}{% elif states("sensor.nws_alerts") | float >0%}{{states.sensor.nws_alerts.attributes.display_desc.split("Description:")[1].split(">")[0]}}{% else %}No Alert{%endif %}'
       friendly_name: "NWS Alert Description"
-      
+
 - platform: template
   sensors:
     test_alert_title:
       value_template: '{% if states("sensor.test_alerts") | float > 1 %}{{states.sensor.test_alerts.attributes.title.split(" - ")[0]}}{% elif states("sensor.test_alerts") | float >0%}{{states.sensor.test_alerts.attributes.title}}{% else %}No Alert{%endif %}'
       friendly_name: "NWS Test Alert Title"
-      
-      
+
 - platform: template
   sensors:
     test_alert_desc:
