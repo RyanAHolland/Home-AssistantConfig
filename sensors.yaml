@@ -221,6 +221,14 @@
   max_age:
     minutes: 10
 
+##WATER METER
+- platform: mqtt
+  state_topic: "metermon/74721692"
+  name: "Water Meter Reading?"
+  qos: 0
+  value_template: "{{ value_json.Consumption }}"
+  unit_of_measurement: gal
+
 #  - platform: rest
 #    resource: !secret glances_path_fs
 #    name: Video Drive Percent
@@ -815,16 +823,16 @@
     dad_occupancy:
       value_template: '{% if states("sensor.dad_home_occupancy_confidence") | float > 10 %}home{% else %}not_home{%endif %}'
       friendly_name: "Dad's BT Occupancy"
-- platform: template
-  sensors:
-    outlander:
-      value_template: '{% if states("sensor.outlander_first_floor") | float > 10 %}home{% else %}not_home{%endif %}'
-      friendly_name: "Outlander Garage"
-- platform: template
-  sensors:
-    volvo:
-      value_template: '{% if states("sensor.volvo_first_floor") | float > 10 %}home{% else %}not_home{%endif %}'
-      friendly_name: "Volvo Garage"
+# - platform: template
+#   sensors:
+#     outlander:
+#       value_template: '{% if states("sensor.outlander_first_floor") | float > 10 %}home{% else %}not_home{%endif %}'
+#       friendly_name: "Outlander Garage"
+# - platform: template
+#   sensors:
+#     volvo:
+#       value_template: '{% if states("sensor.volvo_first_floor") | float > 10 %}home{% else %}not_home{%endif %}'
+#       friendly_name: "Volvo Garage"
 ##Bayesian Device Tracker
 - platform: template
   sensors:
@@ -889,27 +897,7 @@
 #- platform: zoneminder
 #  include_archived: false
 
-#Roomba Sensors
-- platform: mqtt
-  name: "EVA Status"
-  state_topic: "EVA/currentStatus"
-- platform: mqtt
-  name: "EVA Battery"
-  state_topic: "EVA/battery"
-
-- platform: mqtt
-  name: "WALL-E Status"
-  state_topic: "WALL-E/currentStatus"
-- platform: mqtt
-  name: "WALL-E Battery"
-  state_topic: "WALL-E/battery"
-
-- platform: mqtt
-  name: Zigbee2mqtt Bridge state
-  state_topic: "zigbee2mqtt/bridge/state"
-  icon: mdi:router-wireless
-
-  ##PiHole Sensors
+##PiHole Sensors
 - platform: pi_hole
   host: !secret pihole
   monitored_conditions:
@@ -1043,3 +1031,47 @@
     test_alert_desc:
       value_template: '{% if states("sensor.test_alerts") | float > 1 %}{{states.sensor.test_alerts.attributes.display_desc.split("Description")[1].split(">")[0]}}{% elif states("sensor.test_alerts") | float >0%}{{states.sensor.test_alerts.attributes.display_desc.split("Description: ")[1].split(">")[0]}}{% else %}No Alert{%endif %}'
       friendly_name: "NWS Test Alert Description"
+
+##AIR QUALITY SENSOR
+
+- platform: waqi
+  token: !secret waqi_token
+  locations:
+    - "Blue Ridge I-70, Missouri"
+    - "Troost, Missouri, USA"
+    - "Edinburgh Currie"
+    - "Glasgow High Street, United Kingdom"
+    - "Xindian, Taiwan"
+    - "Bernadette, Zone 6, Philippines"
+
+##CAR SENSORS (TORQUE)
+#VOLVO
+
+- platform: mqtt
+  state_topic: "torque/volvo/location"
+  name: "Volvo Location"
+  qos: 0
+
+- platform: mqtt
+  state_topic: "torque/volvo/fuel_level"
+  name: "Volvo Fuel Level"
+  unit_of_measurement: "%"
+  qos: 0
+
+- platform: mqtt
+  state_topic: "torque/volvo/mpg"
+  name: "Volvo Trip MPG"
+  unit_of_measurement: "mpg"
+  qos: 0
+
+- platform: mqtt
+  state_topic: "torque/volvo/trip_dist"
+  name: "Volvo Trip Distance"
+  unit_of_measurement: "miles"
+  qos: 0
+
+- platform: mqtt
+  state_topic: "torque/volvo/trip_cost"
+  name: "Volvo Trip Cost"
+  unit_of_measurement: "$"
+  qos: 0
