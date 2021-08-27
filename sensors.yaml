@@ -1048,8 +1048,13 @@
 #VOLVO
 
 - platform: mqtt
-  state_topic: "torque/volvo/location"
-  name: "Volvo Location"
+  state_topic: "torque/volvo/lon"
+  name: "Volvo Longitude"
+  qos: 0
+
+- platform: mqtt
+  state_topic: "torque/volvo/lat"
+  name: "Volvo Latitude"
   qos: 0
 
 - platform: mqtt

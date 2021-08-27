@@ -305,31 +305,37 @@
 
 - platform: command_line
   name: Duplicati
-  command: 'curl -s -o /dev/null -w "%{http_code}" 192.168.1.250:8200'
+  command: 'response=$(curl -LIk 192.168.1.250:8200 -o /dev/null -w ''%{http_code}'' -s); test "$response" -eq 200 && echo "ON" || echo "OFF"'
   device_class: connectivity
-  payload_on: "200"
-  payload_off: "404"
+  payload_on: "ON"
+  payload_off: "OFF"
 
-
-#Curl Sensor for SABNZBD
+#Curl Sensor for Internal Services
 
 - platform: command_line
   name: SABNZBD
-  command: 'curl -s -o /dev/null -w "%{http_code}" 192.168.1.250:8085'
+  command: 'response=$(curl -LIk http://192.168.1.250:8085/login/ -o /dev/null -w ''%{http_code}'' -s); test "$response" -eq 200 && echo "ON" || echo "OFF"'
   device_class: connectivity
-  payload_on: "200"
-  payload_off: "404"
+  payload_on: "ON"
+  payload_off: "OFF"
 
 - platform: command_line
   name: Sonarr
-  command: 'curl -s -o /dev/null -w "%{http_code}" 192.168.1.250:8989'
+  command: 'response=$(curl -LIk 192.168.1.250:8989 -o /dev/null -w ''%{http_code}'' -s); test "$response" -eq 200 && echo "ON" || echo "OFF"'
   device_class: connectivity
-  payload_on: "200"
-  payload_off: "404"
+  payload_on: "ON"
+  payload_off: "OFF"
 
 - platform: command_line
   name: Radarr
-  command: 'curl -s -o /dev/null -w "%{http_code}" 192.168.1.250:7878'
+  command: 'response=$(curl -LIk 192.168.1.250:7878 -o /dev/null -w ''%{http_code}'' -s); test "$response" -eq 200 && echo "ON" || echo "OFF"'
   device_class: connectivity
-  payload_on: "200"
-  payload_off: "404"
+  payload_on: "ON"
+  payload_off: "OFF"
+
+- platform: command_line
+  name: Wallabag
+  command: 'response=$(curl -LIk 192.168.1.250:8008 -o /dev/null -w ''%{http_code}'' -s); test "$response" -eq 200 && echo "ON" || echo "OFF"'
+  device_class: connectivity
+  payload_on: "ON"
+  payload_off: "OFF"

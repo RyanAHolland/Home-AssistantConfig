@@ -360,3 +360,6 @@ binary_sensor.co_sensor:
   device_class: gas
 binary_sensor.smoke_detector_sensor:
   device_class: smoke
+sensor.volvo_fuel_level:
+  device_class: energy
+  icon: mdi:fuel

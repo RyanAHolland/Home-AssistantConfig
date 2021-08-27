@@ -902,22 +902,6 @@
       entity_id: light.liam_lamp
       transition: 15
     service: python_script.fade_in_light_2
-- id: '1604491986352'
-  alias: Event - Telegram - Test
-  description: ''
-  trigger:
-  - platform: event
-    event_type: telegram_command
-    event_data:
-      command: /ping
-      user_id:
-      ommand: /ping
-  condition: []
-  action:
-  - service: telegram_bot.send_message
-    data:
-      message: pong
-  mode: single
 - id: '1610647516392'
   alias: Incoming from Flow
   description: ''
@@ -933,7 +917,7 @@
       retain: 'true'
   mode: single
 - id: '1610662387811'
-  alias: Catch Daily Notion
+  alias: Webhook - Catch Daily Notion
   description: ''
   trigger:
   - platform: webhook
@@ -1371,6 +1355,13 @@
     webhook_id: officeoff
   condition: []
   action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.office_monitor_switch
+  - service: fan.turn_off
+    target:
+      entity_id: fan.office_fan
+  - wait_template: 10 seconds
   - service: light.turn_off
     target:
       entity_id:
@@ -1380,9 +1371,6 @@
       - light.spare_bedroom_2
     data:
       transition: 15
-  - service: switch.turn_off
-    target:
-      entity_id: switch.office_monitor_switch
   mode: single
 - id: '1623699736616'
   alias: Test - Send Notification Random
@@ -1586,10 +1574,6 @@
     event_type: zwave_js_notification
   condition: []
   action:
-  - service: notify.telegram
-    data:
-      title: HA Debug
-      message: '{{trigger.event.data.event_label}}'
   - service: input_text.set_value
     target:
       entity_id: input_text.front_lock_status
@@ -1621,7 +1605,7 @@
         | int == 2 %}           Kristi         {% elif states(''input_number.last_front_door_code'')
         | int == 3 %}           Linda         {% elif states(''input_number.last_front_door_code'')
         | int == 4 %}           Earl         {% elif states(''input_number.last_front_door_code'')
-        | int == 5 %}           Code5         {% elif states(''input_number.last_front_door_code'')
+        | int == 5 %}           Liam         {% elif states(''input_number.last_front_door_code'')
         | int == 6 %}           Code6         {% elif states(''input_number.last_front_door_code'')
         | int == 7 %}           Code7         {% elif states(''input_number.last_front_door_code'')
         | int == 8 %}           Code8         {% elif states(''input_number.last_front_door_code'')
@@ -1673,4 +1657,263 @@
     data:
       title: Weather Spoken
       message: '{{ states.sensor.nws_alerts.attributes.spoken_desc }}'
+  mode: single
+- id: '1626039917483'
+  alias: Weather - New Weather Alert
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.weather_alert_title
+  condition: []
+  action:
+  - service: notify.telegram
+    data:
+      message: '{{states.sensor.weather_alert_title.state}}'
+  mode: single
+- id: '1626272596764'
+  alias: Webhook - Change Office Fan Speed
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: office_fan_speed
+  condition: []
+  action:
+  - service: fan.set_speed
+    target:
+      entity_id: fan.office_fan
+    data:
+      speed: '{% if states.fan.office_fan.attributes.speed  == ''off'' %}low{% elif
+        states.fan.office_fan.attributes.speed  == ''low'' %}medium{% elif states.fan.office_fan.attributes.speed  ==
+        ''medium'' %}high{% elif states.fan.office_fan.attributes.speed  == ''high''
+        %}off{% else %}Error{% endif %}
+
+        '
+  - service: zwave_js.refresh_value
+    data:
+      entity_id: fan.office_fan
+      refresh_all_values: true
+  mode: single
+- id: '1628018825809'
+  alias: Home - Nest Normal Mode
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_select.home_status
+    to: home
+  condition:
+  - condition: state
+    entity_id: climate.thermostat
+    attribute: preset_mode
+    state: none
+  action:
+  - service: climate.set_preset_mode
+    target:
+      entity_id: climate.thermostat
+    data:
+      preset_mode: none
+  mode: single
+- id: '1628521729932'
+  alias: Time - Create Daily BuJo
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:00
+  condition: []
+  action:
+  - service: rest_command.daily_bujo
+  mode: single
+- id: '1628614764937'
+  alias: Binary - Notify if Internal Service is Down
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.duplicati
+    to: 'off'
+  - platform: state
+    entity_id: binary_sensor.sabnzbd
+    to: 'off'
+  - platform: state
+    entity_id: binary_sensor.sonarr
+    to: 'off'
+  - platform: state
+    entity_id: binary_sensor.radarr
+    to: 'off'
+  condition: []
+  action:
+  - service: notify.telegram
+    data_template:
+      title: Service Down
+      message: '{{ trigger.to_state.attributes.friendly_name }} is down, please restart
+        it as soon as you can.'
+  mode: single
+- id: '1629750744942'
+  alias: Webhook - Car Data
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: upload_car
+  condition: []
+  action:
+  - service: mqtt.publish
+    data_template:
+      payload: '{{ trigger.json.data }}'
+      topic: torque/{{ trigger.json.vehicle }}/{{ trigger.json.type }}
+      retain: 'true'
+  mode: single
+- id: '1629901275485'
+  alias: Person - Liam is Home - Backpack
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: person.liam
+    to: home
+  condition:
+  - condition: time
+    after: '14:30'
+    before: '15:30'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - service: notify.telegram
+    data:
+      title: HA
+      message: Liam is home.  His backpack just arrived.
+  - service: notify.kristihangout
+    data:
+      message: Liam is home.  His backpack just arrived.
+      title: HA
+  mode: single
+- id: '1629901718557'
+  alias: Person - Liam is Home - Door Code
+  description: ''
+  trigger:
+  - platform: event
+    event_type: zwave_js_notification
+  condition:
+  - condition: time
+    after: '14:30'
+    before: '15:30'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  - condition: template
+    value_template: '{{ trigger.event.data.parameters.userId == 5 }}'
+  - condition: template
+    value_template: '{{ trigger.event.data.device_id == ''445eaa0e224212106f75062e28800af3''
+      }}'
+  - condition: template
+    value_template: '{{ trigger.event.data.event == 6 }}'
+  action:
+  - service: notify.telegram
+    data:
+      title: HA
+      message: Liam is home.  He entered his code.
+  - service: notify.kristihangout
+    data:
+      message: Liam is home.  He entered his code.
+      title: HA
+  mode: single
+- id: '1629917861189'
+  alias: Devices - Turn on Office Booster
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 6be45f0fc8f86be07a0111bfe50454eb
+    domain: media_player
+    entity_id: media_player.office_tv
+    type: turned_on
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - platform: device
+    type: turned_on
+    device_id: 3135473da604a857bdde34f7992b17c8
+    entity_id: switch.office_monitor_switch
+    domain: switch
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - platform: device
+    type: turned_on
+    device_id: a823476b216c4c1b98d168803ea9fe62
+    entity_id: light.office_lamp
+    domain: light
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 6193795bd588e30819cf5a2045f6abcf
+    entity_id: switch.ty416656422462ab4d5c5f
+    domain: switch
+  mode: single
+- id: '1629917863029'
+  alias: Devices - Turn Off Office Booster
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 6be45f0fc8f86be07a0111bfe50454eb
+    domain: media_player
+    entity_id: media_player.office_tv
+    type: turned_off
+  - platform: device
+    type: turned_off
+    device_id: 3135473da604a857bdde34f7992b17c8
+    entity_id: switch.office_monitor_switch
+    domain: switch
+  - platform: state
+    entity_id: light.office_lamp
+    to: 'off'
+  condition:
+  - condition: device
+    type: is_on
+    device_id: 6193795bd588e30819cf5a2045f6abcf
+    entity_id: switch.ty416656422462ab4d5c5f
+    domain: switch
+  - condition: state
+    entity_id: media_player.office_tv
+    state: standby
+  - condition: device
+    type: is_off
+    device_id: 3135473da604a857bdde34f7992b17c8
+    entity_id: switch.office_monitor_switch
+    domain: switch
+  - condition: device
+    type: is_off
+    device_id: a823476b216c4c1b98d168803ea9fe62
+    entity_id: light.office_lamp
+    domain: light
+  action:
+  - type: turn_off
+    device_id: 6193795bd588e30819cf5a2045f6abcf
+    entity_id: switch.ty416656422462ab4d5c5f
+    domain: switch
+  mode: single
+- id: '1629944778730'
+  alias: Device - Office Desk Switch
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.office_desk_switch_click
+    to: single
+  condition: []
+  action:
+  - type: toggle
+    device_id: 3135473da604a857bdde34f7992b17c8
+    entity_id: switch.office_monitor_switch
+    domain: switch
   mode: single

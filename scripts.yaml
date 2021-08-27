@@ -612,3 +612,118 @@ office_lights_off:
       entity_id: light.office_wall_wash
   - service: input_boolean.turn_off
   mode: single
+vacuum_clean_living_room:
+  alias: Vacuum - Clean Living Room
+  sequence:
+  - service: vacuum.stop
+    target:
+      entity_id: vacuum.roborock_s5_max
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 3
+      milliseconds: 0
+  - service: xiaomi_miio.vacuum_clean_zone
+    data:
+      repeats: 1
+      zone:
+      - - 34472
+        - 21132
+        - 39717
+        - 25909
+    target:
+      entity_id: vacuum.roborock_s5_max
+  mode: single
+  icon: mdi:robot-vacuum
+vacuum_send_command_multiple_zones:
+  mode: parallel
+  alias: vacuum_send_command_multiple_zones
+  sequence:
+  - delay:
+      milliseconds: 100
+  - service: python_script.vacuum_send_command
+    data_template:
+      entity_id: '{{ entity_id }}'
+      command: '{{ command }}'
+      params: '{%- set cleaned =  params | string | replace(" ", "") -%} {%- set parsed
+        = cleaned.replace("[[", "[").replace("]]", "]").replace("],[", "]|[").split("|")
+        | list -%} {%- set firstBatch = parsed | batch(5) | list | first | join(",")
+        -%} {%- set rest = cleaned | replace(firstBatch, "") | replace("[,[", "[[")
+        -%} {{ "[" + firstBatch + "]" }}
+
+        '
+  - condition: template
+    value_template: '{{ command == ''app_zoned_clean'' }}'
+  - condition: template
+    value_template: '{%- set cleaned =  params | string | replace(" ", "") -%} {%-
+      set parsed = cleaned.replace("[[", "[").replace("]]", "]").replace("],[", "]|[").split("|")
+      | list -%} {%- set firstBatch = parsed | batch(5) | list | first | join(",")
+      -%} {%- set rest = cleaned | replace(firstBatch, "") | replace("[,[", "[[")
+      -%} {{ rest != "[]" }}
+
+      '
+  - wait_template: '{{ is_state(entity_id, ''cleaning'') }}'
+  - wait_template: '{{ not is_state(entity_id, ''cleaning'') }}'
+  - service: vacuum.pause
+    data_template:
+      entity_id: '{{ entity_id }}'
+  - service: script.vacuum_send_command_multiple_zones
+    data_template:
+      entity_id: '{{ entity_id }}'
+      command: '{{ command }}'
+      params: '{%- set cleaned =  params | string | replace(" ", "") -%} {%- set parsed
+        = cleaned.replace("[[", "[").replace("]]", "]").replace("],[", "]|[").split("|")
+        | list -%} {%- set firstBatch = parsed | batch(5) | list | first | join(",")
+        -%} {%- set rest = cleaned | replace(firstBatch, "") | replace("[,[", "[[")
+        -%} {{ rest }}
+
+        '
+vacuum_go_to_trash_can:
+  alias: Vacuum - Go To Trash Can
+  sequence:
+  - service: vacuum.send_command
+    data:
+      command: app_goto_target
+      params:
+      - 29340
+      - 23376
+    target:
+      entity_id: vacuum.roborock_s5_max
+  mode: single
+  icon: mdi:trash-can
+vacuum_clean_kitchen_table:
+  alias: Vacuum - Clean Kitchen Table
+  sequence:
+  - service: vacuum.stop
+    target:
+      entity_id: vacuum.roborock_s5_max
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 3
+      milliseconds: 0
+  - service: xiaomi_miio.vacuum_clean_zone
+    data:
+      repeats: 1
+      zone:
+      - - 30741
+        - 19707
+        - 34277
+        - 22775
+    target:
+      entity_id: vacuum.roborock_s5_max
+  mode: single
+  icon: mdi:robot-vacuum
+camera_privacy:
+  alias: Camera Privacy
+  sequence:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.entry_camera
+  - service: switch.turn_off
+    target:
+      entity_id: switch.play_room_camera
+  - service: switch.turn_off
+    target:
+      entity_id: switch.basement_cam
+  mode: single

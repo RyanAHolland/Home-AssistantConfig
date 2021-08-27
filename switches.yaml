@@ -111,5 +111,7 @@
 - platform: command_line
   switches:
     led_weather:
-      command_on: ssh pi@192.168.1.219 'cd /home/pi/led-matrix-weatherstation.py && sudo python weatherstation.py &’
-      command_off: ssh pi@192.168.1.219 'sudo pkill -f weatherstation.py'
+      command_on: "ssh -o UserKnownHostsFile=/config/.ssh/known_hosts -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa pi@192.168.1.219 sudo python /home/pi/led-matrix-weatherstation/weatherstation.py &"
+      command_off: "ssh -o UserKnownHostsFile=/config/.ssh/known_hosts -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa  pi@192.168.1.219 sudo pkill -f weatherstation.py"
+      command_state: "ssh -o UserKnownHostsFile=/config/.ssh/known_hosts -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa  pi@192.168.1.219 pgrep -a python | grep 'weatherstation.py'"
+      value_template: '{{ "python" in value }}'
