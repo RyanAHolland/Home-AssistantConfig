@@ -516,7 +516,7 @@
       unit_of_measurement: "%"
       friendly_name: "Upstairs Motion Battery"
 #Garage Door
-- platform: template
+- platform: template ok lol pi
   sensors:
     large_garage_battery:
       value_template: "{{ states.zwave.large_garage.attributes.battery_level }}"
@@ -1080,3 +1080,76 @@
   name: "Volvo Trip Cost"
   unit_of_measurement: "$"
   qos: 0
+
+  ##COMMAND LINE SENSORS
+
+# - platform: command_line
+#   name: Server Speed Test Data
+#   command: "ssh -o UserKnownHostsFile=/config/.ssh/known_hosts -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa root@192.168.1.250 speedtest -f json"
+#   value_template: "{{ value_json }}"
+#   command_timeout: 45
+#   scan_interval: 1800
+
+##ESPresense Sensors
+- platform: mqtt_room
+  device_id: "apple:1005:9-7"
+  name: "Earls Phone BT"
+  state_topic: "espresense/devices/apple:1005:9-7"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "md:0735:8"
+  name: "UprightGO"
+  state_topic: "espresense/devices/md:0735:8"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "md:00e0:8"
+  name: "Unknown1"
+  state_topic: "espresense/devices/md:00e0:8"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "md:0006:29"
+  name: "Unknown2"
+  state_topic: "espresense/devices/md:0006:29"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "md:0735:8"
+  name: "Unknown3"
+  state_topic: "espresense/devices/md:0735:8"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "tile:f2c4fe819e5f"
+  name: "Kristis Keys"
+  state_topic: "espresense/devices/tile:f2c4fe819e5f"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "tile:d82dd6f5450f"
+  name: "Theo Backpack"
+  state_topic: "espresense/devices/tile:d82dd6f5450f"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "tile:cc535b85ac91"
+  name: "Liam Backpack"
+  state_topic: "espresense/devices/tile:cc535b85ac91"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "tile:dc81059f6ba9"
+  name: "Thomas Backpack"
+  state_topic: "espresense/devices/tile:dc81059f6ba9"
+  timeout: 60
+  away_timeout: 120

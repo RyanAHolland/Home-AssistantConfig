@@ -339,3 +339,37 @@
   device_class: connectivity
   payload_on: "ON"
   payload_off: "OFF"
+
+  ##ESPresense Sensors
+
+- platform: mqtt
+  name: room_living_room
+  state_topic: "espresense/rooms/livingroom/status"
+  json_attributes_topic: "espresense/rooms/livingroom/telemetry"
+  payload_on: "online"
+  payload_off: "offline"
+  device_class: connectivity
+
+- platform: mqtt
+  name: room_bedroom
+  state_topic: "espresense/rooms/bedroom/status"
+  json_attributes_topic: "espresense/rooms/bedroom/telemetry"
+  payload_on: "online"
+  payload_off: "offline"
+  device_class: connectivity
+
+- platform: mqtt
+  name: room_office
+  state_topic: "espresense/rooms/office/status"
+  json_attributes_topic: "espresense/rooms/office/telemetry"
+  payload_on: "online"
+  payload_off: "offline"
+  device_class: connectivity
+
+- platform: mqtt
+  name: room_garage
+  state_topic: "espresense/rooms/garage/status"
+  json_attributes_topic: "espresense/rooms/garage/telemetry"
+  payload_on: "online"
+  payload_off: "offline"
+  device_class: connectivity
