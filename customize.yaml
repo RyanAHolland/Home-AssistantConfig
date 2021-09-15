@@ -363,3 +363,5 @@ binary_sensor.smoke_detector_sensor:
 sensor.volvo_fuel_level:
   device_class: energy
   icon: mdi:fuel
+device_tracker.liam_backpack:
+  friendly_name: Liam's Backpack DT

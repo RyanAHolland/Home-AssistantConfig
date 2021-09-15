@@ -202,6 +202,7 @@
   qos: 0
   value_template: "{{ value_json.Consumption }}"
   unit_of_measurement: ft^3
+  device_class: "gas"
 
 - platform: template
   sensors:
@@ -223,8 +224,8 @@
 
 ##WATER METER
 - platform: mqtt
-  state_topic: "metermon/74721692"
-  name: "Water Meter Reading?"
+  state_topic: "metermon/31297404"
+  name: "Water Meter Reading"
   qos: 0
   value_template: "{{ value_json.Consumption }}"
   unit_of_measurement: gal
@@ -466,68 +467,68 @@
 #    unit_of_measurement: '%'
 ##Z-Wave Battery Sensors
 #Doors
-- platform: template
-  sensors:
-    back_door_battery:
-      value_template: "{{ states.zwave.back_door.attributes.battery_level }}"
-      unit_of_measurement: "%"
-      friendly_name: "Back Door Sensor Battery"
-- platform: template
-  sensors:
-    garage_entry_battery:
-      value_template: "{{ states.zwave.garage_entry.attributes.battery_level }}"
-      unit_of_measurement: "%"
-      friendly_name: "Garage Entry Sensor Battery"
-- platform: template
-  sensors:
-    front_door_battery:
-      value_template: "{{ states.zwave.front_door.attributes.battery_level }}"
-      unit_of_measurement: "%"
-      friendly_name: "Front Door Sensor Battery"
-- platform: template
-  sensors:
-    liam_door_battery:
-      value_template: "{{ states.zwave.liam_door.attributes.battery_level }}"
-      unit_of_measurement: "%"
-      friendly_name: "Liam's Door Sensor Battery"
-- platform: template
-  sensors:
-    pantry_door_battery:
-      value_template: "{{ states.zwave.pantry_door.attributes.battery_level }}"
-      unit_of_measurement: "%"
-      friendly_name: "Pantry Door Sensor Battery"
-#Motion
-- platform: template
-  sensors:
-    first_floor_battery:
-      value_template: "{{ states.zwave.first_floor_sensor.attributes.battery_level }}"
-      unit_of_measurement: "%"
-      friendly_name: "First Floor Sensor Battery"
-- platform: template
-  sensors:
-    kitchen_motion_battery:
-      value_template: "{{ states.zwave.kitchen_motion.attributes.battery_level }}"
-      unit_of_measurement: "%"
-      friendly_name: "Kitchen Motion Battery"
-- platform: template
-  sensors:
-    upstairs_motion_battery:
-      value_template: "{{ states.zwave.upstairs_motion.attributes.battery_level }}"
-      unit_of_measurement: "%"
-      friendly_name: "Upstairs Motion Battery"
-#Garage Door
-- platform: template ok lol pi
-  sensors:
-    large_garage_battery:
-      value_template: "{{ states.zwave.large_garage.attributes.battery_level }}"
-      unit_of_measurement: "%"
-      friendly_name: "Large Garage Sensor Battery"
-- platform: template
-  sensors:
-    small_garage_battery:
-      value_template: "{{ states.zwave.small_garage.attributes.battery_level }}"
-      unit_of_measurement: "%"
-      friendly_name: "Small Garage Sensor Battery"
+# - platform: template
+#   sensors:
+#     back_door_battery:
+#       value_template: "{{ states.zwave.back_door.attributes.battery_level }}"
+#       unit_of_measurement: "%"
+#       friendly_name: "Back Door Sensor Battery"
+# - platform: template
+#   sensors:
+#     garage_entry_battery:
+#       value_template: "{{ states.zwave.garage_entry.attributes.battery_level }}"
+#       unit_of_measurement: "%"
+#       friendly_name: "Garage Entry Sensor Battery"
+# - platform: template
+#   sensors:
+#     front_door_battery:
+#       value_template: "{{ states.zwave.front_door.attributes.battery_level }}"
+#       unit_of_measurement: "%"
+#       friendly_name: "Front Door Sensor Battery"
+# - platform: template
+#   sensors:
+#     liam_door_battery:
+#       value_template: "{{ states.zwave.liam_door.attributes.battery_level }}"
+#       unit_of_measurement: "%"
+#       friendly_name: "Liam's Door Sensor Battery"
+# - platform: template
+#   sensors:
+#     pantry_door_battery:
+#       value_template: "{{ states.zwave.pantry_door.attributes.battery_level }}"
+#       unit_of_measurement: "%"
+#       friendly_name: "Pantry Door Sensor Battery"
+# #Motion
+# - platform: template
+#   sensors:
+#     first_floor_battery:
+#       value_template: "{{ states.zwave.first_floor_sensor.attributes.battery_level }}"
+#       unit_of_measurement: "%"
+#       friendly_name: "First Floor Sensor Battery"
+# - platform: template
+#   sensors:
+#     kitchen_motion_battery:
+#       value_template: "{{ states.zwave.kitchen_motion.attributes.battery_level }}"
+#       unit_of_measurement: "%"
+#       friendly_name: "Kitchen Motion Battery"
+# - platform: template
+#   sensors:
+#     upstairs_motion_battery:
+#       value_template: "{{ states.zwave.upstairs_motion.attributes.battery_level }}"
+#       unit_of_measurement: "%"
+#       friendly_name: "Upstairs Motion Battery"
+# #Garage Door
+# - platform: template
+#   sensors:
+#     large_garage_battery:
+#       value_template: "{{ states.zwave.large_garage.attributes.battery_level }}"
+#       unit_of_measurement: "%"
+#       friendly_name: "Large Garage Sensor Battery"
+# - platform: template
+#   sensors:
+#     small_garage_battery:
+#       value_template: "{{ states.zwave.small_garage.attributes.battery_level }}"
+#       unit_of_measurement: "%"
+#       friendly_name: "Small Garage Sensor Battery"
 #Safety
 - platform: template
   sensors:
@@ -1106,27 +1107,6 @@
   away_timeout: 120
 
 - platform: mqtt_room
-  device_id: "md:00e0:8"
-  name: "Unknown1"
-  state_topic: "espresense/devices/md:00e0:8"
-  timeout: 60
-  away_timeout: 120
-
-- platform: mqtt_room
-  device_id: "md:0006:29"
-  name: "Unknown2"
-  state_topic: "espresense/devices/md:0006:29"
-  timeout: 60
-  away_timeout: 120
-
-- platform: mqtt_room
-  device_id: "md:0735:8"
-  name: "Unknown3"
-  state_topic: "espresense/devices/md:0735:8"
-  timeout: 60
-  away_timeout: 120
-
-- platform: mqtt_room
   device_id: "tile:f2c4fe819e5f"
   name: "Kristis Keys"
   state_topic: "espresense/devices/tile:f2c4fe819e5f"
@@ -1151,5 +1131,61 @@
   device_id: "tile:dc81059f6ba9"
   name: "Thomas Backpack"
   state_topic: "espresense/devices/tile:dc81059f6ba9"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "samsung:f8042ebb444f"
+  name: "Samsung 1"
+  state_topic: "espresense/devices/samsung:f8042ebb444f"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "samsung:3868a4ad9ef8"
+  name: "Samsung 2"
+  state_topic: "espresense/devices/samsung:3868a4ad9ef8"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "sid:0xfe9f"
+  name: "Unknown1"
+  state_topic: "espresense/devices/sid:0xfe9f"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "sid:0xfeaf"
+  name: "Unknown2"
+  state_topic: "espresense/devices/sid:0xfeaf"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "espresense/devices/microsoft:ac0c0e77c0fddce7b2d0744f765caec2f392d3bdd9f6b6"
+  name: "Windows1"
+  state_topic: "espresense/devices/microsoft:ac0c0e77c0fddce7b2d0744f765caec2f392d3bdd9f6b6"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "microsoft:f5d9ae82614f60ace1d538efa45c8d7a65f647239e7a59"
+  name: "Little Laptop"
+  state_topic: "espresense/devices/microsoft:f5d9ae82614f60ace1d538efa45c8d7a65f647239e7a59"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "sid:0xfd5a"
+  name: "SmartTag Backpack"
+  state_topic: "espresense/devices/sid:0xfd5a"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "iBeacon:0ac79ab0155127a2014cb0ffc026c97d-100-1"
+  name: "Ryan's Phone ESP"
+  state_topic: "espresense/devices/iBeacon:0ac79ab0155127a2014cb0ffc026c97d-100-1"
   timeout: 60
   away_timeout: 120

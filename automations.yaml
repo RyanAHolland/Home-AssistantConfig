@@ -792,75 +792,77 @@
       message: HA - Nursing lights have been turned on in the bedroom.
       title: Nursing Lights
 - id: ryan_bt_home
-  alias: Ryan BT Occupancy On
+  alias: Thomas BT Occupancy Home
   trigger:
-  - entity_id: sensor.bc_7a_bf_35_96_f5_room_presence
+  - entity_id: sensor.thomas_backpack
     from: not_home
     platform: state
   action:
   - data:
-      dev_id: ryans_bt
+      dev_id: thomas_backpack
       location_name: home
     service: device_tracker.see
   mode: single
 - id: ryan_bt_away
-  alias: Ryan BT Occupancy Off
+  alias: Thomas BT Occupancy Away
   trigger:
-  - entity_id: sensor.bc_7a_bf_35_96_f5_room_presence
+  - entity_id: sensor.thomas_backpack
     platform: state
     to: not_home
   action:
   - data:
-      dev_id: ryans_bt
+      dev_id: thomas_backpack
       location_name: not_home
     service: device_tracker.see
   mode: single
 - id: kristi_bt_home
-  alias: Kristi BT Occupancy On
+  alias: Theo Occupancy Home
   trigger:
-  - entity_id: sensor.70_ce_8c_a1_b6_8d_room_presence
+  - entity_id: sensor.theo_backpack
     from: not_home
     platform: state
   action:
   - data:
-      dev_id: kristi_bt
+      dev_id: theo_backpack
       location_name: home
     service: device_tracker.see
   mode: single
 - id: kristi_bt_away
-  alias: Kristi BT Occupancy Off
+  alias: Theo Occupancy Away
   trigger:
-  - entity_id: sensor.70_ce_8c_a1_b6_8d_room_presence
+  - entity_id: sensor.theo_backpack
     platform: state
     to: not_home
   action:
   - data:
-      dev_id: kristi_bt
+      dev_id: theo_backpack
       location_name: not_home
     service: device_tracker.see
   mode: single
 - id: mom_bt_home
-  alias: Mom BT Occupancy On
+  alias: Liam Backpack BT Home
   trigger:
   - platform: state
-    entity_id: sensor.linda_s_s8_room_presence
+    entity_id: sensor.liam_backpack
     from: not_home
   action:
   - service: device_tracker.see
     data:
-      dev_id: mom_bt
+      dev_id: liam_backpack
       location_name: home
+  mode: single
 - id: mom_bt_away
-  alias: Mom BT Occupancy Off
+  alias: Liam Backpack BT Away
   trigger:
   - platform: state
-    entity_id: sensor.linda_s_s8_room_presence
+    entity_id: sensor.liam_backpack
     to: not_home
   action:
   - service: device_tracker.see
     data:
-      dev_id: mom_bt
+      dev_id: liam_backpack
       location_name: not_home
+  mode: single
 - id: kitchen_leak_sensor_alert
   alias: Leak Sensor Alert Kitchen
   trigger:
@@ -936,7 +938,7 @@
       retain: 'true'
   mode: single
 - id: '1610811531934'
-  alias: Activate Notion Daily
+  alias: Time - Activate Notion Daily
   description: ''
   trigger:
   - platform: webhook
@@ -1717,7 +1719,7 @@
   description: ''
   trigger:
   - platform: time
-    at: 07:00
+    at: 06:00
   condition: []
   action:
   - service: rest_command.daily_bujo
@@ -1916,4 +1918,16 @@
     device_id: 3135473da604a857bdde34f7992b17c8
     entity_id: switch.office_monitor_switch
     domain: switch
+  mode: single
+- id: '1631712956556'
+  alias: Webhook - Office Night Mode
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: office_night
+  condition: []
+  action:
+  - service: switch.toggle
+    target:
+      entity_id: switch.adaptive_lighting_sleep_mode_office
   mode: single

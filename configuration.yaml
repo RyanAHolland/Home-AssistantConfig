@@ -19,6 +19,9 @@ homeassistant:
   ##Add packages for better yaml organization
   packages: !include_dir_named packages
 
+##Add Default Configre
+default_config:
+
 ##Enable cloud
 cloud:
 
@@ -408,10 +411,10 @@ xiaomi_aqara:
 #  username: !secret email
 #  password: !secret wyze_pass
 
-vacuum:
-  platform: xiaomi_miio
-  host: !secret max_ip
-  token: !secret roborock
+# vacuum:
+#   platform: xiaomi_miio
+#   host: !secret max_ip
+#   token: !secret roborock
 
 input_text:
   last_telegram:
@@ -522,3 +525,6 @@ rest_command: !include rest.yaml
 
 ##cameras
 camera: !include cameras.yaml
+
+##templates
+template: !include templates.yaml

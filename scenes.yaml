@@ -253,3 +253,113 @@
       friendly_name: Pantry Light
       supported_features: 33
       state: 'on'
+- id: '1631713047932'
+  name: Start Up Office
+  entities:
+    fan.office_fan:
+      speed_list:
+      - 'off'
+      - low
+      - medium
+      - high
+      preset_modes: []
+      speed: low
+      percentage: 33
+      percentage_step: 1.0101010101010102
+      preset_mode:
+      friendly_name: Office Fan
+      supported_features: 1
+      state: 'on'
+    switch.office_monitor_switch:
+      consumption: 9.78
+      energy: 9.78
+      linkquality: 78
+      power: 35.51
+      temperature: 45
+      voltage:
+      friendly_name: Office Monitor Switch
+      state: 'on'
+    light.office_lamp:
+      min_mireds: 250
+      max_mireds: 454
+      effect_list:
+      - blink
+      - breathe
+      - okay
+      - channel_change
+      - finish_effect
+      - stop_effect
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 255
+      color_temp: 278
+      hs_color:
+      - 27.082
+      - 42.706
+      rgb_color:
+      - 255
+      - 195
+      - 146
+      xy_color:
+      - 0.447
+      - 0.372
+      linkquality: 72
+      update:
+        state: idle
+      update_available: false
+      friendly_name: Office Lamp
+      supported_features: 47
+      icon: mdi:lamp
+      state: 'on'
+    light.spare_bedroom_1:
+      min_mireds: 250
+      max_mireds: 454
+      effect_list:
+      - blink
+      - breathe
+      - okay
+      - channel_change
+      - finish_effect
+      - stop_effect
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 255
+      color_temp: 278
+      hs_color:
+      - 27.082
+      - 42.706
+      rgb_color:
+      - 255
+      - 195
+      - 146
+      xy_color:
+      - 0.447
+      - 0.372
+      linkquality: 87
+      update:
+        state: available
+      update_available: true
+      friendly_name: Spare Bedroom 1
+      supported_features: 47
+      state: 'on'
+    light.spare_bedroom_2:
+      min_mireds: 250
+      max_mireds: 454
+      effect_list:
+      - blink
+      - breathe
+      - okay
+      - channel_change
+      - finish_effect
+      - stop_effect
+      supported_color_modes:
+      - color_temp
+      linkquality:
+      update:
+        state: available
+      update_available: true
+      friendly_name: Spare Bedroom 2
+      supported_features: 47
+      state: 'off'
