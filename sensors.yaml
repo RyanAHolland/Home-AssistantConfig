@@ -222,6 +222,16 @@
   max_age:
     minutes: 10
 
+# - platform: template
+#   sensors:
+#     gas_energy_metric:
+#       value_template: "{{ states('sensor.gas_meter_reading')|float*0.0283168 }}"
+#       unit_of_measurement: "m³"
+#       friendly_name: "Gas Energy Metric"
+#       state_class: "total_increasing"
+#       device_class: "gas"
+#       icon: mdi:fire
+
 ##WATER METER
 - platform: mqtt
   state_topic: "metermon/31297404"
@@ -271,24 +281,26 @@
     - status
     - timeleft
     - tonbatt
-# Tracking Ryan to Home
-- platform: waze_travel_time
-  origin: device_tracker.google_maps_thehollandhaus_gmail_com
-  name: Ryan To Home
-  destination: zone.home
-  region: "US"
-# Tracking Ryan to Work
-- platform: waze_travel_time
-  name: Ryan To Work
-  region: "US"
-  origin: device_tracker.google_maps_thehollandhaus_gmail_com
-  destination: zone.pivot
-# Tracking Kristi to Home
-- platform: waze_travel_time
-  name: Kristi To Home
-  region: "US"
-  origin: device_tracker.google_maps_114680120030307638360
-  destination: zone.home
+
+### !Removed as it is in the UI now
+# # Tracking Ryan to Home
+# - platform: waze_travel_time
+#   origin: device_tracker.google_maps_thehollandhaus_gmail_com
+#   name: Ryan To Home
+#   destination: zone.home
+#   region: "US"
+# # Tracking Ryan to Work
+# - platform: waze_travel_time
+#   name: Ryan To Work
+#   region: "US"
+#   origin: device_tracker.google_maps_thehollandhaus_gmail_com
+#   destination: zone.pivot
+# # Tracking Kristi to Home
+# - platform: waze_travel_time
+#   name: Kristi To Home
+#   region: "US"
+#   origin: device_tracker.google_maps_114680120030307638360
+#   destination: zone.home
 
 ### Sensors from SmartThings
 ##Light Sensors
@@ -1184,8 +1196,113 @@
   away_timeout: 120
 
 - platform: mqtt_room
-  device_id: "iBeacon:0ac79ab0155127a2014cb0ffc026c97d-100-1"
+  device_id: "iBeacon:c2e6df3e-6714-497e-bdc9-45340f70765f-100-1"
   name: "Ryan's Phone ESP"
-  state_topic: "espresense/devices/iBeacon:0ac79ab0155127a2014cb0ffc026c97d-100-1"
+  state_topic: "espresense/devices/iBeacon:c2e6df3e-6714-497e-bdc9-45340f70765f-100-1"
   timeout: 60
   away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "iBeacon:6a99ca2a-6eda-45d6-a254-63befd63eaba-100-1"
+  name: "Kristi's Phone ESP"
+  state_topic: "espresense/devices/iBeacon:6a99ca2a-6eda-45d6-a254-63befd63eaba-100-1"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "mifit:eade17cce1d2"
+  name: "Ryan's MiBand"
+  state_topic: "espresense/devices/mifit:eade17cce1d2"
+  timeout: 60
+  away_timeout: 120
+
+  ##Power Integration Sensors
+- platform: integration
+  source: sensor.3d_printer_power
+  name: 3d_printer_energy_spent
+  unit_prefix: k
+  round: 2
+
+- platform: integration
+  source: sensor.living_room_plug_power
+  name: lr_plug_energy_spent
+  unit_prefix: k
+  round: 2
+
+  ##Truck Test
+- platform: rest
+  name: Truck Test
+  resource: https://eld.denixsystem.com/api/api.php?api=user&key=27975246E45E136B3BF8E2F8A2005343&cmd=OBJECT_GET_LOCATIONS,861107034133646
+  value_template: "{{ value_json.861107034133646.name }}"
+  json_attributes_path: "$.861107034133646"
+  scan_interval: 60
+  json_attributes:
+    - "name"
+    - "lat"
+    - "lng"
+    - "dt_server"
+    - "dt_tracker"
+    - "speed"
+    - "params.dtc1"
+# - platform: template
+#   sensors:
+#     truck_trip_dist:
+#       value_template: "{{ state_attr("sensor.truck_parameters","spn244")|multiply(0.621371)|round(2) }}"
+#       unit_of_measurement: "mi"
+#       friendly_name: "Truck Trip Distance"
+
+##SwitchBot
+- platform: rest
+  name: "Twins Room Humidifier"
+  resource: !secret switchbot_humidifier_status_url
+  method: GET
+  scan_interval: 300
+  headers:
+    Authorization: !secret switchbot_api
+    Content-Type: "application/json"
+  value_template: "{{ value_json.body.power }}"
+  json_attributes_path: "$.body"
+  json_attributes:
+    - humidity
+    - temperature
+    - nebulizationEfficiency
+    - auto
+    - childLock
+    - sound
+    - lackWater
+
+- platform: rest
+  name: "Twins Room Sensor"
+  resource: !secret switchbot_meter_status_url
+  method: GET
+  scan_interval: 300
+  headers:
+    Authorization: !secret switchbot_api
+    Content-Type: "application/json"
+  value_template: "{{ value_json.body.temperature }}"
+  json_attributes_path: "$.body"
+  json_attributes:
+    - humidity
+
+- platform: rest
+  name: "Office Overhead Light"
+  resource: !secret switchbot_office_light_status_url
+  method: GET
+  scan_interval: 300
+  headers:
+    Authorization: !secret switchbot_api
+    Content-Type: "application/json"
+  value_template: "{{ value_json.body.power }}"
+
+- platform: rest
+  name: "Coffee Pot"
+  resource: !secret switchbot_coffee_status_url
+  method: GET
+  scan_interval: 300
+  headers:
+    Authorization: !secret switchbot_api
+    Content-Type: "application/json"
+  value_template: "{{ value_json.body.power }}"
+
+- platform: torque
+  email: !secret email
