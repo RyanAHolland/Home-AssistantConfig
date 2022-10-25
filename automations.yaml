@@ -18,25 +18,6 @@
       topic: homeassistant/status/ha
       payload: offline
   id: d184a2562abc44b1937f5c0176dee6db
-- alias: Fix Nest Away
-  trigger:
-    platform: template
-    value_template: '{{ states.climate.downstairs_thermostat.attributes.away_mode
-      == "on" }}'
-  condition:
-    condition: or
-    conditions:
-    - condition: state
-      entity_id: input_boolean.force_home
-      state: 'on'
-    - condition: state
-      entity_id: input_select.home_status
-      state: Home
-  action:
-  - service: climate.set_away_mode
-    data:
-      away_mode: false
-  id: a1315122fc33458ba3bce0f232cb4838
 - alias: Welcome Home Door Sensor
   trigger:
   - platform: state
@@ -103,12 +84,13 @@
   - service: climate.set_away_mode
     data:
       away_mode: false
-  - service: notify.pushover
+  - service: notify.telegram
     data:
       message: I see you are getting close to home. Leaving Eco Mode.
       title: Nest
   id: fa81eca73e6e4d558119cfab4906b17e
-- alias: Downstairs Motion Night Light
+- id: f4bdc840fc394d988d96a17d0b68490c
+  alias: Downstairs Motion Night Light
   trigger:
   - platform: state
     entity_id: binary_sensor.first_floor_entry_motion
@@ -119,7 +101,7 @@
     from: 'off'
     to: 'on'
   condition:
-    condition: and
+  - condition: and
     conditions:
     - condition: state
       entity_id: sun.sun
@@ -132,10 +114,12 @@
       state: 'off'
       for:
         minutes: 3
+  - condition: state
+    entity_id: input_boolean.auto_lights
+    state: 'on'
   action:
-    service: homeassistant.turn_on
+  - service: homeassistant.turn_on
     entity_id: script.downstairs_night
-  id: f4bdc840fc394d988d96a17d0b68490c
 - alias: Downstairs Morning Light
   trigger:
   - platform: state
@@ -165,8 +149,8 @@
   alias: UPS on Battery Notify
   trigger:
   - platform: state
-    entity_id: sensor.basement_status
-    from: Online
+    entity_id: sensor.basement_status_data
+    to: OB
   action:
   - service: homeassistant.turn_on
     entity_id: script.upsnotify
@@ -175,18 +159,21 @@
   alias: UPS back on line Notify
   trigger:
   - platform: state
-    entity_id: sensor.basement_status
+    entity_id:
+    - sensor.basement_ups_status
     to: Online
   action:
-  - service: homeassistant.turn_off
-    entity_id: script.upsnotify
-  - service: homeassistant.turn_off
-    entity_id: script.upsnotifyloop
-  - service: notify.pushover
+  - service: notify.mobile_app_sm_f936u
     data:
-      message: 'NOTE: House has returned to mains power. UPS runtime left {{ states.sensor.ups_time_left.state
-        }} minutes and remaining power is {{ states.sensor.ups_battery.state }}%.'
-      title: HASS
+      title: UPS Online
+      message: House has returned to mains power. UPS runtime left {{     states.sensor.ups_time_left.state
+        }} minutes and remaining power is {{     states.sensor.ups_battery.state }}%.
+  - service: homeassistant.turn_off
+    data: {}
+    target:
+      entity_id:
+      - script.upsnotifyloop
+      - script.upsnotify
   mode: single
 - id: a54a16d899db47c590e712dd64089443
   alias: Notify - Audio - Front Door
@@ -591,14 +578,14 @@
     data:
       title: SHM
       message: ALARM! The alarm has been triggered
-  - service: notify.pushover
+  - service: notify.telegram
     data:
       title: SHM
       message: ALARM! The alarm has been triggered
       data:
         sound: siren
         priority: 1
-  - service: notify.pushover
+  - service: notify.telegram
     data:
       title: ALERT
       priority: 1
@@ -953,7 +940,7 @@
   description: ''
   trigger:
   - platform: time
-    at: 00:00
+    at: 02:30:00
   condition: []
   action:
   - service: mqtt.publish
@@ -964,6 +951,11 @@
     data:
       topic: homeassistant/binary_sensor/log_onenote/complete
       payload: 0
+  - service: input_number.set_value
+    data:
+      value: 0
+    target:
+      entity_id: input_number.total_sit_time
   mode: single
 - id: '1611629016455'
   alias: Daily Host Reboot
@@ -1026,11 +1018,11 @@
       entity_id: media_player.living_room_chromecast
   mode: single
 - id: '1618011810314'
-  alias: Time - Playroom TV M-T 7:30
+  alias: Time - Playroom TV M-T 7:00
   description: ''
   trigger:
   - platform: time
-    at: '7:40'
+    at: 07:00:00
   condition:
   - condition: time
     weekday:
@@ -1040,8 +1032,8 @@
     - thu
     - fri
   - condition: state
-    entity_id: media_player.play_room_tv_2
     state: 'on'
+    entity_id: media_player.play_room_tv
   action:
   - service: media_player.play_media
     data:
@@ -1062,10 +1054,10 @@
       entity_id: media_player.playroom_home
   - service: media_player.turn_off
     target:
-      entity_id: media_player.play_room_tv_2
+      entity_id: media_player.play_room_tv
   - service: notify.telegram
     data:
-      message: 📺Liam's TV has been turned off as requested📺
+      message: "\U0001F4FALiam's TV has been turned off as requested\U0001F4FA"
   mode: single
 - id: '1618074911650'
   alias: Trigger - Decorative Remote On
@@ -1138,19 +1130,34 @@
   - service: script.office_lights_off
   mode: single
 - id: '1620160072085'
-  alias: Group - Home Disable Alarm
+  alias: Home Status - Disable Alarm
   description: ''
   trigger:
   - platform: state
-    entity_id: group.all_mobile_devices
-    to: home
-  condition: []
+    entity_id:
+    - input_select.home_status
+    to: Home
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: alarm_control_panel.alarmo
+      state: armed_vacation
+    - condition: state
+      entity_id: alarm_control_panel.alarmo
+      state: armed_away
+    - condition: state
+      entity_id: alarm_control_panel.alarmo
+      state: pending
+    - condition: state
+      entity_id: alarm_control_panel.alarmo
+      state: triggered
   action:
   - service: alarm_control_panel.alarm_disarm
-    target:
-      entity_id: alarm_control_panel.shm
     data:
-      code: 0319
+      code: '1519'
+    target:
+      entity_id: alarm_control_panel.alarmo
   mode: single
 - id: '1620394170529'
   alias: Wake Up Office Computer
@@ -1177,16 +1184,6 @@
     target:
       entity_id: switch.wake_on_lan
   mode: single
-- id: '1621994438691'
-  alias: Motion - Bathroom Lights (Day)
-  description: ''
-  use_blueprint:
-    path: homeassistant/motion_light.yaml
-    input:
-      motion_entity: binary_sensor.motion_sensor_158d0002042044
-      light_target:
-        entity_id: light.bathroom_light
-      no_motion_wait: 120
 - id: '1622063550069'
   alias: Motion - Bathroom Light v2
   description: ''
@@ -1217,18 +1214,6 @@
       - service: notify.telegram
         data:
           title: low battery
-- id: '1622064201826'
-  alias: Low battery level
-  description: ''
-  use_blueprint:
-    path: sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
-    input:
-      time: '18:00:00'
-      actions:
-      - service: notify.telegram
-        data:
-          title: low battery
-          message: 'Low battery warning for: {{sensors|replace("_"," ")}}'
 - id: '1622230589852'
   alias: Door - Turn on Basement Lights
   description: ''
@@ -1240,6 +1225,26 @@
     domain: binary_sensor
   condition: []
   action:
+  - type: turn_on
+    device_id: dde41b08f53de82d4e2788070fb5c53f
+    entity_id: light.basement_stairs_middle
+    domain: light
+    brightness_pct: 100
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - type: turn_on
+    device_id: bfdf09485258c422204820fa187a33fe
+    entity_id: light.basement_stairs_bottom
+    domain: light
+    brightness_pct: 100
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
   - type: turn_on
     device_id: 99654b16c95e0c93c0626d4f753b1add
     entity_id: light.basement_lights
@@ -1359,7 +1364,9 @@
   action:
   - service: switch.turn_off
     target:
-      entity_id: switch.office_monitor_switch
+      entity_id:
+      - switch.office_monitor_switch
+      - switch.ty416656422462ab4d5c5f
   - service: fan.turn_off
     target:
       entity_id: fan.office_fan
@@ -1371,6 +1378,7 @@
       - light.office_wall_wash
       - light.spare_bedroom_1
       - light.spare_bedroom_2
+      - light.desk_wled_master
     data:
       transition: 15
   mode: single
@@ -1560,7 +1568,11 @@
   - platform: state
     entity_id: binary_sensor.pantry_door
     to: 'on'
-    for: 15 minutes
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+      milliseconds: 0
   condition: []
   action:
   - type: turn_off
@@ -1616,7 +1628,7 @@
   mode: single
 - id: '1625514272975'
   alias: Front Lock - Disarm Alarm
-  description: ''
+  description: This automation determines the status of the lock from the event bus.
   trigger:
   - platform: event
     event_type: zwave_js_notification
@@ -1634,22 +1646,37 @@
   action:
   - service: alarm_control_panel.alarm_disarm
     target:
-      entity_id: alarm_control_panel.shm
+      entity_id:
+      - alarm_control_panel.shm
+      - alarm_control_panel.alarmo
     data:
-      code: 0319
+      code: '1519'
   - service: notify.telegram
     data:
       title: HA Alarm Status
       message: The alarm has been disarmed by user code {{trigger.event.data.parameters.userId}}
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  - service: telegram_bot.send_video
+    data_template:
+      target: 488877271
+      url: '{{state_attr("camera.front_door","video_url")}}'
+      caption: Taken from Front Door Camera
   mode: single
 - id: '1625974246374'
-  alias: Test Weather Dump
+  alias: Weather - Alert TTS
   description: ''
   trigger:
   - platform: numeric_state
     entity_id: sensor.nws_alerts
     above: '0'
-  condition: []
+  condition:
+  - condition: time
+    after: 08:00:00
+    before: '21:00:00'
   action:
   - service: notify.telegram
     data:
@@ -1659,6 +1686,11 @@
     data:
       title: Weather Spoken
       message: '{{ states.sensor.nws_alerts.attributes.spoken_desc }}'
+  - service: tts.cloud_say
+    data:
+      entity_id: media_player.kitchen_display
+      message: 'New Weather Alert: {{ states.sensor.nws_alerts.attributes.spoken_desc
+        }}'
   mode: single
 - id: '1626039917483'
   alias: Weather - New Weather Alert
@@ -1670,7 +1702,8 @@
   action:
   - service: notify.telegram
     data:
-      message: '{{states.sensor.weather_alert_title.state}}'
+      message: state_attr('sensor.nws_alerts','spoken_desc')}
+      title: '{{states.sensor.weather_alert_title.state}}'
   mode: single
 - id: '1626272596764'
   alias: Webhook - Change Office Fan Speed
@@ -1680,14 +1713,14 @@
     webhook_id: office_fan_speed
   condition: []
   action:
-  - service: fan.set_speed
+  - service: fan.set_percentage
     target:
       entity_id: fan.office_fan
     data:
-      speed: '{% if states.fan.office_fan.attributes.speed  == ''off'' %}low{% elif
-        states.fan.office_fan.attributes.speed  == ''low'' %}medium{% elif states.fan.office_fan.attributes.speed  ==
-        ''medium'' %}high{% elif states.fan.office_fan.attributes.speed  == ''high''
-        %}off{% else %}Error{% endif %}
+      percentage: '{% if states.fan.office_fan.attributes.percentage  == 0 %}25{%
+        elif states.fan.office_fan.attributes.percentage  < 33 %}50{% elif states.fan.office_fan.attributes.percentage  <
+        67 %}75{% elif states.fan.office_fan.attributes.percentage  >= 67 %}0{% else
+        %}Error{% endif %}
 
         '
   - service: zwave_js.refresh_value
@@ -1719,7 +1752,7 @@
   description: ''
   trigger:
   - platform: time
-    at: 06:00
+    at: 05:00:00
   condition: []
   action:
   - service: rest_command.daily_bujo
@@ -1772,7 +1805,7 @@
   condition:
   - condition: time
     after: '14:30'
-    before: '15:30'
+    before: '15:30:00'
     weekday:
     - mon
     - tue
@@ -1785,6 +1818,10 @@
       title: HA
       message: Liam is home.  His backpack just arrived.
   - service: notify.kristihangout
+    data:
+      message: Liam is home.  His backpack just arrived.
+      title: HA
+  - service: notify.mobile_app_sm_g981u
     data:
       message: Liam is home.  His backpack just arrived.
       title: HA
@@ -1847,21 +1884,20 @@
       seconds: 5
       milliseconds: 0
   - platform: device
+    device_id: 438b326ec17a2320a01b530c06be10c3
+    domain: media_player
+    entity_id: media_player.xbox
     type: turned_on
-    device_id: a823476b216c4c1b98d168803ea9fe62
-    entity_id: light.office_lamp
-    domain: light
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 5
-      milliseconds: 0
   condition: []
   action:
   - type: turn_on
-    device_id: 6193795bd588e30819cf5a2045f6abcf
-    entity_id: switch.ty416656422462ab4d5c5f
+    device_id: 74715802d031441cafb11b69de88661d
+    entity_id: switch.booster_fan
     domain: switch
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.presence_indicator
   mode: single
 - id: '1629917863029'
   alias: Devices - Turn Off Office Booster
@@ -1872,19 +1908,14 @@
     domain: media_player
     entity_id: media_player.office_tv
     type: turned_off
-  - platform: device
-    type: turned_off
-    device_id: 3135473da604a857bdde34f7992b17c8
-    entity_id: switch.office_monitor_switch
-    domain: switch
   - platform: state
-    entity_id: light.office_lamp
-    to: 'off'
+    entity_id:
+    - switch.office_monitor_switch
   condition:
   - condition: device
     type: is_on
-    device_id: 6193795bd588e30819cf5a2045f6abcf
-    entity_id: switch.ty416656422462ab4d5c5f
+    device_id: 74715802d031441cafb11b69de88661d
+    entity_id: switch.booster_fan
     domain: switch
   - condition: state
     entity_id: media_player.office_tv
@@ -1894,30 +1925,15 @@
     device_id: 3135473da604a857bdde34f7992b17c8
     entity_id: switch.office_monitor_switch
     domain: switch
-  - condition: device
-    type: is_off
-    device_id: a823476b216c4c1b98d168803ea9fe62
-    entity_id: light.office_lamp
-    domain: light
   action:
   - type: turn_off
-    device_id: 6193795bd588e30819cf5a2045f6abcf
-    entity_id: switch.ty416656422462ab4d5c5f
+    device_id: 74715802d031441cafb11b69de88661d
+    entity_id: switch.booster_fan
     domain: switch
-  mode: single
-- id: '1629944778730'
-  alias: Device - Office Desk Switch
-  description: ''
-  trigger:
-  - platform: state
-    entity_id: sensor.office_desk_switch_click
-    to: single
-  condition: []
-  action:
-  - type: toggle
-    device_id: 3135473da604a857bdde34f7992b17c8
-    entity_id: switch.office_monitor_switch
-    domain: switch
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.presence_indicator
   mode: single
 - id: '1631712956556'
   alias: Webhook - Office Night Mode
@@ -1930,4 +1946,2851 @@
   - service: switch.toggle
     target:
       entity_id: switch.adaptive_lighting_sleep_mode_office
+  mode: single
+- id: '1632067442291'
+  alias: Kristi BT Occupancy Away
+  description: ''
+  trigger:
+  - entity_id: sensor.kristi_s_phone_esp
+    platform: state
+    to: not_home
+  condition: []
+  action:
+  - data:
+      dev_id: kristi_bt
+      location_name: not_home
+    service: device_tracker.see
+  mode: single
+- id: '1632067472498'
+  alias: Kristi BT Occupancy Home
+  description: ''
+  trigger:
+  - entity_id: sensor.kristi_s_phone_esp
+    platform: state
+    from: not_home
+  condition: []
+  action:
+  - data:
+      dev_id: kristi_bt
+      location_name: home
+    service: device_tracker.see
+  mode: single
+- id: '1632067582539'
+  alias: Ryan BT Occupancy Away
+  description: ''
+  trigger:
+  - entity_id: sensor.ryan_s_phone_esp
+    platform: state
+    to: not_home
+  condition: []
+  action:
+  - data:
+      location_name: not_home
+      dev_id: ryans_bt
+    service: device_tracker.see
+  mode: single
+- id: '1632067608756'
+  alias: Ryan BT Occupancy Home
+  description: ''
+  trigger:
+  - entity_id: sensor.ryan_s_phone_esp
+    platform: state
+    from: not_home
+  condition: []
+  action:
+  - data:
+      location_name: home
+      dev_id: ryan_bt
+    service: device_tracker.see
+  mode: single
+- id: '1632172799352'
+  alias: Manual - Time to Record
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: office_record
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 6193795bd588e30819cf5a2045f6abcf
+    entity_id: switch.ty416656422462ab4d5c5f
+    domain: switch
+  - type: turn_on
+    device_id: f7e05225909d433abf95f1f0fac2969b
+    entity_id: light.spare_bedroom_1
+    domain: light
+  - type: turn_off
+    device_id: 08a32ba1388b4fdba9ad6d6b7927341a
+    entity_id: light.spare_bedroom_2
+    domain: light
+  - service: light.turn_on
+    target:
+      entity_id: light.office_wall_wash
+    data:
+      color_name: homeassistant
+      brightness: 255
+  - type: turn_on
+    device_id: e58eb78c157811eb8ab57b875a05db68
+    entity_id: switch.office_video_light
+    domain: switch
+  - type: turn_on
+    device_id: f2f3321065644a428db9bcd18d1bb685
+    entity_id: switch.office_wax_warmer
+    domain: switch
+  - service: fan.set_speed
+    target:
+      entity_id: fan.office_fan
+    data:
+      speed: '5'
+  mode: single
+- id: '1632279708783'
+  alias: Linda BT Occupancy Home
+  description: ''
+  trigger:
+  - entity_id: sensor.linda_s_s8_room_presence
+    platform: state
+    from: not_home
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: sensor.linda_s_s8_room_presence
+      state: Unavailable
+  action:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  - data:
+      location_name: home
+      dev_id: mom_bt
+    service: device_tracker.see
+  mode: single
+- id: '1632279781804'
+  alias: Linda BT Occupancy Away
+  description: ''
+  trigger:
+  - entity_id: sensor.linda_s_s8_room_presence
+    platform: state
+    to: not_home
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: sensor.linda_s_s8_room_presence
+      state: Unavailable
+  action:
+  - data:
+      location_name: not_home
+      dev_id: mom_bt
+    service: device_tracker.see
+  mode: single
+- id: '1632448621185'
+  alias: Motion - Office Lights On
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.office_motion_occupancy
+    to: 'on'
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: sun
+        after: sunset
+        after_offset: '3:00'
+        before: sunrise
+      sequence:
+      - type: turn_on
+        device_id: 00c30a8f3be145f4a828bb983496d59b
+        entity_id: light.floor_lamp
+        domain: light
+        brightness_pct: 50
+    default:
+    - type: turn_on
+      device_id: 00c30a8f3be145f4a828bb983496d59b
+      entity_id: light.floor_lamp
+      domain: light
+      brightness_pct: 100
+  mode: single
+- id: '1632448948034'
+  alias: ESPresense - Office Lights Off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.ryan_s_phone_esp
+    from: office
+    for:
+      hours: 0
+      minutes: 3
+      seconds: 0
+  condition:
+  - condition: state
+    entity_id: binary_sensor.motion_sensor_158d0002253b41
+    state: 'off'
+  - condition: state
+    entity_id: switch.office_monitor_switch
+    state: 'off'
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.floor_lamp
+  mode: single
+- id: '1632840976838'
+  alias: Phone - Ryan's Phone to Sleep
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.note20_battery_state
+    to: charging
+  condition:
+  - condition: time
+    after: '21:00:00'
+    before: 05:00:00
+  - condition: state
+    entity_id: sensor.note20_charger_type
+    state: wireless
+  - condition: state
+    entity_id: sensor.ryan_s_phone_esp
+    state: bedroom
+  action:
+  - service: input_select.select_option
+    data:
+      option: Sleep
+    target:
+      entity_id: input_select.ryan_phone_status
+  mode: single
+- id: '1632860249411'
+  alias: Webhook - Set Teams Status
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: teams_status
+  condition: []
+  action:
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.ryan_s_teams_status
+    data:
+      option: '{{ trigger.query["status"] }}'
+  mode: single
+- id: '1632860669562'
+  alias: Webhook - Teams Activity
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: teams_activity
+  condition: []
+  action:
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.ryan_s_teams_activity
+    data:
+      option: '{{ trigger.query["status"] }}'
+  mode: single
+- id: '1633011206534'
+  alias: Presense - Home - Disable Nest Setback
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_select.home_status
+    from: Away
+    to: Home
+  condition: []
+  action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.downstairs_thermostat
+  mode: single
+- id: '1633491134403'
+  alias: WLED - Desk Light Off
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: wled_off
+  condition: []
+  action:
+  - service: light.turn_off
+    target:
+      entity_id: light.desk_wled_master
+  mode: single
+- id: '1633491816525'
+  alias: WLED - Desk Light White
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: wled_desk_light
+  condition: []
+  action:
+  - service: light.turn_off
+    target:
+      entity_id: light.first_led_hardware_instance
+  - service: select.select_option
+    target:
+      entity_id: select.desk_wled_preset
+    data:
+      option: Standard
+  mode: single
+- id: '1633491925334'
+  alias: WLED - Hyperion
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: wled_hyperion
+  condition: []
+  action:
+  - service: light.turn_on
+    target:
+      entity_id:
+      - light.first_led_hardware_instance
+      - light.desk_wled_master
+  mode: single
+- id: '1633493350832'
+  alias: WLED - Desk Light Dim
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: wled_desk_dim
+  condition: []
+  action:
+  - service: select.select_option
+    target:
+      entity_id: select.desk_wled_preset
+    data:
+      option: Dim
+  mode: single
+- id: '1634138414115'
+  alias: WLED - Desk Light Only
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: wled_desk_light_only
+  condition: []
+  action:
+  - service: select.select_option
+    target:
+      entity_id: select.desk_wled_preset
+    data:
+      option: DeskLight
+  - service: light.turn_off
+    target:
+      entity_id: light.first_led_hardware_instance
+  mode: single
+- id: '1634323000315'
+  alias: Toggle - Office Lights
+  description: ''
+  trigger: []
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: light.spare_bedroom_1
+          state: 'off'
+        - condition: state
+          entity_id: light.spare_bedroom_2
+          state: 'off'
+        - condition: state
+          entity_id: light.office_wall_wash
+          state: 'off'
+      sequence:
+      - type: turn_on
+        device_id: f7e05225909d433abf95f1f0fac2969b
+        entity_id: light.spare_bedroom_1
+        domain: light
+      - type: turn_on
+        device_id: 08a32ba1388b4fdba9ad6d6b7927341a
+        entity_id: light.spare_bedroom_2
+        domain: light
+      - type: turn_on
+        device_id: 451b085104ac4e5597eef49c4d2fb7c6
+        entity_id: light.office_wall_wash
+        domain: light
+        brightness_pct: 100
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: light.spare_bedroom_1
+          state: 'on'
+        - condition: state
+          entity_id: light.spare_bedroom_2
+          state: 'on'
+        - condition: state
+          entity_id: light.office_wall_wash
+          state: 'on'
+      sequence:
+      - type: turn_off
+        device_id: 451b085104ac4e5597eef49c4d2fb7c6
+        entity_id: light.office_wall_wash
+        domain: light
+      - type: turn_off
+        device_id: f7e05225909d433abf95f1f0fac2969b
+        entity_id: light.spare_bedroom_1
+        domain: light
+      - type: turn_off
+        device_id: 08a32ba1388b4fdba9ad6d6b7927341a
+        entity_id: light.spare_bedroom_2
+        domain: light
+      - device_id: 92538a0c080f3a5e8c64e152c9d0d778
+        domain: fan
+        entity_id: fan.office_fan
+        type: turn_off
+    default:
+    - service: notify.telegram
+      data:
+        message: '{{ trigger.to_state.action }}'
+  mode: single
+- id: '1634324148387'
+  alias: Telegram - Start Command
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: /start
+  action:
+  - service: notify.telegram
+    data:
+      message: "{{ [ \"Hi\", \"Hello\", \"Yes Sir!\", \"it's a pleasure to see you
+        again\" ] | random }}       \n"
+      data:
+        keyboard:
+        - /start, /cp
+  initial_state: 'on'
+- id: '1634324316096'
+  alias: Telegram - Control Pannel Command
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: /cp
+  action:
+  - service: notify.telegram
+    data:
+      message: "{{ [ \"Home Assistant Status\", \"Control Panel\", \"Yes Sir!\", \"Home
+        Assistant Control Panel\" ] | random }}       \n"
+      data:
+        inline_keyboard:
+        - Lights:/lights, Status:/status, Security:/security
+        - System:/system, Help:/help, Ping:/ping
+        - Addons:/addons
+        - Gimme Pizza:/gimmepizza, No thanks:/nopizza
+  initial_state: 'on'
+- id: telegram-ik-ping-pong
+  alias: telegram ping pong
+  hide_entity: true
+  trigger:
+  - platform: event
+    event_type: telegram_callback
+    event_data:
+      data: /ping
+  action:
+  - service: telegram_bot.answer_callback_query
+    data_template:
+      callback_query_id: '{{ trigger.event.data.id }}'
+      message: 'Callback received from {{ trigger.event.data.from_first }}. Message
+        id: {{ trigger.event.data.message.message_id }}. Data: {{ trigger.event.data.data
+        }} {{now().strftime("%H:%M:%S %Y-%m-%d")}} Pong, Message from {{ trigger.event.data["user_id"]
+        }}.'
+      show_alert: true
+- id: telegram-ik-security-alarm
+  alias: Telegram Alarm
+  hide_entity: true
+  trigger:
+  - platform: event
+    event_type: telegram_callback
+    event_data:
+      data: /security
+  action:
+  - service: telegram_bot.answer_callback_query
+    data_template:
+      callback_query_id: '{{ trigger.event.data.id }}'
+      message: Alarm control
+  - service: telegram_bot.edit_message
+    data_template:
+      message_id: last
+      chat_id: '{{ trigger.event.data.user_id }}'
+      message: '{% if is_state("alarm_control_panel.shm", "disarmed") %}Alarm is Disarmed.
+        {% else %}Alarm is ON. {% endif %} {% if is_state("input_select.home_status",
+        "Home") %}House Mode is Home. {% else %}House Mode is Away. {% endif %}
+
+        '
+      inline_keyboard:
+      - Away ON:/away_on, Away OFF:/away_off
+      - Alarm ON:/alarm_on, Alarm OFF:/alarm_off, Cancel:/cancel
+- alias: Want pizza?
+  hide_entity: true
+  trigger:
+    platform: time
+    at: '18:30:00'
+  condition:
+  - condition: state
+    entity_id: device_tracker.iphonemarie
+    state: home
+  - condition: state
+    entity_id: device_tracker.nico_nico
+    state: not_home
+  action:
+  - service: telegram_bot.send_message
+    data_template:
+      title: Want pizza?
+      target: telegram ID
+      message: You look like you are home alone. Should I order you a pizza?
+      inline_keyboard:
+      - Gimme Pizza:/gimmepizza
+      - No thanks:/nopizza
+  id: bd4090860bfd4df2ab88019784dba8b9
+- alias: No pizza
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: /nopizza
+  action:
+  - service: telegram_bot.answer_callback_query
+    data_template:
+      callback_query_id: '{{ trigger.event.data.id }}'
+      message: Ok, no pizza then
+  id: 68353a23cbe740628c0b255127cd8f28
+- alias: gimme pizza
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: /gimmepizza
+  action:
+  - service: telegram_bot.answer_callback_query
+    data_template:
+      callback_query_id: '{{ trigger.event.data.id }}'
+      message: PIZZA TIME
+  - service: dominos.order
+    data:
+      order_entity_id: dominos.medium_pan
+  id: 7d5f126b2f28412d86150d2362a1dba1
+- alias: Lights Actions
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: /lights
+  action:
+  - service: telegram_bot.answer_callback_query
+    data_template:
+      callback_query_id: '{{ trigger.event.data.id }}'
+      message: What you want to do with Lights?
+  - service: telegram_bot.send_message
+    data_template:
+      title: Lights ON or OFF?
+      target: telegram ID
+      message: Look like you want to turn on or off your lights. What you want to
+        do?
+      inline_keyboard:
+      - Decorative ON:/Living_on, Bedroom ON:/bedroom_lamp_on"
+      - Decorative OFF:/Living_off, Bedroom OFF:/bedroom_lamp_off"
+      - Kitchen ON:/kitchen_on, BathRoom ON:/bath_on
+      - Kitchen OFF:/kitchen_off, BathRoom OFF:/bath_off
+  id: 038b5fd58f3c433cb620c6068fc3a319
+- alias: IK - Telegram - Decorative Lights On
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: /Living_on
+  action:
+  - service: telegram_bot.answer_callback_query
+    data_template:
+      callback_query_id: '{{ trigger.event.data.id }}'
+      message: Decorative Lights ON
+  - service: light.turn_on
+    data:
+      entity_id: group.decorative
+  id: 3d8a334132c3467e89756971e3341fd7
+- alias: IK - Telegram - Decorative Light OFF
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: /Living_off
+  action:
+  - service: telegram_bot.answer_callback_query
+    data_template:
+      callback_query_id: '{{ trigger.event.data.id }}'
+      message: Decorative Lights OFF
+  - service: light.turn_off
+    data:
+      entity_id: group.decorative
+  id: 80585975b7e540ed9d7fbd9bf620432f
+- alias: IK - Telegram - BedRoom Lamp On
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: /bedroom_lamp_on
+  action:
+  - service: telegram_bot.answer_callback_query
+    data_template:
+      callback_query_id: '{{ trigger.event.data.id }}'
+      message: BedRoom Lights ON
+  - service: light.turn_on
+    data:
+      entity_id: group.bedroomlamps
+      brightness: 255
+  id: 99834b1f9696491688df972a815068af
+- alias: IK - Telegram - BedRoom Lamps OFF
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: /bedroom_lamp_off
+  action:
+  - service: telegram_bot.answer_callback_query
+    data_template:
+      callback_query_id: '{{ trigger.event.data.id }}'
+      message: BedRoom Lamps OFF
+  - service: light.turn_off
+    data:
+      entity_id: group.bedroomlamps
+  id: d3bab436a3c2499bb80be9bb8c3299d2
+- alias: HA System Actions
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: /system
+  action:
+  - service: telegram_bot.answer_callback_query
+    data_template:
+      callback_query_id: '{{ trigger.event.data.id }}'
+      message: What actions you want to do on HA?
+  - service: telegram_bot.send_message
+    data_template:
+      title: HA System Actions
+      target: telegram ID
+      message: Look like you want to do something about your Home Assistant istance..
+        What you want to do?
+      inline_keyboard:
+      - Check Config:/config, Automation Reload:/automreload
+      - HA Restart:/harestart, Host Reboot:/hassioreboot
+  id: 719c3c5a89094d2e9793f4e0d57ff3ca
+- alias: IK - Telegram - Automation reload
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: /automreload
+  action:
+  - service: telegram_bot.answer_callback_query
+    data_template:
+      callback_query_id: '{{ trigger.event.data.id }}'
+      message: Automation Reload
+  - service: script.reload_automations
+  - service: notify.telegram
+    data:
+      message: Automation - Reload - Triggered
+  id: 243e7810b49244e892c0df099691977d
+- alias: IK - Telegram - HA Restart
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: /harestart
+  action:
+  - service: telegram_bot.answer_callback_query
+    data_template:
+      callback_query_id: '{{ trigger.event.data.id }}'
+      message: HA restart
+  - service: script.restart_ha
+  - service: notify.telegram
+    data:
+      message: HA - Restart - Triggered
+  id: cee31c46dce44bf38c0a168a4182077e
+- alias: IK - Telegram - Host Reboot
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      data: /hassioreboot
+  action:
+  - service: telegram_bot.answer_callback_query
+    data_template:
+      callback_query_id: '{{ trigger.event.data.id }}'
+      message: Host Reboot
+  - service: hassio.host_reboot
+  - service: notify.telegram
+    data:
+      message: Host - Reboot - Triggered
+  id: 33002c89700e4e4c892b11978df52895
+- id: '1634598973851'
+  alias: Sunset - Yard Lights
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: '-15'
+  condition: []
+  action:
+  - service: switch.turn_on
+    target:
+      entity_id:
+      - switch.front_bed_lights
+      - switch.north_up_lights
+  mode: single
+- id: '1634669186087'
+  alias: Sunrise - Turn Off Holiday Lights
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunrise
+    offset: '15'
+  condition: []
+  action:
+  - service: light.turn_off
+    target:
+      entity_id:
+      - light.front_lights
+      - light.tyeb8635a85dc6dd81dcbjav
+      - light.north_driveway_bulb
+  - service: switch.turn_off
+    target:
+      entity_id:
+      - switch.living_room_plug
+      - switch.right_christmas_tree
+  - service: script.turn_off
+    target:
+      entity_id:
+      - script.color_change
+      - script.outdoor_christmas_color_change
+  mode: single
+- id: '1634669234912'
+  alias: Sunrise - Turn Off Yard Lights
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunrise
+    offset: '15'
+  condition: []
+  action:
+  - service: switch.turn_off
+    target:
+      entity_id:
+      - switch.front_bed_lights
+      - switch.north_up_lights
+  mode: single
+- id: '1635118367111'
+  alias: Color Change
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: /1
+  condition: []
+  action:
+  - service: script.color_change
+  mode: single
+- id: '1635124272259'
+  alias: Time - Bedroom Color - Halloween
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: /1
+  condition: []
+  action:
+  - service: script.bedroom_color_change
+  mode: single
+- id: '1636751349309'
+  alias: Motion-activated Light with Elevation
+  description: ''
+  use_blueprint:
+    path: reinder83/motion_light_with_elevation.yaml
+    input:
+      motion_entity: binary_sensor.motion_sensor_158d000200d1d7
+      no_motion_wait: 900
+      light_target:
+        entity_id: light.ryan_lamp
+- id: '1636751872055'
+  alias: Turn on based on motion
+  description: ''
+  use_blueprint:
+    path: apollo1220/motion_activated_entity.yaml
+    input:
+      illuminance_cutoff: 10
+      illuminance_sensor: sensor.illumination_158d000200d1d7
+      motion_sensor: binary_sensor.motion_sensor_158d000200d1d7
+      target_entity: group.bedroomlamps
+      no_motion_wait: 900
+      time_limit_before: input_datetime.bedroom_motion_stop
+      time_limit_after: input_datetime.bedroom_motion_start
+- id: '1637085173329'
+  alias: Webhook - Run Time to Record
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: office_record
+  condition: []
+  action:
+  - service: automation.trigger
+    target:
+      entity_id: automation.manual_time_to_record
+  mode: single
+- id: '1637092187590'
+  alias: Webhook - Turn off Video Light
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: turn_off_video
+  condition: []
+  action:
+  - service: switch.toggle
+    target:
+      entity_id: switch.office_video_light
+  mode: single
+- id: '1638480560814'
+  alias: Sunset - Holiday Outside Lights
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: input_select.light_mode
+      state: Standard
+  action:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.living_room_plug
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_select.light_mode
+        state: Halloween
+      sequence:
+      - service: script.color_change
+    - conditions:
+      - condition: state
+        entity_id: input_select.light_mode
+        state: Christmas
+      sequence:
+      - service: script.outdoor_christmas_color_change
+    default: []
+  mode: single
+- id: '1638482850401'
+  alias: Motion - Front House Lights
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.large_garage_door_contact
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 15
+      milliseconds: 0
+  - platform: state
+    entity_id: binary_sensor.small_garage_door_sensor
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 15
+      milliseconds: 0
+  - platform: state
+    entity_id: binary_sensor.front_door_motion
+    to: 'on'
+  - platform: state
+    entity_id: cover.large_door
+    to: open
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 15
+      milliseconds: 0
+  - platform: state
+    entity_id: cover.small_door
+    to: open
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 15
+      milliseconds: 0
+  condition:
+  - condition: sun
+    before: sunrise
+    after: sunset
+  action:
+  - service: script.turn_off
+    target:
+      entity_id:
+      - script.color_change
+      - script.outdoor_christmas_color_change
+  - service: light.turn_on
+    target:
+      entity_id: light.front_lights
+    data:
+      brightness_pct: 100
+  - wait_for_trigger:
+    - platform: state
+      entity_id: light.tyeb8635a85dc6dd81dcbjav
+  - service: light.turn_on
+    target:
+      entity_id:
+      - light.overhang_light
+      - light.north_driveway_bulb
+      - light.tyeb8635a85dc6dd81dcbjav
+    data:
+      kelvin: 4000
+      brightness_pct: 100
+  mode: single
+- id: '1638484450199'
+  alias: Motion Stop - Front Lights
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.front_motion
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - platform: state
+    entity_id: binary_sensor.large_garage_door_contact
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - platform: state
+    entity_id: binary_sensor.small_garage_door_sensor
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.front_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.large_garage_door_contact
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.small_garage_door_sensor
+      state: 'off'
+    - condition: sun
+      after: sunset
+      before: sunrise
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_select.light_mode
+        state: Standard
+      sequence:
+      - service: light.turn_off
+        target:
+          entity_id:
+          - light.overhang_light
+          - light.north_driveway_bulb
+          - light.tyeb8635a85dc6dd81dcbjav
+      - service: light.turn_off
+        target:
+          entity_id: light.front_lights
+    - conditions:
+      - condition: state
+        entity_id: input_select.light_mode
+        state: Halloween
+      sequence:
+      - service: script.color_change
+    - conditions:
+      - condition: state
+        entity_id: input_select.light_mode
+        state: Christmas
+      sequence:
+      - service: script.outdoor_christmas_color_change
+    default: []
+  mode: single
+- id: '1638811102645'
+  alias: TEST - Truck Location Update
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.truck_location
+    attribute: dt_tracker
+  condition: []
+  action:
+  - service: device_tracker.see
+    data:
+      dev_id: '{{ state_attr("sensor.truck_location","name")|replace(" ","_") }}'
+      gps:
+      - '{{ state_attr(''sensor.truck_test'',''lat'')}}'
+      - '{{state_attr(''sensor.truck_test'',''lng'')}}'
+  mode: single
+- id: '1639171863961'
+  alias: Controller - IKEA E1524/E1810 TRÅDFRI Wireless 5-Button Remote
+  description: ''
+  use_blueprint:
+    path: EPMatt/ikea_e1524_e1810.yaml
+    input:
+      integration: Zigbee2MQTT
+      controller_entity: sensor.office_remote_action
+      helper_last_controller_event: input_text.office_ikea_switch_last_state
+      action_button_center_short:
+      - service: automation.trigger
+        target:
+          entity_id: automation.new_automation
+      action_button_center_long:
+      - service: switch.toggle
+        target:
+          entity_id: switch.adaptive_lighting_adapt_brightness_office
+      action_button_center_double:
+      - service: switch.toggle
+        target:
+          entity_id: switch.adaptive_lighting_sleep_mode_office
+      button_center_double_press: true
+      action_button_up_long:
+      - service: light.turn_on
+        target:
+          device_id: 71837616bd466413fb3b6415c6157a87
+      - type: turn_on
+        device_id: 3135473da604a857bdde34f7992b17c8
+        entity_id: switch.office_monitor_switch
+        domain: switch
+      action_button_down_long:
+      - service: light.turn_off
+        target:
+          device_id: 71837616bd466413fb3b6415c6157a87
+      - type: turn_off
+        device_id: 3135473da604a857bdde34f7992b17c8
+        entity_id: switch.office_monitor_switch
+        domain: switch
+- id: '1639343644232'
+  alias: No Motion - Basement Lights Off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.basement_motion
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+    to: 'off'
+  condition:
+  - condition: state
+    state: 'off'
+    entity_id: binary_sensor.door_window_sensor_158d00023b0271
+  action:
+  - service: light.turn_off
+    target:
+      entity_id:
+      - light.basement_lights
+      - light.studio_background_lights
+      - light.basement_stairs_bottom
+      - light.basement_stairs_middle
+    data: {}
+  - service: notify.telegram
+    data:
+      message: 'Turned off basement lights. '
+  - service: tts.cloud_say
+    data:
+      entity_id: media_player.kitchen_display
+      message: 'I just turned off the basement. '
+  - service: media_player.turn_off
+    data: {}
+    target:
+      entity_id:
+      - media_player.basement_chromecast
+      - media_player.basement_home
+  mode: single
+- id: '1640325103003'
+  alias: Christmas Lights On
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: '0'
+  condition: []
+  action:
+  - service: homeassistant.turn_on
+    target:
+      entity_id: group.christmas_lights
+  mode: single
+- id: '1641207478318'
+  alias: Phone - Kristi State
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.kristis_phone_battery_state
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: sensor.kristis_phone_battery_state
+        state: wireless
+      - condition: state
+        entity_id: sensor.kristi_s_phone_esp
+        state: bedroom
+      - condition: time
+        after: '21:00:00'
+        before: 06:00:00
+      sequence:
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.kristi_phone_status
+        data:
+          option: Sleep
+    - conditions:
+      - condition: state
+        entity_id: sensor.kristis_phone_battery_state
+        state: none
+      sequence:
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.kristi_phone_status
+        data:
+          option: On Battery
+    default: []
+  mode: single
+- id: '1641207482599'
+  alias: Phone - Ryan State
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.note_20_charger_type
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        state: wireless
+        entity_id: sensor.note_20_charger_type
+      - condition: state
+        entity_id: sensor.ryan_s_phone_esp
+        state: bedroom
+      - condition: time
+        after: '21:00:00'
+        before: 06:00:00
+      sequence:
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.ryan_phone_status
+        data:
+          option: Sleep
+    - conditions:
+      - condition: state
+        entity_id: sensor.note_20_charger_type
+        state: none
+      sequence:
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.ryan_phone_status
+        data:
+          option: On Battery
+    default: []
+  mode: single
+- id: '1641850153337'
+  alias: HomeBridge - Teams Status
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: switch.presence_indicator_2
+  - platform: state
+    entity_id: switch.presence_indicator_3
+  - platform: state
+    entity_id: switch.presence_indicator_4
+  - platform: state
+    entity_id: switch.presence_indicator_5
+  - platform: state
+    entity_id: switch.presence_indicator_6
+  - platform: state
+    entity_id: switch.presence_indicator_in_call
+  - platform: state
+    entity_id: switch.presence_indicator_in_meeting
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: switch.presence_indicator_2
+        state: 'on'
+      sequence:
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.ryan_s_teams_status
+        data:
+          option: Offline
+    - conditions:
+      - condition: state
+        entity_id: switch.presence_indicator_3
+        state: 'on'
+      sequence:
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.ryan_s_teams_status
+        data:
+          option: DND
+    - conditions:
+      - condition: state
+        entity_id: switch.presence_indicator_4
+        state: 'on'
+      sequence:
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.ryan_s_teams_status
+        data:
+          option: Busy
+    - conditions:
+      - condition: state
+        entity_id: switch.presence_indicator_5
+        state: 'on'
+      sequence:
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.ryan_s_teams_status
+        data:
+          option: Away
+    - conditions:
+      - condition: state
+        entity_id: switch.presence_indicator_6
+        state: 'on'
+      sequence:
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.ryan_s_teams_status
+        data:
+          option: Available
+    - conditions:
+      - condition: state
+        entity_id: switch.presence_indicator_in_call
+        state: 'on'
+      sequence:
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.ryan_s_teams_status
+        data:
+          option: In a Call
+    - conditions:
+      - condition: state
+        entity_id: switch.presence_indicator_in_meeting
+        state: 'on'
+      sequence:
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.ryan_s_teams_status
+        data:
+          option: In a Meeting
+    default: []
+  mode: single
+- id: '1642022826256'
+  alias: Light - Teams Status Color
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_select.ryan_s_teams_status
+  - platform: state
+    entity_id: binary_sensor.muted
+  - platform: state
+    entity_id: binary_sensor.in_meeting
+  - platform: state
+    entity_id: media_player.series_x
+  - platform: state
+    entity_id: binary_sensor.midwestmario
+  - platform: state
+    entity_id: binary_sensor.littlekingdutch
+  - platform: state
+    entity_id: switch.office_monitor_switch
+  - platform: state
+    entity_id: person.ryan
+  - platform: state
+    entity_id: sensor.sm_n986u_phone_state
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_select.ryan_s_teams_status
+        state: Available
+      - condition: time
+        after: 08:00:00
+        before: '17:00:00'
+        weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+      - condition: not
+        conditions:
+        - condition: state
+          entity_id: binary_sensor.in_meeting
+          state: 'on'
+      - condition: state
+        entity_id: person.ryan
+        state: home
+      - condition: state
+        entity_id: media_player.series_x
+        state: 'off'
+      sequence:
+      - service: light.turn_on
+        target:
+          entity_id: light.office_status_light
+        data:
+          color_name: white
+          brightness_pct: 100
+          effect: None
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: person.ryan
+          state: away
+        - condition: and
+          conditions:
+          - condition: time
+            after: '17:00:00'
+            before: 07:00:00
+            weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+          - condition: state
+            entity_id: binary_sensor.in_meeting
+            state: 'off'
+          - condition: state
+            entity_id: person.ryan
+            state: home
+          - condition: state
+            entity_id: media_player.series_x
+            state: 'off'
+          - condition: or
+            conditions:
+            - condition: state
+              entity_id: input_select.ryan_s_teams_status
+              state: Available
+            - condition: state
+              entity_id: input_select.ryan_s_teams_status
+              state: away
+            - condition: state
+              entity_id: input_select.ryan_s_teams_status
+              state: offline
+      sequence:
+      - service: light.turn_off
+        target:
+          entity_id: light.office_status_light
+        data: {}
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: input_select.ryan_s_teams_status
+          state: Busy
+        - condition: state
+          entity_id: input_select.ryan_s_teams_status
+          state: DND
+      sequence:
+      - service: light.turn_on
+        target:
+          entity_id: light.office_status_light
+        data:
+          color_name: red
+          brightness_pct: 100
+          effect: None
+    - conditions:
+      - condition: state
+        entity_id: input_select.ryan_s_teams_status
+        state: away
+      - condition: time
+        after: 08:00:00
+        before: '17:00:00'
+        weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+      sequence:
+      - service: light.turn_on
+        target:
+          entity_id: light.office_status_light
+        data:
+          color_name: yellow
+          brightness_pct: 100
+          effect: None
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: input_select.ryan_s_teams_status
+          state: In a Meeting
+        - condition: state
+          entity_id: binary_sensor.in_meeting
+          state: 'on'
+        - condition: state
+          entity_id: input_select.ryan_s_teams_status
+          state: In a Call
+        - condition: and
+          conditions:
+          - condition: state
+            entity_id: sensor.sm_n986u_phone_state
+            state: offhook
+          - condition: state
+            entity_id: person.ryan
+            state: home
+          - condition: state
+            entity_id: sensor.ryan_s_phone_esp
+            state: office
+          - condition: time
+            after: 07:00:00
+            before: '22:00:00'
+            weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+            - sat
+            - sun
+      sequence:
+      - service: light.turn_on
+        target:
+          entity_id: light.office_status_light
+        data:
+          color_name: red
+          brightness_pct: 100
+          effect: Slow Pulse
+    - conditions:
+      - condition: state
+        entity_id: media_player.series_x
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.midwestmario
+        state: 'on'
+      sequence:
+      - service: light.turn_on
+        target:
+          entity_id: light.office_status_light
+        data:
+          color_name: blue
+          brightness_pct: 100
+    default:
+    - service: light.turn_off
+      data: {}
+      target:
+        entity_id: light.office_status_light
+  mode: single
+- id: '1643225867156'
+  alias: WLED - Desk Mic Alert
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.muted
+  condition:
+  - condition: state
+    entity_id: binary_sensor.in_meeting
+    state: 'on'
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.muted
+        state: 'on'
+      sequence:
+      - service: light.turn_on
+        data:
+          color_name: red
+          brightness: 255
+          effect: Breathe
+        target:
+          entity_id: light.desk_wled
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.muted
+        state: 'off'
+      sequence:
+      - service: light.turn_on
+        data:
+          color_name: yellow
+          brightness_pct: 100
+          effect: Breathe
+        target:
+          entity_id: light.desk_wled
+    default:
+    - service: light.turn_on
+      data:
+        color_name: white
+        effect: Solid
+      target:
+        entity_id: light.desk_wled
+  mode: single
+- id: '1643226843748'
+  alias: WLED - End Meeting
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.in_meeting
+    to: 'off'
+  condition: []
+  action:
+  - service: select.select_option
+    target:
+      entity_id: select.desk_wled_preset
+    data:
+      option: Bright
+  mode: single
+- id: '1644370849297'
+  alias: Button - Living Room Shades
+  description: ''
+  use_blueprint:
+    path: EPMatt/ikea_e1766.yaml
+    input:
+      integration: Zigbee2MQTT
+      controller_entity: sensor.shade_controller_action
+      helper_last_controller_event: input_text.shade_control
+      action_button_up_short:
+      - service: cover.set_cover_position
+        data:
+          position: 100
+        target:
+          entity_id: cover.living_room_shades
+      action_button_up_release: []
+      action_button_up_double:
+      - service: cover.set_cover_position
+        data:
+          position: 100
+        target:
+          entity_id: cover.living_room_shades
+      action_button_down_short:
+      - service: cover.set_cover_position
+        data:
+          position: 0
+        target:
+          entity_id: cover.living_room_shades
+      action_button_down_double:
+      - service: cover.set_cover_position
+        data:
+          position: 100
+        target:
+          entity_id: cover.living_room_shades
+      helper_debounce_delay: 100
+- id: '1646340784986'
+  alias: Time - Refresh LaCrosse Weather Station
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: /3
+    hours: '*'
+    seconds: '*'
+  condition: []
+  action:
+  - service: shell_command.getweatherstation
+    data: {}
+  mode: single
+- id: '1648583982921'
+  alias: Notification - FedEx Package Notification
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.mail_fedex_delivered
+    above: '0'
+  condition: []
+  action:
+  - condition: numeric_state
+    entity_id: sensor.mail_fedex_delivered
+    above: '0'
+  - service: notify.telegram
+    data:
+      title: Fedex Delivery
+      message: '
+
+        Looks like Fedex delivered your package. {{ states.sensor.mail_fedex_delivered.state
+        }} / {{ states.sensor.mail_fedex_packages.state }} packages delivered.'
+  - condition: numeric_state
+    entity_id: sensor.mail_fedex_delivered
+    above: '0'
+  - service: telegram_bot.send_video
+    data_template:
+      target: 488877271
+      url: '{{state_attr("camera.front_door","video_url")}}'
+      caption: Taken from Front Door Camera
+  mode: single
+- id: '1653411158777'
+  alias: Emporia Devices Go Offline - Reset
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.dryer_1_1min
+    to: Unavailable
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
+  condition: []
+  action:
+  - service: homeassistant.reload_config_entry
+    data: {}
+    target:
+      entity_id: sensor.dryer_1_1min
+  - service: notify.telegram
+    data:
+      title: HA Debug
+      message: I had to restart the Emporia integration.
+  mode: single
+- id: '1653704918369'
+  alias: sun protection
+  description: ''
+  use_blueprint:
+    path: mougeat/close_cover_with_sun.yaml
+    input:
+      cover_entity: cover.living_room_shades
+      weather: weather.openweathermap
+      sun_position_end: 310
+      sun_position_start: 210
+      sun_elevation_start: 70
+- id: '1654182907153'
+  alias: USPS Camera - Refresh Automatically
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.mail_updated
+  - platform: homeassistant
+    event: start
+  condition: []
+  action:
+  - service: local_file.update_file_path
+    data_template:
+      entity_id: camera.mail_usps
+      file_path: '{{ states(''sensor.mail_image_system_path'') }}'
+  mode: single
+- id: '1655607667850'
+  alias: Window open, climate off after a defined time
+  description: ''
+  use_blueprint:
+    path: SmartLiving.Rocks/window-open-climate-off.yaml
+    input:
+      window_entity: pla
+      minimum_open_time: 120
+      climate_target: climate.downstairs_thermostat
+- id: '1655607669795'
+  alias: Window open, climate off after a defined time
+  description: ''
+  use_blueprint:
+    path: SmartLiving.Rocks/window-open-climate-off.yaml
+    input:
+      window_entity: binary_sensor.door_window_sensor_158d0001d3a277
+      minimum_open_time: 120
+      climate_target: climate.downstairs_thermostat
+- id: '1655641235849'
+  alias: Window - Disable HVAC
+  description: ''
+  use_blueprint:
+    path: SmartLiving.Rocks/window-open-climate-off.yaml
+    input:
+      window_entity: binary_sensor.door_window_sensor_158d0001d3a277
+      minimum_open_time: 120
+      climate_target: climate.downstairs_thermostat
+- id: '1655642345624'
+  alias: Pantry Door - Light Control
+  description: ''
+  use_blueprint:
+    path: tombo12354/door_controls_light_delay.yaml
+    input:
+      controlling_door: binary_sensor.pantry_door
+      controlled_light: light.pantry_light
+      closed_delay: 9
+- id: '1655643865754'
+  alias: Humidity - Master Bathroom Fan
+  description: ''
+  use_blueprint:
+    path: dondochaka/turn-a-fan-on-and-off-based-on-the-difference-between-a-humidity-sensor-and-a-baseline.yaml
+    input:
+      humidity_sensor: sensor.master_bathroom_climate_humidity
+      fan_switch: switch.bathroom_fan
+- id: '1656899002292'
+  alias: 4th Color Change
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: /1
+  condition:
+  - condition: state
+    entity_id: input_select.light_mode
+    state: 4th
+  action:
+  - service: script.outdoor_4th_color_change
+    data: {}
+  mode: single
+- id: '1657200798527'
+  alias: Motion - Office Bathroom
+  description: ''
+  use_blueprint:
+    path: homeassistant/motion_light.yaml
+    input:
+      motion_entity: binary_sensor.office_bathroom_motion_sensor
+      light_target:
+        entity_id: light.office_bathroom_switch
+- id: '1657408228495'
+  alias: Button - Kitchen Shades
+  description: ''
+  use_blueprint:
+    path: EPMatt/ikea_e1766.yaml
+    input:
+      integration: Zigbee2MQTT
+      controller_entity: sensor.shade_controller_action
+      helper_last_controller_event: input_text.shade_control
+      action_button_up_short:
+      - service: cover.open_cover
+        data: {}
+        target:
+          entity_id: cover.living_room_shades
+      action_button_up_release: []
+      action_button_up_double:
+      - service: cover.stop_cover
+        data: {}
+        target:
+          entity_id: cover.living_room_shades
+      action_button_down_short:
+      - service: cover.close_cover
+        data: {}
+        target:
+          entity_id: cover.living_room_shades
+      action_button_down_double:
+      - service: cover.stop_cover
+        data: {}
+        target:
+          entity_id: cover.living_room_shades
+- id: '1657470481196'
+  alias: Notification - Nest Eco
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - switch.downstairs_thermostat
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_select.home_status
+    state: Home
+  action:
+  - service: notify.telegram
+    data:
+      title: HA
+      message: Looks like the Nest went into Eco mode when you were home, I fixed
+        that.
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.downstairs_thermostat
+  mode: single
+- id: '1658144734522'
+  alias: Refresh - Shades
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: /15
+  condition: []
+  action:
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Living Room Shade 1/get
+      payload: '{"position":""}'
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Living Room Shade 2/get
+      payload: '{"position":""}'
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Living Room Shade 3/get
+      payload: '{"position":""}'
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Living Room Shade 4/get
+      payload: '{"position":""}'
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Kitchen Shade 1/get
+      payload: '{"position":""}'
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Kitchen Shade 2/get
+      payload: '{"position":""}'
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Kitchen Shade 3/get
+      payload: '{"position":""}'
+  mode: single
+- id: '1658173177921'
+  alias: Time - Living Room Shade Control
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sun.sun
+    attribute: azimuth
+  - platform: state
+    entity_id:
+    - sun.sun
+    attribute: elevation
+  - platform: state
+    entity_id:
+    - binary_sensor.first_floor_entry_motion
+  - platform: state
+    entity_id:
+    - sensor.sun_phase
+  condition:
+  - condition: state
+    entity_id: input_select.home_status
+    state: Home
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.first_floor_entry_motion
+        state: 'on'
+      - condition: state
+        entity_id: cover.living_room_shades
+        state: Closed
+      - condition: numeric_state
+        entity_id: sun.sun
+        attribute: elevation
+        above: '-5'
+        below: '60'
+      sequence:
+      - service: cover.open_cover
+        data: {}
+        target:
+          entity_id:
+          - cover.living_room_shade_1
+          - cover.living_room_shade_2
+          - cover.living_room_shade_3
+          - cover.living_room_shade_4
+          - cover.kitchen_shade_3
+          - cover.kitchen_shade_2
+          - cover.kitchen_shade_1
+      - delay:
+          hours: 0
+          minutes: 2
+          seconds: 0
+          milliseconds: 0
+      - service: cover.open_cover
+        data: {}
+        target:
+          entity_id:
+          - cover.living_room_shade_1
+          - cover.living_room_shade_2
+          - cover.living_room_shade_3
+          - cover.living_room_shade_4
+          - cover.kitchen_shade_3
+          - cover.kitchen_shade_2
+          - cover.kitchen_shade_1
+      - delay:
+          hours: 0
+          minutes: 2
+          seconds: 0
+          milliseconds: 0
+      - service: automation.trigger
+        data:
+          skip_condition: true
+        target:
+          entity_id: automation.refresh_shades
+    - conditions:
+      - condition: state
+        entity_id: cover.living_room_shades
+        state: Open
+        for:
+          hours: 0
+          minutes: 15
+          seconds: 0
+      - condition: numeric_state
+        entity_id: sun.sun
+        attribute: elevation
+        above: '45'
+        below: '60'
+      sequence:
+      - service: cover.set_cover_position
+        data:
+          position: 50
+        target:
+          entity_id: cover.living_room_shades
+    - conditions:
+      - condition: numeric_state
+        entity_id: sun.sun
+        attribute: elevation
+        above: '50'
+        below: '60'
+      - condition: state
+        entity_id: cover.kitchen_shades
+        state: Open
+        for:
+          hours: 0
+          minutes: 15
+          seconds: 0
+      sequence:
+      - service: cover.set_cover_position
+        data:
+          position: 50
+        target:
+          entity_id: cover.kitchen_shades
+    - conditions:
+      - condition: numeric_state
+        entity_id: sun.sun
+        attribute: azimuth
+        above: '130'
+        below: '160'
+      - condition: state
+        entity_id: cover.living_room_shades
+        state: Open
+        for:
+          hours: 0
+          minutes: 15
+          seconds: 0
+      sequence:
+      - service: cover.close_cover
+        data: {}
+        target:
+          entity_id: cover.living_room_shades
+      - service: notify.telegram
+        data:
+          message: The sun is at {{state_attr("sun.sun","azimuth")}}° so I am closing
+            the Living Room Shades.
+          title: HA - Debug
+    - conditions:
+      - condition: numeric_state
+        entity_id: sun.sun
+        attribute: azimuth
+        above: '140'
+        below: '160'
+      - condition: state
+        entity_id: cover.kitchen_shades
+        state: Open
+        for:
+          hours: 0
+          minutes: 15
+          seconds: 0
+      sequence:
+      - service: cover.close_cover
+        data: {}
+        target:
+          entity_id: cover.kitchen_shades
+      - service: notify.telegram
+        data:
+          message: The sun is at {{state_attr("sun.sun","azimuth")}}° so I am closing
+            the Kitchen Shades
+          title: HA - Debug
+    - conditions:
+      - condition: sun
+        before: sunset
+        before_offset: '15'
+      - condition: state
+        entity_id: cover.living_room_shades
+        state: Closed
+        for:
+          hours: 0
+          minutes: 15
+          seconds: 0
+      sequence:
+      - service: cover.set_cover_position
+        data:
+          position: 50
+        target:
+          entity_id:
+          - cover.kitchen_shades
+          - cover.living_room_shades
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: cover.living_room_shades
+          state: Open
+          for:
+            hours: 0
+            minutes: 15
+            seconds: 0
+        - condition: state
+          entity_id: sensor.sun_phase
+          state: Night
+        - condition: time
+          before: '22:00:00'
+          after: '13:00:00'
+      sequence:
+      - service: cover.close_cover
+        data: {}
+        target:
+          entity_id:
+          - cover.kitchen_shades
+          - cover.living_room_shades
+    default: []
+  mode: single
+- id: '1660311216913'
+  alias: Fix Power Monitor - Emporia
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.dryer_1_1min
+    to: Unavailable
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
+  condition: []
+  action:
+  - service: homeassistant.reload_config_entry
+    data: {}
+    target:
+      entity_id: sensor.dryer_1_1min
+  - service: notify.telegram
+    data:
+      title: 'HA Debug: '
+      message: I had to restart the Emporia power monitor.
+  mode: single
+- id: '1660358151549'
+  alias: Controller - Monitor Remote
+  description: ''
+  use_blueprint:
+    path: EPMatt/ikea_e1766.yaml
+    input:
+      controller_device: 035274709cd14322932908c896ab4814
+      controller_entity: sensor.monitor_control_action
+      helper_last_controller_event: input_text.monitor_controller
+      action_button_up_short:
+      - service: ''
+      - service: light.turn_on
+        data: {}
+        target:
+          entity_id: light.desk_wled_master
+      action_button_down_short:
+      - service: switch.turn_off
+        data: {}
+        target:
+          entity_id: switch.office_monitor_switch
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id: light.desk_wled_master
+      integration: Zigbee2MQTT
+- id: '1660564519305'
+  alias: Washer - Finished
+  description: ''
+  use_blueprint:
+    path: sbyx/notify-or-do-something-when-an-appliance-like-a-dishwasher-or-washing-machine-finishes.yaml
+    input:
+      power_sensor: sensor.washer_power
+      starting_threshold: 5
+      actions:
+      - service: notify.telegram
+        data:
+          title: HA
+          message: Washer is done
+      - service: input_select.set_options
+        data:
+          options: Clean
+        target:
+          entity_id: input_select.washing_machine_status
+      pre_actions:
+      - service: notify.telegram
+        data:
+          title: HA
+          target: Washer is starting.
+      - service: input_select.set_options
+        data:
+          options: Running
+        target:
+          entity_id: input_select.washing_machine_status
+      starting_hysteresis: 1.25
+- id: '1660754942407'
+  alias: Dryer Automation
+  description: ''
+  use_blueprint:
+    path: sbyx/notify-or-do-something-when-an-appliance-like-a-dishwasher-or-washing-machine-finishes.yaml
+    input:
+      power_sensor: sensor.dryer_1_1min
+      starting_threshold: 25
+      finishing_threshold: 25
+      actions:
+      - service: input_select.select_option
+        data:
+          option: Clean
+      - service: notify.mobile_app_sm_f936u
+        data:
+          message: Looks like the clothes dryer is done!
+          title: "\U0001F455 Dryer Done"
+      pre_actions:
+      - service: input_select.select_option
+        data:
+          option: Running
+        target:
+          entity_id: input_select.dryer_status
+- id: '1661086830133'
+  alias: Dishwasher Automation
+  description: ''
+  use_blueprint:
+    path: sbyx/notify-or-do-something-when-an-appliance-like-a-dishwasher-or-washing-machine-finishes.yaml
+    input:
+      power_sensor: sensor.dishwasher_wattage
+      actions:
+      - service: input_select.select_option
+        data:
+          option: Clean
+        target:
+          entity_id: input_select.dishwasher_status
+      - service: notify.telegram
+        data:
+          title: HA
+          message: Looks like the dishwasher is done.
+      pre_actions:
+      - service: input_select.select_option
+        data:
+          option: Running
+        target:
+          entity_id: input_select.dishwasher_status
+- id: '1661614546789'
+  alias: Washer - Running
+  description: ''
+  use_blueprint:
+    path: sbyx/notify-or-do-something-when-an-appliance-like-a-dishwasher-or-washing-machine-finishes.yaml
+    input:
+      power_sensor: sensor.washer_power
+      actions:
+      - service: input_select.select_option
+        data:
+          option: Clean
+        target:
+          entity_id: input_select.washing_machine_status
+      - service: notify.telegram
+        data:
+          message: 'The washing machine is done, please move to the dryer. '
+          title: HA
+      pre_actions:
+      - service: input_select.select_option
+        data:
+          option: Running
+        target:
+          entity_id: input_select.washing_machine_status
+- id: '1662562870959'
+  alias: Button - Office Desk Control
+  description: ''
+  use_blueprint:
+    path: Drafted/aqara-buttons-all-in-one-zigbee2mqtt.yaml
+    input:
+      action_sensor: sensor.office_desk_switch_action
+      single_action:
+      double_action:
+      - type: turn_off
+        device_id: 3135473da604a857bdde34f7992b17c8
+        entity_id: switch.office_monitor_switch
+        domain: switch
+      - service: select.select_option
+        data:
+          option: Desk Scanner
+        target:
+          entity_id: select.desk_wled_preset
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 5
+          milliseconds: 0
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id: light.desk_wled_master
+      hold_action:
+      - device_id: ''
+        domain: ''
+        entity_id: ''
+- id: '1662991010891'
+  alias: Time - Turn Off Kids’ Lights
+  description: ''
+  trigger:
+  - platform: time
+    at: 08:00:00
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 0bce24357a56411293333597c48a43bf
+    entity_id: switch.star_light_2
+    domain: switch
+  - type: turn_off
+    device_id: db88669e257df08eb7ebbe53367f8ae4
+    entity_id: light.liam_light_strip
+    domain: light
+  - type: turn_off
+    device_id: 50b6f9d47c674de3b913ac7008650567
+    entity_id: light.liam_s_lamp
+    domain: light
+  mode: single
+- id: '1663103174508'
+  alias: Button - Desk Automations
+  description: ''
+  use_blueprint:
+    path: EPMatt/ikea_e1743.yaml
+    input:
+      integration: Zigbee2MQTT
+      controller_entity: sensor.office_desk_switch_action
+      helper_last_controller_event: input_text.desk_button_helper
+      action_button_up_short:
+      - service: script.1662733796372
+        data: {}
+      action_button_down_short:
+      - service: script.1662734718778
+        data: {}
+      action_button_up_long:
+      - service: script.1662733796372
+        data: {}
+- id: '1663171191013'
+  alias: Packages - UPS Notify
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.mail_ups_delivered
+    above: '0'
+  condition: []
+  action:
+  - condition: numeric_state
+    entity_id: sensor.mail_ups_delivered
+    above: '0'
+  - service: notify.telegram
+    data:
+      title: UPS Delivery
+      message: '
+
+        Looks like UPS delivered your package. {{ states.sensor.mail_ups_delivered.state
+        }} / {{ states.sensor.mail_ups_packages.state }} packages delivered.'
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  - service: telegram_bot.send_video
+    data_template:
+      target: 488877271
+      url: '{{state_attr("camera.front_door","video_url")}}'
+      caption: Taken from Front Door Camera
+  mode: single
+- id: '1663207506759'
+  alias: Time - Liam's Lamp
+  description: ''
+  trigger:
+  - platform: time
+    at: input_datetime.liam_night_light
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 50b6f9d47c674de3b913ac7008650567
+    entity_id: light.liam_s_lamp
+    domain: light
+  mode: single
+- id: '1663207506759'
+  alias: Time - Liam's Lamp
+  description: ''
+  trigger:
+  - platform: time
+    at: input_datetime.liam_night_light
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 50b6f9d47c674de3b913ac7008650567
+    entity_id: light.liam_s_lamp
+    domain: light
+  mode: single
+- id: '1664154953764'
+  alias: Button - Kitchen Shades
+  description: ''
+  use_blueprint:
+    path: EPMatt/ikea_e1766.yaml
+    input:
+      integration: Zigbee2MQTT
+      controller_entity: sensor.kitchen_shade_controller_action
+      helper_last_controller_event: input_text.shade_control
+      action_button_up_short:
+      - service: cover.set_cover_position
+        data:
+          position: 100
+        target:
+          entity_id: cover.kitchen_shades
+      action_button_up_release: []
+      action_button_up_double:
+      - service: ''
+      - service: cover.open_cover
+        data: {}
+        target:
+          entity_id: cover.kitchen_shades
+      action_button_down_short:
+      - service: cover.set_cover_position
+        data:
+          position: 0
+        target:
+          entity_id: cover.kitchen_shades
+      action_button_down_double:
+      - service: cover.set_cover_position
+        data:
+          position: 0
+        target:
+          entity_id: cover.kitchen_shades
+      helper_debounce_delay: 100
+      controller_device: 636cfe0701059d733487e907ea3a044d
+- id: '1664894912251'
+  alias: Webhook - Catch Daily Sheet URL
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: dailybujo
+  condition: []
+  action:
+  - service: input_text.set_value
+    data:
+      value: '{{ trigger.json.url }}'
+    target:
+      entity_id: input_text.daily_sheet_url
+  - service: mqtt.publish
+    data:
+      topic: homeassistant/sensor/log_notion/url
+      payload_template:
+        '[object Object]':
+  mode: single
+- id: '1664918024968'
+  alias: Power - Shut Off Garage Charging
+  description: ''
+  use_blueprint:
+    path: Christoph-Wagner/standby-off.yaml
+    input:
+      power_sensor: sensor.garage_charging_power
+      power_threshold: '5'
+      smart_plug_switch: switch.garage_charging_plug_bridge
+      off_delay: 5
+- id: '1665062643860'
+  alias: Pill Reminder
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_datetime.ryan_1st_pill
+  condition: []
+  action:
+  - service: input_datetime.set_datetime
+    data: {}
+    target:
+      entity_id: input_datetime.ryan_2nd_pill
+  mode: single
+- id: '1665247379850'
+  alias: Button - Kettle Counter
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - switch.kettle_plug
+  condition: []
+  action:
+  - service: counter.increment
+    data: {}
+    target:
+      entity_id: counter.kettle_button_presses
+  mode: single
+- id: '1665247451637'
+  alias: Button - Kettle Reset
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - switch.kettle_plug
+  condition: []
+  action:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - service: counter.reset
+    data: {}
+    target:
+      entity_id: counter.kettle_button_presses
+  mode: restart
+- id: '1665248102916'
+  alias: Counter - Start Kettle Timer
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: counter.kettle_button_presses
+    above: 3
+  condition: []
+  action:
+  - service: timer.start
+    data: {}
+    target:
+      entity_id: timer.tea_timer
+  - service: notify.mobile_app_sm_f936u
+    data:
+      title: "\U0001F375Tea Timer Started"
+      message: Your 4 Minute Tea Timer Has Started
+  mode: single
+- id: '1665248457239'
+  alias: Timer - Tea is Ready
+  description: ''
+  trigger:
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.tea_timer
+  condition: []
+  action:
+  - service: notify.mobile_app_sm_f936u
+    data:
+      message: It looks like your tea timer is complete
+      title: "\U0001FAD6Your Tea is Ready\U0001FAD6"
+  mode: single
+- id: '1665261889651'
+  alias: Notify - Charging Station off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - automation.power_turn_off_garage
+    attribute: last_triggered
+  condition: []
+  action:
+  - service: notify.mobile_app_sm_f936u
+    data:
+      message: Your charging station has been turned off to save power
+      title: Charging Station Off
+  mode: single
+- id: '1665262100316'
+  alias: Notify - Kettle Done
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.garage_charging_power
+    below: 10
+  condition: []
+  action:
+  - service: notify.mobile_app_sm_f936u
+    data:
+      message: 'Your hot water is ready. '
+      title: "\U0001F375Hot Water Kettle"
+  mode: single
+- id: '1665263132955'
+  alias: Office - Sit Timer Start
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.office_monitor_switch_power
+    above: 50
+  condition: []
+  action:
+  - service: input_datetime.set_datetime
+    data:
+      datetime: '{{ now () }}'
+    target:
+      entity_id: input_datetime.sitting_time
+  mode: single
+- id: '1665289687795'
+  alias: Time - Refresh Switchbot Power
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: /1
+  condition: []
+  action:
+  - parallel:
+    - if:
+      - condition: state
+        entity_id: switch.garage_charging_plug_bridge
+        state: 'on'
+      then:
+      - service: homeassistant.update_entity
+        data: {}
+        target:
+          entity_id: sensor.garage_charging_plug
+    - if:
+      - condition: state
+        entity_id: switch.kettle_plug
+        state: 'on'
+      then:
+      - service: homeassistant.update_entity
+        data: {}
+        target:
+          entity_id: sensor.kettle_plug
+    - if:
+      - condition: state
+        entity_id: switch.office_monitor_switch
+        state: 'on'
+      then:
+      - service: homeassistant.update_entity
+        data: {}
+        target:
+          entity_id: sensor.monitor_switch
+  mode: single
+- id: '1665415905693'
+  alias: State - Update SwitchBot Rest Sensors
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - switch.garage_charging_plug_bridge
+  - platform: state
+    entity_id:
+    - switch.kettle_plug
+  - platform: state
+    entity_id:
+    - switch.office_monitor_switch
+  condition: []
+  action:
+  - service: homeassistant.update_entity
+    data: {}
+    target:
+      entity_id:
+      - sensor.garage_charging_plug
+      - sensor.kettle_plug
+      - sensor.monitor_switch
+  mode: single
+- id: '1665461551991'
+  alias: Power - Add Sit Time
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.monitor_switch_power
+    below: 50
+  - platform: state
+    entity_id:
+    - sensor.monitor_switch
+    to: 'Off'
+  condition: []
+  action:
+  - service: input_number.set_value
+    data_template:
+      value: '{{ ((states(''input_number.total_sit_time'')|float) + ((as_timestamp(now())
+        - as_timestamp(states(''input_datetime.sitting_time'')))/60) | round(0)) }}'
+    target:
+      entity_id: input_number.total_sit_time
+  - service: input_datetime.set_datetime
+    data_template:
+      datetime: '{{ now() }} '
+    entity_id: input_datetime.sitting_time
+  mode: single
+- id: '1666203951350'
+  alias: Ring Keypad Automations
+  description: ''
+  use_blueprint:
+    path: ImSorryButWho/synchronize-ring-alarm-keypad-v2-with-alarmo.yaml
+    input:
+      keypad: 9887dcda2d08a5fd1b29af1bba5dfb38
+      alarm: alarm_control_panel.alarmo
+      selected_action_police:
+      - service: notify.mobile_app_sm_f936u
+        data:
+          message: Police assistance has been requested.
+          title: ALARM - Police Button
+- id: '1666203956413'
+  alias: Garage - Ring Keypad Automations
+  description: ''
+  use_blueprint:
+    path: ImSorryButWho/synchronize-ring-alarm-keypad-v2-with-alarmo.yaml
+    input:
+      keypad: 9887dcda2d08a5fd1b29af1bba5dfb38
+      alarm: alarm_control_panel.alarmo
+      selected_action_police:
+      - service: notify.mobile_app_sm_f936u
+        data:
+          message: Police assistance has been requested.
+          title: ALARM - Police Button
+- id: '1666205023892'
+  alias: CO - Trigger Keypads and Notify
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.co_sensor
+    to: 'on'
+  - platform: state
+    entity_id:
+    - binary_sensor.smoke_detector_sensor
+    to: 'on'
+  condition: []
+  action:
+  - service: zwave_js.set_value
+    data:
+      command_class: '135'
+      endpoint: '0'
+      property: '15'
+      value: 1
+      property_key: '1'
+    target:
+      entity_id: sensor.garage_entry_keypad_battery_level
+  mode: single
+- id: '1666205560124'
+  alias: Keypads - Clear on Disarm
+  description: ''
+  trigger:
+  - platform: event
+    event_type: zwave_js_notification
+    event_data:
+      device_id: 9887dcda2d08a5fd1b29af1bba5dfb38
+      command_class: 111
+      event_type: 2
+  - platform: event
+    event_type: zwave_js_notification
+    event_data:
+      device_id: 9887dcda2d08a5fd1b29af1bba5dfb38
+      command_class: 111
+      event_type: 3
+  condition: []
+  action:
+  - service: zwave_js.set_value
+    data:
+      command_class: '135'
+      endpoint: '0'
+      property: '2'
+      property_key: '1'
+      value: 1
+    target:
+      entity_id: sensor.garage_entry_keypad_battery_level
+  - service: notify.mobile_app_sm_f936u
+    data:
+      message: All Keypads Cleared
+      title: All Clear
+  mode: single
+- id: '1666206487713'
+  alias: Doors - Door Chime
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.garage_entry_door_contact
+    to: 'on'
+  - platform: state
+    entity_id:
+    - binary_sensor.back_door_lock_contact_sensor
+    to: 'on'
+  - platform: state
+    entity_id:
+    - binary_sensor.front_door_sensor
+    to: 'on'
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: time
+        before: '20:30:00'
+        after: 07:00:00
+        weekday:
+        - sun
+        - sat
+        - fri
+        - thu
+        - wed
+        - tue
+        - mon
+      sequence:
+      - service: zwave_js.set_value
+        data:
+          command_class: '135'
+          endpoint: '0'
+          property: '96'
+          property_key: '9'
+          value: 100
+        target:
+          entity_id:
+          - sensor.garage_entry_keypad_battery_level
+          - sensor.front_door_keypad_battery_level
+          - sensor.upstairs_keypad_battery_level
+    - conditions:
+      - condition: time
+        before: 07:00:00
+        after: '22:30:00'
+        weekday:
+        - sun
+        - sat
+        - fri
+        - thu
+        - wed
+        - tue
+        - mon
+      sequence:
+      - service: zwave_js.set_value
+        data:
+          command_class: '135'
+          endpoint: '0'
+          property: '96'
+          property_key: '9'
+          value: 50
+        target:
+          entity_id: sensor.garage_entry_keypad_battery_level
+  mode: single
+- id: '1666225305002'
+  alias: Keypad - Front Door Keypad
+  description: ''
+  use_blueprint:
+    path: ImSorryButWho/synchronize-ring-alarm-keypad-v2-with-alarmo.yaml
+    input:
+      keypad: 27e2c0d4d1c658dd352ca6389d7c9990
+      alarm: alarm_control_panel.alarmo
+- id: '1666225470307'
+  alias: Keypad - Upstairs Keypad
+  description: ''
+  use_blueprint:
+    path: ImSorryButWho/synchronize-ring-alarm-keypad-v2-with-alarmo.yaml
+    input:
+      keypad: 7389762f02edd8ed87c8d0c80a15d08f
+      alarm: alarm_control_panel.alarmo
+- id: '1666276556493'
+  alias: Home Status - Change Alarm State
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.home_status
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_select.home_status
+        state: Home
+      sequence:
+      - service: alarm_control_panel.alarm_disarm
+        data:
+          code: '1519'
+        target:
+          entity_id: alarm_control_panel.alarmo
+    - conditions:
+      - condition: state
+        entity_id: input_select.home_status
+        state: Away
+      sequence:
+      - service: alarm_control_panel.alarm_arm_home
+        data: {}
+        target:
+          entity_id: alarm_control_panel.alarmo
+    - conditions:
+      - condition: state
+        entity_id: input_select.home_status
+        state: Sleep
+      sequence:
+      - service: alarm_control_panel.alarm_arm_night
+        data: {}
+        target:
+          entity_id: alarm_control_panel.alarmo
+    - conditions:
+      - condition: state
+        entity_id: input_select.home_status
+        state: Vacation
+      sequence:
+      - service: alarm_control_panel.alarm_arm_vacation
+        data: {}
+        target:
+          entity_id: alarm_control_panel.alarmo
+  mode: single
+- id: '1666371469498'
+  alias: Mobile Devices - Set Home
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - group.all_mobile_devices
+    to: Home
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: input_select.home_status
+      state: Home
+  action:
+  - service: input_select.select_option
+    data:
+      option: Home
+    target:
+      entity_id: input_select.home_status
+  mode: single
+- id: '1666371484959'
+  alias: Mobile Devices - Set Home
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - group.all_mobile_devices
+    to: Home
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: input_select.home_status
+      state: Home
+  action:
+  - service: input_select.select_option
+    data:
+      option: Home
+    target:
+      entity_id: input_select.home_status
+  mode: single
+- id: '1666371487734'
+  alias: Mobile Devices - Set Home
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - group.all_mobile_devices
+    to: Home
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: input_select.home_status
+      state: Home
+  action:
+  - service: input_select.select_option
+    data:
+      option: Home
+    target:
+      entity_id: input_select.home_status
+  mode: single
+- id: '1666533574828'
+  alias: Daily - Refresh Z-Wave Battery
+  description: ''
+  trigger:
+  - platform: time
+    at: 00:00:00
+  condition: []
+  action:
+  - service: zwave_js.refresh_value
+    data:
+      entity_id:
+      - sensor.upstairs_motion_battery_level_2
+      refresh_all_values: true
+  mode: single
+- id: '1666533612350'
+  alias: Daily - Refresh Z-Wave Battery
+  description: ''
+  trigger:
+  - platform: time
+    at: 00:00:00
+  condition: []
+  action:
+  - service: zwave_js.refresh_value
+    data:
+      entity_id:
+      - sensor.upstairs_motion_battery_level_2
+      refresh_all_values: true
   mode: single

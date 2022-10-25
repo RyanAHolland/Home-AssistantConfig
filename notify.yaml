@@ -1,7 +1,7 @@
-  - name: PushOver
-    platform: pushover
-    api_key: !secret pushover_api
-    user_key: !secret pushover_key
+  # - name: PushOver
+  #   platform: pushover
+  #   api_key: !secret pushover_api
+  #   user_key: !secret pushover_key
 #  - platform: joaoapps_join
 #    device_id: !secret join_device
 #    name: Note8

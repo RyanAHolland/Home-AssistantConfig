@@ -18,6 +18,7 @@ homeassistant:
     - type: totp
   ##Add packages for better yaml organization
   packages: !include_dir_named packages
+  currency: USD
 
 ##Add Default Configre
 default_config:
@@ -53,7 +54,7 @@ http:
 #    - 192.168.1.0/24
 
 # Checks for available updates
-updater:
+# updater:
 
 # Discover some devices automatically
 discovery:
@@ -222,8 +223,8 @@ weather:
     mode: daily
 
 #APCUPS
-apcupsd:
-  host: a722577e-apcupsd
+# apcupsd:
+#   host: a722577e-apcupsd
 
 media_player:
 # - platform: roku
@@ -311,7 +312,9 @@ tts:
 #  access_token: !secret ga_token
 
 shell_command:
-  notioninbox: 'curl http://192.168.1.250:5000/notioninbox?title=\"{{title}}\"'
+  getweatherstation: python3 /config/python_scripts/get_weather_station.py
+
+  
 
 climate:
   #  - platform: nest
@@ -329,11 +332,26 @@ device_tracker:
 
 ffmpeg:
 
+stream:
+
 cover:
   - platform: myq
     username: !secret email
     password: !secret myq_pass
     type: liftmaster
+  - platform: group
+    name: Living Room Shades
+    entities:
+      - cover.living_room_shade_1
+      - cover.living_room_shade_2
+      - cover.living_room_shade_3
+      - cover.living_room_shade_4
+  - platform: group
+    name: Kitchen Shades
+    entities:
+      - cover.kitchen_shade_1
+      - cover.kitchen_shade_2
+      - cover.kitchen_shade_3
 
 rachio:
   api_key: !secret rachio_api
@@ -471,6 +489,111 @@ utility_meter:
 #         labels:
 #           - call
 
+monitor_docker:
+  - name: OfficePi
+    url: tcp://192.168.1.254:2375
+    containers:
+      - MeterMon
+    monitored_conditions:
+      - version
+      - containers_running
+      - containers_total
+      - state
+      - status
+  - name: MediaVault
+    url: tcp://192.168.1.250:2375
+    containers:
+      - sabnzbd
+      - owncloud-docker-server_owncloud_1
+      - Wallabag
+      - calibre
+    rename:
+      owncloud-docker-server_owncloud_1: AppDaemon
+    monitored_conditions:
+      - version
+      - containers_running
+      - containers_total
+      - state
+      - status
+
+
+
+# rest:
+#   - resource: https://eld.denixsystem.com/api/api.php?api=user&key=27975246E45E136B3BF8E2F8A2005343&cmd=OBJECT_GET_LOCATIONS,861107034133646
+#     scan_interval: 60
+#     sensor:
+#       - name: "Truck Location"
+#         json_attributes_path: "$.861107034133646"
+#         value_template: "OK"
+#         json_attributes:
+#           - "name"
+#           - "lat"
+#           - "lng"
+#           - "dt_server"
+#           - "dt_tracker"
+#           - "angle"
+#           - "speed"
+#       - name: "Truck Parameters"
+#         json_attributes_path: "$.861107034133646.params"
+#         value_template: "OK"
+#         json_attributes:
+#           - "acc"
+#           - "ai1"
+#           - "ai2"
+#           - "ai3"
+#           - "ai4"
+#           - "ai5"
+#           - "ai6"
+#           - "bats"
+#           - "di1"
+#           - "di2"
+#           - "dtc"
+#           - "dtc1"
+#           - "dtc2"
+#           - "dtc3"
+#           - "dtc4"
+#           - "dtc5"
+#           - "dtc_oal"
+#           - "hdop"
+#           - "jamming"
+#           - "odo"
+#           - "sos"
+#           - "spn100"
+#           - "spn101"
+#           - "spn109"
+#           - "spn114"
+#           - "spn115"
+#           - "spn1264"
+#           - "spn1483"
+#           - "spn158"
+#           - "spn1637"
+#           - "spn167"
+#           - "spn1675"
+#           - "spn168"
+#           - "spn169"
+#           - "spn182"
+#           - "spn190"
+#           - "spn2432"
+#           - "spn244"
+#           - "spn245"
+#           - "spn247"
+#           - "spn249"
+#           - "spn250"
+#           - "spn38"
+#           - "spn4154"
+#           - "spn512"
+#           - "spn513"
+#           - "spn80"
+#           - "spn899"
+#           - "spn91"
+#           - "spn917"
+#           - "spn94"
+#           - "spn95"
+#           - "spn96"
+#           - "spn98"
+#           - "spn99"
+#           - "vin"
+
 ####################################################
 #                                                  #
 #                     Includes                     #
@@ -528,3 +651,6 @@ camera: !include cameras.yaml
 
 ##templates
 template: !include templates.yaml
+
+##mqtt
+mqtt: !include mqtt.yaml

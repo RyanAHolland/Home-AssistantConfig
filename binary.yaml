@@ -185,9 +185,9 @@
   payload_off: "open"
   device_class: vibration
 #Ping Sensors
-- platform: ping
-  host: !secret walle_ip
-  name: "Wall-E Ping"
+# - platform: ping
+#   host: !secret walle_ip
+#   name: "Wall-E Ping"
 - platform: ping
   host: !secret rachio_ip
   name: "Rachio Ping"
@@ -200,21 +200,24 @@
 - platform: ping
   host: !secret officepi
   name: "OfficePi Ping"
-- platform: ping
-  host: !secret lrpi
-  name: "LivingRoomPi Ping"
-- platform: ping
-  host: !secret garagepi
-  name: "GaragePi Ping"
-- platform: ping
-  host: !secret bedroompi
-  name: "BedroomPi Ping"
+# - platform: ping
+#   host: !secret lrpi
+#   name: "LivingRoomPi Ping"
+# - platform: ping
+#   host: !secret garagepi
+#   name: "GaragePi Ping"
+# - platform: ping
+#   host: !secret bedroompi
+#   name: "BedroomPi Ping"
 - platform: ping
   host: !secret mediavault
   name: "MediaVault Ping"
 - platform: ping
   host: !secret jet
   name: "Jet Ping"
+- platform: ping
+  host: !secret octopi
+  name: "OctoPi Ping"
 
   ##PUMPING SENSORS
 
@@ -373,3 +376,11 @@
   payload_on: "online"
   payload_off: "offline"
   device_class: connectivity
+
+- platform: sun2
+  monitored_conditions:
+    - elevation
+    - elevation: 3
+    - elevation:
+        above: -6
+        name: Above Civil Dawn

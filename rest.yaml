@@ -21,8 +21,12 @@
 tasker_playlist:
   url: "https://autoremotejoaomgcd.appspot.com/sendmessage?key=APA91bHs3Tqwua0d_ZKRzPvYb83nmFE25FXCnfv178N3strcfjTcDNT-qLcdq1JUZSwuWe9E_39lxMpSDlZvKhguHpsORydA_7y2VWeszb-DxxininvGUMg0eZWR7yQTP7ZR0bQZKrZ2&message=playlist=:={{ states.input_select.gmusic_playlist.state }},{{ states.input_select.media_speakers.state }}"
 
+# daily_bujo:
+#   url: "https://notion-api-rh.herokuapp.com/newbujo"
+#   method: POST
+
 daily_bujo:
-  url: "https://notion-api-rh.herokuapp.com/newbujo"
+  url: "https://hook.us1.make.com/d84bx8la1l1niaf9b8swdl40bvlc1qeo"
   method: POST
 
 notioninbox:
@@ -30,3 +34,11 @@ notioninbox:
   method: POST
   content_type: "application/json"
   payload: '{"title": "{{ title }}"}'
+
+switchbot_device_command:
+  url: "https://api.switch-bot.com/v1.0/devices/{{deviceId}}/commands"
+  method: post
+  content_type: "application/json"
+  headers:
+    Authorization: !secret switchbot_api
+  payload: '{"command": "{{ command }}","parameter": "{{ parameter }}"}'

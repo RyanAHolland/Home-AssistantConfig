@@ -1,79 +1,16 @@
 force_home:
-    name: Force At Home
-    initial: off
-    icon: mdi:home-map-marker
+  name: Force At Home
+  initial: off
+  icon: mdi:home-map-marker
 door_notify_mode:
-    name: Door Notify Mode
-    initial: off
-    icon: mdi:surround-sound
+  name: Door Notify Mode
+  initial: off
+  icon: mdi:surround-sound
 auto_lights:
-    name: Automatic Lights
-    initial: on
-    icon: mdi:walk
-hue_arora:
-    name: Hue Arora
-    initial: off
-    icon: mdi:lighthouse-on
-hue_mood:
-    name: Hue Mood
-    initial: off
-    icon: mdi:lighthouse-on
-hue_candle:
-    name: Hue Candle
-    initial: off
-    icon: mdi:lighthouse-on
-outlander_home:
-    name: Outlander Home
-    initial: off
-    icon: mdi:car
-volvo_home:
-    name: Volvo Home
-    initial: off
-    icon: mdi:car
-dryer_active:
-    name: Dryer Active
-    initial: off
-    icon: mdi:tumble-dryer
+  name: Automatic Lights
+  initial: on
+  icon: mdi:walk
 zigbee_permit_join:
-    name: Allow devices to join
-    initial: off
-    icon: mdi:cellphone-wireless
-wax_warmer_control:
-    name: Run wax warmer
-    initial: off
-    icon: mdi:candle
-pumping:
-    name: Pumping
-    initial: off
-    icon: mdi:gas-station
-cast_twins_bedroom:
-    name: Cast Twins Camera to Bedroom
-    initial: off
-    icon: mdi:camera-wireless
-cast_front_lr:
-    name: Cast Front Camera to Living Room
-    initial: off
-    icon: mdi:camera-wireless
-notification_mode:
-    name: Notification Mode
-    initial: off
-    icon: mdi:surround-sound
-cir_office_lights:
-    name: Circadian Office Lights
-    initial: off
-    icon: mdi:theme-light-dark
-cir_lr_lights:
-    name: Circadian Living Room Lights
-    initial: off
-    icon: mdi:theme-light-dark
-cir_bedroom_lights:
-    name: Circadian Bedroom Lights
-    initial: off
-    icon: mdi:theme-light-dark
-#ryan_occupancy:
-#    name: Ryan Occupancy
-#    icon: mdi:human-male
-#kristi_occupancy:
-#    name: Kristi Occupancy
-#    icon: mdi:human-female
-##Removed as no longer needed for BT Presence (05/25/18 - RAH)
+  name: Allow devices to join
+  initial: off
+  icon: mdi:cellphone-wireless

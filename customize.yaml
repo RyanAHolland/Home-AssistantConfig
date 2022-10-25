@@ -365,3 +365,6 @@ sensor.volvo_fuel_level:
   icon: mdi:fuel
 device_tracker.liam_backpack:
   friendly_name: Liam's Backpack DT
+device_tracker.0964_loc:
+  friendly_name: 0 9 6 4
+  icon: mdi:truck

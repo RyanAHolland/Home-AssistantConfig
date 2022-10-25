@@ -54,10 +54,10 @@
       friendly_name: "Value of CNK Holdings"
 - platform: template
   sensors:
-    value_llnw:
-      value_template: "{{ (states.sensor.shares_llnw.state|float * states.sensor.yahoofinance_llnw.state|float)|round(2) }}"
+    value_egio:
+      value_template: "{{ (states.sensor.shares_egio.state|float * states.sensor.yahoofinance_egio.state|float)|round(2) }}"
       unit_of_measurement: "$"
-      friendly_name: "Value of LLNW Holdings"
+      friendly_name: "Value of EGIO Holdings"
 - platform: template
   sensors:
     value_pfe:
@@ -79,49 +79,10 @@
 - platform: template
   sensors:
     value_total:
-      value_template: "{{ (states.sensor.value_cnk.state|float + states.sensor.value_doge.state|float + states.sensor.value_llnw.state|float + states.sensor.value_pfe.state|float + states.sensor.value_tsla.state|float + states.sensor.value_vtrs.state|float)|round(2) }}"
+      value_template: "{{ (states.sensor.value_cnk.state|float + states.sensor.value_doge.state|float + states.sensor.value_egio.state|float + states.sensor.value_pfe.state|float + states.sensor.value_tsla.state|float + states.sensor.value_vtrs.state|float)|round(2) }}"
       unit_of_measurement: "$"
       friendly_name: "Value of All Stocks"
 
-# - platform: rest
-#   resource: https://api.weather.gov/alerts/active/count
-#   name: NWS Alert Count
-#   value_template: >
-#     {% if value_json.zones.MOC095 is defined %}
-#        {{ value_json.zones.MOC095 }}
-#     {% else %}
-#        0
-#     {% endif %}
-#   headers:
-#     User-Agent: Homeassistant
-#     Accept: application/ld+json
-#   scan_interval: 60
-
-# - platform: rest
-#   resource: https://api.weather.gov/alerts/active?zone=MOC095
-#   name: NWS Alert Event
-#   value_template: >
-#     {% if value_json.features[0] is defined %}
-#        {{ value_json['features'][0]['properties'].event }}
-#     {% else %}
-#        None
-#     {% endif %}
-
-# - platform: nws_alerts
-#   zone_id: "MOC095"
-
-# # Roomba  Control
-#  - platform: thinkingcleaner
-# # TED500
-#  - platform: ted5000
-#    name: main
-#    host: !secret ted_ip
-#    port: 80
-
-#PLEX
-#  - platform: plex
-#    username: !secret email
-#    password: !secret plex_pass
 #SABNZBD
 - platform: sabnzbd
   host: !secret sabnzbd_host
@@ -134,14 +95,6 @@
     - "disk_size"
     - "disk_free"
     - "queue_count"
-#RING
-#  - platform: ring
-#    monitored_conditions:
-#      - battery
-#      - last_activity
-#      - last_ding
-#      - last_motion
-#      - volume
 
 #ObiHai
 - platform: obihai
@@ -222,16 +175,6 @@
   max_age:
     minutes: 10
 
-# - platform: template
-#   sensors:
-#     gas_energy_metric:
-#       value_template: "{{ states('sensor.gas_meter_reading')|float*0.0283168 }}"
-#       unit_of_measurement: "m³"
-#       friendly_name: "Gas Energy Metric"
-#       state_class: "total_increasing"
-#       device_class: "gas"
-#       icon: mdi:fire
-
 ##WATER METER
 - platform: mqtt
   state_topic: "metermon/31297404"
@@ -240,307 +183,6 @@
   value_template: "{{ value_json.Consumption }}"
   unit_of_measurement: gal
 
-#  - platform: rest
-#    resource: !secret glances_path_fs
-#    name: Video Drive Percent
-#    value_template: '{{ value_json[27].percent }}'
-#    unit_of_measurement: '%'
-
-#  - platform: rest
-#    resource: !secret glances_path_fs
-#    name: Backup Drive Percent
-#    value_template: '{{ value_json[29].percent }}'
-#    unit_of_measurement: '%'
-
-#  - platform: rest
-#    resource: !secret glances_path_fs
-#    name: Download Drive Percent
-#    value_template: '{{ value_json[30].percent }}'
-#    unit_of_measurement: '%'
-
-#  - platform: rest
-#    resource: !secret glances_path_fs
-#    name: Media Drive Percent
-#    value_template: '{{ value_json[31].percent }}'
-#    unit_of_measurement: '%'
-
-#  - platform: rest
-#    resource: !secret glances_path_fs
-#    name: TV Drive Percent
-#    value_template: '{{ value_json[32].percent }}'
-#    unit_of_measurement: '%'
-
-#Basement UPS
-- platform: apcupsd
-  resources:
-    - bcharge
-    - linev
-    - loadpct
-    - nominv
-    - numxfers
-    - status
-    - timeleft
-    - tonbatt
-
-### !Removed as it is in the UI now
-# # Tracking Ryan to Home
-# - platform: waze_travel_time
-#   origin: device_tracker.google_maps_thehollandhaus_gmail_com
-#   name: Ryan To Home
-#   destination: zone.home
-#   region: "US"
-# # Tracking Ryan to Work
-# - platform: waze_travel_time
-#   name: Ryan To Work
-#   region: "US"
-#   origin: device_tracker.google_maps_thehollandhaus_gmail_com
-#   destination: zone.pivot
-# # Tracking Kristi to Home
-# - platform: waze_travel_time
-#   name: Kristi To Home
-#   region: "US"
-#   origin: device_tracker.google_maps_114680120030307638360
-#   destination: zone.home
-
-### Sensors from SmartThings
-##Light Sensors
-#  - platform: mqtt
-#    state_topic: "smartthings/First Floor Entry/illuminance/state"
-#    name: "First Floor Entry Light"
-#    qos: 0
-#    unit_of_measurement: 'lux'
-#  - platform: mqtt
-#    state_topic: "smartthings/Bathroom Motion/illuminance/state"
-#    name: "Bathroom Motion Light Sensor"
-#    qos: 0
-#    unit_of_measurement: 'lux'
-#  - platform: mqtt
-#    state_topic: "smartthings/Bedroom Motion/illuminance/state"
-#    name: "Bedroom Motion Light Sensor"
-#    qos: 0
-#    unit_of_measurement: 'lux'
-#  - platform: mqtt
-#    state_topic: "smartthings/Office Motion/illuminance/state"
-#    name: "Office Motion Light Sensor"
-#    qos: 0
-#    unit_of_measurement: 'lux'
-#Humidity Sensors
-#  - platform: mqtt
-#    state_topic: "smartthings/First Floor Entry/humidity/state"
-#    name: "First Floor Entry Humidity"
-#    qos: 0
-#    unit_of_measurement: '%RH'
-#  - platform: mqtt
-#    state_topic: "smartthings/Humidor Sensor/humidity/state"
-#    name: "Humidor Humidity"
-#    qos: 0
-#    unit_of_measurement: '%RH'
-#  - platform: mqtt
-#    state_topic: "smartthings/Liam's Room Sensor/humidity/state"
-#    name: "Liam's Room Humidity"
-#    qos: 0
-#    unit_of_measurement: '%RH'
-#Temperature Sensors
-#  - platform: mqtt
-#    state_topic: "smartthings/First Floor Entry/temperature/state"
-#    name: "First Floor Entry Temperature"
-#    qos: 0
-#    unit_of_measurement: '°F'
-#  - platform: mqtt
-#    state_topic: "smartthings/Liam's Room Sensor/temperature/state"
-#    name: "Liam's Room Temperature"
-#    qos: 0
-#    unit_of_measurement: '°F'
-#  - platform: mqtt
-#    state_topic: "smartthings/Humidor Sensor/temperature/state"
-#    name: "Humidor Temperature"
-#    qos: 0
-#    unit_of_measurement: '°F'
-# - platform: mqtt
-#   state_topic: "smartthings/Kitchen Motion/temperature/state"
-#   name: "Kitchen Motion Temperature"
-#   qos: 0
-#   unit_of_measurement: '°F'
-#  - platform: mqtt
-#    state_topic: "smartthings/Basement Motion/temperature/state"
-#    name: "Basement Motion Temperature"
-#    qos: 0
-#    unit_of_measurement: '°F'
-#  - platform: mqtt
-#    state_topic: "smartthings/Iris 3405-L Keypad/temperature/state"
-#    name: "Entry Keypad Temperature"
-#    qos: 0
-#    unit_of_measurement: '°F'
-# - platform: mqtt
-#   state_topic: "smartthings/Upstairs Motion/temperature/state"
-#   name: "Upstairs Motion Temperature"
-#   qos: 0
-#   unit_of_measurement: '°F'
-#  - platform: mqtt
-#    state_topic: "smartthings/Basement North Window/temperature/state"
-#    name: "Basement North Window Temperature"
-#    qos: 0
-#    unit_of_measurement: '°F'
-#  - platform: mqtt
-#    state_topic: "smartthings/Basement South Window 1/temperature/state"
-#    name: "Basement South Window 1 Temperature"
-#    qos: 0
-#    unit_of_measurement: '°F'
-#  - platform: mqtt
-#    state_topic: "smartthings/Basement South Window 2/temperature/state"
-#    name: "Basement South Window 2 Temperature"
-#    qos: 0
-#    unit_of_measurement: '°F'
-#  - platform: mqtt
-#    state_topic: "smartthings/Front Window 1/temperature/state"
-#    name: "Front Window 1 Temperature"
-#    qos: 0
-#    unit_of_measurement: '°F'
-#  - platform: mqtt
-#    state_topic: "smartthings/Front Window 2/temperature/state"
-#    name: "Front Window 2 Temperature"
-#    qos: 0
-#    unit_of_measurement: '°F'
-#  - platform: mqtt
-#    state_topic: "smartthings/Window Over Sink/temperature/state"
-#    name: "Window Over Sink Temperature"
-#    qos: 0
-#    unit_of_measurement: '°F'
-#  - platform: mqtt
-#    state_topic: "smartthings/Washer Sensor/temperature/state"
-#    name: "Washer Sensor Temperature"
-#    qos: 0
-#    unit_of_measurement: '°F'
-#  - platform: mqtt
-#    state_topic: "smartthings/Dryer Sensor/temperature/state"
-#    name: "Dryer Sensor Temperature"
-#    qos: 0
-#    unit_of_measurement: '°F'
-#Battery Sensors
-#  - platform: mqtt
-#    state_topic: "smartthings/Window Over Sink/battery/state"
-#    name: "Window Over Sink Battery"
-#    qos: 0
-#    unit_of_measurement: '%'
-#  - platform: mqtt
-#    state_topic: "smartthings/Dryer Sensor/battery/state"
-#    name: "Dryer Sensor Battery"
-#    qos: 0
-#    unit_of_measurement: '%'
-#  - platform: mqtt
-#    state_topic: "smartthings/Washer Sensor/battery/state"
-#    name: "Washer Sensor Battery"
-#    qos: 0
-#    unit_of_measurement: '%'
-#  - platform: mqtt
-#    state_topic: "smartthings/Play Room Window/battery/state"
-#    name: "Play Room Window Battery"
-#    qos: 0
-#    unit_of_measurement: '%'
-#  - platform: mqtt
-#    state_topic: "smartthings/Front Window 1/battery/state"
-#    name: "Front Window 1 Battery"
-#    qos: 0
-#    unit_of_measurement: '%'
-#  - platform: mqtt
-#    state_topic: "smartthings/Basement South Window 2/battery/state"
-#    name: "Basement South Window 2 Battery"
-#    qos: 0
-#    unit_of_measurement: '%'
-#  - platform: mqtt
-#    state_topic: "smartthings/Basement South Window 1/battery/state"
-#    name: "Basement South Window 1 Battery"
-#    qos: 0
-#    unit_of_measurement: '%'
-#  - platform: mqtt
-#    state_topic: "smartthings/Basement North Window/battery/state"
-#    name: "Basement North Window Battery"
-#    qos: 0
-#    unit_of_measurement: '%'
-#  - platform: mqtt
-#    state_topic: "smartthings/Play Room Window/battery/state"
-#    name: "Play Room Window Battery"
-#    qos: 0
-#    unit_of_measurement: '%'
-#  - platform: mqtt
-#    state_topic: "smartthings/Upstairs Keypad/battery/state"
-#    name: "Entry Keypad Battery"
-#    qos: 0
-#    unit_of_measurement: '%'
-# - platform: mqtt
-#   state_topic: "smartthings/Upstairs Motion/battery/state"
-#   name: "Upstairs Motion Battery"
-#   qos: 0
-#   unit_of_measurement: '%'
-#  - platform: mqtt
-#    state_topic: "smartthings/Basement Motion/battery/state"
-#    name: "Basement Motion Battery"
-#    qos: 0
-#    unit_of_measurement: '%'
-##Z-Wave Battery Sensors
-#Doors
-# - platform: template
-#   sensors:
-#     back_door_battery:
-#       value_template: "{{ states.zwave.back_door.attributes.battery_level }}"
-#       unit_of_measurement: "%"
-#       friendly_name: "Back Door Sensor Battery"
-# - platform: template
-#   sensors:
-#     garage_entry_battery:
-#       value_template: "{{ states.zwave.garage_entry.attributes.battery_level }}"
-#       unit_of_measurement: "%"
-#       friendly_name: "Garage Entry Sensor Battery"
-# - platform: template
-#   sensors:
-#     front_door_battery:
-#       value_template: "{{ states.zwave.front_door.attributes.battery_level }}"
-#       unit_of_measurement: "%"
-#       friendly_name: "Front Door Sensor Battery"
-# - platform: template
-#   sensors:
-#     liam_door_battery:
-#       value_template: "{{ states.zwave.liam_door.attributes.battery_level }}"
-#       unit_of_measurement: "%"
-#       friendly_name: "Liam's Door Sensor Battery"
-# - platform: template
-#   sensors:
-#     pantry_door_battery:
-#       value_template: "{{ states.zwave.pantry_door.attributes.battery_level }}"
-#       unit_of_measurement: "%"
-#       friendly_name: "Pantry Door Sensor Battery"
-# #Motion
-# - platform: template
-#   sensors:
-#     first_floor_battery:
-#       value_template: "{{ states.zwave.first_floor_sensor.attributes.battery_level }}"
-#       unit_of_measurement: "%"
-#       friendly_name: "First Floor Sensor Battery"
-# - platform: template
-#   sensors:
-#     kitchen_motion_battery:
-#       value_template: "{{ states.zwave.kitchen_motion.attributes.battery_level }}"
-#       unit_of_measurement: "%"
-#       friendly_name: "Kitchen Motion Battery"
-# - platform: template
-#   sensors:
-#     upstairs_motion_battery:
-#       value_template: "{{ states.zwave.upstairs_motion.attributes.battery_level }}"
-#       unit_of_measurement: "%"
-#       friendly_name: "Upstairs Motion Battery"
-# #Garage Door
-# - platform: template
-#   sensors:
-#     large_garage_battery:
-#       value_template: "{{ states.zwave.large_garage.attributes.battery_level }}"
-#       unit_of_measurement: "%"
-#       friendly_name: "Large Garage Sensor Battery"
-# - platform: template
-#   sensors:
-#     small_garage_battery:
-#       value_template: "{{ states.zwave.small_garage.attributes.battery_level }}"
-#       unit_of_measurement: "%"
-#       friendly_name: "Small Garage Sensor Battery"
 #Safety
 - platform: template
   sensors:
@@ -589,43 +231,6 @@
       value_template: "{{ states.switch.washer.attributes.current_power_w }}"
       friendly_name: "Washer Power"
 
-##Invert Smoke Sensor
-
-##SmartThings Pre1sence
-# - platform: mqtt
-# state_topic: "smartthings/Ryan's Phone/presence"
-# name: "ST Ryan"
-# qos: 0
-#Vibration Sensors
-#  - platform: mqtt
-#    state_topic: "smartthings/Dryer Sensor/threeAxis/state"
-#    name: "Dryer Movement"
-#    qos: 0
-#  - platform: mqtt
-#    state_topic: "smartthings/Washer Sensor/threeAxis/state"
-#    name: "Washer Movement"
-#    qos: 0
-#Power Sensors
-#  - platform: mqtt
-#    state_topic: "smartthings/Washer/power/state"
-#    name: "Washer Power"
-#    qos: 0
-#    unit_of_measurement: 'W'
-#SmartThings Template Sensors
-#  - platform: template
-#    sensors:
-#      ryan_smartthings:
-#        value_template: '{% if is_state("sensor.st_ryan", "present") %}Home{% else %}Away{% endif %}'
-#        friendly_name: "Ryan's SmartThings"
-#  - platform: mqtt
-#    state_topic: "smartthings/Kristi's Phone/presence"
-#    name: "ST Kristi"
-#    qos: 0
-#  - platform: template
-#    sensors:
-#      kristi_smartthings:
-#        value_template: '{% if is_state("sensor.st_kristi", "present") %}Home{% else %}Away{% endif %}'
-#        friendly_name: "Kristi's SmartThings"
 ##Google Maps Location Data
 - platform: template
   sensors:
@@ -639,24 +244,6 @@
       value_template: "{{ states.device_tracker.google_maps_114680120030307638360.attributes.battery_level }}"
       unit_of_measurement: "%"
       friendly_name: "Kristi Phone Battery"
-##Power Sensor
-#  - platform: mqtt
-#    state_topic: "smartthings/Ted 5000/power/state"
-#    name: "House Power Use"
-#    qos: 0
-#    unit_of_measurement: 'W'
-#  - platform: mqtt
-#    state_topic: "smartthings/Ted 5000/energy/state"
-#    name: "House Energy Use"
-#    qos: 0
-#    unit_of_measurement: 'V'
-##FIND Location
-#  - platform: rest
-#    resource: !secret find_name
-#    value_template: !secret find_template
-#    method: GET
-#    name: Ryan FIND Sensor
-#    scan_interval: 1
 
 ##presence server
 - platform: mqtt
@@ -1196,9 +783,9 @@
   away_timeout: 120
 
 - platform: mqtt_room
-  device_id: "iBeacon:c2e6df3e-6714-497e-bdc9-45340f70765f-100-1"
+  device_id: "iBeacon:fabcc837-20aa-46f7-92b7-cdf69251559e-100-1"
   name: "Ryan's Phone ESP"
-  state_topic: "espresense/devices/iBeacon:c2e6df3e-6714-497e-bdc9-45340f70765f-100-1"
+  state_topic: "espresense/devices/iBeacon:fabcc837-20aa-46f7-92b7-cdf69251559e-100-1"
   timeout: 60
   away_timeout: 120
 
@@ -1216,6 +803,20 @@
   timeout: 60
   away_timeout: 120
 
+- platform: mqtt_room
+  device_id: "samsung:4181657cd0c8"
+  name: "Ryan's Watch 4"
+  state_topic: "espresense/devices/samsung:4181657cd0c8"
+  timeout: 60
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: "garmin:db921a4f120a"
+  name: "Liam's Garmin"
+  state_topic: "espresense/devices/garmin:db921a4f120a"
+  timeout: 60
+  away_timeout: 120
+
   ##Power Integration Sensors
 - platform: integration
   source: sensor.3d_printer_power
@@ -1229,21 +830,26 @@
   unit_prefix: k
   round: 2
 
-  ##Truck Test
-- platform: rest
-  name: Truck Test
-  resource: https://eld.denixsystem.com/api/api.php?api=user&key=27975246E45E136B3BF8E2F8A2005343&cmd=OBJECT_GET_LOCATIONS,861107034133646
-  value_template: "{{ value_json.861107034133646.name }}"
-  json_attributes_path: "$.861107034133646"
-  scan_interval: 60
-  json_attributes:
-    - "name"
-    - "lat"
-    - "lng"
-    - "dt_server"
-    - "dt_tracker"
-    - "speed"
-    - "params.dtc1"
+- platform: integration
+  source: sensor.rain
+  name: Rain_Guage
+  round: 2
+
+#   ##Truck Test
+# - platform: rest
+#   name: Truck Test
+#   resource: https://eld.denixsystem.com/api/api.php?api=user&key=27975246E45E136B3BF8E2F8A2005343&cmd=OBJECT_GET_LOCATIONS,861107034133646
+#   value_template: "{{ value_json.861107034133646.name }}"
+#   json_attributes_path: "$.861107034133646"
+#   scan_interval: 60
+#   json_attributes:
+#     - "name"
+#     - "lat"
+#     - "lng"
+#     - "dt_server"
+#     - "dt_tracker"
+#     - "speed"
+#     - "params.dtc1"
 # - platform: template
 #   sensors:
 #     truck_trip_dist:
@@ -1271,15 +877,52 @@
     - sound
     - lackWater
 
+###SwitchBot Sensors
+##Rest Sensors
 - platform: rest
-  name: "Twins Room Sensor"
+  name: "Office Room Sensor"
   resource: !secret switchbot_meter_status_url
+  # icon: mdi:thermometer
   method: GET
   scan_interval: 300
   headers:
     Authorization: !secret switchbot_api
     Content-Type: "application/json"
-  value_template: "{{ value_json.body.temperature }}"
+  value_template: >-
+    {% set t = value_json.body.temperature | float %}
+    {{((t)*9/5)+32}}
+  json_attributes_path: "$.body"
+  json_attributes:
+    - humidity
+
+- platform: rest
+  name: "Living Room Sensor"
+  resource: !secret switchbot_lrmeter_status_url
+  # icon: mdi:thermometer
+  method: GET
+  scan_interval: 300
+  headers:
+    Authorization: !secret switchbot_api
+    Content-Type: "application/json"
+  value_template: >-
+    {% set t = value_json.body.temperature | float %}
+    {{((t)*9/5)+32}}
+  json_attributes_path: "$.body"
+  json_attributes:
+    - humidity
+
+- platform: rest
+  name: "Bedroom Room Sensor"
+  resource: !secret switchbot_bedroommeter_status_url
+  # icon: mdi:thermometer
+  method: GET
+  scan_interval: 300
+  headers:
+    Authorization: !secret switchbot_api
+    Content-Type: "application/json"
+  value_template: >-
+    {% set t = value_json.body.temperature | float %}
+    {{((t)*9/5)+32}}
   json_attributes_path: "$.body"
   json_attributes:
     - humidity
@@ -1304,5 +947,253 @@
     Content-Type: "application/json"
   value_template: "{{ value_json.body.power }}"
 
-- platform: torque
+  ##Plugs
+
+- platform: template
+  sensors:
+    garage_charging_power:
+      friendly_name: "Garage Charging Power"
+      value_template: "{{ state_attr('sensor.garage_charging_plug','weight')|float }}"
+      unit_of_measurement: "W"
+
+- platform: template
+  sensors:
+    kettle_plug_power:
+      friendly_name: "Kettle Plug Power"
+      value_template: "{{ state_attr('sensor.kettle_plug','weight')|float }}"
+      unit_of_measurement: "W"
+
+- platform: template
+  sensors:
+    monitor_switch_power:
+      friendly_name: "Monitor Switch Power"
+      value_template: "{{ state_attr('sensor.monitor_switch','weight')|float }}"
+      unit_of_measurement: "W"
+
+##Locks
+- platform: rest
+  name: "Back Door Lock"
+  resource: !secret switchbot_backlock_status_url
+  method: GET
+  scan_interval: 300
+  headers:
+    Authorization: !secret switchbot_api
+    Content-Type: "application/json"
+  value_template: "{{ value_json.body.lockState }}"
+
+## Template Sensors
+- platform: template
+  sensors:
+    office_room_temp:
+      friendly_name: "Office Room Temperature"
+      value_template: "{{ states('sensor.office_room_sensor')|float }}"
+      unit_of_measurement: "°F"
+
+- platform: template
+  sensors:
+    office_room_hum:
+      friendly_name: "Office Room Humidity"
+      value_template: "{{ state_attr('sensor.office_room_sensor','humidity')|float }}"
+      unit_of_measurement: "%"
+
+- platform: template
+  sensors:
+    bedroom_room_temp:
+      friendly_name: "Bedroom Room Temperature"
+      value_template: "{{ states('sensor.bedroom_room_sensor')|float }}"
+      unit_of_measurement: "°F"
+
+- platform: template
+  sensors:
+    bedroom_room_hum:
+      friendly_name: "Bedroom Room Humidity"
+      value_template: "{{ state_attr('sensor.bedroom_room_sensor','humidity')|float }}"
+      unit_of_measurement: "%"
+
+- platform: template
+  sensors:
+    living_room_temp:
+      friendly_name: "Living Room Temperature"
+      value_template: "{{ states('sensor.living_room_sensor')|float }}"
+      unit_of_measurement: "°F"
+
+- platform: template
+  sensors:
+    living_room_hum:
+      friendly_name: "Living Room Humidity"
+      value_template: "{{ state_attr('sensor.living_room_sensor','humidity')|float }}"
+      unit_of_measurement: "%"
+
+- platform: template
+  sensors:
+    tank_level_indicator:
+      friendly_name: "Tank Level Indicator"
+      value_template: >
+        {% if states('input_number.tank_level')|int < 20 %}
+          Red
+        {% elif  states('input_number.tank_level')|int < 40 %}
+          Yellow
+        {% else %}
+          Green
+        {% endif %}
+
+# pnbruckner's sensor component as a template.
+# https://github.com/pnbruckner/ha-illuminance/blob/master/custom_components/illuminance/sensor.py
+- platform: template
+  sensors:
+    outdoor_illuminance:
+      friendly_name: Outdoor Illuminance Educated Guessor
+      icon_template: mdi:brightness-auto
+      unit_of_measurement: lx
+      attribute_templates:
+        current_condition: |
+          {%- set factors = namespace(current_condition='') %}
+
+          {#- Retrieve the current condition and normalize the value #}
+          {%- set weather_sensors = [
+            "weather.accuweather",
+            "sensor.openweathermap_condition",
+            "sensor.cc_weather_condition"
+          ] %}
+          {%- for sensor in weather_sensors if states(sensor) != "unknown" and factors.current_condition == "" %}
+            {%- set factors.current_condition = states(sensor) %}
+          {%- endfor %}
+          {%- set current_condition = factors.current_condition|lower|replace("partly cloudy w/ ","")|replace("mostly cloudy w/ ","")|replace("freezing","")|replace("and","")|replace("-", " ")|replace("_", " ")|replace("(","")|replace(")","")|replace(" ", "") %}
+
+          {{ current_condition }}
+        condition_factor: |
+          {% set factors = namespace(condition='') %}
+          {% set current_condition = state_attr("sensor.outdoor_illuminance","current_condition") %}
+
+          {%- set condition_factors = {
+            "10000": ("clear", "clearnight", "sunny", "windy", "exceptional"),
+            "7500": ("partlycloudy", "partlysunny", "mostlysunny", "mostlyclear", "hazy", "hazysunshine", "intermittentclouds"),
+            "2500": ("cloudy", "mostlycloudy"),
+            "1000": ("fog", "rainy", "showers", "pouring", "snowy", "snowyheavy", "snowyrainy", "flurries", "chanceflurries", "chancerain", "chancesleet", "drearyovercast", "sleet"),
+            "200": ("hail", "lightning", "tstorms")
+          } %}
+          {%- for factor in condition_factors if current_condition in condition_factors[factor] %}
+            {%- set factors.condition = factor %}
+          {%- endfor %}
+
+          {{ factors.condition }}
+        sun_factor: |
+          {% set factors = namespace(sun='') %}
+
+          {%- set right_now = now() | as_timestamp %}
+          {%- set sunrise = states("sensor.sunrise") | as_timestamp %}
+          {%- set sunrise_begin = states("sensor.dawn") | as_timestamp %}
+          {%- set sunrise_end = sunrise + (40 * 60) %}
+          {%- set sunset = states("sensor.sunset") | as_timestamp %}
+          {%- set sunset_begin = sunset - (40 * 60) %}
+          {%- set sunset_end = states("sensor.dusk") | as_timestamp %}
+          {%- if sunrise_end < right_now and right_now < sunset_begin %}
+            {%- set factors.sun = 1 %}
+          {%- elif sunset_end < right_now or right_now < sunrise_begin %}
+            {%- set factors.sun = 0 %}
+          {%- elif right_now <= sunrise_end %}
+            {%- set factors.sun = (right_now - sunrise_begin) / (60*60) %}
+          {%- else %}
+            {%- set factors.sun = (sunset_end - right_now) / (60*60) %}
+          {%- endif %}
+
+          {%- set factors.sun = 1 if factors.sun > 1 else factors.sun %}
+
+          {{ factors.sun }}
+      value_template: |
+        {%- set sun_factor = state_attr("sensor.outdoor_illuminance","sun_factor") %}
+        {%- set condition_factor = state_attr("sensor.outdoor_illuminance","condition_factor") %}
+
+        {# Take an educated guess #}
+        {%- set illuminance = (sun_factor|float * condition_factor|float) | round %}
+        {%- set illuminance = 10 if illuminance < 10 else illuminance %}
+        {{ illuminance }}
+
+- platform: sun2
+  monitored_conditions:
+    - solar_midnight
+    - astronomical_dawn
+    - nautical_dawn
+    - dawn
+    - sunrise
+    - solar_noon
+    - sunset
+    - dusk
+    - nautical_dusk
+    - astronomical_dusk
+    - daylight
+    - civil_daylight
+    - nautical_daylight
+    - astronomical_daylight
+    - night
+    - civil_night
+    - nautical_night
+    - astronomical_night
+    - elevation
+    - min_elevation
+    - max_elevation
+    - sun_phase
+    - deconz_daylight
+
+##Google Keep
+- platform: google_keep
+  username: !secret email
+  password: !secret google_keep.password
+  # labels:
+  #   - 'Home Assistant'
+  # pinned: true
+
+- platform: email
   email: !secret email
+  password: !secret google_imap_pass
+
+- platform: rest
+  name: "Garage Charging Plug"
+  resource: !secret switchbot_garage_charging_status_url
+  method: GET
+  scan_interval: 600
+  icon: mdi:power-socket-us
+  headers:
+    Authorization: !secret switchbot_api
+    Content-Type: "application/json"
+  value_template: "{{ value_json.body.power }}"
+  json_attributes_path: "$.body"
+  json_attributes:
+    - weight
+    - voltage
+    - electricCurrent
+    - electricityOfDay
+
+- platform: rest
+  name: "Kettle Plug"
+  resource: !secret switchbot_kettle_plug_status_url
+  method: GET
+  scan_interval: 600
+  icon: mdi:power-socket-us
+  headers:
+    Authorization: !secret switchbot_api
+    Content-Type: "application/json"
+  value_template: "{{ value_json.body.power }}"
+  json_attributes_path: "$.body"
+  json_attributes:
+    - weight
+    - voltage
+    - electricCurrent
+    - electricityOfDay
+
+- platform: rest
+  name: "Monitor Switch"
+  resource: !secret switchbot_office_monitor_status_url
+  method: GET
+  scan_interval: 600
+  icon: mdi:power-socket-us
+  headers:
+    Authorization: !secret switchbot_api
+    Content-Type: "application/json"
+  value_template: "{{ value_json.body.power }}"
+  json_attributes_path: "$.body"
+  json_attributes:
+    - weight
+    - voltage
+    - electricCurrent
+    - electricityOfDay

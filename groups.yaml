@@ -138,12 +138,6 @@ insideLights:
     - group.office
     - group.living_room
 
-office:
-  name: Office
-  entities:
-    - light.office_lamp
-    - light.camera_lights
-
 living room:
   name: Living Room
   entities:
@@ -153,20 +147,16 @@ living room:
     - light.floor_lamp
     - light.living_room_overhead
 
-fireplace lights:
-  name: Fireplace Lights
-  entities:
-    - light.left_lamp
-    - light.right_lamp
-
 christmas lights:
   name: Christmas Lights
   entities:
-    - switch.wemo_1
-    - switch.living_room_plug_switch
-    - switch.banister_lights
+    - switch.living_room_plug
+    - switch.ty416656422462ab4d5ddd
     - switch.right_christmas_tree
     - light.christmas_tree
+    - switch.right_christmas_tree
+    - switch.tyeb21092f058cdc8762jqyn
+    - switch.tyeb68678f315b51d606tect
 
 dining_room:
   name: Dining Room
@@ -187,16 +177,6 @@ play_room:
   name: Play Room
   entities:
     - light.reading_lamp_2
-
-decorative:
-  name: Decorative Lights
-  entities:
-    - light.left_lamp
-    - light.right_lamp
-    - light.stair_lamp
-    - light.floor_lamp
-    - light.kitchen_lamp
-    - light.dining_room_lamps
 
 stInterface:
   name: SmartThings Interface

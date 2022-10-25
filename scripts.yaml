@@ -17,7 +17,7 @@ wakeup:
 goingout:
   alias: Going Out
   sequence:
-  - service: notify.pushover
+  - service: notify.telegram
     data:
       message: Testing the Going Out script from IFTTT.
       title: HASS
@@ -79,7 +79,7 @@ night_garage_door_alarm:
   sequence:
   - delay:
       minutes: 5
-  - service: notify.pushover
+  - service: notify.telegram
     data:
       message: It looks like one of the garage doors have been left open. Please investigate.
       title: HASS
@@ -88,7 +88,7 @@ day_garage_door_alarm:
   sequence:
   - delay:
       minutes: 30
-  - service: notify.pushover
+  - service: notify.telegram
     data:
       message: It looks like one of the garage doors have been left open. Please investigate.
       title: HASS
@@ -338,6 +338,12 @@ kristisunrise:
 upsnotify:
   alias: UPS on Battery Notify
   sequence:
+  - service: notify.mobile_app_sm_f936u
+    data:
+      title: UPS On Battery
+      message: Loss of power detected. Current UPS runtime is {{     states(sensor.basement_ups_battery_charge)
+        }} and remaining power is {{     states(sensor.basement_ups_battery_charge)
+        }}%.
   - service: notify.telegram
     data:
       message: 'WARNING: Loss of power detected. Current UPS runtime is {{ states.sensor.basement_battery_runtime.state
@@ -405,7 +411,7 @@ kristibattery:
 textsecuritycheck:
   alias: Text Security Check
   sequence:
-  - service: notify.pushover
+  - service: notify.telegram
     data_template:
       message: '{%- for state in states.binary_sensor if state.attributes.device_class==''opening''
         if state.state==''on'' -%}{%- if loop.first %}The {% elif loop.last %} and
@@ -446,7 +452,7 @@ guestmodeaway:
       message: I have not detected movement in the house for 2 hours.  In 5 minutes
         I will put the house in away mode.  If you are still here please disable this
         script or make motion in front of one of the sensors. Thank you.
-  - service: notify.pushover
+  - service: notify.telegram
     data:
       message: I will setting away mode in 5 minutes.
       title: 'HASS: Guest Mode'
@@ -727,3 +733,322 @@ camera_privacy:
     target:
       entity_id: switch.basement_cam
   mode: single
+color_change:
+  sequence:
+  - service: light.turn_on
+    target:
+      entity_id: light.overhang_light
+    data:
+      color_name: green
+      transition: 15
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  - service: light.turn_on
+    target:
+      entity_id: light.overhang_light
+    data:
+      color_name: purple
+      transition: 15
+  mode: single
+  alias: Outdoor - Halloween Color Change
+bedroom_color_change:
+  sequence:
+  - service: light.turn_on
+    data:
+      color_name: green
+      transition: 5
+    target:
+      entity_id: light.ryan_bloom
+  - service: light.turn_on
+    data:
+      color_name: purple
+      transition: 5
+    target:
+      entity_id: light.kristi_bloom
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  - service: light.turn_on
+    data:
+      color_name: green
+      transition: 5
+    target:
+      entity_id: light.kristi_bloom
+  - service: light.turn_on
+    data:
+      color_name: purple
+      transition: 5
+    target:
+      entity_id: light.ryan_bloom
+  mode: single
+  alias: Bedroom Color Change
+outdoor_christmas_color_change:
+  alias: Outdoor - Christmas Color Change
+  sequence:
+  - service: light.turn_on
+    target:
+      entity_id: light.front_lights
+  - service: light.turn_on
+    target:
+      entity_id: light.overhang_light
+    data:
+      color_name: red
+      transition: 15
+  - service: light.turn_on
+    target:
+      entity_id: light.north_driveway_bulb
+    data:
+      color_name: red
+      transition: 15
+  - service: light.turn_on
+    target:
+      entity_id: light.tyeb8635a85dc6dd81dcbjav
+    data:
+      color_name: green
+      transition: 15
+  - delay:
+      hours: 0
+      minutes: 10
+      seconds: 0
+      milliseconds: 0
+  - service: light.turn_on
+    target:
+      entity_id: light.overhang_light
+    data:
+      color_name: green
+      transition: 15
+  - service: light.turn_on
+    target:
+      entity_id: light.north_driveway_bulb
+    data:
+      color_name: green
+      transition: 15
+  - service: light.turn_on
+    target:
+      entity_id: light.tyeb8635a85dc6dd81dcbjav
+    data:
+      color_name: red
+      transition: 15
+  - delay:
+      hours: 0
+      minutes: 10
+      seconds: 0
+      milliseconds: 0
+  - service: light.turn_on
+    target:
+      entity_id: light.overhang_light
+    data:
+      color_name: red
+      transition: 15
+  - service: light.turn_on
+    target:
+      entity_id: light.north_driveway_bulb
+    data:
+      color_name: red
+      transition: 15
+  - service: light.turn_on
+    target:
+      entity_id: light.tyeb8635a85dc6dd81dcbjav
+    data:
+      color_name: white
+      transition: 15
+  - delay:
+      hours: 0
+      minutes: 10
+      seconds: 0
+      milliseconds: 0
+  - service: light.turn_on
+    target:
+      entity_id: light.overhang_light
+    data:
+      color_name: white
+      transition: 15
+  - service: light.turn_on
+    target:
+      entity_id: light.north_driveway_bulb
+    data:
+      color_name: white
+      transition: 15
+  - service: light.turn_on
+    target:
+      entity_id: light.tyeb8635a85dc6dd81dcbjav
+    data:
+      color_name: red
+      transition: 15
+  - delay:
+      hours: 0
+      minutes: 10
+      seconds: 0
+      milliseconds: 0
+  - service: script.loop_front_lights
+  mode: single
+loop_front_lights:
+  alias: Loop Front Lights
+  sequence:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_select.light_mode
+        state: Halloween
+      sequence:
+      - service: script.color_change
+    default: []
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_select.light_mode
+        state: Halloween
+      sequence:
+      - service: script.color_change
+    default: []
+  mode: single
+status_light_start_loop:
+  alias: Status Light - Start Loop
+  sequence:
+  - service: light.turn_on
+    target:
+      entity_id: light.office_status_light
+    data:
+      transition: 3
+      color_name: red
+      brightness_pct: 100
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 15
+      milliseconds: 0
+  - service: light.turn_on
+    target:
+      entity_id: light.office_status_light
+    data:
+      transition: 3
+      color_name: white
+      brightness_pct: 100
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 15
+      milliseconds: 0
+  - service: script.status_light_keep_looping
+  mode: single
+status_light_keep_looping:
+  alias: Status Light - Keep Looping
+  sequence:
+  - wait_template: '{%- if states.input_select.ryan_s_teams_status.state == "In a
+      Meeting" or states.input_select.ryan_s_teams_status.state == "In a Call" -%}True{%else%}False{%endif%}'
+    timeout: '5'
+  - service: script.status_light_start_loop
+  mode: single
+outdoor_4th_color_change:
+  alias: Outdoor - 4th Color Change
+  sequence:
+  - service: light.turn_on
+    target:
+      entity_id: light.overhang_light
+    data:
+      color_name: red
+      transition: 15
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  - service: light.turn_on
+    data:
+      color_name: blue
+      transition: 20
+    target:
+      entity_id: light.north_driveway_bulb
+  - service: light.turn_on
+    target:
+      entity_id: light.overhang_light
+    data:
+      color_name: blue
+      transition: 15
+  - service: light.turn_on
+    data:
+      color_name: red
+      transition: 15
+    target:
+      entity_id: light.north_driveway_bulb
+  - service: automation.trigger
+    data:
+      skip_condition: false
+    target:
+      entity_id: automation.4th_color_change
+  mode: single
+'1662733796372':
+  alias: New Script
+  sequence:
+  - service: select.select_option
+    data:
+      option: Desk Scanner
+    target:
+      entity_id: select.desk_wled_preset
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - type: turn_on
+    device_id: 3135473da604a857bdde34f7992b17c8
+    entity_id: switch.office_monitor_switch
+    domain: switch
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 3
+      milliseconds: 0
+  - service: select.select_option
+    data:
+      option: '{{ states(''input_text.wled_previous_preset'') }}'
+    target:
+      entity_id: select.desk_wled_preset
+'1662734718778':
+  alias: Office - Shutdown
+  sequence:
+  - service: input_text.set_value
+    data:
+      value: '{% if states(''select.desk_wled_preset'') != ''Desk Scanner'' %}{{ states(''select.desk_wled_preset'')
+        }}{% else %}{{ states(''input_text.wled_previous_preset'') }}{% endif %}'
+    target:
+      entity_id: input_text.wled_previous_preset
+  - service: select.select_option
+    data:
+      option: Desk Scanner
+    target:
+      entity_id: select.desk_wled_preset
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - type: turn_off
+    device_id: 3135473da604a857bdde34f7992b17c8
+    entity_id: switch.office_monitor_switch
+    domain: switch
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 3
+      milliseconds: 0
+  - type: turn_off
+    device_id: 71837616bd466413fb3b6415c6157a87
+    entity_id: light.desk_wled_master
+    domain: light
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: 00c30a8f3be145f4a828bb983496d59b
+    entity_id: light.floor_lamp
+    domain: light
+  mode: single
+  icon: phu:desktop-computer

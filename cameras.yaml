@@ -95,11 +95,12 @@
 # password: !secret bi_pass
 # authentication: basic
 # - platform: ring
-# - platform: usps
-#   scan_interval: 5
 - platform: generic
-  still_image_url: https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?num=20&type=N0Q&mapx=400&mapy=240&brand=wui&delay=15&frame=0&scale=1&transx=0&transy=0&severe=1&smooth=0&centerx=400&centery=240&station=EAX&rainsnow=0&lightning=0&noclutter=0&showlabels=1&showstorms=5&rand=27037107
-  name: KC (Old)
+  still_image_url: https://embed.windy.com/embed2.html?lat=35.782&lon=-94.351&detailLat=38.911&detailLon=-94.348&width=650&height=450&zoom=5&level=surface&overlay=wind&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1
+  name: KC Wind and Pressure
+- platform: generic
+  still_image_url: https://embed.windy.com/embed2.html?lat=38.885&lon=-94.427&detailLat=38.885&detailLon=-94.427&width=650&height=450&zoom=9&level=surface&overlay=radar&product=radar&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1
+  name: KC Radar (Windy)
 - platform: generic
   still_image_url: https://s.w-x.co/staticmaps/wu/wxtype/county_loc/jef/animate.png
   name: KC
@@ -114,37 +115,37 @@
     - calibration_points
 
 ##Tiny Cam
-- platform: mjpeg
-  mjpeg_url: !secret twin_cam_url
-  name: Twin's Camera
+# - platform: mjpeg
+#   mjpeg_url: !secret twin_cam_url
+#   name: Twin's Camera
 
-- platform: mjpeg
-  mjpeg_url: !secret driveway_cam_url
-  name: Driveway Camera
+# - platform: mjpeg
+#   mjpeg_url: !secret driveway_cam_url
+#   name: Driveway Camera
 
-- platform: mjpeg
-  mjpeg_url: !secret liam_cam_url
-  name: Liam's Camera
+# - platform: mjpeg
+#   mjpeg_url: !secret liam_cam_url
+#   name: Liam's Camera
 
-- platform: mjpeg
-  mjpeg_url: !secret garage_cam_url
-  name: Garage Camera
+# - platform: mjpeg
+#   mjpeg_url: !secret garage_cam_url
+#   name: Garage Camera
 
-- platform: mjpeg
-  mjpeg_url: !secret back_deck_cam_url
-  name: Back Deck Camera
+# - platform: mjpeg
+#   mjpeg_url: !secret back_deck_cam_url
+#   name: Back Deck Camera
 
-- platform: mjpeg
-  mjpeg_url: !secret entry_cam_url
-  name: Entry Way Camera
+# - platform: mjpeg
+#   mjpeg_url: !secret entry_cam_url
+#   name: Entry Way Camera
 
-- platform: mjpeg
-  mjpeg_url: !secret playroom_cam_url
-  name: Playroom Camera
+# - platform: mjpeg
+#   mjpeg_url: !secret playroom_cam_url
+#   name: Playroom Camera
 
-- platform: mjpeg
-  mjpeg_url: !secret front_basement_cam_url
-  name: Front Basement Camera
+- platform: ffmpeg
+  name: New Driveway
+  input: "rtsp://admin:XOWGKR@192.168.1.121:554"
 
 - platform: generic
   still_image_url: http://192.168.1.5:3333/api/hassio_ingress/3W3jNyfPbU_YnS2SD-Ry-FRK-n-cNqkgK2Lo_z7-YlM/dashboard/snapshot/zXVY5bUCVvu2CILcHidMYBPVctDWOKTI
@@ -153,3 +154,36 @@
 - platform: generic
   still_image_url: http://192.168.1.5:3333/api/hassio_ingress/3W3jNyfPbU_YnS2SD-Ry-FRK-n-cNqkgK2Lo_z7-YlM/dashboard/snapshot/NB2frfx1i1ed7T9nvf5oF1cimpSnubJP
   name: YouTube Subs
+
+##Wyze Bridge RTSP
+- platform: generic
+  name: Twins Camera
+  still_image_url: http://192.168.1.5:8123/local/twins-cam.jpg
+  stream_source: rtsp://192.168.1.5:8554/twins-cam
+
+- platform: generic
+  name: Back Deck Camera
+  still_image_url: http://192.168.1.5:8123/local/back-deck.jpg
+  stream_source: rtsp://192.168.1.5:8554/back-deck
+
+- platform: generic
+  name: Garage Camera
+  still_image_url: http://192.168.1.5:8123/local/garage-camera.jpg
+  stream_source: rtsp://192.168.1.5:8554/garage-camera
+
+- platform: generic
+  name: Play Room Camera
+  still_image_url: http://192.168.1.5:8123/local/playroom-camera.jpg
+  stream_source: rtsp://192.168.1.5:8554/playroom-camera
+
+##OCTOPRINT
+
+- platform: mjpeg
+  name: OctoPrint Ender 3 v2
+  still_image_url: http://192.168.1.28/webcam/?action=snapshot
+  mjpeg_url: http://192.168.1.28/webcam/?action=stream
+
+##USPS Camera for Mail and Package Integration
+- platform: local_file
+  file_path: /<config path>/custom_components/mail_and_packages/mail_none.gif
+  name: mail_usps

@@ -1,0 +1,22 @@
+vacuum:
+  - name: "Eva 2"
+    schema: state
+    supported_features:
+      - start
+      - pause
+      - stop
+      - return_home
+      - battery
+      - status
+      - locate
+      - clean_spot
+      - send_command
+    fan_speed_list:
+      - min
+      - medium
+      - high
+      - max
+    set_fan_speed_topic: "vacuum/set_fan_speed"
+    command_topic: "vacuum/eva2/command"
+    state_topic: "vacuum/eva2/state"
+    send_command_topic: "vacuum/eva2/send_command"

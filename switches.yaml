@@ -115,3 +115,102 @@
       command_off: "ssh -o UserKnownHostsFile=/config/.ssh/known_hosts -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa  pi@192.168.1.219 sudo pkill -f weatherstation.py"
       command_state: "ssh -o UserKnownHostsFile=/config/.ssh/known_hosts -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa  pi@192.168.1.219 pgrep -a python | grep 'weatherstation.py'"
       value_template: '{{ "python" in value }}'
+
+###SwitchBot
+##Bots
+- platform: template
+  switches:
+    office_overhead_light:
+      value_template: "{{ is_state('sensor.office_overhead_light', 'on') }}"
+      turn_on:
+        service: rest_command.switchbot_device_command
+        data:
+          deviceId: !secret switchbot_office_light_deviceId
+          command: "turnOn"
+      turn_off:
+        service: rest_command.switchbot_device_command
+        data:
+          deviceId: !secret switchbot_office_light_deviceId
+          command: "turnOff"
+
+- platform: template
+  switches:
+    coffee_pot:
+      value_template: "{{ is_state('sensor.coffee_maker', 'on') }}"
+      turn_on:
+        service: rest_command.switchbot_device_command
+        data:
+          deviceId: !secret switchbot_coffee_deviceId
+          command: "turnOn"
+      turn_off:
+        service: rest_command.switchbot_device_command
+        data:
+          deviceId: !secret switchbot_coffee_deviceId
+          command: "turnOff"
+
+##Plugs
+# - platform: template
+#   switches:
+#     garage_charging:
+#       value_template: "{{ is_state('sensor.garage_charging_plug', 'on') }}"
+#       turn_on:
+#         service: rest_command.switchbot_device_command
+#         data:
+#           deviceId: !secret switchbot_garage_charging_deviceId
+#           command: "turnOn"
+#       turn_off:
+#         service: rest_command.switchbot_garage_charging_command
+#         data:
+#           deviceId: !secret switchbot_garage_charging_deviceId
+#           command: "turnOff"
+
+- platform: rest
+  name: "Garage Charging Station"
+  resource: !secret switchbot_garage_charging_control_url
+  body_on: '{"command": "turnOn"}'
+  body_off: '{"command": "turnOff"}'
+  is_on_template: "{{ value_json.is_active }}"
+  headers:
+    Authorization: "{{ states('sensor.switchbot_authorization') }}"
+    sign: "{{ states('sensor.switchbot_sign') }}"
+    t: "{{ states('sensor.switchbot_t') }}"
+    Content-Type: "application/json; charset=utf8"
+  verify_ssl: true
+
+##Locks
+# - platform: template
+#   switches:
+#     coffee_pot:
+#       value_template: "{{ is_state('sensor.coffee_maker', 'on') }}"
+#       turn_on:
+#         service: rest_command.switchbot_device_command
+#         data:
+#           deviceId: !secret switchbot_backlock_deviceId
+#           command: "turnOn"
+#       turn_off:
+#         service: rest_command.switchbot_device_command
+#         data:
+#           deviceId: !secret switchbot_backlock_deviceId
+#           command: "turnOff"
+
+- platform: rest
+  resource: !secret octopi_light_url
+  name: "OctoPi Overhead Lights"
+  body_on: '{"lights_on"}'
+  body_off: '{"lights_off"}'
+  is_on_template: "{{ value_json.lights_on }}"
+  headers:
+    Content-Type: application/json
+    X-Api-Key: !secret octopi_api
+  verify_ssl: false
+
+- platform: rest
+  resource: !secret octopi_light_url
+  name: "OctoPi Torch Mode"
+  body_on: '{"torch_on"}'
+  body_off: '{"torch_off"}'
+  is_on_template: "{{ value_json.torch_on }}"
+  headers:
+    Content-Type: application/json
+    X-Api-Key: !secret octopi_api
+  verify_ssl: false
